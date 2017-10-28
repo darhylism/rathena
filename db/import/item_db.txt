@@ -65,3 +65,69 @@
 // Non-kRO Eden Group Mark effect
 //=============================================================
 //22508,Para_Team_Mark_,Eden Group Mark,11,0,,0,,,,0,0xFFFFFFFF,63,2,,,,,,{ unitskilluseid getcharid(3),"AL_TELEPORT",3; },{},{}
+
+//cards
+35000,Giant_Sting_Card,Giant_sting_Card,6,20,,10,,,,,,,,136,,,,,{bonus bdex,+5;},{},{}
+35001,Giant_Thara_Frog_Card,Giant_Thara_Frog_Card,6,20,,10,,,,,,,,32,,,,,{bonus bdex,+6;},{},{}
+35002,Giant_Crusier_Card,Giant_Crusier_Card,6,20,,10,,,,,,,,2,,,,,{bonus bdex,+3;},{},{}
+35003,Flamring_Card,Flamring_Card,6,20,,10,,,,,,,,136,,,,,{skill "AC_CONCENTRATION",3;},{},{}
+35004,Shadow Poring_Card,Shadow_Poring_Card,6,20,,10,,,,,,,,4,,,,,{ bonus2 bAddSize,1,45; },{},{}
+
+//weapon sword
+1198,Buster Sword,Buster Sword,5,0,,100,150,,1,4,0x00004082,63,2,2,4,60,0,2,{bonus bDex,+10;bonus bHit,-10;skill "TK_SEVENWIND",4;bonus bDoubleRate,35;bonus3 bAutoSpell,"WZ_METEOR",7,100; },{},{sc_end TK_SEVENWIND;}
+
+//weapon bow
+1749,Quincy_Bow,Quincy_Bow,5,2500,,600,160,,5,4,0x000A0848,63,2,34,1,4,1,11,{bonus2 bAddEle,7,200;bonus bCritical,15;bonus bDex,15;bonus bAspd,7;},{},{}
+
+//weapon wand
+1612,Almighty Staff,Almighty_Staff,5,45000,22500,150,150,,1,3,0x00818314,63,2,2,3,24,1,10,{ bonus bDex,5; bonus bInt,5; bonus bMatkRate,20; if(BaseJob == Job_Priest || BaseJob == Job_High_Priest || BaseJob == Job_Soul_Linker || BaseJob == Job_Wizard || BaseJob == Job_High_Wizard){ bonus bMaxHP,500; bonus bHealPower,20; bonus bVit,5; }; },{},{}
+
+//weapon gun
+13184,Deadeye,Deadeye,5,,,150,77,,13,1,0x41000000,63,2,34,4,1,1,18,{bonus2 baddEff,Eff_Bleeding,5000; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus bSpeedRate,-25; bonus bHit,50; skill 127,1; skill 130,2; skill 5,7; bonus2 bSkillAtk,512,400;},{},{}
+13185,Cutlass,Cutlass,5,,,80,50,,9,1,0x41000000,63,2,34,4,1,1,17,{bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus2 bSkillAtk,516,30; bonus2 bSPDrainRate,10,10; bonus2 bSPVanishRate,10,5;},{},{}
+13186,Havoc,Havoc,5,,,400,100,,9,1,0x41000000,63,2,34,4,1,1,20,{bonus3 bAutoSpellWhenHit,249,5,1000; bonus bSpeedRate,-70; bonus bNoSizeFix,0; bonus2 baddEff,Eff_Stun,3000; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus bUnstripableWeapon,100;},{},{}
+13187,Sweeper,Sweeper,5,,,200,100,,9,1,0x41000000,63,2,34,4,1,1,18,{bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus2 bAddEle,8,20;},{},{}
+
+//custom wing,headgears etc...
+35005,Dark_Angel,Dark_Angel,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1199,{bonus bStr,+5;bonus bVit,+5;},{},{}
+35006,Arch_Angel,Arch_Angel,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1200,{bonus bInt,+5;bonus bDex,+5;},{},{}
+35007,Omega_Arch_Demon,Omega_Arch_Demon,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1201,{bonus bAgi,+10;bonus bDex,+10;},{},{}
+35008,Omega_Arch_Angel,Omega_Arch_Angel,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1202,{bonus bInt,+10;bonus bVit,+10;},{},{}
+35009,Moobert_Hat,Moobert_Hat,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,256,0,0,0,1205,{skill "AC_CONCENTRATION",1;bonus2 bAddEff,Eff_Freeze,300;bonus2 bResEff,Eff_Freeze,10000;},{},{sc_end AC_CONCENTRATION;}
+35010,Moonlight_Hat,Moonlight_Hat,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1203,{bonus bSpeedRate,50;bonus bFlee,50;},{},{}
+35011,Archdemon_Wing,Archdemon_Wing,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1204,{bonus bAgi,+5;bonus bDex,+5;},{},{}
+35012,Catoninetails_hat,Catoninetails_hat,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1206,{bonus2 bMagicAddSize,1,50;if(isequipped(4365) || isequipped(4441)) {bonus2 bMagicAddSize,1,-20;}},{},{}
+35013,Elf_King_Ears,Elf_King_Ears,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1207,{bonus bAgi,5; bonus bInt,2; bonus bDex,4; skill "AL_HEAL",5+7*(getskilllv("AL_HEAL")==10);},{},{}
+35014,Hood_of_Death,Hood_of_Death,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1208,{ bonus bAgi,-5; bonus bInt,-5; bonus bCriticalRate,25; if( isequipped(29010) ) { bonus bAgi,10; skill "KN_CHARGEATK",1; bonus3 bAddEff,Eff_Curse,500,ATF_TARGET; }},{},{}
+35015,Face_of_Death,Face_of_Death,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1209,{ skill "PF_SOULBURN",1; if( isequipped(29009) ) { bonus bAgi,20; bonus bInt,-20; bonus bCriticalRate,15; bonus4 bAutoSpell,SA_COMA,1,10,1; }},{},{}
+35016,Kakashi_Head_Protector,Kakashi_Head_Protector,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1210,{bonus bDex,3;bonus bAgi,2;},{},{}
+35017,Twin_Bunnies_Hat,Twin_Bunnies_Hat,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1211,{skill "TK_HIGHJUMP",1;},{},{}
+35018,Heart_Sunglasses,Heart_Sunglasses,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1212,{skill "DC_WINKCHARM",1;},{},{sc_end DC_WINKCHARM;}
+35019,Bowser_Shell,Bowser_Shell,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1213,{bonus bAtkRate,3; bonus2 bAddRace,7,3;},{},{}
+35020,Crimson_Red_Arch_Angel_Wing,Crimson_Red_Arch_Angel_Wing,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1214,{bonus bAgi,15;bonus bDex,15;bonus2 bAddRace,7,5;},{},{}
+35021,Aristocratic_Arch_Angel_Wing,Aristocratic_Arch_Angel_Wing,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1215,{bonus bint,15; bonus bVit,15;bonus2 bAddRace,7,5;},{},{}
+35022,Rinnegan,Rinnegan,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1216,{bonus bDex,5; bonus bAtkRate,6;},{},{}
+35023,Byakugan,Byakugan,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1217,{bonus bStr,5; bonus bNearAtkDef,3;},{},{}
+35024,Shinigami,Shinigami,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1218,{bonus bVit,5; bonus bIntravision,n;},{},{}
+35025,Sharingan,Sharingan,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1219,{bonus bInt,5; bonus bMaxHPrate,5;},{},{}
+35026,Dj Headset,Dj Headset,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1221,{ bonus bVariableCastrate,-10; bonus2 bSkillAtk,CG_ARROWVULCAN,20;},{},{}
+35027,state alchemist pocket watch,state_alchemist_pocket_watch,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,136,0,0,0,1222,{ skill 278,1; bonus bDex,5; bonus bCastrate,-5; bonus bUseSPrate,25; bonus bNoCastCancel,100; bonus bMatkRate,10;},{},{}
+35028,Haruhi Ribbons,haruhi_ribbons,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1223,{ bonus bSpeedAddRate,25; bonus bMaxSPrate,5; },{},{}
+35029,Alucard Sunglasses,alucard_sunglasses,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1224,{bonus2 bAddEff,Eff_Curse,1500; bonus2 bAddEff,Eff_Blind,1500; bonus2 bAddEff,Eff_Confusion,1500;},{},{}
+35030,Pikachu Ears,pikachu_ears,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1225,{skill "SA_LIGHTNINGLOADER",1; skill "NJ_RAIGEKISAI",1; skill "MG_THUNDERSTORM",3;},{},{sc_end SA_LIGHTNINGLOADER; sc_end NJ_RAIGEKISAI; sc_end MG_THUNDERSTORM;}
+35031,False Apprentice,false_apprentice,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,136,0,30,0,0,{changebase 0;},{},{changebase class;}
+35032,Costum of Youth,Costum_of_Youth,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,136,0,30,0,0,{},{if(BaseJob == Job_Knight) changebase 7; else if(BaseJob == Job_Monk) changebase 15; else if(BaseJob == Job_Crusader) changebase 14; else if(BaseJob == Job_Priest) changebase 8; else if(BaseJob == Job_Hunter) changebase 11; else if(BaseJob == Job_Bard) changebase 19; else if(BaseJob == Job_Dancer) changebase 20; else if(BaseJob == Job_Assassin) changebase 12; else if(BaseJob == Job_Rogue) changebase 17; else if(BaseJob == Job_Blacksmith) changebase 10; else if(BaseJob == Job_Alchemist) changebase 18; else if(BaseJob == Job_Wizard) changebase 9; else if(BaseJob == Job_Sage) changebase 16; },{ changebase class; }
+35033,summer_vacation_suit,summer_vacation_suit,4,100000,10,230,60,10,0,1,0xFFFFFFFF,63,2,16,0,30,0,0,{sc_start SC_Summer,86400000,0;},{},{sc_end SC_Summer;}
+35034,Wedding Suit,Loner Suit,4,100000,10,230,0,10,0,1,0xFFFFFFFF,63,2,16,0,30,0,0,{sc_start SC_WEDDING,600000,0;},{},{sc_end SC_WEDDING;}
+35035,....suit,....suit,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,136,0,30,0,0,{changebase 4048;},{},{changebase class;}
+35036,Black_Tie,black_tie,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1229,{ bonus bMaxSP,100; skill "MC_DISCOUNT",5; },{},{}
+35037,Blue_Tie,blue_tie,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1230,{ bonus bMaxSP,100; skill "MC_DISCOUNT",5; },{},{}
+35038,Cygnus Helm,Cygnus Helm,4,100000,10,600,0,10,0,1,0xFFFFFFFF,63,2,768,0,0,0,1231,{ bonus bMaxHPrate,10; bonus bMaxHPrate,10; skill "CR_DEFENDER",1; },{},{ sc_end CR_DEFENDER; },
+35039,Piamette_Headband,piamette_headband,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1232,{ bonus bIntravision,0; bonus3 bAutoSpell,NPC_BLOODDRAIN,1,50; bonus bDex,3; bonus bAgi,2; },{},{}
+35040,Chii Ears,chii_ears,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1233,{ bonus bDex,3; bonus bInt,2; },{},{}
+35041,vendetta,vendetta,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1235,{ bonus2 bAddRace,7,10; },{},{}
+35042,Music Ring,Music_Ring,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1243,{bonus2 bSkillAtk,CG_ARROWVULCAN,20; bonus2 bSkillAtk,BA_DISSONANCE,20;},{},{}
+35043,Wise Valkyrie Helm,Wise_Valkyrie_Helm,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,256,0,0,0,1246,{ bonus bDex,3 ; bonus bInt,3 ; bonus bVit,3 ;bonus2 bSubRace,RC_DemiHuman,5;bonus bMatkRate,15; },{},{}
+35044,Gangster_Scarf,Gangster_Scarf,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1252,{},{},{},
+35045,arch_angel_wings,arch_angel_wings,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1256,{bonus bVit,5; bonus bDex,5;},{},{}
+35046,arch_demon_wings,arch_demon_wings,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1257,{ bonus bStr,5; bonus bInt,5;},{},{}
