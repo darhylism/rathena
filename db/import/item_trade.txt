@@ -20,3 +20,57 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+1198,9,100	// Buster Sword
+1650,9,100	// Almighty Staff
+1749,9,100	// Quincy_Bow
+13184,9,100	// Deadeye
+13185,9,100	// Cutlass
+13186,9,100	// Havoc
+13187,9,100	// Sweeper
+35000,9,100	// Giant_Sting_Card
+35001,9,100	// Giant_Thara_Frog_Card
+35002,9,100	// Giant_Crusier_Card
+35003,9,100	// Flamring_Card
+35004,9,100	// Shadow Poring_Card
+35005,9,100	// Dark_Angel
+35006,9,100	// Arch_Angel
+35007,9,100	// Omega_Arch_Demon
+35008,9,100	// Omega_Arch_Angel
+35009,9,100	// Moobert_Hat
+35010,9,100	// Moonlight_Hat
+35011,9,100	// Archdemon_Wing
+35012,9,100	// Catoninetails_hat
+35013,9,100	// Elf_King_Ears
+35014,9,100	// Hood_of_Death
+35015,9,100	// Face_of_Death
+35016,9,100	// Kakashi_Head_Protector
+35017,9,100	// Twin_Bunnies_Hat
+35018,9,100	// Heart_Sunglasses
+35019,9,100	// Bowser_Shell
+35020,9,100	// Crimson_Red_Arch_Angel_Wing
+35021,9,100	// Aristocratic_Arch_Angel_Wing
+35022,9,100	// Rinnegan
+35023,9,100	// Byakugan
+35024,9,100	// Shinigami
+35025,9,100	// Sharingan
+35026,9,100	// Dj Headset
+35027,9,100	// state alchemist pocket watch
+35028,9,100	// Haruhi Ribbons
+35029,9,100	// Alucard Sunglasses
+35030,9,100	// Pikachu Ears
+35031,9,100	// False Apprentice
+35032,9,100	// Costum of Youth
+35033,9,100	// summer_vacation_suit
+35034,9,100	// Wedding Suit
+35035,9,100	// ....suit
+35036,9,100	// Black_Tie
+35037,9,100	// Blue_Tie
+35038,9,100	// Cygnus Helm
+35039,9,100	// Piamette_Headband
+35040,9,100	// Chii Ears
+35041,9,100	// vendetta
+35042,9,100	// Music Ring
+35043,9,100	// Wise Valkyrie Helm
+35044,9,100	// Gangster_Scarf
+35045,9,100	// arch_angel_wings
+35046,9,100	// arch_demon_wings
