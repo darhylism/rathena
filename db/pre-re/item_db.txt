@@ -1536,7 +1536,7 @@
 2714,Marvelous_Pandent,Marvelous Pendant,4,0,,100,,0,,1,0xFFFFFFFF,7,2,136,,0,0,0,{},{},{}
 2715,Skul_Ring_,Skull Ring,4,10000,,100,,0,,1,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus2 bSubRace,RC_Undead,1; },{},{}
 2716,Librarian_Glove,Librarian Glove,4,20,,100,,0,,1,0x00810200,7,2,136,,80,0,0,{ bonus bMaxSP,20; },{},{}
-2717,Pocket_Watch_,Pocket Watch,4,20,,200,,0,,0,0x00810204,7,2,136,,80,0,0,{},{},{}
+2717,Pocket_Watch_s,Pocket Watch,4,20,,200,,0,,0,0x00810204,7,2,136,,80,0,0,{},{},{}
 2718,Lunatic_Brooch,Lunatic Brooch,4,20,,200,,0,,1,0x00080808,7,2,136,,65,0,0,{},{},{}
 2719,Iron_Wrist,Iron Wrist,4,20,,700,,1,,0,0x000444A2,7,2,136,,50,0,0,{ bonus2 bSkillAtk,"SM_BASH",6; bonus2 bSkillAtk,"MC_MAMMONITE",6; },{},{}
 2720,Medal_Swordman,Medal of Honor,4,20,,0,,1,,0,0x00404082,7,2,136,,70,0,0,{ bonus2 bAddClass,Class_All,5; bonus bMatkRate,5; bonus bHit,10; bonus bMaxHP,500; bonus bMaxSP,50; bonus3 bAddEff,Eff_Stun,100,ATF_SHORT; },{},{}
@@ -3945,7 +3945,7 @@
 7510,Valhalla_Flower,Valhalla's Flower,3,200000,,10,,,,,,,,,,,,,{},{},{}
 7511,Rune_Of_Darkness,Rune of Darkness,3,2526,,10,,,,,,,,,,,,,{},{},{}
 7512,Burnt_Parts,Burnt Part,3,1600,,10,,,,,,,,,,,,,{},{},{}
-7513,Pocket_Watch,Pocket Watch,3,3420,,10,,,,,,,,,,,,,{},{},{}
+7513,Pocket_Watch_e,Pocket Watch,3,3420,,10,,,,,,,,,,,,,{},{},{}
 7514,Monster_Ticket,Monster Ticket,3,2,,0,,,,,,,,,,,,,{},{},{}
 7515,Marvelous_Medal,Prize Medal,3,2,,0,,,,,,,,,,,,,{},{},{}
 7516,Green_Key_Card,Green Keycard,3,0,,0,,,,,,,,,,,,,{},{},{}

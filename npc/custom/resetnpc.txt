@@ -47,3 +47,5 @@ prontera,150,193,4	script	Reset Girl	124,{
 	if(.@Reset[3]) set reset_limit,reset_limit + 1;
 	close;
 }
+
+poring_w02,76,77,4	duplicate(Reset Girl)	Reset Girl#poring	124

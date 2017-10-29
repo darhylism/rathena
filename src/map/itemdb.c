@@ -1801,9 +1801,9 @@ static void itemdb_read(void) {
 		sv_readdb(dbsubpath1, "item_findingore.txt",	',', 2, 10, -1, &itemdb_read_group, i);
 		sv_readdb(dbsubpath2, "item_giftbox.txt",		',', 2, 10, -1, &itemdb_read_group, i);
 		sv_readdb(dbsubpath2, "item_misc.txt",			',', 2, 10, -1, &itemdb_read_group, i);
-#ifdef RENEWAL
+//#ifdef RENEWAL
 		sv_readdb(dbsubpath2, "item_package.txt",		',', 2, 10, -1, &itemdb_read_group, i);
-#endif
+//#endif
 		itemdb_read_combos(dbsubpath2,i); //TODO change this to sv_read ? id#script ?
 		itemdb_read_randomopt(dbsubpath2, i);
 		sv_readdb(dbsubpath2, "item_noequip.txt",       ',', 2, 2, -1, &itemdb_read_noequip, i);

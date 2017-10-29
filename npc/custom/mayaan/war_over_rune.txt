@@ -1,0 +1,420 @@
+//Flag
+prt_are01	mapflag	battleground	2
+prt_are01	mapflag	Nowarp
+prt_are01	mapflag	Nowarpto
+prt_are01	mapflag	Nomemo
+prt_are01	mapflag	Noreturn
+prt_are01	mapflag	Novending
+prt_are01	mapflag	loadevent
+
+prt_are01,237,238,0	script	#BattleGroundwarpA2	4W_SAILOR,{
+	end;
+OnInit:
+	waitingroom "Join Blue Team(Click)",2,"#BattleGroundwarpA2::OnJoin",1;
+	end;
+OnJoin:
+	if(!$@bg_id_a)
+		set $@bg_id_a,waitingroom2bg("prt_are01",224,77,"War over Rune::OnRedQuit","War over Rune::OnBlueDead");
+	else
+		waitingroom2bg_single($@bg_id_a,"prt_are01",224,223,"#BattleGroundwarpA2");
+	warpwaitingpc "prt_are01",224,223;
+	end;
+}
+prt_are01,61,237,0	script	#BattleGroundwarpB2	4W_SAILOR,{
+	end;
+OnInit:
+	waitingroom "Join Red Team(Click)",2,"#BattleGroundwarpB2::OnJoin",1;
+	end;
+OnJoin:
+	if(!$@bg_id_b)
+		set $@bg_id_b,waitingroom2bg("prt_are01",74,76,"War over Rune::OnBlueQuit","War over Rune::OnRedDead");
+	else
+	waitingroom2bg_single($@bg_id_b,"prt_are01",76,223,"#BattleGroundwarpB2");
+	warpwaitingpc "prt_are01",76,223;
+	end;
+}
+
+
+prt_are01,223,75,0	script	#BattleGroundwarpA3	4W_SAILOR,4,4,{ //respawn npc
+	OnTouch:
+	set .@warp,0;
+	.@id = getcharid(CHAR_ID_CHAR);
+	specialeffect(EF_HEAL2, AREA, playerattached()); percentheal 100,100;
+	repairall();
+	sleep2 30000;
+	if(.@warp==0)
+	{
+		warpchar("prt_are01", 251, 149, .@id);
+	}
+	end;
+OnInit:
+	waitingroom "Back to battle",2,"#BattleGroundwarpA3::OnJoin",1;
+	end;
+OnJoin:
+	set .@warp,1;
+	awake("#BattleGroundwarpA3");
+	warpwaitingpc "prt_are01",251,149;
+	end;
+}
+prt_are01,75,76,0	script	#BattleGroundwarpA4	4W_SAILOR,4,4,{ //respawn npc
+	OnTouch:
+	set .@warp,0;
+	.@id = getcharid(CHAR_ID_CHAR);
+	specialeffect(EF_HEAL2, AREA, playerattached()); percentheal 100,100;
+	repairall();
+	sleep2 30000;
+	if(.@warp==0)
+	{
+		warpchar("prt_are01", 48, 150, .@id);
+	}
+	end;
+OnInit:
+	waitingroom "Back to battle",2,"#BattleGroundwarpA4::OnJoin",1;
+	end;
+OnJoin:
+	set .@warp,1;
+	awake("#BattleGroundwarpA4");
+	warpwaitingpc "prt_are01",48,150;
+	end;
+}
+
+//GM COMMANDS
+-	script	WoR	FAKE_NPC,{
+OnInit:
+	bindatcmd "wor", strnpcinfo(0)+"::OnCommand", 99,100;
+	end;
+OnCommand:
+	if ( compare( .@atcmd_parameters$, "on" ) ) donpcevent "::OnActive";
+//	else if ( compare( .@atcmd_parameters$, "over" ) ) donpcevent "::OnOver"; //for testing purpose only
+	else if ( compare( .@atcmd_parameters$, "off" ) ) donpcevent "::OnEndd";
+	else {
+		dispbottom "type - '@wor on' to start the event";
+		dispbottom "type - '@wor off' to end the event";
+	}
+	end;
+}
+
+
+
+//NPC
+prontera,147,169,4	script	War over Rune	4_M_JOB_KNIGHT2,{
+	set look,rand(1,2);
+	set .@name$,"[WoR Manager]";
+	mes .@name$;
+	mes "Greetings, how can be any help for you today?";
+	switch (select("I want to Participate","What is WoR","Nothing"))
+{
+case 1:
+	callsub wor_status;
+	if(.status==0)	{
+			mes("War over Rune is not available at this time");
+			close();
+	}
+	if(!.playerid[1])
+		set .playernm,.playernm+1;
+		set .playerid[.playernm],getcharid(0);
+		next;
+		if ( look == 1 ) {	
+			mes .@name$;	
+			mes "You will be participating in the '^0000FFBlue Team^000000'.";
+			close2;
+			setlook 7,374;
+			warp "prt_are01",237,238;
+			end;
+			}
+			mes .@name$;
+			mes "You will be participating in the '^FF0000Red Team^000000'.";
+			close2;	
+			setlook 7,407;
+			warp "prt_are01",61,237;
+			end;
+case 2:
+	next;
+	mes .@name$;
+	mes "WoR is the short term for 'War over Rune'.";
+	next;
+	mes .@name$;
+	mes "WoR is a PvP-Based Event where in you have 20 minutes to kill anyone in the opposing team.";
+	next;
+	mes .@name$;
+	mes "There are two teams in the event: The ^0000FFBlue Team^000000 and The ^FF0000Red Team^000000";
+	next;
+	mes .@name$;
+	mes "The Goal of the event is to gain points by killing other team's members.";
+	next;
+	mes .@name$;
+	mes "After 30 minutes, an NPC will appear to give rewards to players.";
+	next;
+	mes .@name$;
+	mes "The reward for the winning team is 50 Hashtag Points and 20 Hashtag Points for the losing team.";
+	close;
+case 3:
+	next;
+	mes .@name$;
+	mes "Okay, see yah later.";
+	close;
+}
+
+wor_status:
+	if(.status==2)	{
+		mes("Game is running.");
+		close();
+	}
+	return;
+		if(.playernm>=128)	{
+			mes("Sorry, full");
+			close();
+		}
+	return;
+
+OnClock0400:
+OnClock0800:
+OnClock1200:
+OnClock1600:
+OnClock2000:
+OnClock2400:
+	announce "War over Rune Registration will open in 1 minute ",0;
+	sleep2 10000;
+	announce "For those who wants to join, Please proceed to War over Rune NPC in prontera",0;
+	sleep2 60000;
+	callsub OnActive;
+	end;
+OnActive:
+	callsub OnEndd;
+	initnpctimer;
+	set .status,1;
+	announce "[War over Rune]:War over Rune registration is now open! Go to prontera ready for battle!",0;
+	announce "[War over Rune]:War over Rune registration will close in 5 minutes",0;
+	end;
+OnTimer360000:
+	set .status,2;
+	sleep2 60000;
+	announce "[War over Rune]:Go!",0;
+	bg_monster $@bg_id_a,"prt_are01",201,149,"Blue",1907,"Battle Ground::OnAdestory";
+	bg_monster $@bg_id_b,"prt_are01",98,149,"Red",1907,"Battle Ground::OnBdestory";
+	callsub OnEnab1;
+	end;
+OnClock0415:
+OnClock0815:
+OnClock1215:
+OnClock1615:
+OnClock2015:
+OnClock2415:
+//	callsub OnOver; //for testing only
+//	end;
+//OnOver:
+	if(.point[1]>.point[2])
+	{
+		announce "[War over Rune]:Blue Team Win!",0;
+		callsub bluewin;
+		callsub redlose;
+	}else if(.point[2]>.point[1])
+	{
+		announce "[War over Rune]:Red Team Win!",0;
+		callsub bluelose;
+		callsub redwin;
+	}else
+	{
+		announce "[War over Rune]:Draw!",0;
+		if(strcharinfo(3)=="prt_are01" && $@bg_id_a && $@bg_id_b)
+		#DIM_COIN += 35;
+		dispbottom "You now have " +#DIM_COIN+ " Hashtag Points.";
+	}
+	sleep2 3000;
+	set .@warp,1;
+	awake("#BattleGroundwarpA4");
+	sleep2 500;
+	bg_warp($@bg_id_a, "prt_are01", 149, 58);
+	bg_warp($@bg_id_b, "prt_are01", 149, 242);
+	sleep2 1000;
+	announce "[War over Rune]:You have 2 minutes to claim your rewards!",0;
+	end;
+OnClock0432:
+OnClock0832:
+OnClock1232:
+OnClock1632:
+OnClock2032:
+OnClock2432:
+	callsub OnEndd;
+	end;
+OnBdestory:
+	set .point[1],.point[1]+5;
+	bg_updatescore "prt_are01",.point[1],.point[2];
+	detachrid;
+	sleep2 10000;
+	bg_monster $@bg_id_b,"prt_are01",127,46,"B",1907,"Battle Ground::OnBdestory";
+	end;
+OnAdestory:
+	set .point[2],.point[2]+5;
+	bg_updatescore "prt_are01",.point[1],.point[2];
+	detachrid;
+	sleep2 10000;
+	bg_monster $@bg_id_a,"prt_are01",128,120,"A",1907,"Battle Ground::OnAdestory";
+	end;
+	
+OnEnab1:
+	bg_warp($@bg_id_a, "prt_are01", 251, 150);
+	bg_warp($@bg_id_b, "prt_are01", 49, 150);
+	end;
+	return;
+
+OnEndd:
+	set .status,0;
+	bg_destroy $@bg_id_a;
+	bg_destroy $@bg_id_b;
+	set $@bg_id_a,0;
+	set $@bg_id_b,0;
+	setarray .point[1],0,0;
+	killmonsterall "prt_are01";
+	bg_updatescore "prt_are01",.point[1],.point[2];
+	deletearray .playerid[0],128;
+	mapwarp "prt_are01","prontera",150,180;
+	callsub OnDisa;
+	return;
+
+OnDisa:
+	disablenpc "#BattleGroundwarpA2";
+	disablenpc "#BattleGroundwarpB2";
+	disablenpc "Rewards#WoRA";
+	disablenpc "Rewards#WoRAL";
+	disablenpc "Rewards#WoRB";
+	disablenpc "Rewards#WoRBL";
+	return;
+
+OnInit:
+	setcell "prt_are01",229,237,235,242,cell_walkable,0; // blue npc left
+	setcell "prt_are01",243,234,237,229,cell_walkable,0; // blue npc right
+	setcell "prt_are01",193,197,197,193,cell_walkable,0; // blue gate pre game
+	setcell "prt_are01",57,234,62,229,cell_walkable,0; // red npc left
+	setcell "prt_are01",66,243,71,238,cell_walkable,0; // red npc right
+	setcell "prt_are01",103,198,101,196,cell_walkable,0; // red gate pre game
+	setcell "prt_are01",198,103,196,101,cell_walkable,0; //blue resu room
+	setcell "prt_are01",151,87,148,87,cell_walkable,0; // blue prize room
+	setcell "prt_are01",148,221,151,212,cell_walkable,0; //red prize room
+	setcell "prt_are01",103,101,101,103,cell_walkable,0; //red resu room
+	setcell "prt_are01",220,84,216,80,cell_walkable,0; //blue resu room
+	setcell "prt_are01",79,84,83,80,cell_walkable,0; //red resu room
+	disablenpc "Rewards#WoRA";
+	disablenpc "Rewards#WoRAL";
+	disablenpc "Rewards#WoRB";
+	disablenpc "Rewards#WoRBL";
+	end;
+
+
+//OnDeath event
+OnRedDead:
+	repairall();
+	end;
+
+OnBlueDead:
+	repairall();
+	end;
+
+// "OnQuit" event
+OnRedQuit:
+	percentheal 100,100;
+	repairall();
+	end;
+
+OnBlueQuit:
+	percentheal 100,100;
+	repairall();
+	end;
+
+bluewin:
+	enablenpc "Rewards#WoRA";
+	return;
+bluelose:
+	enablenpc "Rewards#WoRAL";
+	return;
+redwin:
+	enablenpc "Rewards#WoRB";
+	return;
+redlose:
+	enablenpc "Rewards#WoRBL";
+	return;
+
+OnPCKillEvent:
+	if(strcharinfo(3)=="prt_are01" && $@bg_id_a && $@bg_id_b)
+	{
+		#PVPPOINTS += 1;
+		if(getcharid(4) == $@bg_id_a)
+		{
+			set .point[1],.point[1]+1;
+		}else
+			set .point[2],.point[2]+1;
+		bg_updatescore "prt_are01",.point[1],.point[2];
+	}
+	end;
+OnPCLoadMapEvent:
+	if (getgmlevel()==99) end;
+	if(strcharinfo(3)=="prt_are01" && .status==0)	{
+	dispbottom "Map Restriction : we identify that you are not allowed to enter this map.";
+	warp "SavePoint",0,0;
+	end;
+	} else if(strcharinfo(3)=="prt_are01") {
+	dispbottom "War over rune!!!";
+	end;
+	}
+
+OnPCLoginEvent:
+	if (getgmlevel()==99) end;
+	if(strcharinfo(3)=="prt_are01" && .status==1)	{
+	dispbottom "Please register again, remember once the game started you cant exit the map.";
+	warp "SavePoint",0,0;
+	end;
+	} else if(strcharinfo(3)=="prt_are01")	{
+	dispbottom "War over rune!";
+	end;
+	}
+}
+
+
+//rewards
+prt_are01,150,48,4	script	Rewards#WoRA	1_M_BARD,{
+	mes "[Exit]";
+	mes "See ya.";
+	close2;
+	warp "Save",0,0;
+		if ( getcharid(4) == $@bg_id_a )
+		#DIM_COIN += 120;
+		dispbottom "You now have " +#DIM_COIN+ " Hashtag Points.";
+		getitem 7037, 5; // berry coupon
+	end;
+}
+
+prt_are01,150,251,4	script	Rewards#WoRB	1_M_BARD,{
+	mes "[Exit]";
+	mes "See ya.";
+	close2;
+	warp "Save",0,0;
+		if ( getcharid(4) == $@bg_id_b )
+		#DIM_COIN += 100;
+		dispbottom "You now have " +#DIM_COIN+ " Hashtag Points.";
+		getitem 7037, 5; // berry coupon
+	end;
+}
+
+prt_are01,150,48,4	script	Rewards#WoRAL	1_M_BARD,{
+	mes "[Exit]";
+	mes "See ya.";
+	close2;
+	warp "Save",0,0;
+		if ( getcharid(4) == $@bg_id_a )
+		#DIM_COIN += 50;
+		dispbottom "You now have " +#DIM_COIN+ " Hashtag Points.";
+		getitem 7037, 5; // berry coupon
+	end;
+}
+
+prt_are01,150,251,4	script	Rewards#WoRBL	1_M_BARD,{
+	mes "[Exit]";
+	mes "See ya.";
+	close2;
+	warp "Save",0,0;
+		if ( getcharid(4) == $@bg_id_b )
+		#DIM_COIN += 50;
+		dispbottom "You now have " +#DIM_COIN+ " Hashtag Points.";
+		getitem 7037, 5; // berry coupon
+	end;
+}

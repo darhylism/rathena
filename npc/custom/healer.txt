@@ -74,6 +74,8 @@ umbala,105,148,3	duplicate(Healer)	Healer#umb	909
 veins,217,121,4	duplicate(Healer)	Healer#ve	909
 xmas,143,136,4	duplicate(Healer)	Healer#xmas	909
 yuno,164,45,4	duplicate(Healer)	Healer#yuno	909
+poring_w02,116,82,4	duplicate(Healer)	Healer#poring1	909
+poring_w02,80,82,4	duplicate(Healer)	Healer#poring2	909
 
 // Duplicates (Renewal)
 //============================================================

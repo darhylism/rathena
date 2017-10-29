@@ -1,0 +1,88 @@
+poring_w02,82,101,4	script	Coupon Exchanger	4_F_NACORURI,{
+
+    set @name$,"[^FF0000Coupon Exchanger^000000]";
+    mes @name$;
+    mes "What do you want to do?";
+    next;
+    switch(select("Information","Convert berry","Convert Poison bottle")) {
+
+        case 1:
+            mes @name$;
+            mes "I can convert your Coupon/s into usable items and vice versa.";
+            mes "1 Coupon = 100 Yggdrasil Berry";
+            close;
+
+        case 2:
+            switch(select("Berry to Coupon","Coupon to Berry")) {
+
+                case 1:
+                    if(countitem(607) < 100) goto noBerry;
+                    if (checkweight(7037,1) == 0 ) goto overWeight;
+                    delitem 607,100;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 7037,1;
+                    close;
+
+                case 2:
+                    if(countitem(7037) < 1) goto noCoupon;
+                    if (checkweight(607,100) == 0 ) goto overWeight;
+                    delitem 7037,1;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 607,100;
+                    close;
+			}
+		case 3:
+		    switch(select("Poison bottle to Coupon","Coupon to Poison bottle")) {
+
+                case 1:
+                    if(countitem(678) < 30) goto noBerry;
+                    if (checkweight(7037,1) == 0 ) goto overWeight;
+                    delitem 678,30;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 7037,1;
+                    close;
+
+                case 2:
+                    if(countitem(7037) < 1) goto noCoupon;
+                    if (checkweight(678,30) == 0 ) goto overWeight;
+                    delitem 7037,1;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 678,30;
+                    close;
+    }
+            }
+            end;
+noBerry:
+    mes @name$;
+    mes "I'm Sorry but you don't have enough items.";
+    close;
+
+overWeight:
+    mes @name$;
+    mes "Sorry you're overweight.";
+    close;
+
+noCoupon:
+    mes @name$;
+    mes "I'm Sorry but you don't have Coupons.";
+    close;
+}
+
+
+brasilis,192,213,4	duplicate(Coupon Exchanger)	CouponEx#bras	4_F_NACORURI
+prontera,145,165,4	duplicate(Coupon Exchanger)	CouponEx#prontera	4_F_NACORURI
+Askydun,96,111,4	duplicate(Coupon Exchanger)	CouponEx#Askydun	4_F_NACORURI
+splendide,188,143,4	duplicate(Coupon Exchanger)	CouponEx#splendide	4_F_NACORURI
+morocc,148,102,4	duplicate(Coupon Exchanger)	CouponEx#morocc	4_F_NACORURI
+geffen,120,56,4	duplicate(Coupon Exchanger)	CouponEx#geffen	4_F_NACORURI
+izlude,133,122,4	duplicate(Coupon Exchanger)	CouponEx#izlude	4_F_NACORURI
+aldebaran,144,128,4	duplicate(Coupon Exchanger)	CouponEx#aldebaran	4_F_NACORURI
+comodo,207,151,4	duplicate(Coupon Exchanger)	CouponEx#comodo	4_F_NACORURI
+mora,47,153,4	duplicate(Coupon Exchanger)	CouponEx#mora	4_F_NACORURI
+malangdo,118,125,4	duplicate(Coupon Exchanger)	CouponEx#malangdo	4_F_NACORURI
+dewata,192,170,5	duplicate(Coupon Exchanger)	CouponEx#dewataa	4_F_NACORURI
+rachel,121,132,4	duplicate(Coupon Exchanger)	CouponEx#rachel	4_F_NACORURI

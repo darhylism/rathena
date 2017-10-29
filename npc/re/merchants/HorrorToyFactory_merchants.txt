@@ -329,9 +329,9 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 	if (.@slot_num == 3)
 		setarray .@range[0],550,1050;
 	else if (.@slot_num == 2)
-		setarray .@range[0],450,1125;
+		setarray .@range[0],200,1225;
 	else if (.@slot_num == 1)
-		setarray .@range[0],1,1161;
+		setarray .@range[0],1,1261;
 	else {
 		mes "There is a problem, please come back again!";// custom
 		close;
@@ -347,12 +347,12 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		else if (.@r < 951)  .@enchant = 4701;	// Strength2
 		else if (.@r < 1001) .@enchant = 4731;	// Agility2
 		else if (.@r < 1051) .@enchant = 4721;	// Dexterity2
-		else if (.@r < 1076) .@enchant = 4702;	// Strength3
-		else if (.@r < 1101) .@enchant = 4732;	// Agility3
-		else if (.@r < 1126) .@enchant = 4722;	// Dexterity3
-		else if (.@r < 1138) .@enchant = 4703;	// Strength4
-		else if (.@r < 1150) .@enchant = 4733;	// Agility4
-		else if (.@r < 1162) .@enchant = 4723;	// Dexterity4
+		else if (.@r < 1176) .@enchant = 4702;	// Strength3
+		else if (.@r < 1201) .@enchant = 4732;	// Agility3
+		else if (.@r < 1226) .@enchant = 4722;	// Dexterity3
+		else if (.@r < 1238) .@enchant = 4703;	// Strength4
+		else if (.@r < 1250) .@enchant = 4733;	// Agility4
+		else if (.@r < 1262) .@enchant = 4723;	// Dexterity4
 		else .@enchant = 9;
 		break;
 	case 2:
@@ -364,12 +364,12 @@ xmas,240,294,3	script	Black Beard Joe#pa0829	4_M_05,{
 		else if (.@r < 951)  .@enchant = 4711;	// Inteligence2
 		else if (.@r < 1001) .@enchant = 4741;	// Vitality2
 		else if (.@r < 1051) .@enchant = 4721;	// Dexterity2
-		else if (.@r < 1076) .@enchant = 4712;	// Inteligence3
-		else if (.@r < 1101) .@enchant = 4742;	// Vitality3
-		else if (.@r < 1126) .@enchant = 4722;	// Dexterity3
-		else if (.@r < 1138) .@enchant = 4713;	// Inteligence4
-		else if (.@r < 1150) .@enchant = 4743;	// Vitality4
-		else if (.@r < 1162) .@enchant = 4723;	// Dexterity4
+		else if (.@r < 1176) .@enchant = 4712;	// Inteligence3
+		else if (.@r < 1201) .@enchant = 4742;	// Vitality3
+		else if (.@r < 1226) .@enchant = 4722;	// Dexterity3
+		else if (.@r < 1238) .@enchant = 4713;	// Inteligence4
+		else if (.@r < 1250) .@enchant = 4743;	// Vitality4
+		else if (.@r < 1262) .@enchant = 4723;	// Dexterity4
 		else .@enchant = 9;
 		break;
 	case 3:

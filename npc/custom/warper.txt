@@ -28,13 +28,14 @@ function Go; function Disp; function Pick; function Restrict;
 // --------------------------------------------------
 
 menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
+		" ~ Special Areas",Special,
     	" ~ Towns",Towns,
     	" ~ Fields",Fields,
     	" ~ Dungeons",Dungeons,
+		" ~ Instances",Instances,
     	" ~ Guild Castles",Castles,
-    	" ~ Guild Dungeons",Guild_Dungeons,
-    	" ~ Instances",Instances,
-    	" ~ Special Areas",Special;
+    	" ~ Guild Dungeons",Guild_Dungeons;
+
 
 	if (lastwarp$ == "")
 		message strcharinfo(0),"You haven't warped anywhere yet.";
@@ -418,9 +419,30 @@ G4: Restrict("RE",2,3);
 	setarray @c[2],116,45,116,45,152,118;
 	Disp("Britoniah F1:Britoniah F2:Hall of Abyss");
 	Pick("","gld_dun04","gld_dun04_2","gld2_gef");
-G5: Go("arug_dun01",199,195);
-G6: Go("schg_dun01",200,124);
+//G5: Go("arug_dun01",199,195);
+//G6: Go("schg_dun01",200,124);
 
+// --------------------------------------------------
+	Instances:
+// --------------------------------------------------
+menu	"Horror Toy Factory",I1, "Endless Tower",I4, "Nidhoggur's Nest",I7, "Sealed Shrine",I11;
+
+I1: Go("xmas",235,299);
+I4: Go("e_tower",72,112);
+I7: Go("nyd_dun02",95,193);
+I11: Go("monk_test",306,143);
+
+// --------------------CUSTOMIZED------------------------------
+	Special:
+// --------------------------------------------------
+menu	"Poring Market",S1, "Askydun",S2;
+		
+S1: Go("poring_w02",99,75);
+S2: Go("Askydun",91,103);
+
+}
+
+/*
 // --------------------------------------------------
 	Instances:
 // --------------------------------------------------
@@ -465,7 +487,8 @@ S5: Go("gon_test",48,10);
 S6: Go("arena_room",100,88);
 S7: Go("p_track01",62,41);
 S8: Go("turbo_room",99,114);
-}
+
+*/
 
 // --------------------------------------------------
 //	Duplicates:
@@ -507,6 +530,8 @@ umbala,106,150,3	duplicate(Warper)	Warper#umb	811
 veins,214,123,4	duplicate(Warper)	Warper#ve	811
 xmas,150,136,6	duplicate(Warper)	Warper#xmas	811
 yuno,162,47,4	duplicate(Warper)	Warper#yuno	811
+poring_w02,112,88,4	duplicate(Warper)	Warper#poring	811
+Askydun,84,112,4	duplicate(Warper)	Warper#Askydun	811
 
 // --------------------------------------------------
 //	Duplicates (Renewal):

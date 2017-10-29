@@ -1,0 +1,611 @@
+//===== Hercules Script ======================================
+//= Refiner
+//===== By: ==================================================
+//= KirieZ
+//============Modified by============
+//= Darhylism
+//===== Current Version: =====================================
+//= 2.1.1.2
+//===== Description: =========================================
+//= A configurable refiner with lots of options, like:
+//= - Use items to increase chance
+//= - Use items to avoid losing the item
+//= - Refine more than one time in a single click
+//= - Ask if player wants to use items to increase chance/protect
+//= - Different fail results
+//= Go to the end of the script to change the settings.
+//universal sure refine +1
+//sure +10 universal refine
+//
+//premium refine - after break consume
+//
+//Modified secure table, fucking reversed. 
+//customized for hashtagRO
+//============================================================
+poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
+	function ShowChanceInfo; function ShowSecureInfo;
+	function GetChanceBonus; function GetSecure;
+	function ConsumeSecure; function Refine;
+	function ConsumeChance;
+	
+	// Group requirement
+	if (getgroupid() < .UseMinLv) {
+		mes .NpcName$;
+		mes "I'm sorry, but I can't help you.";
+		mes "See you.";
+		close;
+	}
+	
+	mes .NpcName$;
+	mes "I'm the Armsmith.";
+	mes "I can refine all kinds of weapons, armor and equipment, so let me";
+	mes "know what you want me to refine.";
+	next;
+
+	setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+	set .@menu$, "";
+	for(.@i = 1; .@i <= 10; .@i++) {
+		if(getequipisequiped(.@i)) {
+			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+			.@equipped = 1;
+		}
+		set .@menu$, .@menu$ + ":";
+	}
+	if (.@equipped == 0) {
+		mes .NpcName$;
+		mes "I don't think I can refine any items you have...";
+		close;
+	}
+	// Get part to upgrade
+	@part = select(.@menu$);
+
+	if(!getequipisequiped(@part)) {
+		mes .NpcName$;
+		mes "You're not wearing";
+		mes "anything there that";
+		mes "I can refine.";
+		emotion e_an;
+		close;
+	}
+	//Check to see if the items is already +MAX_REFINE
+	else if(getequiprefinerycnt(@part) >= .MaxRefine) {
+		mes .NpcName$;
+		mes "I can't refine this";
+		mes "any more. This is as";
+		mes "refined as it gets!";
+		close;
+	}
+	
+	// Save some upgrade data
+	@refId = getequipid(@part); // item id
+	@refCount = getequiprefinerycnt(@part); // refine count
+	@refLv = getequipweaponlv(@part); // weapon level
+	@price = .RefinePrices[@refLv]; // Refine Price
+	@item = .RefineItems[@refLv]; // Refine Item
+	@chance = getequippercentrefinery(@part); // Refine Chance
+	@safe = .SafeLevels[@refLv]; // Safe limit
+	.@refTimes = 1;
+	
+	if (.DisplayRefineInfo) {
+		mes .NpcName$;
+		mes "Here's some information: ";
+		mes "- Safe Limit: " + @safe;
+		
+		ShowChanceInfo();
+		ShowSecureInfo();
+		next;
+	}
+
+	// Multiple refine option
+	if (getgroupid() >= .MultipleRefineMinLv) {
+		mes .NpcName$;
+		mes "I can refine this one time, or multiple times,";
+		mes "what do you say?";
+		next;
+		switch(select("Refine one time.:Refine multiple times.:I've changed my mind.")) {
+			case 1:
+				.@refTimes = 1;
+			break;
+			
+			case 2:
+				if (.BreakWarning == 1)
+					.@warningShown = 1;
+					
+				mes .NpcName$;
+				mes "Very well, how many times";
+				mes "do you want to refine this item?";
+				next;
+				do {
+					input .@refTimes;
+					if (.@refTimes <= 0 || (.@refTimes + @refCount) > .MaxRefine) {
+						mes .NpcName$;
+						mes "Hey, I can't refine this item that much!";
+						next;
+						mes .NpcName$;
+						mes "Try again.";
+						next;
+					}
+					else {
+						break;
+					}
+				} while(true);
+			break;
+			
+			case 3:
+				mes .NpcName$;
+				mes "Ok, come back when you need my services.";
+				close;
+		}
+	}
+	
+	.@totalPrice = @price * .@refTimes;
+	
+	mes .NpcName$;
+	mes "To refine this I need";
+	mes .@refTimes + " ^003366"+getitemname(@item)+"^000000 and";
+	mes "a service fee of " + .@totalPrice + " Zeny.";
+	mes "Do you really wish to continue?";
+	next;
+	if (select("Yes:No") == 2) {
+		mes .NpcName$;
+		mes "Yeah...";
+		mes "There's no need to";
+		mes "rush. Take your time.";
+		close;
+	}
+	else if((countitem(@item) < .@refTimes) || (Zeny < .@totalPrice)) {
+		// Can't pay
+		mes .NpcName$;
+		mes "You don't seem to have";
+		mes "enough Zeny or "+getitemname(@item)+"...";
+		mes "Go get some more. I'll be";
+		mes "here all day if you need me.";
+		close;
+	}
+	
+	.@refResult = false; // Refine result
+	useSecure = -1; // secure item usage
+	useChance = -1; // chance item usage
+	for (.@i = 0; .@i < .@refTimes; .@i++) {
+		@secId = GetSecure();
+		@refCount = getequiprefinerycnt(@part); // refine count
+		@chance = getequippercentrefinery(@part); // Refine Chance
+		
+		if (@secId && ConsumeSecure()) {
+			if (!countitem(@secId)) {
+				@secId = 0;
+				useSecure = false;
+			}
+			else if (countitem(@secId) && ((.SecureAsk == 1) || (.SecureAsk == 2 && useSecure == -1))) {
+				mes .NpcName$;
+				mes "Seems like you have a " + getitemname(@secId) + ".";
+				mes "Do you want to use it to protect your item?";
+				next;
+				if (select("Yes:No") == 1)
+					useSecure = true;
+				else
+					useSecure = false;
+				mes .NpcName$;
+				mes "All right!";
+				next;
+			}
+		}
+		
+		GetChanceBonus();
+		if (@bonusId && ConsumeChance()) {
+			if (!countitem(@bonusId)) {
+				@bonusId = 0;
+				@bonus = 0;
+				useChance = false;
+			}
+			else if ((.ChanceAsk == 1) || (.ChanceAsk == 2 && useChance == -1)) {
+				mes .NpcName$;
+				mes "Seems like you have a " + getitemname(@bonusId) + ".";
+				mes "Do you want to use it to increase your success rate?";
+				next;
+				if (select("Yes:No") == 1)
+					useChance = true;
+				else
+					useChance = false;
+				mes .NpcName$;
+				mes "All right";
+				next;
+			}
+		}
+		
+		if (((@chance + @bonus) < 100) && useSecure != true && (.BreakWarning == 0 || (.BreakWarning > 0 && .@warningShown == 0))) {
+			mes .NpcName$;
+			mes "Oh no! If I refine this again";
+			mes "there's a risk it could be destroyed!";
+			mes "That means that That means that ";
+			mes "^FF0000this item^000000, and ^FF0000anything^000000 on it";
+			mes "^FF0000will be gone^000000.";
+			next;
+			mes .NpcName$;
+			mes "Do you still want to continue?";
+			next;
+			if (select("Yes:No") == 2) {
+				mes .NpcName$;
+				mes "I completely agree...";
+				mes "I might be a great refiner, but sometimes even I make mistakes.";
+				close;
+			}
+			.@warningShown = 1;
+		}
+		
+		.@refineRes = Refine();
+		if (.@refineRes) {
+			.@refineCount++;
+		}
+	}
+
+	if (! .@refineRes) {
+		mes .NpcName$;
+		mes "Well, it wasn't a perfect work,";
+		mes "but at least your items are in good shape!";
+		close;
+	}
+	
+	mes .NpcName$;
+	.@win = rand(1,3);
+	if (.@win == 1) {
+		mes "Perfect!";
+		mes "Heh heh!";
+		mes "Once again,";
+		mes "flawless work";
+		mes "from the master~";
+	} else if(.@win == 2) {
+		mes "Success...!";
+		mes "Yet again, my amazing";
+		mes "talent truly dazzles";
+		mes "and shines today.";
+	} else {
+		mes "Heh heh!";
+		mes "I'm all done.";
+		mes "No doubt, my work is";
+		mes "to your satisfaction.";
+		mes "Sheer, utter perfection~";
+	}
+	close;
+
+	// Refine ()
+	// Tries to refine item at @part
+	function Refine {
+		//custom checks
+		if(getequipisequiped(@part) == 0) { // hacker has removed the item (not changed, why?)
+			mes .NpcName$;
+			mes "Look here... you don't have any Items on...";
+			close;
+		}
+		else if(getequiprefinerycnt(@part) != @refCount || getequipid(@part) != @refId) { // hacker has changed the item
+			mes .NpcName$;
+			emotion e_an;
+			mes "Wait a second...";
+			mes "Do you think I'm stupid?!";
+			mes "You switched the item while I wasn't looking! Get out of here!";
+			close;
+		}
+		
+		delitem @item, 1;
+		Zeny -= @price;
+
+		.@refineChance = @chance;
+		
+		if (useChance == true) {
+			delitem @bonusId, 1;
+			.@refineChance += @bonus;
+		}
+		
+		if (.@refineChance <= rand(100)) {
+			// Failed
+			if (useSecure == true) {
+				delitem @secId, 1;
+				downrefitem @part, 0;
+				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
+			}
+			else {
+				.@failType = .FailResults[rand(getarraysize(.FailResults))];
+				switch(.@failType) {
+					// Item destroyed
+					case 0: failedrefitem @part; break;
+					// -1 refine
+					case 1: downrefitem @part, 1; break;
+					// +0
+					case 2: downrefitem @part, @refCount; break;
+					// Stay as is
+					case 3: downrefitem @part, 0; break;
+				}
+
+				mes .NpcName$;
+				emotion (!rand(5))?e_cash:e_omg;
+				
+				if(.@failType == 1) {
+					// -1
+					mes "Crap!";
+					mes "It couldn't take";
+					mes "much more tempering!";
+					mes "Sorry about this...";
+				} else if (.@failType == 2) {
+					// Down to +0
+					mes "OH! MY GOD!";
+					mes "Damn it! Not again!";
+					mes "I'm terribly sorry, but you know practice does make perfect.";
+					mes "Um, right? Heh heh...";
+				} else if (.@failType == 3) {
+					// Nothing
+					mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
+					return true;
+				} else {
+					// Break
+					mes "Nooooooo!";
+					mes "It broke!";
+					mes "I-I'm sorry!";
+					close;
+				}
+
+				return false;
+			}
+
+		}
+		else {
+			// Secure - Consume always
+			if (useSecure == true && ((.SecureConsumeType == 1 && .@refineChance < 100) || .SecureConsumeType == 2))
+				delitem @secId, 1;
+			successrefitem @part;
+		}
+		
+		return true;
+	}
+
+	// ShowChanceInfo()
+	// Displays information about refine success chance and items
+	function ShowChanceInfo {
+		GetChanceBonus(); // sets @bonus and @bonusId
+		if (@bonusId && ((@chance >= 100 && .ChanceConsumeType > 0) || (@chance < 100))) {
+			.@tChance = @chance + @bonus;
+			mes "- +" + (@refCount+1) +" Success Chance: " + (.@tChance > 100 ? 100 : .@tChance) +"%";
+			mes "- Increase Chance Item: " + getitemname(@bonusId) + " (+"+@bonus+"%)";
+		}
+		else {
+			mes "- +" + (@refCount+1) +" Success Chance: " + @chance + "%";
+		}
+	}
+
+	// ShowSecureInfo()
+	// Displays information about refine secure items
+	function ShowSecureInfo {
+		.@secId = GetSecure();
+		if (.@secId && ((@chance >= 100 && .SecureConsumeType > 0) || (@chance < 100))) {
+			if (.SecureType == 0) {
+				mes "- Refine Protect Item: " + getitemname(.@secId);
+			}
+			else if (.SecureType == 1) {
+				mes "- +"+@refCount+" Refine Protect Item: " + getitemname(.@secId);
+			}
+		}
+	}
+
+	// GetChanceBonus()
+	// Retrieves the chance and item used
+	// and stores in @bonus and @bonusId
+	function GetChanceBonus {
+		@bonus = 0; @bonusId = 0;
+		if (.UseChanceItems) {
+			@bonusId = .ChanceItems[@refLv * 2];
+			if (@bonusId)
+				@bonus = .ChanceItems[@refLv * 2 + 1];
+		}
+	}
+
+	// <secId> GetSecure()
+	// Retrieve the secure info for this item
+	// Returns: the Item ID
+	function GetSecure {
+		if (.UseSecureItems) {
+			if (.SecureType == 0) { // Each weapon type has one item to protect it
+				return .SecureItems[@refLv];
+			}
+			else { // Each refine level + item type has one item to protect it
+				if (@part == EQI_HAND_R || (@part == EQI_HAND_L && @wLvl > 0)) // Weapon
+					return .SecureItems[(.@curRef * 3)];
+				else if (@part == EQI_HEAD_TOP || @part == EQI_HEAD_MID || @part == EQI_HEAD_LOW) // Headgear
+					return .SecureItems[(.@curRef * 3) + 1];
+				else // Armor
+					return .SecureItems[(.@curRef * 3) + 2];
+			}
+		}
+	}
+	
+	// ConsumeChance()
+	// Checks if it can consume chance item
+	function ConsumeChance {
+		if (.UseChanceItems) {
+			if ((.ChanceConsumeType > 0) || (@refCount >= @safe))
+				return true;
+		}
+		return false;
+	}
+	
+	// ConsumeSecure()
+	// Checks if it can consume secure item
+	function ConsumeSecure {
+		if (.UseSecureItems) {
+			if ((.SecureConsumeType <= 1 && @refCount >= @safe) || .SecureConsumeType == 2)
+				return true;
+		}
+		return false;
+	}
+
+	OnInit:
+		// ======================
+		// 		Basic Settings
+		// ======================
+		.NpcName$ = "[Great Refiner]";	// Name of the NPC for dialogues
+		
+		.UseMinLv = 0;				// Minimal user group to use this NPC
+		
+		.MultipleRefineMinLv = 0;	// Required user group to refine more than one time
+									// at once
+		
+		.DisplayRefineInfo = true;	// Should NPC display information about 
+									// refine (such as success chance)
+									
+		.UseSecureItems = true;		// Enables the use of items to protect 
+									// from fails (see .SecureItems array)
+									
+		.UseChanceItems = true;		// Enables the use of items that increase 
+									// the success chance (see .ChanceItems array)
+
+		.MaxRefine = 10;	// The maximum refine
+		
+		// Display the message "The refine can fail and your item will be destroyed"
+		// 0 - Display always (when chance is less than 100% and refine is not protected by item)
+		// 1 - Display only for one time refines
+		// 2 - Display for one time refines and one time for multiple refines
+		.BreakWarning = 1;
+		
+		// Effects of a failed refine attempt
+		// When the refine fails, what happens to the item?
+		// 0 - Item is destroyed
+		// 1 - Item goes down 1 refine level
+		// 2 - Item goes down to +0
+		// 3 - Nothing happens
+		//
+		// Add the desired effects to .FailResults, repeat its number
+		// to increase the chance of it to happen.
+		//
+		// Examples:
+		// .FailResults[0], 0; // item is destroyed on fail
+		// .FailResults[0], 0, 3; // 50% chance to be destroyed, 50% chance to stay as is
+		// .FailResults[0], 0, 0, 1, 2; 50% chance to destroy, 25% to -1, 25% to go to +0
+		setarray .FailResults[0], 0;
+		
+		// Items used to refine by Weapon Level:
+		setarray .RefineItems[0],
+			985,	// Elunium - Armor (Level 0)
+			1010,	// Phracon - Level 1
+			1011,	// Emveretarcon - Level 2
+			984,	// Oridecon - Level 3
+			984;	// Oridecon - Level 4
+		
+		// Price in Z of the refine by Weapon Level:
+		setarray .RefinePrices[0],
+			50000,	// Armor (Level 0)
+			1000,		// Level 1
+			2000,	// Level 2
+			50000,	// Level 3
+			80000;	// Level 4
+		
+		// Safe levels by Weapon Level:
+		setarray .SafeLevels[0],
+			4,	// Armor (Level 0)
+			7,	// Level 1
+			6,	// Level 2
+			5,	// Level 3
+			4;	// Level 4
+			
+		// ======================
+		// 		Refine Protector
+		// ======================
+		if (.UseSecureItems)
+		{
+			// These settings are used only if .UseSecureItems is true.
+			
+			// How .SecureItems items will work?
+			// 0 - Each weapon type has one item to protect it
+			// 1 - Each refine level + item type has one item to protect it
+			.SecureType = 1;
+			
+			// Ask if wants to use a secure item?
+			// 0 - don't ask (if item is inventory, use it)
+			// 1 - Ask before every refine attempt
+			// 2 - Ask once for all refine attempts
+			//		(when refining multiple times, otherwise works like 1)
+			.SecureAsk = 2;
+			
+			// How Secure Items are consumed?
+			// 0 - If it will break, consume.
+			// 1 - Consume always (except on safe refine)
+			// 2 - Consume always (even on safe refines)
+			.SecureConsumeType = 0;
+			
+			// Items used to protect the refine.
+			// These are the items consumed when protecting the
+			// refine, they are consumed according to .SecureConsumeType;
+			// Use 0 to not use an item for this level.
+			// If .SecureType is 0, each array item means one weapon Level.
+			// If .SecureType is 1, each three array items means one refine
+			//					level, and follows the order
+			//					<weapon>, <headgear>, <armor>
+			//
+			// Setup the array down there according to your .SecureType above.
+			//
+			// Note: Officially there is no Weapon Level higher than 4,
+			//		these values exists there mainly for by refine protection,
+			//		but can be used for custom items.
+			
+			if (.SecureType == 0)
+			{ // If .SecureType is 0
+				setarray .SecureItems[0],
+					6223,		// Armor (Level 0)
+					6223,		// Level 1
+					6223,		// Level 2
+					6223, 		// Level 3
+					6224;		// Level 4
+			}
+			else
+			{ // If .SecureType is 1 //fucking reverse table
+				// Item Types:
+				// Weapn
+				// Headgear
+				// Armor (Every armor except headgear)
+				setarray .SecureItems[0],
+					6224, 6223, 6223, // +0
+					6224, 6223, 6223, // +1
+					6224, 6223, 6223, // +2
+					6224, 6223, 6223, // +3
+					6224, 6223, 6223, // +4
+					6224, 6223, 6223, // +5
+					6224, 6223, 6223, // +6
+					0, 0, 0, // +7
+					0, 0, 0, // +8
+					0, 0, 0; // +9
+			}
+		}
+		
+		// ===============================
+		// 		Refine Chance Increase
+		// ===============================
+		if (.UseChanceItems)
+		{
+			// These settings are used only if .UseChanceItems is true.
+			
+			// How Chance Items are consumed?
+			// 0 - Consume if above safe level
+			// 1 - Consume always (even on safe refines)
+			.ChanceConsumeType = 1;
+			
+			// Ask if wants to use a chance item?
+			// 0 - don't ask (if item is inventory, use it)
+			// 1 - Ask before every refine attempt
+			// 2 - Ask once for all refine attempts
+			//		(when refining multiple times, otherwise works like 1)
+			.ChanceAsk = 2;
+			
+			// Items used to increase the refine success and the increase, by Weapon Level.
+			// These are the items consumed during the refine to increase
+			// the success rate of the refine, they are consumed according to
+			// .ChanceConsumeType;
+			// Format: <Item ID>, <Increase>
+			// An increase of 1 is equal to 1% to the total,
+			// so if the success rate is 80%, it will be 81%.
+			// Use 0 as ID to not use an item for this level.
+			setarray .ChanceItems[0],
+				7619, 5,	// Armor (Level 0)
+				0, 0,		// Level 1
+				0, 0,		// Level 2
+				7620, 7,	// Level 3
+				7620, 5;	// Level 4
+		}
+	end;
+}

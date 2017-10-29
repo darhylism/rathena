@@ -28,3 +28,12 @@
 //   for different monsters, override drop rate with Ratio=100 and edit
 //   base drop rates in mob_db.
 // - This file is reloaded by @reloadmobdb.
+
+
+31016,1000,2987 //Decorated Evil Tree Card
+31017,1000,2989 //Vicious Cookie Card
+31018,1000,2991 //Evil Dwelling Box Card
+31019,1000,2992 //Creepy Demon Card
+31020,1000,2993 //Malicious Baby Ghost Card
+31021,1000,2994 //Dancing Marionette Card
+31022,1000,2995 //Abandoned Teddy Bear Card
