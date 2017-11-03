@@ -38,7 +38,7 @@
 /// Client-sided range checks are, however, are always circular.
 /// Enabling this changes all checks to circular checks, which is more realistic,
 /// - but is not the official behaviour.
-//#define CIRCULAR_AREA
+#define CIRCULAR_AREA
 
 /// Comment to disable Guild/Party Bound item system
 /// By default, we recover/remove Guild/Party Bound items automatically

@@ -1,0 +1,209 @@
+-	script	Sprakki#newbe05::NvSprakkiB	-1,{
+	if (job_novice_q == 0) {
+		mes "[Sprakki]";
+		mes "Hello there! Welcome to the World of Ragnarok Online.";
+		mes "My name is Sprakki and I'm in charge of giving you basic gameplay tips.";
+		mes "Click on the [Next] button or press [Enter] key to continue.";
+		next;
+		mes "[Sprakki]";
+		mes "First you need to learn the very basics of controlling your character.";
+		mes "All the basic ^4d4dffmoves, selection of items, and attacks^000000 use the ^4d4dff left click of the mouse^000000.";
+		next;
+		cutin "tutorial01",3;
+		mes "-! Info !-";
+		mes "Click on the ground to move the character.";
+		mes "Attacking monsters and conversations with the people of this world can be done by simply clicking on them.";
+		next;
+		cutin "",255;
+		mes "[Sprakki]";
+		mes "Well then, I will give you a quest to talk to me.";
+		mes "After the conversation is over, talk to me again by left-clicking on me.";
+		set job_novice_q,1;
+		setquest 7117;
+		next;
+		cutin "tutorial02",3;
+		mes "-! Info !-";
+		mes "You've received a quest from Sprakki.";
+		mes "You can check the contents of the quest in the Quest Info Window by pressing the ^4d4dffAlt + U^000000 keys at the same time.";
+		next;
+		cutin "",255;
+		mes "[Sprakki]";
+		mes "Have you checked the Quest Info Window?";
+		mes "Well, talk to me again.";
+		close;
+	} else if (job_novice_q < 3) {
+		if (job_novice_q == 1) {
+			mes "[Sprakki]";
+			mes "Great!";
+			mes "Now you know how to move and talk to others, right?";
+			set job_novice_q,2;
+			getexp 600,5;
+			completequest 7117;
+			next;
+		}
+		mes "[Sprakki]";
+		mes "The Training Center is prepared for novices just like you.";
+		mes "You are going to be trained to get used to the basics of the Game.";
+		next;
+		mes "[Sprakki]";
+		mes "Of course, this Training Process is optional, if you want to go straight to town, that's also fine.";
+		mes "But, you will miss all the advantages you can get in the Training Center.";
+		next;
+		switch(select("Begin Training.:Start the game right away.")) {
+		case 1:
+			mes "[Sprakki]";
+			mes "I will guide you to the Novice Training Center.";
+			mes "Inside, Instructor 'Brade' will be waiting to speak to you.";
+			next;
+			mes "[Sprakki]";
+			mes "Instructor 'Brade' will help you afterwards.";
+			mes "Please, Go see him.";
+			setquest 7118;
+			next;
+			if ( #newaccount==0 ){
+			mes "Welcome to ^000088Mayaan Server^000000.";
+			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
+			mes "I see that you're new here so to help you out";
+			mes "I'd like to give you these";
+			mes "items as a gift to show how much we appreciate you here!";
+			mes "^0a6cdb Field Manual^000000 (5x)";
+			mes "^0a6cdb Bubble Gum^000000 (5x)";
+			mes "^0a6cdb Kafra Ticket^000000 (20x)";
+			mes "^0a6cdb Kafra Storage^000000 (20x)";
+			mes "^0a6cdb Novice Potion^000000 (300x)";
+			mes "^0a6cdb Novice Fly Wing^000000(20x)";
+			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
+			getitem	12263,5; // Field Manual
+			getitem	12210,5; // Bubble Gum
+			getitem	7060,20; // Kafra Ticket
+			getitem	7059,20; // Kafra Storage
+			getitem	569,300; // Novice Potion
+			getitem	12323,20; // Novice Fly Wing
+			getitem	12324,20; // Novice Butter Fly Wing
+			set #newaccount,1;
+			mes "^4d4dff- You received a quest 'Novice Training Ground -1' from Sprakki.";
+			mes "Please check the Quest Info Window. -^000000";
+			close2;
+			savepoint strnpcinfo(4),100,100,1,1;
+			warp strnpcinfo(4),100,100;
+			end;
+			}
+			mes "Welcome to ^000088Mayaan Server^000000.";
+			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
+			mes "I see that you are an old player here so";
+			mes "I'd like to give you these";
+			mes "items as a gift to show how much we appreciate you here!";
+			mes "^0a6cdb Field Manual^000000 (5x)";
+			mes "^0a6cdb Kafra Ticket^000000 (20x)";
+			mes "^0a6cdb Kafra Storage^000000 (20x)";
+			mes "^0a6cdb Novice Potion^000000 (300x)";
+			mes "^0a6cdb Novice Fly Wing^000000(20x)";
+			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
+			getitem	12263,5; // Field Manual
+			getitem	7060,20; // Kafra Ticket
+			getitem	7059,20; // Kafra Storage
+			getitem	569,300; // Novice Potion
+			getitem	12323,20; // Novice Fly Wing
+			getitem	12324,20; // Novice Butter Fly Wing
+			close2;
+			savepoint strnpcinfo(4),100,100,1,1;
+			warp strnpcinfo(4),100,100;
+			end;
+		case 2:
+			if ( #newaccount==0 ){
+			mes "Welcome to ^000088Mayaan Server^000000.";
+			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
+			mes "I see that you're new here so to help you out";
+			mes "I'd like to give you these";
+			mes "items as a gift to show how much we appreciate you here!";
+			mes "^0a6cdb Field Manual^000000 (5x)";
+			mes "^0a6cdb Bubble Gum^000000 (5x)";
+			mes "^0a6cdb Kafra Ticket^000000 (20x)";
+			mes "^0a6cdb Kafra Storage^000000 (20x)";
+			mes "^0a6cdb Novice Potion^000000 (300x)";
+			mes "^0a6cdb Novice Fly Wing^000000(20x)";
+			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
+			getitem	12263,5; // Field Manual
+			getitem	12210,5; // Bubble Gum
+			getitem	7060,20; // Kafra Ticket
+			getitem	7059,20; // Kafra Storage
+			getitem	569,300; // Novice Potion
+			getitem	12323,20; // Novice Fly Wing
+			getitem	12324,20; // Novice Butter Fly Wing
+			set #newaccount,1;
+			close2;
+			savepoint "payon",71,100;
+			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+			warp "poring_w02",99,66;
+			end;
+			}
+			mes "[ ^f90366Sprakki^000000 ]";
+			mes "I understand.";
+			mes "Please do your";
+			mes "best, and I wish you";
+			mes "the best of luck!";
+			close2;
+			getitem	12263,5; // Field Manual
+			getitem	7060,20; // Kafra Ticket
+			getitem	7059,20; // Kafra Storage
+			getitem	569,300; // Novice Potion
+			getitem	12323,20; // Novice Fly Wing
+			getitem	12324,20; // Novice Butter Fly Wing
+			set nov_1st_cos,0;
+			set nov_2nd_cos,0;
+			set nov_3_swordman,0;
+			set nov_3_archer,0;
+			set nov_3_thief,0;
+			set nov_3_magician,0;
+			set nov_3_acolyte,0;
+			set nov_3_merchant,0;
+			callfunc "F_NvErase";
+			close2;
+			switch(rand(6)) {
+			case 0:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+				break;
+			case 1:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+				break;
+			case 2:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+				break;
+			case 3:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+				break;
+			case 4:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+				break;
+			case 5:
+				savepoint "poring_w02",99,66,1,1;
+				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+				warp "poring_w02",99,66;
+			}
+			end;
+		}
+	} else {
+		mes "[Sprakki]";
+		mes "These are the Novice Training Grounds.";
+		mes "I will guide you to the Novice Training Center.";
+		close2;
+		savepoint strnpcinfo(4),100,100,1,1;
+		warp strnpcinfo(4),100,100;
+		end;
+	}
+}
+new_1-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv1b	90
+new_2-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv2b	90
+new_3-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv3b	90
+new_4-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv4b	90
+new_5-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv5b	90
