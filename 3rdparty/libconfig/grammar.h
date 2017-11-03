@@ -1,4 +1,4 @@
-#pragma once
+
 /* A Bison parser, made by GNU Bison 2.4.1.  */
 
 /* Skeleton interface for Bison's Yacc-like parsers in C
@@ -32,10 +32,7 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-    
+
 /* Tokens.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
@@ -112,7 +109,5 @@ typedef union YYSTYPE
 #endif
 
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+
 

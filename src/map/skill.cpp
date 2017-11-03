@@ -1,14 +1,6 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
-#include "skill.hpp"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <math.h>
-
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
 #include "../common/nullpo.h"
@@ -19,30 +11,40 @@
 #include "../common/utils.h"
 #include "../common/ers.h"
 
-#include "map.hpp"
-#include "path.hpp"
-#include "clif.hpp"
-#include "pc.hpp"
-#include "status.hpp"
-#include "pet.hpp"
-#include "homunculus.hpp"
-#include "mercenary.hpp"
-#include "elemental.hpp"
-#include "mob.hpp"
-#include "npc.hpp"
-#include "battle.hpp"
-#include "battleground.hpp"
-#include "party.hpp"
-#include "itemdb.hpp"
-#include "script.hpp"
-#include "intif.hpp"
-#include "log.hpp"
-#include "chrif.hpp"
-#include "guild.hpp"
-#include "date.hpp"
-#include "unit.hpp"
-#include "achievement.hpp"
-#include "pc_groups.hpp"
+#include "map.h"
+#include "path.h"
+#include "clif.h"
+#include "pc.h"
+#include "status.h"
+#include "skill.h"
+#include "pet.h"
+#include "homunculus.h"
+#include "mercenary.h"
+#include "elemental.h"
+#include "mob.h"
+#include "npc.h"
+#include "battle.h"
+#include "battleground.h"
+#include "party.h"
+#include "itemdb.h"
+#include "script.h"
+#include "intif.h"
+#include "log.h"
+#include "chrif.h"
+#include "guild.h"
+#include "date.h"
+#include "unit.h"
+#include "achievement.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define SKILLUNITTIMER_INTERVAL	100
 #define TIMERSKILL_INTERVAL	150
@@ -21605,3 +21607,7 @@ void do_final_skill(void)
 	ers_destroy(skill_unit_ers);
 	ers_destroy(skill_timer_ers);
 }
+
+#ifdef __cplusplus
+}
+#endif

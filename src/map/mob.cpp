@@ -1,11 +1,6 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
-#include "mob.hpp"
-
-#include <stdlib.h>
-#include <math.h>
-
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
 #include "../common/db.h"
@@ -18,22 +13,25 @@
 #include "../common/utils.h"
 #include "../common/socket.h"
 
-#include "map.hpp"
-#include "path.hpp"
-#include "clif.hpp"
-#include "intif.hpp"
-#include "pc.hpp"
-#include "pet.hpp"
-#include "homunculus.hpp"
-#include "mercenary.hpp"
-#include "elemental.hpp"
-#include "party.hpp"
-#include "quest.hpp"
-#include "npc.hpp"
-#include "guild.hpp"
-#include "battle.hpp"
-#include "log.hpp"
-#include "achievement.hpp"
+#include "map.h"
+#include "path.h"
+#include "clif.h"
+#include "intif.h"
+#include "pc.h"
+#include "pet.h"
+#include "homunculus.h"
+#include "mercenary.h"
+#include "elemental.h"
+#include "party.h"
+#include "quest.h"
+#include "achievement.h"
+
+#include <stdlib.h>
+#include <math.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define ACTIVE_AI_RANGE 2	//Distance added on top of 'AREA_SIZE' at which mobs enter active AI mode.
 
@@ -5382,3 +5380,8 @@ void do_final_mob(bool is_reload){
 		ers_destroy(item_drop_list_ers);
 	}
 }
+
+#ifdef __cplusplus
+}
+#endif
+

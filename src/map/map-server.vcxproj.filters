@@ -11,261 +11,261 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="achievement.hpp">
+    <ClInclude Include="achievement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="atcommand.hpp">
+    <ClInclude Include="atcommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="battle.hpp">
+    <ClInclude Include="battle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="battleground.hpp">
+    <ClInclude Include="battleground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="buyingstore.hpp">
+    <ClInclude Include="buyingstore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cashshop.hpp">
+    <ClInclude Include="cashshop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="channel.hpp">
+    <ClInclude Include="channel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="chat.hpp">
+    <ClInclude Include="chat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="chrif.hpp">
+    <ClInclude Include="chrif.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clan.hpp">
+    <ClInclude Include="clan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clif.hpp">
+    <ClInclude Include="clif.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clif_obfuscation.hpp">
+    <ClInclude Include="clif_obfuscation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clif_packetdb.hpp">
+    <ClInclude Include="clif_packetdb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clif_shuffle.hpp">
+    <ClInclude Include="clif_shuffle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="date.hpp">
+    <ClInclude Include="date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="duel.hpp">
+    <ClInclude Include="duel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="elemental.hpp">
+    <ClInclude Include="elemental.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="guild.hpp">
+    <ClInclude Include="guild.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="homunculus.hpp">
+    <ClInclude Include="homunculus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="instance.hpp">
+    <ClInclude Include="instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="intif.hpp">
+    <ClInclude Include="intif.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="itemdb.hpp">
+    <ClInclude Include="itemdb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="log.hpp">
+    <ClInclude Include="log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mail.hpp">
+    <ClInclude Include="mail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="map.hpp">
+    <ClInclude Include="map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mapreg.hpp">
+    <ClInclude Include="mapreg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mercenary.hpp">
+    <ClInclude Include="mercenary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mob.hpp">
+    <ClInclude Include="mob.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="npc.hpp">
+    <ClInclude Include="npc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="party.hpp">
+    <ClInclude Include="party.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="path.hpp">
+    <ClInclude Include="path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pc.hpp">
+    <ClInclude Include="pc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pc_groups.hpp">
+    <ClInclude Include="pc_groups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pet.hpp">
+    <ClInclude Include="pet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="quest.hpp">
+    <ClInclude Include="quest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="script.hpp">
+    <ClInclude Include="script.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="script_constants.hpp">
+    <ClInclude Include="script_constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="searchstore.hpp">
+    <ClInclude Include="searchstore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="skill.hpp">
+    <ClInclude Include="skill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="status.hpp">
+    <ClInclude Include="status.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="storage.hpp">
+    <ClInclude Include="storage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="trade.hpp">
+    <ClInclude Include="trade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="unit.hpp">
+    <ClInclude Include="unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vending.hpp">
+    <ClInclude Include="vending.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="achievement.cpp">
+    <ClCompile Include="achievement.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="atcommand.cpp">
+    <ClCompile Include="atcommand.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="battle.cpp">
+    <ClCompile Include="battle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="battleground.cpp">
+    <ClCompile Include="battleground.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="buyingstore.cpp">
+    <ClCompile Include="buyingstore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cashshop.cpp">
+    <ClCompile Include="cashshop.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="channel.cpp">
+    <ClCompile Include="channel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chat.cpp">
+    <ClCompile Include="chat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chrif.cpp">
+    <ClCompile Include="chrif.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clan.cpp">
+    <ClCompile Include="clan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clif.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="date.cpp">
+    <ClCompile Include="date.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="duel.cpp">
+    <ClCompile Include="duel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="elemental.cpp">
+    <ClCompile Include="elemental.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="guild.cpp">
+    <ClCompile Include="guild.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="homunculus.cpp">
+    <ClCompile Include="homunculus.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="instance.cpp">
+    <ClCompile Include="instance.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="intif.cpp">
+    <ClCompile Include="intif.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="itemdb.cpp">
+    <ClCompile Include="itemdb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="log.cpp">
+    <ClCompile Include="log.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mail.cpp">
+    <ClCompile Include="mail.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mapreg.cpp">
+    <ClCompile Include="mapreg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mercenary.cpp">
+    <ClCompile Include="mercenary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mob.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="npc.cpp">
+    <ClCompile Include="npc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="npc_chat.cpp">
+    <ClCompile Include="npc_chat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="party.cpp">
+    <ClCompile Include="party.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="path.cpp">
+    <ClCompile Include="path.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pc.cpp">
+    <ClCompile Include="pc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pc_groups.cpp">
+    <ClCompile Include="pc_groups.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pet.cpp">
+    <ClCompile Include="pet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="quest.cpp">
+    <ClCompile Include="quest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="script.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="searchstore.cpp">
+    <ClCompile Include="searchstore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="skill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="status.cpp">
+    <ClCompile Include="status.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="storage.cpp">
+    <ClCompile Include="storage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="trade.cpp">
+    <ClCompile Include="trade.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="unit.cpp">
+    <ClCompile Include="unit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vending.cpp">
+    <ClCompile Include="vending.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
