@@ -18,7 +18,7 @@
 35004,Shadow Poring_Card,Shadow_Poring_Card,6,20,,10,,,,,,,,4,,,,,{ bonus2 bAddSize,Size_Medium,45; },{},{}
 
 //weapon sword
-1198,Buster Sword,Buster Sword,5,0,,100,150,,1,2,0x00004082,63,2,2,4,60,0,2,{bonus bDex,+10;bonus bHit,-10;skill "TK_SEVENWIND",4;bonus bDoubleRate,35;bonus3 bAutoSpell,"WZ_METEOR",7,100; },{},{sc_end TK_SEVENWIND;}
+1198,Buster Sword,Buster Sword,5,0,,100,150,,1,3,0x00004082,63,2,2,4,60,0,2,{bonus bDex,+10;bonus bHit,-10;skill "TK_SEVENWIND",4;bonus bDoubleRate,35;bonus3 bAutoSpell,"WZ_METEOR",7,100; },{},{sc_end TK_SEVENWIND;}
 
 //weapon bow
 1749,Quincy_Bow,Quincy_Bow,5,2500,,600,160,,5,4,0x000A0848,63,2,34,1,4,1,11,{ bonus2 bAddEle,7,25; bonus bCritical,15; bonus bDex,15; bonus bAspd,7; },{},{}
@@ -28,7 +28,7 @@
 
 //weapon gun
 13184,Deadeye,Deadeye,5,,,150,77,,13,1,0x41000000,63,2,34,4,1,1,18,{bonus2 baddEff,Eff_Bleeding,5000; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus bSpeedRate,-25; bonus bHit,50; skill 127,1; skill 130,2; skill 5,7; bonus2 bSkillAtk,512,400;},{},{}
-13185,Cutlass,Cutlass,5,,,80,50,,9,3,0x41000000,63,2,34,4,1,1,17,{ bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,RC_All; bonus2 bSkillAtk,GS_DESPERADO,70; bonus2 bSPDrainRate,10,10; bonus2 bSPVanishRate,10,5; },{},{}
+13185,Cutlass,Cutlass,5,,,80,50,,9,3,0x41000000,63,2,34,4,1,1,17,{ bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,RC_All; bonus2 bSkillAtk,516,70; bonus2 bSPDrainRate,10,10; bonus2 bSPVanishRate,10,5; },{},{}
 13186,Havoc,Havoc,5,,,400,150,,9,4,0x41000000,63,2,34,4,1,1,20,{ bonus3 bAutoSpellWhenHit,249,5,1000; bonus bSpeedRate,-70; bonus bNoSizeFix,0; bonus2 baddEff,Eff_Stun,3000; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,50; bonus bUnstripableWeapon,100; },{},{}
 13187,Sweeper,Sweeper,5,,,200,150,,9,3,0x41000000,63,2,34,4,1,1,18,{ bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus2 bAddEle,8,20; },{},{}
 
@@ -54,7 +54,7 @@
 35023,Byakugan,Byakugan,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1708,{bonus bStr,5; bonus bNearAtkDef,3;},{},{}
 35024,Shinigami,Shinigami,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1709,{bonus bVit,5; bonus bIntravision,n;},{},{}
 35025,Sharingan,Sharingan,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1710,{bonus bInt,5; bonus bMaxHPrate,5;},{},{}
-35026,Dj Headset,Dj Headset,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1711,{ bonus bVariableCastrate,-10; bonus2 bSkillAtk,CG_ARROWVULCAN,20;},{},{}
+35026,Dj Headset,Dj Headset,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1711,{ bonus bVariableCastrate,-10; bonus2 bSkillAtk,394,20; },{},{}
 35027,state alchemist pocket watch,state_alchemist_pocket_watch,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,136,0,0,0,0,{ skill 278,1; bonus bDex,5; bonus bCastrate,-5; bonus bUseSPrate,25; bonus bNoCastCancel,100; bonus bMatkRate,10;},{},{}
 35028,Haruhi Ribbons,haruhi_ribbons,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1712,{ bonus bSpeedAddRate,25; bonus bMaxSPrate,5; },{},{}
 35029,Alucard Sunglasses,alucard_sunglasses,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1713,{bonus2 bAddEff,Eff_Curse,1500; bonus2 bAddEff,Eff_Blind,1500; bonus2 bAddEff,Eff_Confusion,1500;},{},{}
