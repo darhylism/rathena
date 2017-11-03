@@ -132,7 +132,7 @@
 			getitem	12324,20; // Novice Butter Fly Wing
 			set #newaccount,1;
 			close2;
-			savepoint "payon",71,100;
+			savepoint "poring_w02",99,66,1,1;
 			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
 			warp "poring_w02",99,66;
 			end;
