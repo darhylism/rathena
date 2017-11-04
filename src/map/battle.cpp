@@ -601,7 +601,7 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 			if( sd && !(nk&NK_NO_CARDFIX_ATK) ) {
 				cardfix = cardfix * (100 + sd->magic_addrace[tstatus->race] + sd->magic_addrace[RC_ALL] + sd->magic_addrace2[t_race2]) / 100;
 				if( !(nk&NK_NO_ELEFIX) ) { // Affected by Element modifier bonuses
-					cardfix = cardfix * (100 + sd->magic_addele[tstatus->def_ele] + sd->magic_addele[ELE_ALL] + 
+					cardfix = cardfix * (100 + sd->magic_addele[tstatus->def_ele] + sd->magic_addele[ELE_ALL] +
 						sd->magic_addele_script[tstatus->def_ele] + sd->magic_addele_script[ELE_ALL]) / 100;
 					cardfix = cardfix * (100 + sd->magic_atk_ele[rh_ele] + sd->magic_atk_ele[ELE_ALL]) / 100;
 				}
@@ -3093,7 +3093,7 @@ struct Damage battle_calc_skill_base_damage(struct Damage wd, struct block_list 
 			}
 #else
 		case NJ_ISSEN:
-			wd.damage = 40 * sstatus->str + sstatus->hp * 8 * skill_lv / 100;
+			wd.damage = 50 * sstatus->str + sstatus->hp * 9 * skill_lv / 100;
 			wd.damage2 = 0;
 			break;
 		case LK_SPIRALPIERCE:
@@ -3310,7 +3310,7 @@ static struct Damage battle_calc_multi_attack(struct Damage wd, struct block_lis
 		{	//Success chance is not added, the higher one is used [Skotlex]
                         int max_rate = max(5*skill_lv,sd->bonus.double_rate);
                         if(sc && sc->data[SC_KAGEMUSYA]) max_rate= max(max_rate,sc->data[SC_KAGEMUSYA]->val1*3);
-                        
+
 			if( rnd()%100 < max_rate ) {
 				wd.div_ = skill_get_num(TF_DOUBLE,skill_lv?skill_lv:1);
 				wd.type = DMG_MULTI_HIT;
@@ -3568,7 +3568,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			skillratio += 75 * skill_lv;
 			break;
 		case MO_EXTREMITYFIST:
-			skillratio += 100 * (7 + sstatus->sp / 8);
+			skillratio += 100 * (8 + sstatus->sp / 7);
 			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
 			break;
 		case MO_TRIPLEATTACK:
@@ -3607,7 +3607,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 		// Renewal: skill ratio applies to entire damage [helvetica]
 		case LK_SPIRALPIERCE:
 		case ML_SPIRALPIERCE:
-			skillratio += 50 * skill_lv;
+			skillratio += 100 * skill_lv;
 		break;
 #endif
 		case ASC_METEORASSAULT:
@@ -3618,7 +3618,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			skillratio += 100 + 50 * skill_lv;
 			break;
 		case CG_ARROWVULCAN:
-			skillratio += 100 + 100 * skill_lv;
+			skillratio += 100 + 140 * skill_lv;
 			break;
 		case AS_SPLASHER:
 			skillratio += 400 + 50 * skill_lv;
@@ -3642,9 +3642,9 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			if (i < 1) i = 1;
 			//Preserve damage ratio when max cart weight is changed.
 			if (sd && sd->cart_weight)
-				skillratio += sd->cart_weight / i * 80000 / battle_config.max_cart_weight - 100;
+				skillratio += sd->cart_weight / i * 600000 / battle_config.max_cart_weight - 100;
 			else if (!sd)
-				skillratio += 80000 / i - 100;
+				skillratio += 600000 / i - 100;
 			break;
 		case TK_DOWNKICK:
 		case TK_STORMKICK:
@@ -6528,7 +6528,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
 				struct Damage matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
 				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * tstatus->vit / 100 );
-	
+
 				// AD benefits from endow/element but damage is forced back to neutral
 				md.damage = battle_attr_fix(src, target, md.damage, ELE_NEUTRAL, tstatus->def_ele, tstatus->ele_lv);
 			}
@@ -6912,7 +6912,7 @@ bool battle_vanish(struct map_session_data *sd, struct block_list *target, struc
 			wd->isspdamage = true;
 		} else // No damage
 			return false;
-		
+
 		return true;
 	} else {
 		// bHPVanishRate
@@ -8076,7 +8076,7 @@ static const struct _battle_data {
 	{ "aura_lv",                            &battle_config.aura_lv,                         99,     0,      INT_MAX,        },
 	{ "max_hp",                             &battle_config.max_hp,                          32500,  100,    1000000000,     },
 	{ "max_sp",                             &battle_config.max_sp,                          32500,  100,    1000000000,     },
-	{ "max_cart_weight",                    &battle_config.max_cart_weight,                 8000,   100,    1000000,        },
+	{ "max_cart_weight",                    &battle_config.max_cart_weight,                 60000,   100,    1000000,        },
 	{ "max_parameter",                      &battle_config.max_parameter,                   99,     10,     SHRT_MAX,       },
 	{ "max_baby_parameter",                 &battle_config.max_baby_parameter,              80,     10,     SHRT_MAX,       },
 	{ "max_def",                            &battle_config.max_def,                         99,     0,      INT_MAX,        },
