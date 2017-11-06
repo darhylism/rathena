@@ -37,10 +37,16 @@ menu
 
 W_Heal:
 	percentheal 100,100;
-	sc_start SC_INCREASEAGI,600000,10;
-	sc_start SC_BLESSING,600000,10;
-	sc_start SC_SUFFRAGIUM,600000,10;
-	sc_start SC_IMPOSITIO,600000,10;
+	if (BaseLevel > 264) {
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,300000,10;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,300000,10;
+		specialeffect2 EF_SUFFRAGIUM;
+		sc_start SC_SUFFRAGIUM,300000,10;
+		specialeffect2 EF_IMPOSITIO;
+		sc_start SC_IMPOSITIO,300000,10;
+	}
 	close;
 
 W_fcp: 

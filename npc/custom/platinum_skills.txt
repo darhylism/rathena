@@ -32,3 +32,5 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	mes "There you go!";
 	close;
 }
+
+poring_w02,121,77,4	duplicate(Platinum Skill NPC)	Platinum Skill NPC#poring	94
