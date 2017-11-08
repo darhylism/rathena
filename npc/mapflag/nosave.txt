@@ -225,8 +225,8 @@ p_track01	mapflag	nosave	SavePoint
 p_track02	mapflag	nosave	SavePoint
 
 // Poring War ====================
-poring_w01	mapflag	nosave	SavePoint
-poring_w02	mapflag	nosave	SavePoint
+//poring_w01	mapflag	nosave	SavePoint
+//poring_w02	mapflag	nosave	SavePoint
 
 //Vision of Okolnir ===========================
 que_qsch01	mapflag	nosave	SavePoint
