@@ -74,3 +74,4 @@
 35044,9,100	// Gangster_Scarf
 35045,9,100	// arch_angel_wings
 35046,9,100	// arch_demon_wings
+35047,507,100	// Power_Proof

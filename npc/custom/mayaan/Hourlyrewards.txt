@@ -1,0 +1,106 @@
+-	script	hourly_point_main	-1,{
+   
+    OnInit:
+		.max_minute = 720;
+        .npc_name$ = strnpcinfo(3);
+        bindatcmd "hreward",.npc_name$+"::OnAtcommand";
+        end;
+       
+    OnAtcommand:
+		dispbottom "Accumulated time: "+#daily_minute_count+" / "+.max_minute+" minute(s) - "+ ( ( #daily_minute_count < .max_minute )?" In Progress":"Completed" );
+        end;
+
+	OnClock0001:
+//	OnClock2032:
+//		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
+//		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
+		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
+		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
+
+		announce "It is 12:01AM Server time. Daily Rewards, Hourly Points and other cooldowns have been reseted.",bc_all,0x00FF00,FW_NORMAL,25,center,-1;
+		
+		addrid(0);
+		#daily_minute_count = -1;
+		#lastTimeSpin = -1;	
+	   
+    OnUpdate:
+		if(checkvending() >= 1) {
+			dispbottom "The hourly points event stopped because you were vending. Please relog if you wish to start again.";
+			stopnpctimer;
+			end;
+			}
+        #daily_minute_count++;
+        deltimer .npc_name$+"::OnUpdate";
+        switch ( #daily_minute_count ) {
+            default:
+                break;
+            case 60: // 60 minutes
+                #HR_COIN += 5;
+				dispbottom "You received 5 Hourly points by staying ingame for 1 hour";
+				dispbottom "The hourly points system has started please continue to be online to gain rewards.";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
+                break;
+            case 120: // 120 minutes
+                #HR_COIN += 10;
+				dispbottom "You received 10 Hourly points due to playing for 2 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
+                break;
+            case 180: // 180 minutes
+                #HR_COIN += 15;
+				dispbottom "You received 15 Hourly points due to playing for 3 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 240: // 240 minutes
+                #HR_COIN += 20;
+				dispbottom "You received 20 Hourly points due to playing for 4 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 300: // 300 minutes
+                #HR_COIN += 25;
+				dispbottom "You received 25 Hourly points due to playing for 5 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 360: // 360 minutes
+                #HR_COIN += 30;
+				dispbottom "You received 30 Hourly points due to playing for 6 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
+                break;
+            case 420: // 420 minutes
+                #HR_COIN += 35;
+				dispbottom "You received 35 Hourly points due to playing for 7 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 480: // 480 minutes
+                #HR_COIN += 40;
+				dispbottom "You received 40 Hourly points due to playing for 8 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 540: // 540 minutes
+                #HR_COIN += 45;
+				dispbottom "You received 45 Hourly points due to playing for 9 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 600: // 600 minutes
+                #HR_COIN += 50;
+				dispbottom "You received 50 Hourly points due to playing for 10 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 660: // 660 minutes
+                #HR_COIN += 55;
+				dispbottom "You received 55 Hourly points due to playing for 11 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
+                break;
+            case 720: // 720 minutes
+                #HR_COIN += 60;
+				dispbottom "You received 60 Hourly points due to playing for 12 consecutive hours";
+				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
+                break;
+        }
+       
+    OnPCLoginEvent:
+//		dispbottom "Accumulated time: "+#daily_minute_count+" minute(s)";
+		if ( #daily_minute_count < .max_minute ) {
+			addtimer ( 60 * 1000 ), .npc_name$+"::OnUpdate";
+		}
+        end;
+}
