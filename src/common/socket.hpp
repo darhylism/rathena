@@ -18,6 +18,99 @@
 
 #define FIFOSIZE_SERVERLINK 256*1024
 
+extern bool is_gepard_active;
+extern uint32 allowed_gepard_grf_hash;
+extern uint32 min_allowed_gepard_version;
+
+#define MATRIX_SIZE (2048 + 1)
+#define KEY_SIZE (32 + 1)
+
+#define GEPARD_ID	0x1051ED52
+#define UNIQUE_ID_XOR	0x24063457
+#define SRAND_CONST	0x67EA3335
+#define POS_1_START	0x65
+#define POS_2_START	0x38
+#define RAND_1_START	0xD5
+#define RAND_2_START	0xE3
+
+struct gepard_crypt_link
+{
+	unsigned char key[KEY_SIZE];
+	unsigned char pos_1;
+	unsigned char pos_2;
+	unsigned char pos_3;
+};
+
+struct gepard_info_data
+{
+	bool is_init_ack_received;
+	uint32 unique_id;
+	uint32 sync_tick;
+	uint32 grf_hash_number;
+	uint32 gepard_shield_version;
+};
+
+enum gepard_server_types
+{
+	GEPARD_MAP      = 0xAAAA,
+	GEPARD_LOGIN    = 0xBBBB,
+};
+
+enum gepard_info_type
+{
+	GEPARD_INFO_BANNED,
+	GEPARD_INFO_OLD_VERSION,
+	GEPARD_INFO_DUAL_LOGIN,
+	GEPARD_INFO_CORUPTED_UID,
+	GEPARD_INFO_WRONG_LICENSE_ID,
+	GEPARD_WRONG_GRF_HASH,
+};
+
+enum gepard_packets
+{
+	CS_LOGIN_PACKET        = 0x0064,
+	CS_WHISPER_TO          = 0x0096,
+	CS_WALK_TO_XY          = 0x0363,
+	CS_USE_SKILL_TO_ID     = 0x083c,
+	CS_USE_SKILL_TO_POS    = 0x0438,
+
+	CS_LOGIN_PACKET_1      = 0x0277,
+	CS_LOGIN_PACKET_2      = 0x02b0,
+	CS_LOGIN_PACKET_3      = 0x01dd,
+	CS_LOGIN_PACKET_4      = 0x01fa,
+	CS_LOGIN_PACKET_5      = 0x027c,
+	CS_LOGIN_PACKET_6      = 0x0825,
+
+	SC_SET_UNIT_WALKING    = 0x09fd,
+	SC_SET_UNIT_IDLE       = 0x09ff,
+	SC_WHISPER_FROM        = 0x0097,
+	SC_WHISPER_SEND_ACK    = 0x0098,
+
+	CS_GEPARD_SYNC         = 0x2000,
+	CS_GEPARD_INIT_ACK     = 0x1002,
+
+	SC_GEPARD_INIT         = 0xABCD,
+	SC_GEPARD_INFO         = 0xBCDE,
+};
+
+enum gepard_internal_packets
+{
+	GEPARD_M2C_BLOCK_REQ   = 0x5000,
+	GEPARD_C2M_BLOCK_ACK   = 0x5001,
+	GEPARD_M2C_UNBLOCK_REQ = 0x5002,
+	GEPARD_C2M_UNBLOCK_ACK = 0x5003,
+};
+
+#define GEPARD_REASON_LENGTH 99
+#define GEPARD_TIME_STR_LENGTH 24
+#define GEPARD_RESULT_STR_LENGTH 100
+
+void gepard_config_read();
+void gepard_init(int fd, uint16 packet_id);
+void gepard_send_info(int fd, unsigned short info_type, char* message);
+bool gepard_process_packet(int fd, uint8* packet_data, uint32 packet_size, struct gepard_crypt_link* link);
+void gepard_enc_dec(uint8* in_data, uint8* out_data, unsigned int data_size, struct gepard_crypt_link* link);
+
 // socket I/O macros
 #define RFIFOHEAD(fd)
 #define WFIFOHEAD(fd, size) do{ if((fd) && session[fd]->wdata_size + (size) > session[fd]->max_wdata ) realloc_writefifo(fd, size); }while(0)
@@ -95,6 +188,12 @@ struct socket_data
 	ParseFunc func_parse;
 
 	void* session_data; // stores application-specific data related to the session
+	// Gepard Shield
+	struct gepard_info_data gepard_info;
+	struct gepard_crypt_link send_crypt;
+	struct gepard_crypt_link recv_crypt;
+	struct gepard_crypt_link sync_crypt;
+	// Gepard Shield
 };
 
 
