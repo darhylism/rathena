@@ -73,24 +73,30 @@ unsigned long loginlog_failedattempts(uint32 ip, unsigned int minutes) {
  * @param rcode:
  * @param message:
  */
-void login_log(uint32 ip, const char* username, int rcode, const char* message) {
-	char esc_username[NAME_LENGTH*2+1];
-	char esc_message[255*2+1];
-	int retcode;
+ void login_log(int fd, uint32 ip, const char* username, int rcode, const char* message) {
+ 	char esc_username[NAME_LENGTH*2+1];
+ 	char esc_message[255*2+1];
+ 	unsigned int unique_id = 0;
+ 	int retcode;
 
-	if( !enabled )
-		return;
+ 	if( !enabled )
+ 		return;
 
-	Sql_EscapeStringLen(sql_handle, esc_username, username, strnlen(username, NAME_LENGTH));
-	Sql_EscapeStringLen(sql_handle, esc_message, message, strnlen(message, 255));
+ 	if (fd != 0)
+ 	{
+ 		unique_id = session[fd]->gepard_info.unique_id;
+ 	}
 
-	retcode = Sql_Query(sql_handle,
-		"INSERT INTO `%s`(`time`,`ip`,`user`,`rcode`,`log`) VALUES (NOW(), '%s', '%s', '%d', '%s')",
-		log_login_db, ip2str(ip,NULL), esc_username, rcode, esc_message);
+ 	Sql_EscapeStringLen(sql_handle, esc_username, username, strnlen(username, NAME_LENGTH));
+ 	Sql_EscapeStringLen(sql_handle, esc_message, message, strnlen(message, 255));
 
-	if( retcode != SQL_SUCCESS )
-		Sql_ShowDebug(sql_handle);
-}
+ 	retcode = Sql_Query(sql_handle,
+ 		"INSERT INTO `%s`(`time`,`ip`,`user`,`rcode`, `unique_id`,`log`) VALUES (NOW(), '%s', '%s', '%d', '%u', '%s')",
+ 		log_login_db, ip2str(ip,NULL), esc_username, rcode, unique_id, esc_message);
+
+ 	if( retcode != SQL_SUCCESS )
+ 		Sql_ShowDebug(sql_handle);
+ }
 
 /**
  * Read configuration options.

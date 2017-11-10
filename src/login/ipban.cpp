@@ -18,6 +18,8 @@
 #include "../common/sql.h"
 #include "../common/strlib.h"
 #include "../common/timer.h"
+#include "../common/socket.h"
+#include <stdio.h>
 #include "login.hpp"
 #include "loginlog.hpp"
 
@@ -220,7 +222,7 @@ void ipban_init(void) {
 		exit(EXIT_FAILURE);
 	}
         ShowInfo("Ipban connection made.\n");
-        
+
 	if( codepage[0] != '\0' && SQL_ERROR == Sql_SetEncoding(sql_handle, codepage) )
 		Sql_ShowDebug(sql_handle);
 
@@ -249,4 +251,75 @@ void ipban_final(void) {
 	// close connections
 	Sql_Free(sql_handle);
 	sql_handle = NULL;
+}
+
+void gepard_update_last_unique_id(int account_id, uint32 unique_id)
+{
+	if (SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `login` SET `last_unique_id`= '%u' WHERE `account_id` = '%d'", unique_id, account_id))
+	{
+		Sql_ShowDebug(sql_handle);
+	}
+	else if (SQL_SUCCESS == Sql_NextRow(sql_handle))
+	{
+		Sql_ShowDebug(sql_handle);
+	}
+
+	Sql_FreeResult(sql_handle);
+}
+
+bool gepard_check_unique_id(int fd, uint32 unique_id)
+{
+	if (SQL_SUCCESS != Sql_Query(sql_handle, "SELECT `unban_time`, `reason` FROM `gepard_block` WHERE `unique_id` = '%u'", unique_id))
+	{
+		Sql_ShowDebug(sql_handle);
+		gepard_send_info(fd, GEPARD_INFO_BANNED, "Tell administrator about SQL problem.");
+	}
+	else if (SQL_SUCCESS == Sql_NextRow(sql_handle))
+	{
+		char* data;
+		struct tm unblock_tm;
+		time_t time_unban, time_server;
+	 	int year, month, day, hour, min, sec;
+		char reason_str[GEPARD_REASON_LENGTH];
+		char unban_time_str[GEPARD_TIME_STR_LENGTH];
+
+		memset((void*)&unblock_tm, 0, sizeof(unblock_tm));
+
+		Sql_GetData(sql_handle,  0, &data, NULL);
+		safestrncpy(unban_time_str, data, sizeof(unban_time_str));
+
+		sscanf(unban_time_str, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &min, &sec);
+
+		unblock_tm.tm_year = year - 1900;
+		unblock_tm.tm_mon = month - 1;
+		unblock_tm.tm_mday = day;
+		unblock_tm.tm_hour = hour;
+		unblock_tm.tm_min = min;
+		unblock_tm.tm_sec = sec;
+
+		time_unban = mktime(&unblock_tm);
+		time(&time_server);
+
+		if (time_server <= time_unban)
+		{
+			char message_info[200];
+
+			Sql_GetData(sql_handle,  1, &data, NULL);
+			safestrncpy(reason_str, data, sizeof(reason_str));
+
+			safesnprintf(message_info, sizeof(message_info), "Unique ID has been banned!\r\rDate of unban:  %s\r\rUnique id: %u\r\rReason: %s", unban_time_str, unique_id, reason_str);
+
+			session[fd]->gepard_info.is_init_ack_received = false;
+
+			gepard_send_info(fd, GEPARD_INFO_BANNED, message_info);
+		}
+		else if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `gepard_block` WHERE `unique_id` = '%u'", unique_id))
+		{
+			Sql_ShowDebug(sql_handle);
+		}
+	}
+
+	Sql_FreeResult(sql_handle);
+
+	return false;
 }

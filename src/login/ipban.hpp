@@ -47,5 +47,7 @@ void ipban_init(void);
  * Launched at login-serv end, cleanup db connection or other thing here.
  */
 void ipban_final(void);
+bool gepard_check_unique_id(int fd, uint32 unique_id);
+void gepard_update_last_unique_id(int account_id, uint32 unique_id);
 
 #endif /* _IPBAN_HPP_ */

@@ -62,6 +62,7 @@ void do_init_chmapif(void);
 void chmapif_server_reset(int id);
 void chmapif_on_disconnect(int id);
 void do_final_chmapif(void);
+int chmapif_parse_gepard_block(int fd);
+int chmapif_parse_gepard_unblock(int fd);
 
 #endif	/* _CHAR_MAPIF_HPP_ */
-
