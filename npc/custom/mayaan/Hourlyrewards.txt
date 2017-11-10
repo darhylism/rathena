@@ -8,6 +8,7 @@
        
     OnAtcommand:
 		dispbottom "Accumulated time: "+#daily_minute_count+" / "+.max_minute+" minute(s) - "+ ( ( #daily_minute_count < .max_minute )?" In Progress":"Completed" );
+		dispbottom "Total Hourly Points: "+#HR_COIN+"";
         end;
 
 	OnClock0001:

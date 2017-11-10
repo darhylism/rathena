@@ -89,4 +89,3 @@ function	int__	{
 
 //duplicate
 poring_w01,95,82,4	duplicate(Coin Master)	Coin Master#poring_w01	4_M_KHKIEL
-prontera,196,158,4	duplicate(Coin Master)	Coin Master#pront	4_M_KHKIEL

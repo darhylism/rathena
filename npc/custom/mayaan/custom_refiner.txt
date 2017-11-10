@@ -5,7 +5,7 @@
 //============Modified by============
 //= Darhylism
 //===== Current Version: =====================================
-//= 2.1.1.2
+//= 2.2.0.0
 //===== Description: =========================================
 //= A configurable refiner with lots of options, like:
 //= - Use items to increase chance
@@ -14,15 +14,13 @@
 //= - Ask if player wants to use items to increase chance/protect
 //= - Different fail results
 //= Go to the end of the script to change the settings.
-//universal sure refine +1
-//sure +10 universal refine
 //
 //premium refine - after break consume
 //
 //Modified secure table, fucking reversed. 
-//customized for hashtagRO
+//customized for mayaan server
 //============================================================
-poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
+poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 	function ShowChanceInfo; function ShowSecureInfo;
 	function GetChanceBonus; function GetSecure;
 	function ConsumeSecure; function Refine;
@@ -42,12 +40,11 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 	mes "know what you want me to refine.";
 	next;
 
-	setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
-	set .@menu$, "";
-	for(.@i = 1; .@i <= 10; .@i++) {
-		if(getequipisequiped(.@i)) {
-			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
-			.@equipped = 1;
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+	for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+		if (getequipisequiped(.@indices[.@i])) {
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			set .@equipped,1;
 		}
 		set .@menu$, .@menu$ + ":";
 	}
@@ -57,7 +54,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 		close;
 	}
 	// Get part to upgrade
-	@part = select(.@menu$);
+	set @part, .@indices[ select(.@menu$) ];
 
 	if(!getequipisequiped(@part)) {
 		mes .NpcName$;
@@ -77,6 +74,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 	}
 	
 	// Save some upgrade data
+	@refOk = getequipisenableref(@part); //Can be refined
 	@refId = getequipid(@part); // item id
 	@refCount = getequiprefinerycnt(@part); // refine count
 	@refLv = getequipweaponlv(@part); // weapon level
@@ -298,8 +296,23 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 		
 		if (.@refineChance <= rand(100)) {
 			// Failed
-			if (useSecure == true) {
-				delitem @secId, 1;
+			if (useSecure == true && @refCount >= 7 && @refOk == 0) {
+				delitem @secId, (@refLv*10 + @refCount*7);
+				downrefitem @part, 0;
+				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
+			}
+			else if (useSecure == true && @refCount < 7 && @refOk == 0) {
+				delitem @secId, (@refLv*10 + @refCount*5);
+				downrefitem @part, 0;
+				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
+			}
+			else if (useSecure == true && @refCount >= 7 && @refOk == 1) {
+				delitem @secId, (@refLv*10 + @refCount*3);
+				downrefitem @part, 0;
+				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
+			}
+			else if (useSecure == true && @refCount < 7 && @refOk == 1) {
+				delitem @secId, (@refLv*10 + @refCount*2);
 				downrefitem @part, 0;
 				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
 			}
@@ -376,8 +389,17 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 	function ShowSecureInfo {
 		.@secId = GetSecure();
 		if (.@secId && ((@chance >= 100 && .SecureConsumeType > 0) || (@chance < 100))) {
-			if (.SecureType == 0) {
-				mes "- Refine Protect Item: " + getitemname(.@secId);
+			if (.SecureType == 0 && @refCount >= 7 && @refOk == 0) {
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*7) +"";
+			}
+			else if (.SecureType == 0 && @refCount < 7 && @refOk == 0) {
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*5) +"";
+			}
+			else if (.SecureType == 0 && @refCount >= 7 && @refOk == 1) {
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*3) +"";
+			}
+			else if (.SecureType == 0 && @refCount < 7 && @refOk == 1) {
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*2) +"";
 			}
 			else if (.SecureType == 1) {
 				mes "- +"+@refCount+" Refine Protect Item: " + getitemname(.@secId);
@@ -440,7 +462,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 		// ======================
 		// 		Basic Settings
 		// ======================
-		.NpcName$ = "[Great Refiner]";	// Name of the NPC for dialogues
+		.NpcName$ = "[Blacksmith Berlin]";	// Name of the NPC for dialogues
 		
 		.UseMinLv = 0;				// Minimal user group to use this NPC
 		
@@ -462,7 +484,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 		// 0 - Display always (when chance is less than 100% and refine is not protected by item)
 		// 1 - Display only for one time refines
 		// 2 - Display for one time refines and one time for multiple refines
-		.BreakWarning = 1;
+		.BreakWarning = 2;
 		
 		// Effects of a failed refine attempt
 		// When the refine fails, what happens to the item?
@@ -491,7 +513,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 		// Price in Z of the refine by Weapon Level:
 		setarray .RefinePrices[0],
 			50000,	// Armor (Level 0)
-			1000,		// Level 1
+			1000,	// Level 1
 			2000,	// Level 2
 			50000,	// Level 3
 			80000;	// Level 4
@@ -514,7 +536,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 			// How .SecureItems items will work?
 			// 0 - Each weapon type has one item to protect it
 			// 1 - Each refine level + item type has one item to protect it
-			.SecureType = 1;
+			.SecureType = 0;
 			
 			// Ask if wants to use a secure item?
 			// 0 - don't ask (if item is inventory, use it)
@@ -527,7 +549,7 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 			// 0 - If it will break, consume.
 			// 1 - Consume always (except on safe refine)
 			// 2 - Consume always (even on safe refines)
-			.SecureConsumeType = 0;
+			.SecureConsumeType = 1;
 			
 			// Items used to protect the refine.
 			// These are the items consumed when protecting the
@@ -547,11 +569,11 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 			if (.SecureType == 0)
 			{ // If .SecureType is 0
 				setarray .SecureItems[0],
-					6223,		// Armor (Level 0)
+					6224,		// Armor (Level 0)
 					6223,		// Level 1
 					6223,		// Level 2
 					6223, 		// Level 3
-					6224;		// Level 4
+					6223;		// Level 4
 			}
 			else
 			{ // If .SecureType is 1 //fucking reverse table
@@ -560,13 +582,13 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 				// Headgear
 				// Armor (Every armor except headgear)
 				setarray .SecureItems[0],
-					6224, 6223, 6223, // +0
-					6224, 6223, 6223, // +1
-					6224, 6223, 6223, // +2
-					6224, 6223, 6223, // +3
-					6224, 6223, 6223, // +4
-					6224, 6223, 6223, // +5
-					6224, 6223, 6223, // +6
+					0, 0, 0, // +0
+					0, 0, 0, // +1
+					0, 0, 0, // +2
+					0, 0, 0, // +3
+					0, 0, 0, // +4
+					0, 0, 0, // +5
+					0, 0, 0, // +6
 					0, 0, 0, // +7
 					0, 0, 0, // +8
 					0, 0, 0; // +9
@@ -602,8 +624,8 @@ poring_w02,101,127,4	script	Great Refiner	1_M_SMITH,{
 			// Use 0 as ID to not use an item for this level.
 			setarray .ChanceItems[0],
 				7619, 5,	// Armor (Level 0)
-				0, 0,		// Level 1
-				0, 0,		// Level 2
+				7620, 15,		// Level 1
+				7620, 10,		// Level 2
 				7620, 7,	// Level 3
 				7620, 5;	// Level 4
 		}
