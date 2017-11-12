@@ -554,6 +554,7 @@
 13113,499,100	// Eden Revlover II
 13423,499,100	// Eden Sabre I
 13424,499,100	// Eden Sabre II
+14545,475,100	// Battle_Manual_X3
 15009,499,100	// Eden Team Uniform I
 15010,499,100	// Eden Team Uniform II
 15011,499,100	// Eden Team Uniform III

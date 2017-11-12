@@ -49,17 +49,8 @@
 		mes "Of course, this Training Process is optional, if you want to go straight to town, that's also fine.";
 		mes "But, you will miss all the advantages you can get in the Training Center.";
 		next;
-		switch(select("Begin Training.:Start the game right away.")) {
+		switch(select("Start the game right away.")) {
 		case 1:
-			mes "[Sprakki]";
-			mes "I will guide you to the Novice Training Center.";
-			mes "Inside, Instructor 'Brade' will be waiting to speak to you.";
-			next;
-			mes "[Sprakki]";
-			mes "Instructor 'Brade' will help you afterwards.";
-			mes "Please, Go see him.";
-			setquest 7118;
-			next;
 			if ( #newaccount==0 ){
 			mes "Welcome to ^000088Mayaan Server^000000.";
 			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
@@ -68,65 +59,12 @@
 			mes "items as a gift to show how much we appreciate you here!";
 			mes "^0a6cdb Field Manual^000000 (5x)";
 			mes "^0a6cdb Bubble Gum^000000 (5x)";
-			mes "^0a6cdb Kafra Ticket^000000 (20x)";
-			mes "^0a6cdb Kafra Storage^000000 (20x)";
 			mes "^0a6cdb Novice Potion^000000 (300x)";
 			mes "^0a6cdb Novice Fly Wing^000000(20x)";
 			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
-			getitem	12263,5; // Field Manual
+			getitem	14545,5; // Field Manual
 			getitem	12210,5; // Bubble Gum
-			getitem	7060,20; // Kafra Ticket
-			getitem	7059,20; // Kafra Storage
-			getitem	569,300; // Novice Potion
-			getitem	12323,20; // Novice Fly Wing
-			getitem	12324,20; // Novice Butter Fly Wing
-			set #newaccount,1;
-			mes "^4d4dff- You received a quest 'Novice Training Ground -1' from Sprakki.";
-			mes "Please check the Quest Info Window. -^000000";
-			close2;
-			savepoint strnpcinfo(4),100,100,1,1;
-			warp strnpcinfo(4),100,100;
-			end;
-			}
-			mes "Welcome to ^000088Mayaan Server^000000.";
-			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
-			mes "I see that you are an old player here so";
-			mes "I'd like to give you these";
-			mes "items as a gift to show how much we appreciate you here!";
-			mes "^0a6cdb Field Manual^000000 (5x)";
-			mes "^0a6cdb Kafra Ticket^000000 (20x)";
-			mes "^0a6cdb Kafra Storage^000000 (20x)";
-			mes "^0a6cdb Novice Potion^000000 (300x)";
-			mes "^0a6cdb Novice Fly Wing^000000(20x)";
-			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
-			getitem	12263,5; // Field Manual
-			getitem	7060,20; // Kafra Ticket
-			getitem	7059,20; // Kafra Storage
-			getitem	569,300; // Novice Potion
-			getitem	12323,20; // Novice Fly Wing
-			getitem	12324,20; // Novice Butter Fly Wing
-			close2;
-			savepoint strnpcinfo(4),100,100,1,1;
-			warp strnpcinfo(4),100,100;
-			end;
-		case 2:
-			if ( #newaccount==0 ){
-			mes "Welcome to ^000088Mayaan Server^000000.";
-			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
-			mes "I see that you're new here so to help you out";
-			mes "I'd like to give you these";
-			mes "items as a gift to show how much we appreciate you here!";
-			mes "^0a6cdb Field Manual^000000 (5x)";
-			mes "^0a6cdb Bubble Gum^000000 (5x)";
-			mes "^0a6cdb Kafra Ticket^000000 (20x)";
-			mes "^0a6cdb Kafra Storage^000000 (20x)";
-			mes "^0a6cdb Novice Potion^000000 (300x)";
-			mes "^0a6cdb Novice Fly Wing^000000(20x)";
-			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
-			getitem	12263,5; // Field Manual
-			getitem	12210,5; // Bubble Gum
-			getitem	7060,20; // Kafra Ticket
-			getitem	7059,20; // Kafra Storage
+			getitem	35048,1; // Bound Doppelganger Card
 			getitem	569,300; // Novice Potion
 			getitem	12323,20; // Novice Fly Wing
 			getitem	12324,20; // Novice Butter Fly Wing
@@ -143,9 +81,6 @@
 			mes "best, and I wish you";
 			mes "the best of luck!";
 			close2;
-			getitem	12263,5; // Field Manual
-			getitem	7060,20; // Kafra Ticket
-			getitem	7059,20; // Kafra Storage
 			getitem	569,300; // Novice Potion
 			getitem	12323,20; // Novice Fly Wing
 			getitem	12324,20; // Novice Butter Fly Wing
