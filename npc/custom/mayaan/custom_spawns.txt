@@ -1,0 +1,4 @@
+xmas_dun02,0,0,0,0	boss_monster	Giant Cruiser	3982,1,28800000,31680000,0
+gl_sew03,0,0,0,0	boss_monster	Giant Sting	3983,1,28800000,31680000,0
+beach_dun3,0,0,0,0	boss_monster	Giant Thara frog	3984,1,28800000,31680000,0
+thor_v3,0,0,0,0	boss_monster	Flamering	3981,1,28800000,31680000,0

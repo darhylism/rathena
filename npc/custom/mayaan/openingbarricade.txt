@@ -1,0 +1,64 @@
+//GM COMMANDS
+-	script	mroportal	-1,{
+OnInit:
+	bindatcmd "portal", strnpcinfo(0)+"::OnCommand", 99,99;
+	setcell "new_1-1",66,115,66,108,cell_walkable,0;
+	end;
+
+OnCommand:
+	if ( compare( .@atcmd_parameters$, "on" ) ) donpcevent "::OnPortal";
+	else if ( compare( .@atcmd_parameters$, "off" ) ) donpcevent "::OnPortaloff";
+	else {
+		dispbottom "type - '@portal on' to start the event";
+		dispbottom "type - '@portal off' to end the event";
+	}
+	end;
+
+OnPortal:
+	callsub OnActive;
+	end;
+
+OnPortaloff:
+	callsub OnEndd;
+	end;
+
+OnEndd:
+	announce "Mayaan Server Portal is now closed!",0;
+	donpcevent "Barricade#001::OnEnable";
+	setcell "new_1-1",66,115,66,108,cell_walkable,0; //Left
+	end;
+
+OnActive:
+	announce "Mayaan Server Portal is now Open!",0;
+	setcell "new_1-1",66,115,66,108,cell_walkable,1; //Right
+	donpcevent "Barricade#001::OnDisable";
+	end;
+}
+
+
+new_1-1,66,112,1	script	Barricade#001	1905,{
+	message strcharinfo(0),"[Barricade]: Mayaan Server will officially launch on Nov 15 2017 @8:00PM GMT+8";
+	end;
+
+	OnEnable:
+		enablenpc strnpcinfo(0);
+		enablenpc "Barricade#002";
+		enablenpc "Barricade#003";
+		enablenpc "Barricade#004";
+		enablenpc "Barricade#005";
+		end;
+
+	OnDisable:
+		specialeffect EF_FLASHER;
+		disablenpc strnpcinfo(0);
+		disablenpc "Barricade#002";
+		disablenpc "Barricade#003";
+		disablenpc "Barricade#004";
+		disablenpc "Barricade#005";
+		end;
+}
+
+new_1-1,68,111,1	duplicate(Barricade#001)	Barricade#002	1905
+new_1-1,68,112,1	duplicate(Barricade#001)	Barricade#003	1905
+new_1-1,68,113,1	duplicate(Barricade#001)	Barricade#004	1905
+new_1-1,68,110,1	duplicate(Barricade#001)	Barricade#005	1905

@@ -1,0 +1,63 @@
+// -- A very simple script that made by (Radian)
+//optimized by dduwsmitt
+
+prontera,155,182,4	script	Pioneer	125,{
+
+	if ( .enable_event ) {
+/*
+	if ( getcharid(3) > .aid_end ) {
+		mes "[ ^777777Account ID Checker^000000 ]";
+		mes "I'm sorry you are late to avail this..";
+		close;
+	}
+
+	if ( getcharid(3) < .aid_start ) {
+		mes "[ ^777777Account ID Checker^000000 ]";
+		mes "It's impossible you are below of the id we required to obtained the special event rewards.";
+		close;
+	}
+*/
+		
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@s_last_unique_id$);
+
+
+	if ( BaseLevel < .max_base_level || JobLevel < .max_job_level ) {
+		mes "[ ^00FF00Race Up to Max^000000 ]";
+		mes "We're sorry you are not qualified yet on this event, please come back when you are base level is "+.max_base_level+" and job level is "+.max_job_level+".";
+		close;
+	}
+	
+	if ( #maxRewards == 1 ) {
+		mes "[ ^FF0000Error^000000 ]";
+		mes "We apologize that you are not qualified any more to receive or get a special reward from us.";
+		close;
+	} else if ( #maxRewards == 0 ) {
+		query_logsql("SELECT value FROM `sader_variables_log` WHERE unique_id = '"+.@s_last_unique_id$+"' AND `variable` = '#Rewards_Check1'", .@s_GePard);
+		if(.@s_GePard >= #Rewards_Check1){
+				message strcharinfo(0),"[Rewards]: You already got the Rewards from this PC";
+				end;
+	}
+		mes "[ ^0000FFCongratulation Note^000000 ]";
+		mes "We verified that you are qualified and will receive a reward from us.";
+				getitem 12214,5;
+				getitem 7621,10;
+				#CASHPOINTS += 500;
+				query_logsql("INSERT INTO `sader_variables_log` (`unique_id`,`ip`,`variable`,`index`,`value`, `account_id`, `char_id`, `char_name`) VALUES ('"+.@s_last_unique_id$+"', '"+getcharip()+"', '#Rewards_Check1', '0', '"+#Rewards_Check1+"', '"+getcharid(3)+"', '"+getcharid(0)+"', '"+strcharinfo(0)+"')");
+				query_logsql("Update `sader_variables_log` SET `value` = '"+#Rewards_Check1+"' WHERE `unique_id`= '"+.@s_last_unique_id$+"' AND `variable` = '#Rewards_Check1'");
+					set #maxRewards, 1;
+		close;
+	}
+	OnInit:
+	// ------------------------------------------------------------ //
+
+	.enable_event = 1;		// Set 0 = Disable / 1 = Enable Default.
+	.max_base_level = 99;	// Set the maximum base level here.
+	.max_job_level = 50;	// Set the maximum job level here.
+	.aid_start = 0;	// Set the Account ID here where you want to start. [ set this to 0 = disable ]
+	.aid_end = 0;	// Set the ending Account ID here. [ set this to 0 = disable ]
+	waitingroom "1st 100 Player Rewards!",0;		// Waiting Room.
+	query_logsql("CREATE TABLE IF NOT EXISTS `sader_variables_log` (`unique_id` INT( 11 ) UNSIGNED NOT NULL DEFAULT  '0',`ip` VARCHAR(100) NOT NULL,`variable` VARCHAR(32) NOT NULL, `index` INT NOT NULL, `value` INT NOT NULL,`account_id` INT NOT NULL,`char_id` INT NOT NULL,`char_name` VARCHAR(30) NOT NULL) ENGINE=MyISAM");
+	// ------------------------------------------------------------- //
+	end;
+	}
+}
