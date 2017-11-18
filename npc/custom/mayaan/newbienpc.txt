@@ -49,8 +49,10 @@
 		mes "Of course, this Training Process is optional, if you want to go straight to town, that's also fine.";
 		mes "But, you will miss all the advantages you can get in the Training Center.";
 		next;
-		switch(select("Start the game right away.")) {
-		case 1:
+		menu 
+		"Start the game right away",I_RAK,
+		"I need some time to think",I_NORAK;
+		I_RAK:
 			if ( #newaccount==0 ){
 			mes "Welcome to ^000088Mayaan Server^000000.";
 			mes "Greetings, ^f90366" + strcharinfo(0) + "^000000.";
@@ -74,13 +76,15 @@
 			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
 			warp "poring_w02",99,66;
 			end;
-			}
+			} 
+			if ( #newaccount==1 ){
 			mes "[ ^f90366Sprakki^000000 ]";
 			mes "I understand.";
 			mes "Please do your";
 			mes "best, and I wish you";
 			mes "the best of luck!";
 			close2;
+			getitem	14545,3; // Field Manual
 			getitem	569,300; // Novice Potion
 			getitem	12323,20; // Novice Fly Wing
 			getitem	12324,20; // Novice Butter Fly Wing
@@ -92,51 +96,19 @@
 			set nov_3_magician,0;
 			set nov_3_acolyte,0;
 			set nov_3_merchant,0;
-			callfunc "F_NvErase";
-			close2;
-			switch(rand(6)) {
-			case 0:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-				break;
-			case 1:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-				break;
-			case 2:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-				break;
-			case 3:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-				break;
-			case 4:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-				break;
-			case 5:
-				savepoint "poring_w02",99,66,1,1;
-				announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-				warp "poring_w02",99,66;
-			}
+			savepoint "poring_w02",99,66,1,1;
+			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
+			warp "poring_w02",99,66;
 			end;
+			I_NORAK:
+			mes "[Training Grounds Receptionist]";
+			mes "I understand.";
+			mes "Please, take your time.";
+			close;
 		}
-	} else {
-		mes "[Sprakki]";
-		mes "These are the Novice Training Grounds.";
-		mes "I will guide you to the Novice Training Center.";
-		close2;
-		savepoint strnpcinfo(4),100,100,1,1;
-		warp strnpcinfo(4),100,100;
-		end;
+	} 
 	}
-}
+	
 new_1-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv1b	90
 new_2-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv2b	90
 new_3-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv3b	90

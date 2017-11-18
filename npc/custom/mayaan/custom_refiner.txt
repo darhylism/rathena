@@ -297,22 +297,22 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 		if (.@refineChance <= rand(100)) {
 			// Failed
 			if (useSecure == true && @refCount >= 7 && @refOk == 0) {
-				delitem @secId, (@refLv*10 + @refCount*7);
+				delitem @secId, (@refLv*15 + @refCount*7);
 				downrefitem @part, 0;
 				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
 			}
 			else if (useSecure == true && @refCount < 7 && @refOk == 0) {
-				delitem @secId, (@refLv*10 + @refCount*5);
+				delitem @secId, (@refLv*12 + @refCount*5);
 				downrefitem @part, 0;
 				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
 			}
 			else if (useSecure == true && @refCount >= 7 && @refOk == 1) {
-				delitem @secId, (@refLv*10 + @refCount*3);
+				delitem @secId, (@refLv*13 + @refCount*3);
 				downrefitem @part, 0;
 				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
 			}
 			else if (useSecure == true && @refCount < 7 && @refOk == 1) {
-				delitem @secId, (@refLv*10 + @refCount*2);
+				delitem @secId, (@refLv*13 + @refCount*2);
 				downrefitem @part, 0;
 				mes "Unfortunaly it failed, but at least your item is in a good shape, right?";
 			}
@@ -390,16 +390,16 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 		.@secId = GetSecure();
 		if (.@secId && ((@chance >= 100 && .SecureConsumeType > 0) || (@chance < 100))) {
 			if (.SecureType == 0 && @refCount >= 7 && @refOk == 0) {
-				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*7) +"";
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*15 + @refCount*7) +"";
 			}
 			else if (.SecureType == 0 && @refCount < 7 && @refOk == 0) {
-				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*5) +"";
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*15 + @refCount*5) +"";
 			}
 			else if (.SecureType == 0 && @refCount >= 7 && @refOk == 1) {
-				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*3) +"";
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*13 + @refCount*3) +"";
 			}
 			else if (.SecureType == 0 && @refCount < 7 && @refOk == 1) {
-				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*10 + @refCount*2) +"";
+				mes "- Refine Protect Item: ^3355FF" + getitemname(.@secId) + "^000000 x"+ (@refLv*13 + @refCount*2) +"";
 			}
 			else if (.SecureType == 1) {
 				mes "- +"+@refCount+" Refine Protect Item: " + getitemname(.@secId);
@@ -569,11 +569,11 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 			if (.SecureType == 0)
 			{ // If .SecureType is 0
 				setarray .SecureItems[0],
-					6224,		// Armor (Level 0)
-					6223,		// Level 1
-					6223,		// Level 2
-					6223, 		// Level 3
-					6223;		// Level 4
+					6223,		// Armor (Level 0)
+					6224,		// Level 1
+					6224,		// Level 2
+					6224, 		// Level 3
+					6224;		// Level 4
 			}
 			else
 			{ // If .SecureType is 1 //fucking reverse table

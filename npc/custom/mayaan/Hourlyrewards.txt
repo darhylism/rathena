@@ -18,11 +18,11 @@
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
 
-		announce "It is 12:01AM Server time. Daily Rewards, Hourly Points and other cooldowns have been reseted.",bc_all,0x00FF00,FW_NORMAL,25,center,-1;
+		announce "It is 12:01AM Server time. Daily Rewards, Hourly Points and other cooldowns have been reseted, Please relog to avoid errors.",bc_all,0x00FF00,FW_NORMAL,25;
 		
 		addrid(0);
-		#daily_minute_count = -1;
-		#lastTimeSpin = -1;	
+		#daily_minute_count = 0;
+		end;
 	   
     OnUpdate:
 		if(checkvending() >= 1) {
@@ -99,9 +99,11 @@
         }
        
     OnPCLoginEvent:
-//		dispbottom "Accumulated time: "+#daily_minute_count+" minute(s)";
+		dispbottom "Accumulated time: "+#daily_minute_count+" minute(s)";
 		if ( #daily_minute_count < .max_minute ) {
 			addtimer ( 60 * 1000 ), .npc_name$+"::OnUpdate";
 		}
         end;
 }
+
+prontera,147,173,3	pointshop	Hourly Shop	716,#HR_COIN,13534:1,13810:3,14533:5,2767:3,2769:3,2768:3,2771:3,2765:3,2766:3,2770:3,13953:25,2710:25,5463:100,5594:100,5325:100,5388:75,5286:75,18656:1000,5372:25000,12214:30,12106:390,12172:10,12162:10,12182:10,12302:15,616:3,678:5,13995:100,13657:25,13655:25,13680:25,13790:25,13786:25,13683:25,13650:25,13791:25,13651:25,13653:25,13647:25,13512:25

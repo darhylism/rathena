@@ -400,8 +400,8 @@ C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
 // --------------------------------------------------
 	Guild_Dungeons:
 // --------------------------------------------------
-menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4,
-    	"Arunafeltz",G5, "Schwaltzvalt",G6;
+menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4;
+  //  	"Arunafeltz",G5, "Schwaltzvalt",G6;
 
 G1: Restrict("RE",2,3);
 	setarray @c[2],119,93,119,93,120,130;

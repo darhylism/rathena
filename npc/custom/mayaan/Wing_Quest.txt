@@ -69,7 +69,7 @@ W_archange:
 	delitem 916,200;
 	delitem 914,200;
 	delitem 949,300;
-	getitem 35005,1;
+	getitem 35006,1;
 	close;
  
  
@@ -80,7 +80,7 @@ W_darkange:
 	delitem 7122,200;
 	delitem 7097,200;
 	delitem 7054,300;
-	getitem 35006,1;
+	getitem 35005,1;
 	close;
 
 

@@ -37,3 +37,6 @@
 31020,1000,2993 //Malicious Baby Ghost Card
 31021,1000,2994 //Dancing Marionette Card
 31022,1000,2995 //Abandoned Teddy Bear Card
+6223,10
+6224,10
+6090,100 //Refined Bradium

@@ -27,7 +27,8 @@
 13185,9,100	// Cutlass
 13186,9,100	// Havoc
 13187,9,100	// Sweeper
-14545,507,100	// Battle_Manual_X3
+13810,475,100	// Blue_Potion_Box
+14545,475,100	// Battle_Manual_X3
 35000,9,100	// Giant_Sting_Card
 35001,9,100	// Giant_Thara_Frog_Card
 35002,9,100	// Giant_Crusier_Card

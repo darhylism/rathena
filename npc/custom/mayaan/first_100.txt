@@ -17,7 +17,7 @@ prontera,155,182,4	script	Pioneer	125,{
 		close;
 	}
 */
-		
+
 	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@s_last_unique_id$);
 
 
@@ -32,9 +32,11 @@ prontera,155,182,4	script	Pioneer	125,{
 		mes "We apologize that you are not qualified any more to receive or get a special reward from us.";
 		close;
 	} else if ( #maxRewards == 0 ) {
+		#Rewards_Check1 += 1;
 		query_logsql("SELECT value FROM `sader_variables_log` WHERE unique_id = '"+.@s_last_unique_id$+"' AND `variable` = '#Rewards_Check1'", .@s_GePard);
 		if(.@s_GePard >= #Rewards_Check1){
 				message strcharinfo(0),"[Rewards]: You already got the Rewards from this PC";
+				#Rewards_Check1 -= 1;
 				end;
 	}
 		mes "[ ^0000FFCongratulation Note^000000 ]";
