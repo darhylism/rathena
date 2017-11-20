@@ -10,6 +10,7 @@
 #include "../config/core.h"
 
 #include "map.hpp" //ELE_MAX
+#include "mapreg.hpp"
 
 //fwd declaration
 struct map_session_data;

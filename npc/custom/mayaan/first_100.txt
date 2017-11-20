@@ -1,7 +1,7 @@
 // -- A very simple script that made by (Radian)
 //optimized by dduwsmitt
 
-prontera,155,182,4	script	Pioneer	125,{
+prontera,151,187,4	script	Pioneer	125,{
 
 	if ( .enable_event ) {
 /*

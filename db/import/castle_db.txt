@@ -9,3 +9,5 @@
 // 04. OnGuildBreakEventName    NPC unique name to invoke ::OnGuildBreak on, when a occupied
 //                              castle is abandoned during guild break.
 // 05. Flag                     Switch flag (reserved as of athena-dev mod0796~0801, not used by server).
+
+100,guild_vs1,King of Emperium Hill,koe

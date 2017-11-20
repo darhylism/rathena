@@ -29,11 +29,11 @@ OnInit:
 OnClock0100: //every hour
 OnClock0200:
 OnClock0300:
-OnClock0430:
+OnClock0400:
 OnClock0500:
 OnClock0600:
 OnClock0700:
-OnClock0830:
+OnClock0800:
 OnClock0900:
 OnClock1000:
 OnClock1100:
@@ -41,7 +41,7 @@ OnClock1230:
 OnClock1300:
 OnClock1400:
 OnClock1500:
-OnClock1630:
+OnClock1600:
 OnClock1700:
 OnClock2100:
 OnClock2200:
@@ -122,7 +122,7 @@ quiz_01,204,93,6	script	Dice#evnt1	4_M_PIERROT,{
 	mes "Congrats. You've won.";
 	close2;
 	announce "Dice: We have a winner, "+.@name$+".",0;
-	#PVPPOINTS += 100;
+	#PVPPOINTS += 20;
 	dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
 	warp "poring_w02",99,72;
 	hideonnpc "Dice#evnt1";
@@ -216,9 +216,9 @@ OnEnable:
 
 job_star,101,38,4	script	The Manager	1_M_MOC_LORD,{
 
-	mes "[Gernan]";
-	mes "You Won +20 pvp points";
-	#PVPPOINTS += 20;
+	mes "[The Manager]";
+	mes "You lose! +5 PvP points";
+	#PVPPOINTS += 5;
 	dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
 	next;
 		warp "poring_w02",99,72;

@@ -12,6 +12,7 @@
 
 //Custom ETC
 35047,Power_Proof,Proof of Power,12,0,,0,,,,,0x7FFFFFFF,7,,2097152,,1,,,{},{},{}
+7179,Donation_Card,Proof of Donation,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+5000; dispbottom "You have received 5000 Cash Points."; },{},{}
 
 
 //cards

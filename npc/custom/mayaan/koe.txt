@@ -31,10 +31,8 @@ OnCommand:
 L_start:
 OnClock0310:
 OnClock0610:
-OnClock0910:
 OnClock1210:
-OnClock1510:
-OnClock2110:
+OnClock1810:
 OnClock2410:// every 3 10 minutes hours
 	if ( .start ) end;
 	gvgon "guild_vs1";
@@ -46,15 +44,13 @@ OnClock2410:// every 3 10 minutes hours
 	donpcevent "::OnRevKoE";
 	maprespawnguildid "guild_vs1", $koegid, 3;
 	killmonster "guild_vs1", "KoE::OnEmpDead";
-	monster "guild_vs1",49,49, "EMPERIUM", EMPELIUM, 1, "KoE::OnEmpDead";
+	monster "guild_vs1",49,49, "EMPERIUM", 1288, 1, "KoE::OnEmpDead";
 	end;
 L_End:
 OnClock0340:
 OnClock0640:
-OnClock0940:
 OnClock1240:
-OnClock1540:
-OnClock2140:
+OnClock1840:
 OnClock2440: // every 3 hours 30 minutes ends
 	gvgoff "guild_vs1";
 	announce "The King of Emperium Hill is over!", bc_all;
@@ -74,12 +70,12 @@ OnEmpDead:
 	killmonster "guild_vs1", "KoE::OnEmpDead";
 	sleep 500;
 	if ( .start )
-		monster "guild_vs1",49,49, "EMPERIUM", EMPELIUM, 1, "KoE::OnEmpDead";
+		monster "guild_vs1",49,49, "EMPERIUM", 1288, 1, "KoE::OnEmpDead";
 	end;
 }
 
 // KoE Entrance
-prontera,147,174,4	script	The King#KoE	1_M_MERCHANT,{
+prontera,142,179,4	script	The King#KoE	4_M_KNIGHT_GOLD,{
 	mes "[The King]";
 	if ( !getcharid(2) ) {
 		mes "You must have a guild to participate in the ^FF0000King of Emperium Hill Tournament^000000.";
@@ -104,9 +100,8 @@ guild_vs1,49,56,5	script	Exit#KoE	1_M_BARD,{
 	close2;
 	warp "Save",0,0;
 	if ( getcharid(2) == $koegid )
-		#PVPPOINTS += 100;
+		#PVPPOINTS += 50;
 		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
-		getitem 7037, 1; // berry coupon
 	end;
 }
 
@@ -124,6 +119,7 @@ OnRevKoE:
 guild_vs1,61,49,6	duplicate(koe_flag)	King of Emperium Hill#2	GUILD_FLAG
 guild_vs1,38,49,2	duplicate(koe_flag)	King of Emperium Hill#3	GUILD_FLAG
 guild_vs1,49,61,0	duplicate(koe_flag)	King of Emperium Hill#4	GUILD_FLAG
+prontera,139,179,5	duplicate(koe_flag)	King of Emperium Hill#5	GUILD_FLAG
 
 guild_vs1	mapflag	nobranch
 guild_vs1	mapflag	nomemo

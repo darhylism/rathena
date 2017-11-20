@@ -11248,11 +11248,11 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 	}
 
 	// if player is autotrading
-	if (dstsd->state.autotrade == 1){
-		safesnprintf(output,sizeof(output),"%s is in autotrade mode and cannot receive whispered messages.", dstsd->status.name);
-		clif_wis_message(fd, wisp_server_name, output, strlen(output) + 1);
-		return;
-	}
+//	if (dstsd->state.autotrade == 1){
+//		safesnprintf(output,sizeof(output),"%s is in autotrade mode and cannot receive whispered messages.", dstsd->status.name);
+//		clif_wis_message(fd, wisp_server_name, output, strlen(output) + 1);
+//		return;
+//	}
 
 	if (pc_get_group_level(sd) <= pc_get_group_level(dstsd)) {
 		// if player ignores the source character

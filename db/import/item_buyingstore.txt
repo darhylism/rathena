@@ -8,3 +8,7 @@
 //  Items are in same order as data\buyingstoreitemlist.txt, which
 //  must be edited as well for the client to accept added items.
 
+12884  // Infinite_Concentration_Potion
+12885  // Infinite_Awakening_Potion
+12886  // Infinite_Berserk_Potion
+12887  // C_Wing_Of_Fly

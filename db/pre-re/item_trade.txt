@@ -27,6 +27,7 @@
 // "2005 The Sign" related items
 7177,507,100	// Crumb of Sobbing Starlight
 7178,507,100	// Sobbing Starlight
+7179,475,100	// Donation_Card
 7304,507,100	// Witch's Spell Scroll
 7305,507,100	// Symbol of the Nine Realms
 7306,507,100	// Piece of Spirit

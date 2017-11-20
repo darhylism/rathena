@@ -3612,7 +3612,7 @@
 7176,XMAS_Coupon,Royal Certificate,3,0,,10,,,,,,,,,,,,,{},{},{}
 7177,Part_Of_Star's_Sob,Crumb of Sobbing Starlight,3,0,,0,,,,,,,,,,,,,{},{},{}
 7178,Star's_Sob,Sobbing Starlight,3,0,,0,,,,,,,,,,,,,{},{},{}
-7179,Donation_Card,Proof of Donation,3,0,,10,,,,,,,,,,,,,{},{},{}
+7179,Donation_Card,Proof of Donation,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+5000; dispbottom "You have received 5000 Cash Points."; },{},{}
 7180,Introduction_Of_Mr.Han,Hahn Sukbong's Recommendation,3,0,,10,,,,,,,,,,,,,{},{},{}
 7181,Receipt_01,Receipt,3,0,,10,,,,,,,,,,,,,{},{},{}
 7182,Cacao,Cacao,3,200,,20,,,,,,,,,,,,,{},{},{}
