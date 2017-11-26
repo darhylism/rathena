@@ -29,6 +29,12 @@
 13186,9,100	// Havoc
 13187,9,100	// Sweeper
 13810,475,100	// Blue_Potion_Box
+14158,473,100	// F_Bubble_Gum_Box
+14178,473,100	// F_Token_Of_Siegfried_Box
+14209,473,100	// F_Siegfried_Box5
+14210,473,100	// F_Siegfried_Box20
+14215,473,100	// F_Bubble_Gum_Box1
+14216,473,100	// F_Bubble_Gum_Box5
 14545,475,100	// Battle_Manual_X3
 35000,9,100	// Giant_Sting_Card
 35001,9,100	// Giant_Thara_Frog_Card

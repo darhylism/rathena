@@ -1259,7 +1259,7 @@
 14155,475,100	// Weekend Hunting Pack
 14156,475,100	// Battle Manual Box
 14157,475,100	// Insurance Package
-14158,475,100	// Bubble Gum Box
+14158,473,100	// F_Bubble_Gum_Box
 14159,475,100	// Steamed Tongue Box
 14160,475,100	// Steamed Scorpion Box
 14161,475,100	// Dragon Breath Cocktail Box
@@ -1269,7 +1269,7 @@
 14165,475,100	// Kafra Card Box
 14166,475,100	// Giant Fly Wing Box
 14167,475,100	// Neuralizer Box
-14168,475,100	// Convex Mirror Box
+14168,473,100	// F_Convex_Mirror_Box
 14169,475,100	// Blessing 10 Scroll Box
 14170,475,100	// Increase AGI 10 scroll Box
 14171,475,100	// Aspersio 5 Scroll Box
@@ -1279,7 +1279,7 @@
 14175,475,100	// Megaphone 10 Box
 14176,475,100	// Enriched Elunium Box
 14177,475,100	// Enriched Oridecon Box
-14178,475,100	// Token of Siegfried Box
+14178,473,100	// F_Token_Of_Siegfried_Box
 14179,475,100	// Giant Fly Wing 50 Box
 14180,475,100	// Giant Fly Wing 100 Box
 14181,475,100	// Hwergelmir's Tonic 30 Box
@@ -1292,8 +1292,8 @@
 14188,475,100	// Stew of Immortality 50 Box
 14189,475,100	// Life Insurrance 30 Box
 14190,475,100	// Life Insurrance 50 Box
-14191,475,100	// Convex Mirror 5 Box
-14192,475,100	// Convex Mirror 30 Box
+14191,473,100	// F_Convex_Mirror_Box5
+14192,473,100	// F_Convex_Mirror_Box30
 14193,475,100	// Blessing Scroll 30 Box
 14194,475,100	// Lv10 Blessing Scroll Box 50
 14195,475,100	// Adrenaline Rush Scroll 30 Box
@@ -1310,14 +1310,14 @@
 14206,475,100	// Dragon Breath Cocktail 50 Box
 14207,475,100	// Field Manual Box
 14208,475,100	// Battle Manual 5 Box
-14209,475,100	// Token of Siegfried 5 Box
-14210,475,100	// Token of Siegfried 20 Box
+14209,473,100	// F_Siegfried_Box5
+14210,473,100	// F_Siegfried_Box20
 14211,475,100	// Kafra Card 30 Box
 14212,475,100	// Kafra Card 50 Box
 14213,475,100	// Steamed Tongue 30 Box
 14214,475,100	// Steamed Tongue 50 Box
-14215,475,100	// Bubble Gum Box
-14216,475,100	// Bubble Gum 5 Box
+14215,473,100	// F_Bubble_Gum_Box1
+14216,473,100	// F_Bubble_Gum_Box5
 14217,475,100	// Megaphone Box
 14218,475,100	// Megaphone 5 Box
 14219,475,100	// Enriched Elunium 5 Box

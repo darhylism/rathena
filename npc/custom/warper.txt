@@ -435,11 +435,15 @@ I11: Go("monk_test",306,143);
 // --------------------CUSTOMIZED------------------------------
 	Special:
 // --------------------------------------------------
-menu	"Poring Market",S1, "Vending Area",S2, "Askydun",S3;
+menu	"Poring Market",S1, "Vending Area",S2, "Askydun",S3, "Training Area",S4;
 		
 S1: Go("poring_w02",99,75);
 S2: Go("poring_w01",109,133);
 S3: Go("Askydun",91,103);
+S4: 	switch( rand(2) ) {
+		case 0:	warp "prontera",220,66;	end;
+		case 1:	warp "prontera",252,67;	end;
+	}
 
 }
 

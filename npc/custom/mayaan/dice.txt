@@ -48,11 +48,11 @@ OnClock2200:
 OnClock2300:
 OnClock2400:
 	announce "Dice: We are going to have a Dice event.",0;
-	sleep2 10000;
+	sleep 10000;
 	announce "Dice: For those who wants to join, Please proceed to the center of Prontera and enter the Warp Portal.",0;
-	sleep2 10000;
+	sleep 10000;
 	announce "Dice: After 1 Minute the Portal will close.",0;
-	sleep2 10000;
+	sleep 10000;
 	announce "Dice: So please go to the middle of Prontera and enter the Warp Portal now if you want to join.",0;
 	enablenpc "prtevent";
 	initnpctimer;
@@ -60,7 +60,7 @@ OnClock2400:
 
 OnTimer30000:
 	announce "Dice: Last 30 seconds.",0;
-	sleep2 5000;
+	sleep 5000;
 	announce "Dice: If you want to join please enter the Warp Portal in the middle of Prontera",0;
 	end;
 	
@@ -130,23 +130,23 @@ quiz_01,204,93,6	script	Dice#evnt1	4_M_PIERROT,{
 	
 OnEnable:
 	mapannounce "quiz_01","Dice: We are about to start the Dice event.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: But before we start the event here's how to play the game. . .",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: I'm only gonna say this once so read carefully.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: I'm going to pick a number, 1 to 4. Then I'll do a count down from 5 to 0.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: All you have to do is go to the box of the number you want.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: Example, If I get the number of 4, All the players standing on numbers 1 to 3 will be warped back to town.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: We will do it again and again until we only have 1 player left on the map.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: Oh yeah! Before I forget you MUST GO INSIDE THE BOX, because if you're caught standing on the stairs you'll be automatically disqualified.",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "quiz_01","Dice: That's How it Works.. Now let's play...",0;
-	sleep2 5000;
+	sleep 5000;
 	goto L_start;
 	end;
 

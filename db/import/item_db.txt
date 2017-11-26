@@ -35,9 +35,9 @@
 
 //weapon gun
 13184,Deadeye,Deadeye,5,,,150,77,,13,1,0x41000000,63,2,34,4,1,1,18,{bonus2 baddEff,Eff_Bleeding,5000; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus bSpeedRate,-25; bonus bHit,50; skill 127,1; skill 130,2; skill 5,7; bonus2 bSkillAtk,512,400;},{},{}
-13185,Cutlass,Cutlass,5,,,80,50,,9,3,0x41000000,63,2,34,4,1,1,17,{ bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,RC_All; bonus2 bSkillAtk,516,70; bonus2 bSPDrainRate,10,10; bonus2 bSPVanishRate,10,5; },{},{}
-13186,Havoc,Havoc,5,,,400,150,,9,4,0x41000000,63,2,34,4,1,1,20,{ bonus3 bAutoSpellWhenHit,249,5,1000; bonus bSpeedRate,-70; bonus bNoSizeFix,0; bonus2 baddEff,Eff_Stun,3000; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,50; bonus bUnstripableWeapon,100; },{},{}
-13187,Sweeper,Sweeper,5,,,200,150,,9,3,0x41000000,63,2,34,4,1,1,18,{ bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus2 bAddEle,8,20; },{},{}
+13185,Cutlass,Cutlass,5,,,80,50,,9,3,0x41000000,63,2,34,4,1,1,17,{ bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,RC_All; bonus2 bSkillAtk,516,70; bonus2 bSPDrainRate,20,10; bonus2 bSPVanishRate,20,5; },{},{}
+13186,Havoc,Havoc,5,,,400,150,,9,4,0x41000000,63,2,34,4,1,1,19,{ bonus3 bAutoSpellWhenHit,249,5,1000; bonus bSpeedRate,-70; bonus bNoSizeFix,0; bonus2 baddEff,Eff_Stun,3000; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,50; bonus bUnstripableWeapon,100; },{},{}
+13187,Sweeper,Sweeper,5,,,200,150,,9,3,0x41000000,63,2,34,4,1,1,20,{ bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus2 bAddEle,8,20; },{},{}
 
 //custom wing,headgears etc...
 35005,Dark_Angel,Dark_Angel,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1690,{bonus bStr,+5;bonus bVit,+5;},{},{}
@@ -50,7 +50,7 @@
 35012,Catoninetails_hat,Catoninetails_hat,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1697,{bonus2 bMagicAddSize,1,50;if(isequipped(4365) || isequipped(4441)) {bonus2 bMagicAddSize,1,-20;}},{},{}
 35013,Elf_King_Ears,Elf_King_Ears,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1698,{bonus bAgi,5; bonus bInt,2; bonus bDex,4; skill "AL_HEAL",5+7*(getskilllv("AL_HEAL")==10);},{},{}
 35014,Hood_of_Death,Hood_of_Death,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1699,{ bonus bAgi,-5; bonus bInt,-5; bonus bCritAtkRate,25; if( isequipped(35015) ) { bonus bAgi,10; skill "KN_CHARGEATK",1; bonus3 bAddEff,Eff_Curse,500,ATF_TARGET; } },{},{}
-35015,Face_of_Death,Face_of_Death,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1700,{ skill "PF_SOULBURN",1; if( isequipped(35014) ) { bonus bAgi,20; bonus bInt,-20; bonus bCriticalRate,15; bonus4 bAutoSpell,SA_COMA,1,10,1; } },{},{}
+35015,Face_of_Death,Face_of_Death,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,512,0,0,0,1700,{ skill "PF_SOULBURN",1; if( isequipped(35014) ) { bonus bAgi,20; bonus bInt,-20; bonus bCriticalRate,15; bonus2 bComaClass,Class_Normal,10; } },{},{}
 35016,Kakashi_Head_Protector,Kakashi_Head_Protector,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,256,0,0,0,1701,{bonus bDex,3;bonus bAgi,2;},{},{}
 35017,Twin_Bunnies_Hat,Twin_Bunnies_Hat,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1702,{skill "TK_HIGHJUMP",1;},{},{}
 35018,Heart_Sunglasses,Heart_Sunglasses,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1703,{skill "DC_WINKCHARM",1;},{},{sc_end DC_WINKCHARM;}
