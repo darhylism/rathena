@@ -25,7 +25,7 @@ prontera,140,173,4	script	MayaanRO Item Redeemer	987,{
 		mes "Well hello there young madam!";
 	mes "How may I be of assistance to you on this fine day?";
 	next;
-	switch(select("I wish to redeem items:Who might you be?:I am merely perusing the area")) {
+	switch(select("I wish to redeem items:Who might you be?:Where's the Donation/Cash shop?:I am merely perusing the area")) {
 		case 1:
 			mes $npcname$;
 			deletearray @inventorylist_id;
@@ -95,6 +95,11 @@ prontera,140,173,4	script	MayaanRO Item Redeemer	987,{
 			if ($showcredits) callfunc "F_FluxCredits";
 		break;
 		case 3:
+			mes $npcname$;
+			mes "You can access the Cash Shop by clicking the CASH SHOP icon on the,";
+			mes "TOP RIGHT Corner of your Screen.";
+		break;
+		case 4:
 			mes $npcname$;
 			mes "Very well then.";
 			mes "Good day to you.";

@@ -174,7 +174,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 				@secId = 0;
 				useSecure = false;
 			}
-			else if (countitem(@secId) && ((.SecureAsk == 1) || (.SecureAsk == 2 && useSecure == -1))) {
+		else if (countitem(@secId) && ((.SecureAsk == 1) || (.SecureAsk == 2 && useSecure == -1))) {
 				mes .NpcName$;
 				mes "Seems like you have a " + getitemname(@secId) + ".";
 				mes "Do you want to use it to protect your item?";
@@ -186,7 +186,24 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 				mes .NpcName$;
 				mes "All right!";
 				next;
+		if (useSecure == true && @refCount >= 7 && @refOk == 0 && countitem(@secId) < (@refLv*15 + @refCount*7)) {
+				mes "You dont have sufficient item protection requirements";
+				close;
+		}
+		if (useSecure == true && @refCount < 7 && @refOk == 0 && countitem(@secId) < (@refLv*12 + @refCount*5)) {
+				mes "You dont have sufficient item protection requirements";
+				close;
+		}
+		if (useSecure == true && @refCount >= 7 && @refOk == 1 && countitem(@secId) < (@refLv*13 + @refCount*3)) {
+				mes "You dont have sufficient item protection requirements";
+				close;
+		}
+		if (useSecure == true && @refCount < 7 && @refOk == 1 && countitem(@secId) < (@refLv*13 + @refCount*2)) {
+				mes "You dont have sufficient item protection requirements";
+				close;
+		}
 			}
+
 		}
 		
 		GetChanceBonus();
@@ -210,7 +227,8 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 				next;
 			}
 		}
-		
+
+
 		if (((@chance + @bonus) < 100) && useSecure != true && (.BreakWarning == 0 || (.BreakWarning > 0 && .@warningShown == 0))) {
 			mes .NpcName$;
 			mes "Oh no! If I refine this again";
@@ -293,6 +311,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 			delitem @bonusId, 1;
 			.@refineChance += @bonus;
 		}
+
 		
 		if (.@refineChance <= rand(100)) {
 			// Failed
@@ -362,8 +381,20 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 		}
 		else {
 			// Secure - Consume always
-			if (useSecure == true && ((.SecureConsumeType == 1 && .@refineChance < 100) || .SecureConsumeType == 2))
-				delitem @secId, 1;
+			if (useSecure == true && ((.SecureConsumeType == 1 && .@refineChance < 100) || .SecureConsumeType == 2)){
+			if (useSecure == true && @refCount >= 7 && @refOk == 0) {
+				delitem @secId, (@refLv*15 + @refCount*7);
+			}
+			else if (useSecure == true && @refCount < 7 && @refOk == 0) {
+				delitem @secId, (@refLv*12 + @refCount*5);
+			}
+			else if (useSecure == true && @refCount >= 7 && @refOk == 1) {
+				delitem @secId, (@refLv*13 + @refCount*3);
+			}
+			else if (useSecure == true && @refCount < 7 && @refOk == 1) {
+				delitem @secId, (@refLv*13 + @refCount*2);
+			}
+		}
 			successrefitem @part;
 		}
 		
@@ -549,7 +580,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 			// 0 - If it will break, consume.
 			// 1 - Consume always (except on safe refine)
 			// 2 - Consume always (even on safe refines)
-			.SecureConsumeType = 1;
+			.SecureConsumeType = 2;
 			
 			// Items used to protect the refine.
 			// These are the items consumed when protecting the

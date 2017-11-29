@@ -133,6 +133,6 @@ Askydun,164,87,5	script	Lenneth	811,{
 		delitem .@id, .@amount;
 	}
 	getitem .@Items[0],1;
-	announce strcharinfo(0)+" has created a GOD Artifact "+(getitemname(.@Items[0]))+"!",bc_all,0x00FFFF,FW_NORMAL,25,center,-1;
+	announce strcharinfo(0)+" has created a GOD Artifact "+(getitemname(.@Items[0]))+"!",bc_all,0x00FFFF,FW_NORMAL,25;
 	close;
 }

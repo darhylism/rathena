@@ -351,7 +351,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-prontera,166,188,5	script	PvP-StatsViewer	1_M_LIBRARYMASTER,{
+prontera,166,188,5	script	Top Pvp Ladder#PVP	4_M_CHNGENERL,{
 	set .@npcname$, strnpcinfo(0);
 	while (1) {
 		mes "["+ .@npcname$ +"]";
