@@ -65,4 +65,4 @@ ma_in01,31,93,3	pointshop	Hourly Shop#HQ	716,#HR_COIN,13534:1,13810:3,12601:1,14
 ma_in01,44,104,5	duplicate(MayaanRO Item Redeemer)	MayaanRO Item Redeemer#HQ	987
 
 
-ma_in01,25,78,0	warp	poring1-1	1,1,poring_w02,99,77
+ma_in01,25,78,0	warp	HQ1-1	1,1,poring_w02,99,77

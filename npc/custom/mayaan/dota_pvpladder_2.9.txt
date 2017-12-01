@@ -34,11 +34,11 @@ create table ownladder (
 */
 //	add all the maps that you want this script to trigger ... all pvp and event maps perhaps ?
 //	but if you already enable "all" maps, then can comment all these
-guild_vs1	mapflag	loadevent
-guild_vs2	mapflag	loadevent
-guild_vs3	mapflag	loadevent
-guild_vs4	mapflag	loadevent
-guild_vs5	mapflag	loadevent
+//guild_vs1	mapflag	loadevent
+//guild_vs2	mapflag	loadevent
+//guild_vs3	mapflag	loadevent
+//guild_vs4	mapflag	loadevent
+//guild_vs5	mapflag	loadevent
 
 -	script	DOTAPVP	-1,{
 OnInit:
@@ -74,12 +74,7 @@ OnInit:
 	set .lowestownage, 5; // mininum ownage count allow to show in longest ownage ladder. Default 5 means must at least have 5 ownage counts to display in ladder
 
 	setarray .maptrigger$, // only these maps will trigger this script
-		"all", // uncomment this to allow load all maps
-		"guild_vs1",
-		"guild_vs2",
-		"guild_vs3",
-		"guild_vs4",
-		"guild_vs5";
+		"all"; // uncomment this to allow load all maps
 
 //	anti-sit-killer system
 	// a player must kill another player with this minimum <this number> base level to get the announcement and in the ladder.
@@ -87,7 +82,7 @@ OnInit:
 	// Its possible for a level 1 novice to kill a level 99 player and he/she will still get in the ladder
 	// but a level 99 kill a level 1 player will get nothing
 	// 0 - off this system ( default is 55, pk setting )
-	set .lvltokill, 0;
+	set .lvltokill, 255;
 
 	// when a player kill another same player <this number> times in a row, the player is warp back to save point.
 	// and the player's streak, kills, and ownage count will deduct accordingly
@@ -99,7 +94,7 @@ OnInit:
 	// but a player with base level 50 kills a level 99 will also get the announcement
 	// higher base level cannot kill lower level, but lower level can kill higher level
 	// 0 - off this system
-	set .minlvlrange, 0;
+	set .minlvlrange, 20;
 
 
 // Config ends ------------------------------------------------------------------------------------------

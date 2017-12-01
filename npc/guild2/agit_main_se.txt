@@ -106,6 +106,7 @@ OnEmpSpawn:
 		else setarray .@i[0],120,272;	// Castles 1,4,5 are identical.
 	}
 	monster strnpcinfo(2),.@i[0],.@i[1],"Emperium",1288,1,"Steward#"+.@str$+"::OnStartArena";
+	announce "The [" + getcastlename(strnpcinfo(2)) + "] castle has been conquered by " + strcharinfo(0) + " of the [" + getguildName(.@GID) + "] guild.",bc_all|bc_woe;
 	end;
 
 OnReset:

@@ -352,7 +352,7 @@
 226,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,0x0,		AM_AXEMASTERY,Axe Mastery
 227,0,0,0,0,0,0,10,0,no,0,0,0,none,0,0x0,		AM_LEARNINGPOTION,Potion Research
 228,0,6,4,0,0x1,0,10,0,no,0,0,0,none,0,0x0,		AM_PHARMACY,Prepare Potion
-229,9,6,2,3,0x9,0,5,1,yes,0,0,0,weapon,0,0x0,	AM_DEMONSTRATION,Bomb
+229,9,8,2,3,0x9,0,5,2,yes,0,0,0,weapon,0,0x0,	AM_DEMONSTRATION,Bomb
 230,9,6,1,0,0x48,0,5,1,yes,0,0,0,weapon,0,0x0,	AM_ACIDTERROR,Acid Terror
 231,9,6,16,0,0x1,0,5,1,yes,0,0xC00,0,none,0,0x0,	AM_POTIONPITCHER,Aid Potion
 232,4,6,2,0,0x1,0,5,1,no,0,0,5,none,0,0x0,		AM_CANNIBALIZE,Summon Flora

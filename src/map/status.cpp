@@ -3982,7 +3982,7 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt)
 #ifndef RENEWAL_ASPD
 	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
 		base_status->aspd_rate -= 5*skill;
-	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0 && pc_is_maxjoblv(sd))
+	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0)
 		base_status->aspd_rate -= 30*skill;
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 		(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
@@ -3994,7 +3994,7 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt)
 #else // Needs more info
 	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
 		base_status->aspd_rate += 5*skill;
-	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0 && pc_is_maxjoblv(sd))
+	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0)
 		base_status->aspd_rate += 30*skill;
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 		(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
@@ -9981,8 +9981,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			}
 			break;
 		case SC_CONCENTRATION:
-			val2 = 5*val1; // Batk/Watk Increase
-			val3 = 10*val1; // Hit Increase
+			val2 = 15*val1; // Batk/Watk Increase
+			val3 = 20*val1; // Hit Increase
 			val4 = 5*val1; // Def reduction
 			sc_start(src, bl, SC_ENDURE, 100, 1, tick); // Level 1 Endure effect
 			break;
@@ -10015,9 +10015,9 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 
 		// gs_something1 [Vicious]
 		case SC_GATLINGFEVER:
-			val2 = 20*val1; // Aspd increase
+			val2 = 40*val1; // Aspd increase
 #ifndef RENEWAL
-			val3 = 20+10*val1; // Atk increase
+			val3 = 100+20*val1; // Atk increase
 #endif
 			val4 = 5*val1; // Flee decrease
 			break;

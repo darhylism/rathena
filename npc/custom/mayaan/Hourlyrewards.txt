@@ -4,23 +4,46 @@
 		.max_minute = 720;
         .npc_name$ = strnpcinfo(3);
         bindatcmd "hreward",.npc_name$+"::OnAtcommand";
+		bindatcmd "Hreset", strnpcinfo(0)+"::OnHCommand", 99,100;
         end;
        
     OnAtcommand:
 		dispbottom "Accumulated time: "+#daily_minute_count+" / "+.max_minute+" minute(s) - "+ ( ( #daily_minute_count < .max_minute )?" In Progress":"Completed" );
 		dispbottom "Total Hourly Points: "+#HR_COIN+"";
         end;
+		
+	OnHCommand:
+		if ( compare( .@atcmd_parameters$, "on" ) ) goto L_startH;
+		else if ( compare( .@atcmd_parameters$, "off" ) ) goto L_EndH;
+		else {
+		dispbottom "type - '@Hreset on' to start the event";
+		dispbottom "type - '@Hreset off' to end the event";
+		}
+	end;
+	
+L_startH:
+		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastpickfallen' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
+		announce "An admin Manually Reseted Falled Hero Reward, You can now claim it again.",bc_all,0x00FF00,FW_NORMAL,25;
+		
+		addrid(0);
+		#lastpickfallen = 0;
+		end;
+
+L_EndH:
+end;
+
 
 	OnClock0001:
 //	OnClock2032:
 //		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
 //		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
-		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
+		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastpickfallen' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
 
-		announce "It is 12:01AM Server time. Daily Rewards, Hourly Points and other cooldowns have been reseted, Please relog to avoid errors.",bc_all,0x00FF00,FW_NORMAL,25;
+		announce "It is 12:01AM Server time. Fallen Hero Rewards, Hourly Points and other cooldowns have been reseted, Please relog to avoid errors.",bc_all,0x00FF00,FW_NORMAL,25;
 		
 		addrid(0);
+		#lastpickfallen = 0;
 		#daily_minute_count = 0;
 		end;
 	   
