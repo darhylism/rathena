@@ -121,7 +121,7 @@ OnAgitBreak:
 	SetCastleData strnpcinfo(2),1, .@GID;
 
 	// Announce that the Emperium is destroyed, and respawn all but new castle-occupants.
-	mapannounce strnpcinfo(2),"The emperium has been destroyed.",bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12;
+	mapannounce strnpcinfo(2),"The emperium has been destroyed by " + strcharinfo(0),bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12; 
 	MapRespawnGuildID strnpcinfo(2),.@GID,6;
 
 	// Refresh castle data, disable Kafra and reset Invest information.
@@ -137,12 +137,12 @@ OnAgitBreak:
 		}
 	}
 	// Respawn the Emperium, and display new owners.
+	set .@breaker$, strcharinfo(0);
 	sleep 500; // Slow down script execution slightly.
 	if( agitcheck() )
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 	sleep 7000;
-	
-	announce "The [" + getcastlename(strnpcinfo(2)) + "] castle has been conquered by " + strcharinfo(0) + " of the [" + getguildName(.@GID) + "] guild.",bc_all|bc_woe;
+	announce "The [" + getcastlename(strnpcinfo(2)) + "] castle has been conquered by [ "+.@breaker$+" ] of the [" + getguildName(.@GID) + "] guild.",bc_all|bc_woe;
 	end;
 
 // War of Emperium has ended.

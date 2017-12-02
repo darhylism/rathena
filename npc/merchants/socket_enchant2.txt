@@ -139,10 +139,10 @@
 			mes "Armor, you said? Sure, no problem.";
 			mes "Weapons are divided into 4 different class";
 			mes "depending on the work difficulty.";
-			mes "C class is the easiest one, and S class is the hardest one.";
+			mes "C class is the easiest one, and S+ class is the hardest one.";
 			mes "Which class would you like to try?";
 			next;
-			switch(select("C:B:A:S"))
+			switch(select("C:B:A:S:S+"))
 			{
 				case 1:
 					mes "[Leablem]";
@@ -189,6 +189,18 @@
 						case 3: callfunc "Func_Socket2",2111,2128,45,51,1000,985,1;
 						case 4: callfunc "Func_Socket2",2522,2523,45,51,1000,985,1;
 						case 5: callfunc "Func_Socket2",2339,2371,45,51,1000,985,1;
+					}
+				case 5:
+					mes "[Leablem]";
+					mes "Huh, S+ Class?! Oh my god, are you serious?*Tremble*";
+					mes "So...which S+ class armor would you like to make a slot?!";
+					next;
+					switch(select("Lucius's Fierce Armor of Volcano:Saphien's Armor of Ocean:Aebecee's Raging Typhoon Armor:Claytos Cracking Earth Armor"))
+					{
+						case 1: callfunc "Func_Socket2",2344,2345,45,69,1000,6223,5; //Less Chance
+						case 2: callfunc "Func_Socket2",2346,2347,40,69,1000,6223,5;
+						case 3: callfunc "Func_Socket2",2348,2349,40,69,1000,6223,5;
+						case 4: callfunc "Func_Socket2",2350,2351,40,69,1000,6223,5;
 					}
 			}
 		case 3:
@@ -384,6 +396,7 @@ payon,236,199,3	duplicate(SocketEnchant2)	Leablem#pay	86
 lighthalzen,96,137,3	duplicate(SocketEnchant2)	Leablem#lhz	86
 prt_in,22,60,6	duplicate(SocketEnchant2)	Leablem#prt	86
 moc_ruins,154,86,3	duplicate(SocketEnchant2)	Leablem#moc	86
+ma_in01,21,88,3	duplicate(SocketEnchant2)	Leablem#HQ	86
 
 function	script	Func_Socket2	{
 	.@item_id = getarg(0);
