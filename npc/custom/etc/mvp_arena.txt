@@ -27,6 +27,7 @@ prontera,154,197,3	script	MVP Warper	768,{
 }
 
 poring_w02,88,101,4	duplicate(MVP Warper)	MVP Warper#poring	768
+Askydun,180,109,4	duplicate(MVP Warper)	MVP Warper#Askydun	768
 
 // Information
 quiz_00,49,31,4	script	MVP Arena Guide	778,{

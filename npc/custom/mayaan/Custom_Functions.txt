@@ -1,0 +1,16 @@
+
+
+
+function	script	F_Gashapon	{
+if (rand(100) < 4) setarray .@i[0],35032,35038,5739,5740;
+else if (rand(100) < 8) setarray .@i[0],12884,12885,12886,12887;
+else if (rand(100) < 12) setarray .@i[0],5208,18553,5738;
+else if (rand(100) < 17) setarray .@i[0],7776,6224,6223,35049,2976;
+else if (rand(100) < 28) setarray .@i[0],7776,6224,6223,35049,2976;
+else if (rand(100) < 35) setarray .@i[0],12202,12204,12205,12203,12207,12206,12114,12115,12116,12117,12884,12885,12886,12887;
+else setarray .@i[0],13698,13697,12221,14175,14587,14519,14517,14518,14520,7619,7620,14545,13758,12214,13582,12210,13607,7621;
+set MGitem,.@i[rand(getarraysize(.@i))];
+getitem MGitem,1;
+announce strcharinfo(0)+" has obtained "+getitemname(MGitem)+" from Antonio Box!",bc_all,0x00FFFF,FW_NORMAL,15;
+return;
+}

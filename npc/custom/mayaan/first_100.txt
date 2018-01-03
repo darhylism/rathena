@@ -57,7 +57,7 @@ prontera,151,187,4	script	Pioneer	125,{
 	.max_job_level = 50;	// Set the maximum job level here.
 	.aid_start = 0;	// Set the Account ID here where you want to start. [ set this to 0 = disable ]
 	.aid_end = 0;	// Set the ending Account ID here. [ set this to 0 = disable ]
-	waitingroom "1st 100 Player Rewards!",0;		// Waiting Room.
+	waitingroom "Player Rewards!",0;		// Waiting Room.
 	query_logsql("CREATE TABLE IF NOT EXISTS `sader_variables_log` (`unique_id` INT( 11 ) UNSIGNED NOT NULL DEFAULT  '0',`ip` VARCHAR(100) NOT NULL,`variable` VARCHAR(32) NOT NULL, `index` INT NOT NULL, `value` INT NOT NULL,`account_id` INT NOT NULL,`char_id` INT NOT NULL,`char_name` VARCHAR(30) NOT NULL) ENGINE=MyISAM");
 	// ------------------------------------------------------------- //
 	end;

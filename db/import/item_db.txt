@@ -14,6 +14,8 @@
 35047,Power_Proof,Proof of Power,12,0,,0,,,,,0x7FFFFFFF,7,,2097152,,1,,,{},{},{}
 7179,Donation_Card,Proof of Donation,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+5000; dispbottom "You have received 5000 Cash Points."; },{},{}
 35049,Pori_Pori_Box,Pori Pori Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ monster "this",-1,-1,"--ja--",1502,1,""; announce strcharinfo(0)+" has summoned Cash [MVP] Pori Pori / Bring it on! in map [" +strcharinfo(3) +"]!",bc_all,0x00FFFF,FW_NORMAL,25; },{},{}
+35050,Gashapon_x,Merry Gacha Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_Gashapon"; },{},{}
+
 
 //cards
 35000,Giant_Sting_Card,Giant_sting_Card,6,20,,10,,,,,,,,136,,,,,{bonus bdex,+5;},{},{}

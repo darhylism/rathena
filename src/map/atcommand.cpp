@@ -5960,12 +5960,12 @@ ACMD_FUNC(changelook)
  *------------------------------------------*/
 ACMD_FUNC(afk) {
 	nullpo_retr(-1, sd);
-
+/*
 	if( !map[sd->bl.m].flag.town ) {
 		clif_displaymessage(fd, msg_txt(sd,1179)); // Autotrade is not allowed on this map.
 		return -1;
 	}
-
+*/
 	if( pc_isdead(sd) ) {
 		clif_displaymessage(fd, msg_txt(sd,1180)); // You cannot autotrade when dead.
 		return -1;
