@@ -45,7 +45,7 @@ case 2:
 case 3:
 	mapannounce .Map$,"GM reset the record of Emperium Breaker.",0,0x00FF00;
 	killmonster .Map$,"All";
-	sleep2 3000;
+	sleep 3000;
 	mapwarp .Map$,"poring_w02",99,70;
 	mes "List of players will be sent Out";
 	next;
@@ -74,27 +74,27 @@ case 4:
 }
 
 OnReady:
-sleep2 3000;
+sleep 3000;
 for( set .@i,0; .@i < getarraysize( .Instruction$ ); set .@i,.@i + 1 ){
 	mapannounce .Map$,.Instruction$[.@i],0,0x00FF00;
-	sleep2 2500;
+	sleep 2500;
 	}
 for( set .@i,5; .@i > 0; set .@i,.@i - 1 ){
 	mapannounce .Map$," : "+.@i+" seconds left.",0,0x00FF00;
-	sleep2 1000;
+	sleep 1000;
 	}
 //mapannounce .Map$,"Hit the Emperium Now and Skills Disabled.",0,0x00FF00;
 //setmapflag .Map$,mf_noskill;
 monster .Map$,29,27,"Breaker Test",1288,1,strnpcinfo(0)+"::OnBreaked";
 set .Record,0;
-sleep2 500;
+sleep 500;
 initnpctimer;
 end;
 
 OnTimer600000:
 if( !mobcount( .Map$,strnpcinfo(0)+"::OnBreaked" ) ) end;
 	mapannounce .Map$,"You spent too much time. i think you are AFK , so you are out.",0,0xED1ADC;
-	sleep2 3000;
+	sleep 3000;
 	mapwarp .Map$,"poring_w02",99,70;
 	stopnpctimer;
 end;
@@ -117,13 +117,12 @@ OnBreaked:
 	stopnpctimer;
 	announce "Time tooked : "+.Time/1000+"."+.Time%1000+" Seconds. ",bc_self,0xED1ADC;
 //	removemapflag .Map$,mf_noskill;
-	sleep2 5000;
+	sleep 5000;
 	mapwarp .Map$,"poring_w02",99,70; //here is the place of the npc
 	end;
 }
 	
 job3_arch01	mapflag	nocommand	50
 job3_arch01	mapflag	gvg	on
-job3_arch01	mapflag	gvg_castle
 job3_arch01	mapflag	monster_noteleport
 job3_arch01	mapflag	nosave	SavePoint

@@ -644,7 +644,7 @@
 431,0,0,4,0,0x1,0,4,1,yes,0,0,0,magic,0,0x0,		SG_SUN_COMFORT,Comfort of the Sun
 432,0,0,4,0,0x1,0,4,1,yes,0,0,0,magic,0,0x0,		SG_MOON_COMFORT,Comfort of the Moon
 433,0,0,4,0,0x1,0,4,1,yes,0,0,0,magic,0,0x0,		SG_STAR_COMFORT,Comfort of the Stars
-434,9,6,1,0,0x1,0,3,1,yes,0,0,0,magic,0,0x0,	SG_HATE,Hatred of the Sun Moon and Stars
+434,9,6,1,0,0x1,0,3,1,yes,0,0,0,magic,0,16,	SG_HATE,Hatred of the Sun Moon and Stars
 435,0,0,0,0,0,0,3,0,no,0,0,0,none,0,0x0,		SG_SUN_ANGER,Anger of the Sun
 436,0,0,0,0,0,0,3,0,no,0,0,0,none,0,0x0,		SG_MOON_ANGER,Anger of the Moon
 437,0,0,0,0,0,0,3,0,no,0,0,0,none,0,0x0,		SG_STAR_ANGER,Anger of the Stars

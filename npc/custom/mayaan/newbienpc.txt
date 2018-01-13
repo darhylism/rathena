@@ -59,17 +59,26 @@
 			mes "I see that you're new here so to help you out";
 			mes "I'd like to give you these";
 			mes "items as a gift to show how much we appreciate you here!";
-			mes "^0a6cdb Field Manual^000000 (5x)";
+			mes "^0a6cdb Field Manual^000000 (10x)";
 			mes "^0a6cdb Bubble Gum^000000 (5x)";
+			mes "^0a6cdb Beginner Bow^000000 (5x)";
+			mes "^0a6cdb Beginner Sword^000000 (5x)";
+			mes "^0a6cdb Beginner Mace^000000 (5x)";
+			mes "^0a6cdb Hourly Points^000000 (50x)";
 			mes "^0a6cdb Novice Potion^000000 (300x)";
 			mes "^0a6cdb Novice Fly Wing^000000(20x)";
 			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
-			getitem	14545,5; // Field Manual
+			getitem	14545,10; // Field Manual
 			getitem	12210,5; // Bubble Gum
 			getitem	35048,1; // Bound Doppelganger Card
 			getitem	569,300; // Novice Potion
 			getitem	12323,20; // Novice Fly Wing
 			getitem	12324,20; // Novice Butter Fly Wing
+			rentitem 35051,1209600; // Beginner Bow
+			rentitem 35052,1209600; // Beginner Sword
+			rentitem 35053,1209600; // Beginner Mace
+			#HR_COIN += 50;
+			dispbottom "You now have " +#HR_COIN+ " Hourly points.";
 			set #newaccount,1;
 			close2;
 			savepoint "poring_w02",99,66,1,1;

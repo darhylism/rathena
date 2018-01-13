@@ -5,7 +5,7 @@
 //
 
 //Official items that have changed effect
-4142,Doppelganger_Card,Doppelganger Card,6,20,,10,,,,,,,,2,,,,,{ bonus bAspdRate,25; },{},{}
+4142,Doppelganger_Card,Doppelganger Card,6,20,,10,,,,,,,,2,,,,,{ bonus bAspdRate,30; },{},{}
 1530,Mjolnir,Mjolnir,5,20,,6000,250,,1,0,0xFFFFFFFF,7,2,2,4,95,0,8,{ bonus bAtkEle,Ele_Wind; bonus bDex,40; bonus bStr,15; bonus bAspdRate,25; bonus bUnbreakableWeapon,0; },{},{}
 4128,Golden_Bug_Card,Golden Thief Bug Card,6,20,,10,,,,,,,,32,,,,,{ bonus bNoMagicDamage,50; bonus bUseSPrate,100; bonus2 bResEff,Eff_Freeze,10000; bonus2 bResEff,Eff_Silence,10000; },{},{}
 
@@ -15,7 +15,7 @@
 7179,Donation_Card,Proof of Donation,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+5000; dispbottom "You have received 5000 Cash Points."; },{},{}
 35049,Pori_Pori_Box,Pori Pori Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ monster "this",-1,-1,"--ja--",1502,1,""; announce strcharinfo(0)+" has summoned Cash [MVP] Pori Pori / Bring it on! in map [" +strcharinfo(3) +"]!",bc_all,0x00FFFF,FW_NORMAL,25; },{},{}
 35050,Gashapon_x,Merry Gacha Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_Gashapon"; },{},{}
-
+1750,Arrow,Arrow,10,1,,1,25,,,,0x000A1849,7,2,32768,,1,,1,{},{},{}
 
 //cards
 35000,Giant_Sting_Card,Giant_sting_Card,6,20,,10,,,,,,,,136,,,,,{bonus bdex,+5;},{},{}
@@ -23,14 +23,20 @@
 35002,Giant_Crusier_Card,Giant_Crusier_Card,6,20,,10,,,,,,,,2,,,,,{bonus bdex,+3;},{},{}
 35003,Flamring_Card,Flamring_Card,6,20,,10,,,,,,,,136,,,,,{skill "AC_CONCENTRATION",3;},{},{}
 35004,Shadow Poring_Card,Shadow_Poring_Card,6,20,,10,,,,,,,,4,,,,,{ bonus2 bAddSize,Size_Medium,45; },{},{}
-35048,Bound_Doppelganger_Card,Bound Doppelganger Card,6,20,,10,,,,,,,,2,,,,,{ bonus bAspdRate,25; },{},{}
+35048,Bound_Doppelganger_Card,Bound Doppelganger Card,6,20,,10,,,,,,,,2,,,,,{ bonus bAspdRate,30; },{},{}
 
 
 //weapon sword
 1198,Buster Sword,Buster Sword,5,0,,100,150,,1,3,0x00004082,63,2,2,4,60,0,2,{bonus bDex,+10;bonus bHit,-10;skill "TK_SEVENWIND",4;bonus bDoubleRate,35;bonus3 bAutoSpell,"WZ_METEOR",7,100; },{},{sc_end TK_SEVENWIND;}
+35052,Begi_Sword,Beginner_sword,5,0,,100,60,,1,0,0x7C1674E3,63,2,2,1,1,0,2,{ bonus bAspdRate,90; bonus2 bAddClass,Class_All,30; bonus bDoubleRate,35; },{},{}
+
+//Weapon Mace
+35053,begi_mace,Beginner Mace,5,20,,1300,60,,1,0,0x0004C5B3,63,2,2,1,1,0,8,{ bonus bDex,3; bonus bInt,3; bonus bStr,3; bonus bAspdRate,90; bonus2 bAddClass,Class_All,30; },{},{}
+
 
 //weapon bow
 1749,Quincy_Bow,Quincy_Bow,5,2500,,600,160,,5,4,0x000A0848,63,2,34,1,4,1,11,{ bonus2 bAddEle,7,25; bonus bCritical,15; bonus bDex,15; bonus bAspd,7; },{},{}
+35051,begi_bow,Begginer Bow,5,2500,,600,160,,5,0,0x000A0849,63,2,34,1,1,0,11,{ bonus bDex,15; bonus bAspdRate,90; bonus2 bAddClass,Class_All,40; },{},{}
 
 //weapon wand
 1650,Almighty Staff,Almighty_Staff,5,45000,22500,150,150,,1,3,0x00818314,63,2,2,3,24,1,10,{ bonus bDex,5; bonus bInt,5; bonus bMatkRate,20; if(BaseJob == Job_Priest || BaseJob == Job_High_Priest || BaseJob == Job_Soul_Linker || BaseJob == Job_Wizard || BaseJob == Job_High_Wizard){ bonus bMaxHP,500; bonus bHealPower,20; bonus bVit,5; }; },{},{}
@@ -1963,7 +1969,7 @@
 12883,Almighty,Almighty,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ specialeffect2 EF_BASH3D; sc_start SC_2011RWC_SCROLL,1800000,10; },{},{}
 12884,Infinite_Concentration_Potion,Infinite Concentration Potion,11,10,,0,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION0,1800000,4; },{},{}
 12885,Infinite_Awakening_Potion,Infinite Awakening Potion,11,10,,0,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION1,1800000,6; },{},{}
-12886,Infinite_Berserk_Potion,Infinite Berserk Potion,11,10,,0,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
+12886,Infinite_Berserk_Potion,Infinite Berserk Potion,11,10,,0,,,,0,0x41E646A6,63,2,,,,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
 12887,C_Wing_Of_Fly,Infinite Flywing,11,0,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ unitskilluseid getcharid(3),"AL_TELEPORT",1; },{},{}
 12888,Siege_Kit_Box,Siege Kit Box,18,0,,100,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 12889,Weapon_Box_Spear,Weapon Box(Spear),2,10,,200,,,,0,0xFFFFFFFF,63,2,,,,,,{},{},{}
@@ -2818,7 +2824,7 @@
 14508,Zeny_Scroll,Zeny Pet Egg Scroll,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ Zeny += rand(1000,77777);},{},{}
 14509,Light_Center_Pot,Light Concentration Potion,2,800,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION0,1800000,4; },{},{}
 14510,Light_Awakening_Pot,Light Awakening Potion,2,1500,,20,,,,,0xFFF7FEEF,63,2,,,40,,,{ sc_start SC_ASPDPOTION1,1800000,6; },{},{}
-14511,Light_Berserk_Pot,Light Berserk Potion,2,3000,,20,,,,,0x01E646A6,63,2,,,85,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
+14511,Light_Berserk_Pot,Light Berserk Potion,2,3000,,20,,,,,0x41E646A6,63,2,,,85,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
 14512,Meteor_10_Scroll,Meteor Storm Scroll,11,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ itemskill "WZ_METEOR",10; },{},{}
 14513,Storm_10_Scroll,Storm Gust Scroll,11,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ itemskill "WZ_STORMGUST",10; },{},{}
 14514,Vermilion_10_Scroll,Lord of Vermilion Scroll,11,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ itemskill "WZ_VERMILION",10; },{},{}
@@ -3630,7 +3636,7 @@
 17212,Tw_Yellow_Scroll,Tw Yellow Scroll,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Tw_Yellow_Scroll); },{},{}
 17226,Infinite_Concentration_Potion_,Infinite Concentration Potion,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12884,604800; },{},{}
 17227,Infinite_Awakening_Potion_,Infinite Awakening Potion,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12885,604800; },{},{}
-17228,Infinite_Berserk_Potion_,Infinite Berserk Potion,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12886,604800; },{},{}
+17228,Infinite_Berserk_Potion_,Infinite Berserk Potion,18,10,,10,,,,0,0x41E646A6,63,2,,,,,,{ rentitem 12886,604800; },{},{}
 17229,Infinite_Flywing_Box,Infinite Flywing Box,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ rentitem 12887,604800; },{},{}
 17230,Valerian_Scroll,Valerian Egg,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,1,,,{ getgroupitem(IG_Valerian_Scroll); },{},{}
 17231,Refinement_Ore_Box,Refinement Ore Box,2,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 7619,1; getitem 7620,1; },{},{}
@@ -5342,7 +5348,7 @@
 22540,Runstone_Luxanima,Lux Anima Runestone,11,2,,100,,,,,0xFFFFFFFF,58,2,,,,,,{ itemskill "RK_LUXANIMA",1; },{},{}
 22541,PC_Room_Coupon_Box_VI,PC Room Coupon Box VI,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{},{},{}
 22542,Concentration_Potion,Concentration Potion,2,10,,100,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION0,1800000,4; },{},{}
-22543,Berserk_Potion_,Berserk Potion,2,10,,200,,,,0,0x6,63,2,,,,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
+22543,Berserk_Potion_,Berserk Potion,2,10,,200,,,,0,0x41E646A6,63,2,,,,,,{ sc_start SC_ASPDPOTION2,1800000,9; },{},{}
 22544,Awakening_Potion_,Awakening Potion,2,10,,150,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ASPDPOTION1,1800000,6; },{},{}
 22545,Speed_Potion,Speed Potion,2,10,,100,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_SPEEDUP1,5000,50; },{},{}
 22546,Slow_Potion,Slow Potion,2,10,,100,,,,0,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_SLOWDOWN,5000,100; },{},{}

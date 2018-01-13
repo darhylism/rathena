@@ -46,6 +46,7 @@ menu "Sure, I want!",CD_sexchange,"of course no!",CD_uhno;
 CD_sexchange:
 	mes @CDname$;
 	mes "FABULOUS!!!FANTASTIC!!!OUTSTANDING!!!WONDERFUL!!!SUPER!!!";
+	mes "Warning: Clown & Gypsy is not supported!";
 	mes "This operation requires 5M zeny";
 	mes "And I'll do it now";
 	next;
@@ -58,7 +59,7 @@ CD_blastoff:
 	next;
 	if(Zeny < @CDzeny) goto CD_zeny;
 	set Zeny, Zeny - @CDzeny;
-	atcommand  @CDsymbol$ + "changesex ";
+	atcommand  @CDsymbol$ + "changecharsex ";
 	mes @CDname$;
 	mes "Ok the surgery will begin, you will log off and please relog in again.";
 	nude;

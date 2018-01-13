@@ -17,7 +17,7 @@
 // 1.4.4 Added Quest delay
 //============================================================
 
-poring_w02,112,78,5	script	Questboard	857,{
+poring_w02,112,78,5	script	Weekly Quest	857,{
 		
 	if(c_run==1){
 		mes "[^FF7700Questboard^000000]";

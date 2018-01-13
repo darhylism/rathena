@@ -19,7 +19,6 @@
 //    Item cost, in cash points (#CASHPOINTS).
 
 
-0,35050,2000
 0,18878,30000
 0,6224,40
 0,6223,150

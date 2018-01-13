@@ -23,7 +23,7 @@ prontera,151,187,4	script	Pioneer	125,{
 
 	if ( BaseLevel < .max_base_level || JobLevel < .max_job_level ) {
 		mes "[ ^00FF00Race Up to Max^000000 ]";
-		mes "We're sorry you are not qualified yet on this event, please come back when you are base level is "+.max_base_level+" and job level is "+.max_job_level+".";
+		mes "We're sorry you are not qualified yet on this event, please come back when you are base level is 'atleast' "+.max_base_level+" and job level is "+.max_job_level+".";
 		close;
 	}
 	

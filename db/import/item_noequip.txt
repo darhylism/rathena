@@ -28,3 +28,4 @@
 // 519,322  // Milk can't be consumed in PVP and maps marked as 'restricted zone 2' or 'restricted zone 4' (256+64+2)
 // 519,-2   // Unset `restricted in PVP` flag from Milk. Making it usable in PVP again.
 
+602,6	//Wing_Of_Butterfly

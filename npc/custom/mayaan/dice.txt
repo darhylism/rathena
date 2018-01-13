@@ -155,7 +155,7 @@ L_start:
 	if(getmapusers("quiz_01") == 0) goto L_None;
 	if(getmapusers("quiz_01") > 1) {
 	set $@number, rand(1,4);
-	sleep2 30000;
+	sleep 30000;
 	donpcevent "evnt#1::OnEnable";
 	announce "Dice: Winning number "+$@number+".",0;
 	if(($@number != 1) && ($@number != 2) && ($@number != 3)) goto L_Lose1;
