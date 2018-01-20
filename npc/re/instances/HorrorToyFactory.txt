@@ -1161,8 +1161,8 @@ OnStart:
 	'celene_id = $@mobid[0];
 	monster 'xm_d_map$,226,190, "Kimi's Phantom",2997,1, .@event$;// G_XM_CELINE_KIMI
 	'phantom_id = $@mobid[0];
-	setunitdata 'celene_id, UMOB_HP,30000000;
-	setunitdata 'phantom_id,UMOB_HP,30000000;
+	setunitdata 'celene_id, UMOB_HP,20000000;
+	setunitdata 'phantom_id,UMOB_HP,20000000;
 
 	unittalk 'celene_id, "I don't want to be deserted. I don't want to be abandoned.";
 	initnpctimer;

@@ -71,5 +71,5 @@ mora,58,132,4	duplicate(PVP)	PVP#26	1007
  
 // Mapflags
 guild_vs3	mapflag	pvp
-guild_vs3	mapflag	pvp_noparty
+//guild_vs3	mapflag	pvp_noparty
 guild_vs3	mapflag	pvp_noguild

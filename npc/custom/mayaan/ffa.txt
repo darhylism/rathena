@@ -19,7 +19,7 @@ if(getmapusers("guild_vs5") != 1)
 		announce "Free for all winner : "+ strcharinfo(0) +"", bc_all, "0xFFCE00";
 		#PVPPOINTS += 20;
 		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
-		getitem 7621,5; // Reward 5pcs Token of siegfried
+		getitem 13600,1; // Reward 5pcs Token of siegfried
 		warp "prontera", 156,149;
 		end;
 	}

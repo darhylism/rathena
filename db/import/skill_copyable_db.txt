@@ -50,10 +50,10 @@
 //	Acid Demonstration can only be copied by Stalker/Trans. Shadow Chaser with Plagiarism or Reproduce.
 //	This mode simulates the previous battle config, which allowed only Trans. classes to copy Trans. skills.
 
-CR_DEVOTION,3 //Sacrifice
-HW_NAPALMVULCAN,3 //Napalm Vulcan
-HW_MAGICCRASHER,3 //Magic Crasher
-
+PA_SACRIFICE,3,10 //Sacrifice
+HW_NAPALMVULCAN,3,10//Napalm Vulcan
+HW_MAGICCRASHER,3,10//Magic Crasher
+CR_ACIDDEMONSTRATION,3,10 //Acid Demo
 
 
 
