@@ -27,3 +27,4 @@
 //    u1   u2 lay  r intr target  flag
 //
 
+229,0xb1,    ,  0, 1,1000,enemy, 0x004	//AM_DEMONSTRATION

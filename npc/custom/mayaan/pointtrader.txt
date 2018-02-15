@@ -1,0 +1,59 @@
+prontera,147,170,3	script	Points Trader	719,{
+    set @name$,"^FF0000Trader^000000";
+    mes @name$;
+    mes "What do you want to do?";
+    next;
+    switch(select("Information","Convert")) {
+        case 1:
+            mes @name$;
+            mes "I can convert your Silvervine Fruit & MVP Points into Hourly Points.";
+            mes "1 Silvervine = 5 Hourly Points";
+			mes "1 Mvp Point = 20 Hourly Points";
+            close;
+        case 2:
+            switch(select("Silvervine to HRPOINT","MVPPOINT to HRPOINT")) {
+             case 1:
+              mes @name$;
+              mes "How many Silvervine Fruit you want to convert?";
+              input .@item_count ;
+              if( .@item_count == 0 ) close;
+                    if (countitem(6417) < (.@item_count)) goto noTCG;
+                    delitem 6417,(.@item_count);
+					#HR_COIN += (.@item_count*5);
+                    next;
+                    mes @name$;
+              mes "There you go! You got a total of " + #HR_COIN + " Hourly Points.  Hope to see you again!";
+                    close;
+
+			case 2:
+              mes @name$;
+              mes "How many Mvp points you want to convert?";
+              input .@item_count;
+              if( .@item_count == 0 ) close;
+                    if ((#MVPPOINTS) < (.@item_count)) goto noPods;
+                    #MVPPOINTS -= (.@item_count);
+					#HR_COIN += (.@item_count*20);
+                    next;
+              mes @name$;
+                    mes "There you go! You got a total of " + #HR_COIN + " Hourly. Hope to see you again!";
+                    close;
+    }
+            }
+OnInit:
+        waitingroom "POINTS TRADER",0;  // WITH WAITING ROOM
+end;
+
+noPODS:
+    next;
+    mes @name$;
+    mes "I'm Sorry but you don't have enough Mvp Points.";
+    close;
+
+noTCG:
+    next;
+    mes @name$;
+    mes "I'm Sorry you don't have enough Silvervine Fruit";
+    close;
+}
+
+ma_in01,27,83,4	duplicate(Points Trader)	Points Trader#1	719

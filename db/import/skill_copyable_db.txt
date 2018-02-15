@@ -54,8 +54,10 @@ PA_SACRIFICE,3,10 //Sacrifice
 HW_NAPALMVULCAN,3,10//Napalm Vulcan
 HW_MAGICCRASHER,3,10//Magic Crasher
 CR_ACIDDEMONSTRATION,3,10 //Acid Demo
-
-
+PA_PRESSURE,3,10 //Pressure
+ASC_METEORASSAULT,3,10 // Meteor Assault
+ASC_BREAKER,3,10 // Soul Destroyer
+CH_PALMSTRIKE,3,10 // Champion Palm Push Strike
 
 
 

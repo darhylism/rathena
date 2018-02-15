@@ -34,3 +34,7 @@
 601,2	//Wing_Of_Fly
 601,4	//Wing_Of_Fly
 601,8	//Wing_Of_Fly
+
+2629,2	//Megingjorde
+2629,4	//Megingjorde
+2629,8	//Megingjorde

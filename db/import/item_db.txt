@@ -6,8 +6,11 @@
 
 //Official items that have changed effect
 4142,Doppelganger_Card,Doppelganger Card,6,20,,10,,,,,,,,2,,,,,{ bonus bAspdRate,30; },{},{}
-1530,Mjolnir,Mjolnir,5,20,,6000,250,,1,0,0xFFFFFFFF,7,2,2,4,95,0,8,{ bonus bAtkEle,Ele_Wind; bonus bDex,40; bonus bStr,15; bonus bAspdRate,25; bonus bUnbreakableWeapon,0; },{},{}
+1530,Mjolnir,Mjolnir,5,20,,6000,250,,1,0,0xFFFFFFFF,7,2,2,4,95,0,8,{ bonus bAtkEle,Ele_Wind; bonus bDex,40; bonus bStr,15; bonus bAspdRate,30; bonus bUnbreakableWeapon,0; },{},{}
 4128,Golden_Bug_Card,Golden Thief Bug Card,6,20,,10,,,,,,,,32,,,,,{ bonus bNoMagicDamage,50; bonus bUseSPrate,100; bonus2 bResEff,Eff_Freeze,10000; bonus2 bResEff,Eff_Silence,10000; },{},{}
+4425,Atroce_Card,Atroce Card,6,20,,10,,,,,,,,2,,,,,{ bonus bBaseAtk,25; autobonus "{ bonus bAspdRate,150; }",10,10000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; },{},{}
+4399,Thanatos_Card,Memory of Thanatos Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,WS_CARTTERMINATION,-15; bonus bDefRatioAtkClass,Class_All; bonus bSPDrainValue,-1; bonus bDef,-30; bonus bFlee,-30; },{},{}
+
 
 
 //Custom ETC
@@ -35,7 +38,7 @@
 
 
 //weapon bow
-1749,Quincy_Bow,Quincy_Bow,5,2500,,600,160,,5,4,0x000A0848,63,2,34,1,4,1,11,{ bonus2 bAddEle,7,25; bonus bCritical,15; bonus bDex,15; bonus bAspd,7; },{},{}
+1749,Quincy_Bow,Quincy_Bow,5,2500,,600,160,,5,4,0x000A0848,63,2,34,1,4,1,11,{ bonus2 bAddEle,Ele_Ghost,25; bonus bCritical,15; bonus bDex,15; bonus bAspd,7; },{},{}
 35051,begi_bow,Begginer Bow,5,2500,,600,160,,5,0,0x000A0849,63,2,34,1,1,0,11,{ bonus bDex,15; bonus bAspdRate,90; bonus2 bAddClass,Class_All,40; },{},{}
 
 //weapon wand
@@ -45,7 +48,7 @@
 13184,Deadeye,Deadeye,5,,,150,77,,13,1,0x41000000,63,2,34,4,1,1,18,{bonus2 baddEff,Eff_Bleeding,5000; bonus bIgnoreDefRace,11; bonus bIgnoreDefRace,10; bonus bSpeedRate,-25; bonus bHit,50; skill 127,1; skill 130,2; skill 5,7; bonus2 bSkillAtk,512,400;},{},{}
 13185,Cutlass,Cutlass,5,,,80,50,,9,3,0x41000000,63,2,34,4,1,1,17,{ bonus bUseSPrate,50; bonus2 baddEff,Eff_Blind,500; bonus bIgnoreDefRace,RC_All; bonus2 bSkillAtk,516,70; bonus2 bSPDrainRate,20,10; bonus2 bSPVanishRate,20,5; },{},{}
 13186,Havoc,Havoc,5,,,400,150,,9,4,0x41000000,63,2,34,4,1,1,19,{ bonus3 bAutoSpellWhenHit,249,5,1000; bonus bSpeedRate,-70; bonus bNoSizeFix,0; bonus2 baddEff,Eff_Stun,3000; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,50; bonus bUnstripableWeapon,100; },{},{}
-13187,Sweeper,Sweeper,5,,,200,150,,9,3,0x41000000,63,2,34,4,1,1,20,{ bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus2 bAddEle,8,20; },{},{}
+13187,Sweeper,Sweeper,5,,,200,150,,9,3,0x41000000,63,2,34,4,1,1,20,{ bonus bSplashRange,2; skill 5,7; bonus3 bAutoSpellWhenHit,249,5,1000; bonus2 baddEff,Eff_Silence,500; bonus bUseSPrate,200; bonus2 bSkillAtk,520,200; bonus2 bSkillAtk,519,30; bonus2 bAddEle,Ele_Ghost,35; },{},{}
 
 //custom wing,headgears etc...
 35005,Dark_Angel,Dark_Angel,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1690,{bonus bStr,+5;bonus bVit,+5;},{},{}

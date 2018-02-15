@@ -3410,7 +3410,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 	switch(skill_id) {
 		case SM_BASH:
 		case MS_BASH:
-			skillratio += 30 * skill_lv;
+			skillratio += 40 * skill_lv;
 			break;
 		case SM_MAGNUM:
 		case MS_MAGNUM:
@@ -3705,7 +3705,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 #ifdef RENEWAL
 			skillratio += 30 * skill_lv;
 #else
-			skillratio += 20 * (skill_lv - 1);
+			skillratio += 80 + 20 * skill_lv;
 #endif
 			break;
 #ifdef RENEWAL
