@@ -20,18 +20,18 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
-1198,9,100	// Buster Sword
+1198,1,100	// Buster Sword
 1650,9,100	// Almighty Staff
-1749,9,100	// Quincy_Bow
+1749,1,100	// Quincy_Bow
 7179,329,100	// Donation_Card
 12884,9,100	// Infinite_Concentration_Potion
 12885,9,100	// Infinite_Awakening_Potion
 12886,9,100	// Infinite_Berserk_Potion
 12887,9,100	// C_Wing_Of_Fly
-13184,9,100	// Deadeye
-13185,9,100	// Cutlass
-13186,9,100	// Havoc
-13187,9,100	// Sweeper
+13184,1,100	// Deadeye
+13185,1,100	// Cutlass
+13186,1,100	// Havoc
+13187,1,100	// Sweeper
 13810,475,100	// Blue_Potion_Box
 14158,473,100	// F_Bubble_Gum_Box
 14178,473,100	// F_Token_Of_Siegfried_Box
@@ -40,47 +40,47 @@
 14215,473,100	// F_Bubble_Gum_Box1
 14216,473,100	// F_Bubble_Gum_Box5
 14545,475,100	// Battle_Manual_X3
-35000,9,100	// Giant_Sting_Card
-35001,9,100	// Giant_Thara_Frog_Card
-35002,9,100	// Giant_Crusier_Card
-35003,9,100	// Flamring_Card
-35004,9,100	// Shadow Poring_Card
-35005,9,100	// Dark_Angel
-35006,9,100	// Arch_Angel
+35000,1,100	// Giant_Sting_Card
+35001,1,100	// Giant_Thara_Frog_Card
+35002,1,100	// Giant_Crusier_Card
+35003,1,100	// Flamring_Card
+35004,1,100	// Shadow Poring_Card
+35005,1,100	// Dark_Angel
+35006,1,100	// Arch_Angel
 35007,9,100	// Omega_Arch_Demon
 35008,9,100	// Omega_Arch_Angel
-35009,9,100	// Moobert_Hat
-35010,9,100	// Moonlight_Hat
-35011,9,100	// Archdemon_Wing
-35012,9,100	// Catoninetails_hat
-35013,9,100	// Elf_King_Ears
-35014,9,100	// Hood_of_Death
-35015,9,100	// Face_of_Death
-35016,9,100	// Kakashi_Head_Protector
-35017,9,100	// Twin_Bunnies_Hat
-35018,9,100	// Heart_Sunglasses
-35019,9,100	// Bowser_Shell
+35009,1,100	// Moobert_Hat
+35010,1,100	// Moonlight_Hat
+35011,1,100	// Archdemon_Wing
+35012,1,100	// Catoninetails_hat
+35013,1,100	// Elf_King_Ears
+35014,1,100	// Hood_of_Death
+35015,1,100	// Face_of_Death
+35016,1,100	// Kakashi_Head_Protector
+35017,1,100	// Twin_Bunnies_Hat
+35018,1,100	// Heart_Sunglasses
+35019,1,100	// Bowser_Shell
 35020,9,100	// Crimson_Red_Arch_Angel_Wing
 35021,9,100	// Aristocratic_Arch_Angel_Wing
 35022,9,100	// Rinnegan
 35023,9,100	// Byakugan
 35024,9,100	// Shinigami
 35025,9,100	// Sharingan
-35026,9,100	// Dj Headset
-35027,9,100	// state alchemist pocket watch
-35028,9,100	// Haruhi Ribbons
-35029,9,100	// Alucard Sunglasses
-35030,9,100	// Pikachu Ears
-35031,9,100	// False Apprentice
-35032,9,100	// Costum of Youth
+35026,1,100	// Dj Headset
+35027,1,100	// state alchemist pocket watch
+35028,1,100	// Haruhi Ribbons
+35029,1,100	// Alucard Sunglasses
+35030,1,100	// Pikachu Ears
+35031,1,100	// False Apprentice
+35032,1,100	// Costum of Youth
 35033,9,100	// summer_vacation_suit
 35034,9,100	// Wedding Suit
-35035,9,100	// ....suit
-35036,9,100	// Black_Tie
-35037,9,100	// Blue_Tie
-35038,9,100	// Cygnus Helm
-35039,9,100	// Piamette_Headband
-35040,9,100	// Chii Ears
+35035,1,100	// ....suit
+35036,1,100	// Black_Tie
+35037,1,100	// Blue_Tie
+35038,1,100	// Cygnus Helm
+35039,1,100	// Piamette_Headband
+35040,1,100	// Chii Ears
 35041,9,100	// vendetta
 35042,9,100	// Music Ring
 35043,9,100	// Wise Valkyrie Helm

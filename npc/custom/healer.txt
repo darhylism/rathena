@@ -80,6 +80,7 @@ xmas,143,136,4	duplicate(Healer)	Healer#xmas	909
 yuno,164,45,4	duplicate(Healer)	Healer#yuno	909
 poring_w02,116,82,4	duplicate(Healer)	Healer#poring1	909
 poring_w02,80,82,4	duplicate(Healer)	Healer#poring2	909
+mall01,97,90,4	duplicate(Healer)	Healer#mall01	909
 
 // Duplicates (Renewal)
 //============================================================

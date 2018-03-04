@@ -116,8 +116,6 @@ OnPCDieEvent:
 	{
 		set #kill_point, 0;
 		announce ""+strcharinfo(0)+" died, and out of FFA!.",bc_all;
-		#PVPPOINTS += 5;
-		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
 		warp "poring_w02",99,72;
 		end;
 	}

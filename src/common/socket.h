@@ -112,7 +112,7 @@ enum gepard_internal_packets
 
 void gepard_config_read();
 void gepard_init(int fd, uint16 packet_id);
-void gepard_send_info(int fd, unsigned short info_type, char* message);
+void gepard_send_info(int fd, unsigned short info_type, const char* message);
 bool gepard_process_packet(int fd, uint8* packet_data, uint32 packet_size, struct gepard_crypt_link* link);
 void gepard_enc_dec(uint8* in_data, uint8* out_data, unsigned int data_size, struct gepard_crypt_link* link);
 

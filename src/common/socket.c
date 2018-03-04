@@ -2050,7 +2050,7 @@ void gepard_enc_dec(uint8* in_data, uint8* out_data, uint32 data_size, struct ge
 	}
 }
 
-void gepard_send_info(int fd, unsigned short info_type, char* message)
+void gepard_send_info(int fd, unsigned short info_type, const char* message)
 {
 	int message_len = strlen(message) + 1;
 	int packet_len = 2 + 2 + 2 + message_len;

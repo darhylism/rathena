@@ -10,7 +10,7 @@
 4128,Golden_Bug_Card,Golden Thief Bug Card,6,20,,10,,,,,,,,32,,,,,{ bonus bNoMagicDamage,50; bonus bUseSPrate,100; bonus2 bResEff,Eff_Freeze,10000; bonus2 bResEff,Eff_Silence,10000; },{},{}
 4425,Atroce_Card,Atroce Card,6,20,,10,,,,,,,,2,,,,,{ bonus bBaseAtk,25; autobonus "{ bonus bAspdRate,150; }",10,10000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; },{},{}
 4399,Thanatos_Card,Memory of Thanatos Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,WS_CARTTERMINATION,-15; bonus bDefRatioAtkClass,Class_All; bonus bSPDrainValue,-1; bonus bDef,-30; bonus bFlee,-30; },{},{}
-
+1544,Lunakaligo,Lunakaligo,5,20,,700,110,,1,3,0x00008110,2,2,2,3,50,1,8,{ if(readparam(bStr)>=77) { bonus bAspdRate,5; bonus2 bAddEff,Eff_Stun,1500; bonus3 bAddMonsterDropItem,12065,RC_Plant,500; bonus3 bAddMonsterDropItem,12043,RC_Brute,500; bonus3 bAddMonsterDropItem,12069,RC_Fish,500; } },{},{}
 
 
 //Custom ETC

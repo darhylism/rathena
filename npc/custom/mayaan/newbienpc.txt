@@ -1,4 +1,9 @@
 -	script	Sprakki#newbe05::NvSprakkiB	-1,{
+if( !Class ){
+	mes "Talk to job changer first";
+	mes "and change your job!.";
+	close;
+}else{
 	if (job_novice_q == 0) {
 		mes "[Sprakki]";
 		mes "Hello there! Welcome to the World of Ragnarok Online.";
@@ -37,17 +42,11 @@
 			mes "Great!";
 			mes "Now you know how to move and talk to others, right?";
 			set job_novice_q,2;
-			getexp 600,5;
 			completequest 7117;
 			next;
 		}
 		mes "[Sprakki]";
-		mes "The Training Center is prepared for novices just like you.";
-		mes "You are going to be trained to get used to the basics of the Game.";
-		next;
-		mes "[Sprakki]";
-		mes "Of course, this Training Process is optional, if you want to go straight to town, that's also fine.";
-		mes "But, you will miss all the advantages you can get in the Training Center.";
+		mes "Now you are ready!.";
 		next;
 		menu 
 		"Start the game right away",I_RAK,
@@ -59,44 +58,40 @@
 			mes "I see that you're new here so to help you out";
 			mes "I'd like to give you these";
 			mes "items as a gift to show how much we appreciate you here!";
-			mes "^0a6cdb Field Manual^000000 (10x)";
-			mes "^0a6cdb Bubble Gum^000000 (5x)";
-			mes "^0a6cdb Beginner Bow^000000 (5x)";
-			mes "^0a6cdb Beginner Sword^000000 (5x)";
-			mes "^0a6cdb Beginner Mace^000000 (5x)";
-			mes "^0a6cdb Hourly Points^000000 (50x)";
-			mes "^0a6cdb Novice Potion^000000 (300x)";
-			mes "^0a6cdb Novice Fly Wing^000000(20x)";
-			mes "^0a6cdb Novice Butter Fly Wing^000000(20x)";
 			getitem	14545,10; // Field Manual
 			getitem	12210,5; // Bubble Gum
 			getitem	35048,1; // Bound Doppelganger Card
-			getitem	569,300; // Novice Potion
-			getitem	12323,20; // Novice Fly Wing
-			getitem	12324,20; // Novice Butter Fly Wing
+			getitem	677,5;
+			getitembound 35005,1,Bound_Account;
+			getitembound 35006,1,Bound_Account;
+			getitembound 35009,1,Bound_Account;
+			getitembound 35010,1,Bound_Account;
+			getitembound 35011,1,Bound_Account;
+			getitembound 35012,1,Bound_Account;
+			getitembound 35013,1,Bound_Account;
+			getitembound 35014,1,Bound_Account;
+			getitembound 35015,1,Bound_Account;
+			getitembound 35027,2,Bound_Account;
+			getitembound 35029,1,Bound_Account;
+			getitembound 35030,1,Bound_Account;
 			rentitem 35051,1209600; // Beginner Bow
 			rentitem 35052,1209600; // Beginner Sword
 			rentitem 35053,1209600; // Beginner Mace
-			#HR_COIN += 50;
+			#HR_COIN += 70;
 			dispbottom "You now have " +#HR_COIN+ " Hourly points.";
 			set #newaccount,1;
 			close2;
-			savepoint "poring_w02",99,66,1,1;
+			savepoint "mall01",100,82,1,1;
 			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-			warp "poring_w02",99,66;
+			warp "mall01",100,82;
 			end;
 			} 
 			if ( #newaccount==1 ){
 			mes "[ ^f90366Sprakki^000000 ]";
-			mes "I understand.";
 			mes "Please do your";
 			mes "best, and I wish you";
 			mes "the best of luck!";
 			close2;
-			getitem	14545,3; // Field Manual
-			getitem	569,300; // Novice Potion
-			getitem	12323,20; // Novice Fly Wing
-			getitem	12324,20; // Novice Butter Fly Wing
 			set nov_1st_cos,0;
 			set nov_2nd_cos,0;
 			set nov_3_swordman,0;
@@ -105,9 +100,9 @@
 			set nov_3_magician,0;
 			set nov_3_acolyte,0;
 			set nov_3_merchant,0;
-			savepoint "poring_w02",99,66,1,1;
+			savepoint "mall01",100,82,1,1;
 			announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
-			warp "poring_w02",99,66;
+			warp "mall01",100,82;
 			end;
 			I_NORAK:
 			mes "[Training Grounds Receptionist]";
@@ -117,6 +112,56 @@
 		}
 	} 
 	}
+}
+
+
+-	script	Jobra#newbe05::JobravB	-1,{
+if( Class ){
+	mes "Only Novice can use this...";
+}else{
+	.@i = select( .Menu$ ) - 1;
+	if( select( "Change to "+jobname( .JobList[.@i] )+"?:Cancel" ) == 1 ){
+		jobchange .JobList[.@i];
+		BaseLevel = .BaseLevel;
+		JobLevel = .JobLevel;
+		resetskill;
+		resetstatus;
+		statusup2 bStr,99;
+		statusup2 bVit,99;
+		statusup2 bInt,99;
+		statusup2 bAgi,99;
+		statusup2 bDex,99;
+		statusup2 bLuk,99;
+		SkillPoint = .SkillPoints;
+		mes "DONE";
+//		for( .@i = 0; .@i < .size; .@i++ )
+//			getitem .ItemList[.@i],.Amount[.@i];
+	}
+}
+close;
+
+
+OnInit:
+setarray .JobList[0],4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020,4021,24,25,4047,4049,23,4030,4031,4032,4033,4034,4035,4037,4038,4039,4040,4041,4042,4044;
+//setarray .ItemList[0],501,607,608;
+//setarray .Amount[0],1,2,3;
+.BaseLevel = 255;
+.JobLevel = 80;
+.SkillPoints = 140;
+
+.@size = getarraysize( .JobList );
+.size = getarraysize( .ItemList );
+for( .@i = 0; .@i < .@size; .@i++ )
+	.Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
+waitingroom "Job Changer",0;
+end;
+}
+
+new_1-2,103,22,4	duplicate(JobravB)	Jobra#nv1b	757
+new_2-2,103,22,4	duplicate(JobravB)	Jobra#nv2b	757
+new_3-2,103,22,4	duplicate(JobravB)	Jobra#nv3b	757
+new_4-2,103,22,4	duplicate(JobravB)	Jobra#nv4b	757
+new_5-2,103,22,4	duplicate(JobravB)	Jobra#nv5b	757
 	
 new_1-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv1b	90
 new_2-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv2b	90

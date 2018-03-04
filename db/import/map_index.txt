@@ -18,3 +18,4 @@
 //mymap-2
 
 Askydun 1250
+mall01 1251

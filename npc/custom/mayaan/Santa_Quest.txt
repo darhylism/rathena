@@ -42,7 +42,7 @@ OnInit:
 	set .Announce,1;	// Announce quest completion? (1: yes / 0: no)
 	set .ShowSlot,1;	// Show item slots? (2: all equipment / 1: if slots > 0 / 0: never)
 	set .ShowID,1;  	// Show item IDs? (1: yes / 0: no)
-	set .ShowZeny,1;	// Show Zeny cost, if any? (1: yes / 0: no)
+	set .ShowZeny,0;	// Show Zeny cost, if any? (1: yes / 0: no)
 	set .MaxStack,100;	// Max number of quest items purchased at one time.
 
 // -----------------------------------------------------------
@@ -50,7 +50,7 @@ OnInit:
 //	setarray .Points$[0],"<variable name>","<display name>";
 // -----------------------------------------------------------
 
-	setarray .Points$[0],"#PVPPOINTS","Pvp Points";
+	setarray .Points$[0],"#HR_COIN","Hourly Points";
 
 // -----------------------------------------------------------
 //  Shop IDs -- to add shops, copy dummy data at bottom of file.
@@ -66,24 +66,36 @@ OnInit:
 //	    <required item ID>,<required item amount>{,...});
 // -----------------------------------------------------------
 	
-
-	Add(1,35029,1,0,0,4104,5,4020,5,4076,2,7019,5,5047,1,4134,1); //alucard
-	Add(1,35040,1,0,0,7047,200,2286,1,1049,50,999,10); //chii_ears
-	Add(1,35015,1,0,0,4168,3,932,666,604,100,4086,5,2652,2,1476,10); //face_of_death
-	Add(1,35014,1,0,0,1466,13,4189,13,1097,666,1059,200,932,300); //hood_of_death
-	Add(1,35016,1,0,0,5005,1,2287,1,999,50,618,50); //kakashi_head_protector
-	Add(1,35018,1,0,0,2201,1,2203,1,2243,1,5006,1,5041,1,975,100,724,100); //heart_sunglasses
-	Add(1,35012,1,0,0,1006,200,7117,50,4290,1,2231,1,2409,10,5003,5,7293,2); //cat_o_ninetails
-	Add(1,35010,1,0,0,7064,800,4131,8,2254,3,2337,4,35016,1); //moonlight_hat
-	Add(1,35009,1,0,0,4055,200,7066,500,991,1,4266,1); //moobert_hat
-	Add(1,1749,1,0,0,5086,1,2297,1,5090,1,5088,1,5087,1,5089,1,2278,1,2288,1,1757,5000,1764,2000,2626,1); //quincy_bow
-	Add(1,35026,1,0,0,705,300,1902,4,2233,1,1917,1); //dj_headset
-//	Add(1,35042,1,0,333,705,500,706,500,1902,5,1910,50,2233,1,1917,1,4211,1,2283,1); //Music Ring
-	Add(1,35027,1,0,0,7277,1,7021,100,1095,200,618,200,1097,200); //state_alchemist_pocket_watch
-	Add(1,35028,1,0,0,2225,5,4131,10,756,50,7166,200,5085,1,2223,1); //haruhi_ribbons
-	Add(1,35030,1,0,0,992,150,996,150,1556,1,4264,10,2213,2); //pikachu_ears
-	Add(1,35039,1,0,0,738,25,2258,1,7054,100,7053,100,990,300); //piamette_headband
-	Add(1,35017,1,0,0,2214,2,706,100,1059,200,515,200,622,200,914,700,705,300); //double_bunny_ears
+	Add(1,35000,1,0,10,677,1);
+	Add(1,35001,1,0,10,677,1);
+	Add(1,35002,1,0,10,677,1);
+	Add(1,35003,1,0,10,677,1);
+	Add(1,1198,1,0,50,677,5);
+	Add(1,13184,1,0,50,677,5);
+	Add(1,13185,1,0,50,677,5);
+	Add(1,13186,1,0,50,677,5);
+	Add(1,13187,1,0,50,677,5);
+	Add(1,35005,1,0,10,677,5);
+	Add(1,35006,1,0,10,677,5);
+	Add(1,35011,1,0,10,677,5);
+	
+	
+	Add(1,35029,1,0,50,677,5); //alucard
+	Add(1,35040,1,0,50,677,5); //chii_ears
+	Add(1,35015,1,0,50,677,5); //face_of_death
+	Add(1,35014,1,0,50,677,5); //hood_of_death
+	Add(1,35016,1,0,10,677,5); //kakashi_head_protector
+	Add(1,35018,1,0,50,677,5); //heart_sunglasses
+	Add(1,35012,1,0,50,677,5); //cat_o_ninetails
+	Add(1,35010,1,0,50,677,5); //moonlight_hat
+	Add(1,35009,1,0,50,677,5); //moobert_hat
+	Add(1,1749,1,0,50,677,5); //quincy_bow
+	Add(1,35026,1,0,50,677,5); //dj_headset
+	Add(1,35027,1,0,50,677,5); //state_alchemist_pocket_watch
+	Add(1,35028,1,0,50,677,5); //haruhi_ribbons
+	Add(1,35030,1,0,50,677,5); //pikachu_ears
+	Add(1,35039,1,0,50,677,5); //piamette_headband
+	Add(1,35017,1,0,50,677,5); //double_bunny_ears
 //	Add(1,NOID,1,77777777,0,7563,300,7511,300,29001,1,5045,1,7117,100,618,10,7751,100); //rune_of_prophecies
 
 // -----------------------------------------------------------
@@ -233,3 +245,6 @@ function	script	sanshop	{
 -	shop	sanshop3	-1,909:-1
 -	shop	sanshop4	-1,909:-1
 -	shop	sanshop5	-1,909:-1
+
+
+mall01,105,99,4	duplicate(Santa Quest)	Santa Quest#Mall01	4_M_SANTA

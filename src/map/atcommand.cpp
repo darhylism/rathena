@@ -10030,8 +10030,8 @@ ACMD_FUNC(gepard_block_nick)
 	char reason_str[GEPARD_REASON_LENGTH];
 	char unban_time_str[GEPARD_TIME_STR_LENGTH];
 	char violator_name[NAME_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_nick <duration> <duration_type m/h/d> \"<char name>\" <reason>)";
-
+	char duration_type;
+	const char* command_info = "Wrong input (usage: @gepard_block_nick <duration> <duration_type m/h/d> \"<char name>\" <reason>)";
 	nullpo_retr(-1, sd);
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
@@ -10096,7 +10096,8 @@ ACMD_FUNC(gepard_block_account_id)
 	unsigned int violator_unique_id = 0;
 	char reason_str[GEPARD_REASON_LENGTH];
 	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_account_id <duration> <duration_type m/h/d> <account ID> <reason>)";
+	char duration_type;
+	const char* command_info = "Wrong input (usage: @gepard_block_account_id <duration> <duration_type m/h/d> <account ID> <reason>)";
 
 	nullpo_retr(-1, sd);
 
@@ -10160,7 +10161,8 @@ ACMD_FUNC(gepard_block_unique_id)
 	unsigned int violator_unique_id = 0;
 	char reason_str[GEPARD_REASON_LENGTH];
 	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type, *command_info = "Wrong input (usage: @gepard_block_unique_id <duration> <duration_type m/h/d> <unique ID> <reason>)";
+	char duration_type;
+	const char* command_info = "Wrong input (usage: @gepard_block_unique_id <duration> <duration_type m/h/d> <unique ID> <reason>)";
 
 	nullpo_retr(-1, sd);
 
@@ -10212,7 +10214,7 @@ ACMD_FUNC(gepard_block_unique_id)
 ACMD_FUNC(gepard_unblock_nick)
 {
 	char violator_name[NAME_LENGTH];
-	char* command_info = "Wrong input (usage: @gepard_unblock_nick <char name>)";
+	const char* command_info = "Wrong input (usage: @gepard_unblock_nick <char name>)";
 
 	nullpo_retr(-1, sd);
 
@@ -10234,7 +10236,7 @@ ACMD_FUNC(gepard_unblock_nick)
 ACMD_FUNC(gepard_unblock_account_id)
 {
 	int violator_aid;
-	char* command_info = "Wrong input (usage: @gepard_unblock_account_id <account ID>)";
+	const char* command_info = "Wrong input (usage: @gepard_unblock_account_id <account ID>)";
 
 	nullpo_retr(-1, sd);
 
@@ -10258,7 +10260,7 @@ ACMD_FUNC(gepard_unblock_account_id)
 ACMD_FUNC(gepard_unblock_unique_id)
 {
 	unsigned int violator_unique_id;
-	char* command_info = "Wrong input (usage: @gepard_unblock_unique_id <unique ID>)";
+	const char* command_info = "Wrong input (usage: @gepard_unblock_unique_id <unique ID>)";
 
 	nullpo_retr(-1, sd);
 
