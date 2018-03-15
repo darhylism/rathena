@@ -1,44 +1,107 @@
-prontera,147,170,3	script	Zeny2Cash	719,{
+prontera,147,170,3	script	Point Trader	719,{
     set @name$,"^FF0000Trader^000000";
     mes @name$;
     mes "What do you want to do?";
+	mes "~Zeny to Cashpoints.";
+	mes "~Silvervine fruit to Hunting Points.";
+	mes "~Mvp Point to Hunting Points.";
     next;
-    switch(select("Information","Convert")) {
+    switch(select("Information","Convert","Nothing")) {
         case 1:
             mes @name$;
-            mes "I can convert your Zeny to CASHPOINTS.";
-            mes "10,000,000(10M) Zeny = 100 CASHPOINTS.";
-			mes "But i only Accept Platinum Coins(10M).";
+			mes "I can convert:";
+            mes "~10m Zeny to 20 Cashpoints.";
+			mes "~1x Silvervine fruit to 10 Hunting Points.";
+			mes "~1x Mvp Point to 50 Hunting Points.";
             close;
-        case 2:
-			mes @name$;
-			mes "How many Platinum Coins you want to convert";
-			mes "to CASHPOINTS?";
-			input .@item_count;
-              if( .@item_count == 0 ) close;
-                    if (countitem(677) < (.@item_count)) goto noTCG;
-                    delitem 677,(.@item_count);
-					#CASHPOINTS += (.@item_count*100);
-                    next;
-			mes @name$;
-                    mes "There you go! You got a total of " + #CASHPOINTS + " Cashpoints. Hope to see you again!";
-                    close;
+			
+		case 2:
+			switch(select("Zeny2Cash","Silvervine to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
+				case 1:
+					mes @name$;
+					mes "How many Platinum Coins you want to convert";
+					mes "to CASHPOINTS?";
+					mes "10,000,000(10M) Zeny = 20 ^FF0000CASHPOINTS^000000.";
+					mes "But i only Accept Platinum Coins(10M).";
+					input .@item_count;
+					  if( .@item_count == 0 ) close;
+							if (countitem(677) < (.@item_count)) goto noTCG;
+							delitem 677,(.@item_count);
+							#CASHPOINTS += (.@item_count*20);
+							next;
+					mes @name$;
+							mes "There you go! You got a total of ^FF0000" + #CASHPOINTS + "^000000 Cashpoints. Hope to see you again!";
+							close;
+				case 2:
+					mes @name$;
+					mes "How many Silvervine Fruit you want to convert";
+					mes "to Hunting Points?";
+					mes "1x Silvervine Fruit = 10 ^FF0000HuntingPts^000000.";
+					input .@item_count;
+					  if( .@item_count == 0 ) close;
+							if (countitem(6417) < (.@item_count)) goto noTCG;
+							delitem 6417,(.@item_count);
+							#HUNTINGPOINTS += (.@item_count*10);
+							next;
+					mes @name$;
+							mes "There you go! You got a total of ^FF0000" + #HUNTINGPOINTS + "^000000 Hunting Points. Hope to see you again!";
+							close;
+				case 3:
+					mes @name$;
+					mes "How many Mvp Point you want to convert";
+					mes "to Hunting Points?";
+					mes "1x Mvp Point = 50 ^FF0000HuntingPts^000000.";
+					input .@item_count;
+					  if( .@item_count == 0 ) close;
+							if (#MVPPOINTS < (.@item_count)) goto noTCG;
+							#MVPPOINTS -= (.@item_count);
+							#HUNTINGPOINTS += (.@item_count*50);
+							next;
+					mes @name$;
+							mes "There you go! You got a total of ^FF0000" + #HUNTINGPOINTS + "^000000 Hunting Points. Hope to see you again!";
+							close;
+				default:
+				mes @name$;
+				mes "Bye.";
+						close;
+			}
+							
 
-		case 3:
+		default:
 			mes @name$;
 			mes "Bye.";
                     close;
             }
 OnInit:
-        waitingroom "Zeny to CASHPOINTS",0;  // WITH WAITING ROOM
+        waitingroom "Points Trader",0;  // WITH WAITING ROOM
 end;
 
 noTCG:
     next;
     mes @name$;
-    mes "I'm Sorry you don't have enough Platinum Coins.";
+    mes "I'm Sorry you don't have requirements.";
     close;
 }
 
-ma_in01,27,83,4	duplicate(Zeny2Cash)	Zeny2Cash#1	719
-poring_w02,96,78,4	duplicate(Zeny2Cash)	Zeny2Cash#2	719
+ma_in01,27,83,4	duplicate(Point Trader)	Point Trader#1	719
+poring_w02,96,78,4	duplicate(Point Trader)	Point Trader#2	719
+mall01,105,96,4	duplicate(Point Trader)	Point Trader#3	719
+
+mall01,105,102,4	script	Hunting Pshop#prtz	97,{
+	mes "[Boy]";
+	mes "I come from Valhalla to aid you.";
+	mes "what do you want to buy?.";
+	next;
+	switch(select("Let me see your items:Close")) {
+		case 1:
+			close2;
+			callshop "1shop#Pointz", 1;
+			end;
+		default:
+			close;
+	}
+}
+
+poring_w02,101,78,4	duplicate(Hunting Pshop#prtz)	Hunting Pshop#1	97
+
+-	pointshop	1shop#Pointz	-1,#HUNTINGPOINTS,35054:175,6224:40,6223:150,4399:4500,4357:3000,4359:3000,4361:3000,4363:3000,4365:3000,4367:3000,2554:3000

@@ -1,5 +1,5 @@
 -	script	MapRecall	-1,{
-    OnInit:        bindatcmd "maprecall",strnpcinfo(3)+"::OnMapRecall",99,99;
+    OnInit:        bindatcmd "maprecall",strnpcinfo(3)+"::OnMapRecall",50,50;
 	end;
     OnMapRecall:        if(getgmlevel()==0) end;
 	getmapxy .@map$,.@x,.@y,0;

@@ -37,7 +37,16 @@
 31020,30000,2993 //Malicious Baby Ghost Card
 31021,30000,2994 //Dancing Marionette Card
 31022,30000,2995 //Abandoned Teddy Bear Card
-6223,10
-6224,10
-6090,100 //Refined Bradium
-4399,30000
+6223,100
+6224,100
+6090,1000 //Refined Bradium
+4399,50000 //thanatos card
+
+4456,50000 //Nidhoggur Shadow Card
+2554,10000 //Nydhorgg's Shadow Garb
+4357,50000 //LK card
+4359,50000 //sinx card
+4361,50000 //mastersmith card
+4363,50000 //hp card
+4365,50000 //hw card
+4367,50000 //sniper card

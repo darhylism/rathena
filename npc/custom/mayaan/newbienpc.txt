@@ -119,6 +119,14 @@ if( !Class ){
 if( Class ){
 	mes "Only Novice can use this...";
 }else{
+
+
+.@size = getarraysize( .JobList );
+.size = getarraysize( .ItemList );
+for( .@i = 0; .@i < .@size; .@i++ )
+	.Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
+	
+	
 	.@i = select( .Menu$ ) - 1;
 	if( select( "Change to "+jobname( .JobList[.@i] )+"?:Cancel" ) == 1 ){
 		jobchange .JobList[.@i];
@@ -149,10 +157,6 @@ setarray .JobList[0],4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020
 .JobLevel = 80;
 .SkillPoints = 140;
 
-.@size = getarraysize( .JobList );
-.size = getarraysize( .ItemList );
-for( .@i = 0; .@i < .@size; .@i++ )
-	.Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
 waitingroom "Job Changer",0;
 end;
 }

@@ -1,9 +1,9 @@
 //===== rAthena Script =======================================
 //= Random Option NPC dealer
-//= GENERICCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+//= PREMIUUUUMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 //============================================================
 
-mall01,102,105,7	script	Poor Sebas	505,{
+mall01,98,105,7	script	Premium Sebas	586,{
 	goto NPC;
 end;
 
@@ -12,45 +12,45 @@ OnInit:
 //	RANDOM OPTION SETTING
 //==============================
 	set .OverWrite,1;	// Allows overwriting the already existing option enchantment ( 0 to disable )
-	set .FailRate,15;	// Sets fail chance
+	set .FailRate,0;	// Sets fail chance
 	set .MaxIndex,0;	// Maximum option slots ( default is 0 to 4 )
 	set .Wait,3;		// Progress bar delay in seconds
 end;
 
 NPC:
 disable_items;
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "Good day young fella!";
 	mes "I came from the land of";
 	mes "far far away to introduce the";
 	mes "amazing equipment ^FF0000random%^000000";
 	mes "option enchantment.";
 	next;
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "I can make any of your equipment";
 	mes "become more powerful";
 	mes "than its current condition...";
-	mes "For a prize of ^0000FF 1x Special Enchantment Ticket^000000,";
+	mes "For a prize of ^0000FF 1x Premium Special Enchantment Ticket^000000,";
 	mes "I will apply a ^FF0000Selected^000000";
 	mes "option enchantment on your";
 	mes "equipment. (^_^)";
 	next;
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "I forgot to tell you that";
-	mes "there is ^FF00005%^000000 chance";
+	mes "there is ^FF0000"+.FailRate+"%^000000 chance";
 	mes "that this process may ^FF0000FAIL^000000";
-	mes "and lose your equip along";
-	mes "with its card..."," ";
+	mes "because it is";
+	mes "^FF0000PREMIUM^000000!!..."," ";
 	next;
-	mes "[ Poor Sebas ]";
-	mes "Do you still want to take";
-	mes "the risk of enchanting with";
-	mes "^FF00005%^000000 chance to ^FF0000Fail^000000";
-	mes "and lose your equip along";
-	mes "with its card?";
+	mes "[ Premium Sebas ]";
+	mes "Do you still want to";
+	mes "enchant your equipment?";
+	mes "^FF0000PREMIUM^000000 enchant";
+	mes "increases its %value every try.";
+	mes "until its max!.";
 	next;
-	if(select("Nah! I don't want to...:^0000FFI'll Take the risk!  Enchant my equip!^000000")==1) goto OnCancel;
-	mes "[ Poor Sebas ]";
+	if(select("Nah! I don't want to...:^0000FFEnchant my equip!^000000")==1) goto OnCancel;
+	mes "[ Premium Sebas ]";
 	mes "Wonderful!";
 	mes "This process will take";
 	mes "about ^0000FF"+.Wait+"^000000 seconds...";
@@ -504,42 +504,42 @@ disable_items;
 				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Cancel")) {
 					case 1: //Fire Bolt
 						mes "Fire Bolt";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,2;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,194;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 2: //Cold Bolt
 						mes "Colt Bolt";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,2;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,195;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 3: //Lightning Bolt
 						mes "Lightning Bolt";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,4;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,196;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 4: // Storm Gust
 						mes "Storm Gust";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,197;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 5: //Meteor Storm
 						mes "Meteor Storm";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,198;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 6: //Lord of Vermillion
 						mes "Lord of Vermillion";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,199;
 						mes "Max Value is "+.@MaxValue+".";
@@ -560,42 +560,42 @@ disable_items;
 						goto ValueRand;
 					case 9: //Spiral Pierce
 						mes "Spiral Pierce";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,202;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 10: //Bowling Bash
 						mes "Bowling Bash";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,203;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 11: // Bash
 						mes "Bash";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,204;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 12: //Double Strafe
 						mes "Double Strafe";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,205;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 13: //Sharpshooting
 						mes "Sharpshooting";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,3;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,206;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 14: //Falcon Assault
 						mes "Falcon Assault";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,207;
 						mes "Max Value is "+.@MaxValue+".";
@@ -609,35 +609,35 @@ disable_items;
 						goto ValueRand;
 					case 16: //Holy Cross
 						mes "Holy Cross";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,209;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 17: //Grand Cross
 						mes "Grand Cross";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,3;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,210;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 18: //Finger Offensive
 						mes "Finger Offensive";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,3;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,211;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 19: //Asura Strike
 						mes "Asura Strike";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,3;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,212;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 20: //Soul Destroyer
 						mes "Soul Destroyer";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,2;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,213;
 						mes "Max Value is "+.@MaxValue+".";
@@ -679,28 +679,28 @@ disable_items;
 						goto ValueRand;
 					case 26: //Arrow Vulcan
 						mes "Arrow Vulcan";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,219;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 27: //Final Strike
 						mes "Final Strike";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,2;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,220;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 28: //Acid Demonstration
 						mes "Acid Demonstration";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,3;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,221;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 29: //Demonstration
 						mes "Demonstration";
-						set .@MinValue,1;	// Minimum option effect value
+						set .@MinValue,2;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,222;
 						mes "Max Value is "+.@MaxValue+".";
@@ -742,7 +742,7 @@ disable_items;
 if(!.OverWrite){
 	if(getequiprandomoption(.@part,0,ROA_ID,getcharid(0)))
 			next;
-			mes "[ Poor Sebas ]";
+			mes "[ Premium Sebas ]";
 			mes "What's this?";
 			mes "Are you kidding me?";
 			mes "Sorry you can only enchant once";
@@ -760,13 +760,13 @@ ValueRand:
 			if(.@MaxValue > .@optValue) {
 				mes "ddd! "+.@optID+" doo";
 				mes "check 22";
-				set .@val,rand(.@MinValue,.@MaxValue);
+				set .@val,rand(.@optValue,.@MaxValue);
 				goto Continue;
 			}
 				next;
 				mes "p[ps! "+.@optValue+" dzx";
 				mes "gss "+.@MaxValue+" dzx";
-				mes "[ Poor Sebas ]";
+				mes "[ Premium Sebas ]";
 				mes "Sorry,";
 				mes "Enchantment have already reached its max potential!";
 				close;
@@ -774,7 +774,7 @@ ValueRand:
 		}
 			next;
 			mes "zzzz! "+.@optID+" != "+.@opt+"zzzz";
-			mes "[ Poor Sebas ]";
+			mes "[ Premium Sebas ]";
 			mes "What's this?";
 			mes "Are you kidding me?";
 			mes "Sorry but the enchantment";
@@ -792,8 +792,8 @@ Continue:
 	progressbar "ffff00",.Wait;
 
 //Payment for refining
-		if (countitem(35054) < 1) goto PriceFail;
-		delitem 35054,1;
+		if (countitem(35055) < 1) goto PriceFail;
+		delitem 35055,1;
 
 	// Failed...
 	if(.FailRate > 100) set .FailRate,100;
@@ -804,7 +804,7 @@ Continue:
 end;
 	
 NotSame:
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "What's this?";
 	mes "Are you kidding me?";
 	mes "Sorry but the options";
@@ -815,7 +815,7 @@ close;
 	
 OnFailure:
 specialeffect2 EF_PHARMACY_FAIL;
-	mes "[ Poor Sebas ]"," ";
+	mes "[ Premium Sebas ]"," ";
 	mes "I'm really sorry..."," ";
 	mes "^FF0000The process have failed...";
 	mes "Your item has been destroyed.^000000";
@@ -823,21 +823,20 @@ specialeffect2 EF_PHARMACY_FAIL;
 close;
 
 PriceFail:
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "What's this?";
 	mes "Are you kidding me?";
 	mes "Sorry but I don't work";
 	mes "for free!";
 	mes "You can come back if you";
-	mes "Have ^0000FF 1x Special Enchantment Ticket^000000 for";
+	mes "Have ^0000FF 1x Premium Special Enchantment Ticket^000000 for";
 	mes "my service.";
 close;
 
 OnCancel:
-	mes "[ Poor Sebas ]";
+	mes "[ Premium Sebas ]";
 	mes "Suit yourself.";
 	mes "Let me know if you";
 	mes "ever changed you mind";
 close;
 }
-	

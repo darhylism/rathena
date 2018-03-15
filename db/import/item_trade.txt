@@ -24,6 +24,7 @@
 1650,9,100	// Almighty Staff
 1749,1,100	// Quincy_Bow
 7179,329,100	// Donation_Card
+12274,507,100	// Gold_Pill_1
 12884,9,100	// Infinite_Concentration_Potion
 12885,9,100	// Infinite_Awakening_Potion
 12886,9,100	// Infinite_Berserk_Potion

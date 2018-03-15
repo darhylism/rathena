@@ -11,14 +11,18 @@
 4425,Atroce_Card,Atroce Card,6,20,,10,,,,,,,,2,,,,,{ bonus bBaseAtk,25; autobonus "{ bonus bAspdRate,150; }",10,10000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; },{},{}
 4399,Thanatos_Card,Memory of Thanatos Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bSkillAtk,WS_CARTTERMINATION,-15; bonus bDefRatioAtkClass,Class_All; bonus bSPDrainValue,-1; bonus bDef,-30; bonus bFlee,-30; },{},{}
 1544,Lunakaligo,Lunakaligo,5,20,,700,110,,1,3,0x00008110,2,2,2,3,50,1,8,{ if(readparam(bStr)>=77) { bonus bAspdRate,5; bonus2 bAddEff,Eff_Stun,1500; bonus3 bAddMonsterDropItem,12065,RC_Plant,500; bonus3 bAddMonsterDropItem,12043,RC_Brute,500; bonus3 bAddMonsterDropItem,12069,RC_Fish,500; } },{},{}
-
+1750,Arrow,Arrow,10,1,,1,25,,,,0x000A1849,7,2,32768,,1,,1,{},{},{}
+12274,Gold_Pill_1,Daehwandan,0,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 100,100; },{},{}
 
 //Custom ETC
 35047,Power_Proof,Proof of Power,12,0,,0,,,,,0x7FFFFFFF,7,,2097152,,1,,,{},{},{}
 7179,Donation_Card,Proof of Donation,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ set #CASHPOINTS, #CASHPOINTS+5000; dispbottom "You have received 5000 Cash Points."; },{},{}
 35049,Pori_Pori_Box,Pori Pori Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ monster "this",-1,-1,"--ja--",1502,1,""; announce strcharinfo(0)+" has summoned Cash [MVP] Pori Pori / Bring it on! in map [" +strcharinfo(3) +"]!",bc_all,0x00FFFF,FW_NORMAL,25; },{},{}
 35050,Gashapon_x,Merry Gacha Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_Gashapon"; },{},{}
-1750,Arrow,Arrow,10,1,,1,25,,,,0x000A1849,7,2,32768,,1,,1,{},{},{}
+35054,OptionTiks,Special Enchantment Ticket,3,0,,0,,,,,,,,,,,,,{},{},{}
+
+
+
 
 //cards
 35000,Giant_Sting_Card,Giant_sting_Card,6,20,,10,,,,,,,,136,,,,,{bonus bdex,+5;},{},{}
@@ -7210,3 +7214,4 @@
 // Non-kRO Eden Group Mark effect
 //=============================================================
 //22508,Para_Team_Mark_,Eden Group Mark,11,0,,0,,,,0,0xFFFFFFFF,63,2,,,,,,{ unitskilluseid getcharid(3),"AL_TELEPORT",3; },{},{}
+35055,OptionTiks2,Premium Special Enchantment Ticket,3,0,,0,,,,,,,,,,,,,{},{},{}

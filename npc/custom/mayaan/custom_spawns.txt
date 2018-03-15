@@ -18,6 +18,7 @@ c_tower4,108,158,100,10	monster	Alarm	1193,15
 c_tower4,108,138,100,10	monster	Alarm	1193,15
 c_tower4,108,118,100,10	monster	Alarm	1193,15
 
-pay_fild10,0,0,0,0	monster	Dokebi	1110,70,0,0,0
+pay_fild10,0,0,0,0	monster	Dokebi	1110,350,0,0,0
+pay_fild10,0,0,0,0	monster	Dokebi	1110,350,0,0,0
 
-pay_fild10,0,0,0,0	monster	Am Mut	1301,70,0,0,0
+pay_fild10,0,0,0,0	monster	Am Mut	1301,200,0,0,0
