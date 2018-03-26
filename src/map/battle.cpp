@@ -3056,7 +3056,7 @@ struct Damage battle_calc_skill_base_damage(struct Damage wd, struct block_list 
 
 	switch (skill_id) {	//Calc base damage according to skill
 		case PA_SACRIFICE:
-			wd.damage = sstatus->max_hp* 9/100;
+			wd.damage = sstatus->max_hp* 10/100;
 			wd.damage2 = 0;
 #ifdef RENEWAL
 			wd.weaponAtk = wd.damage;
@@ -3632,10 +3632,10 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			break;
 #endif
 		case PA_SACRIFICE:
-			skillratio += -10 + 10 * skill_lv;
+			skillratio += 15 * skill_lv;
 			break;
 		case PA_SHIELDCHAIN:
-			skillratio += 30 * skill_lv;
+			skillratio += 60 * skill_lv;
 			break;
 		case WS_CARTTERMINATION:
 			i = 10 * (16 - skill_lv);
@@ -5842,7 +5842,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 10 * skill_lv;
 						break;
 					case AL_HOLYLIGHT:
-						skillratio += 25;
+						skillratio += 100;
 						if (sd && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_PRIEST)
 							skillratio *= 5; //Does 5x damage include bonuses from other skills?
 						break;

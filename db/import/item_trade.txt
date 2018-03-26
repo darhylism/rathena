@@ -23,6 +23,10 @@
 1198,1,100	// Buster Sword
 1650,9,100	// Almighty Staff
 1749,1,100	// Quincy_Bow
+2674,448,100	// Honor_Ring
+2730,448,100	// Morroc_Seal
+2731,448,100	// Morroc_Charm_Stone
+2732,448,100	// Morroc_Ring
 7179,329,100	// Donation_Card
 12274,507,100	// Gold_Pill_1
 12884,9,100	// Infinite_Concentration_Potion

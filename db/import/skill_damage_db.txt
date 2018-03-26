@@ -35,3 +35,6 @@
 // MO_EXTREMITYFIST,1,6,-50 // In PVP and GVG, players deal -50% (half) damage to other players with Asura Strike.
 // AB_ADORAMUS,1,6,50,0,10,15 // In PVP and GVG, players deal +50% damage to other players, +0% to mobs, +10% to bosses, and +15% to other with Adoramus.
 
+// SkillName,Caster,Map,Damage against Players{,Damage against Mobs{,Damage against Bosses{,Damage against Other}}}
+NJ_ZENYNAGE,1,15,100
+CR_ACIDDEMONSTRATION,1,15,70

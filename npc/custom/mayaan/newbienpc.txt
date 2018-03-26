@@ -61,7 +61,7 @@ if( !Class ){
 			getitem	14545,10; // Field Manual
 			getitem	12210,5; // Bubble Gum
 			getitem	35048,1; // Bound Doppelganger Card
-			getitem	677,5;
+			getitem	677,1;
 			getitembound 35005,1,Bound_Account;
 			getitembound 35006,1,Bound_Account;
 			getitembound 35009,1,Bound_Account;

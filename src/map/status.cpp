@@ -9443,7 +9443,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = val1*5; // Race/Ele resist
 			break;
 		case SC_REFLECTSHIELD:
-			val2 = 10+val1*3; // %Dmg reflected
+			val2 = val1*3; // %Dmg reflected
 			// val4 used to mark if reflect shield is an inheritance bonus from Devotion
 			if( !(flag&SCSTART_NOAVOID) && (bl->type&(BL_PC|BL_MER)) ) {
 				struct map_session_data *tsd;

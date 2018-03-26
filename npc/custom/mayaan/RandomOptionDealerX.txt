@@ -59,7 +59,7 @@ disable_items;
 	next;
 
 //	setarray .@eq[1], EQI_HEAD_TOP,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_HEAD_MID,EQI_HEAD_LOW;
-	setarray .@eq[1], EQI_HAND_R;
+	setarray .@eq[1], EQI_ARMOR,EQI_HAND_R;
 	for(set .@i,1; .@i<getarraysize(.@eq); set .@i,.@i+1){
 		if(getequipisequiped(.@eq[.@i])){
 			set .@menu$,.@menu$+F_getpositionname(.@eq[.@i])+" ~ [ " + getequipname(.@eq[.@i]) + " ]";
@@ -71,7 +71,7 @@ disable_items;
 	mes "Part is "+.@part+".";
 	
 	switch(.@part){
-/* 	case 0:
+/*  	case 0:
 		switch(select("Stats:Skills:Etc:Cancel")) {
 			case 1:
 				switch(select("Stat1:Stat2:Stat3:Cancel")) {
@@ -399,55 +399,95 @@ disable_items;
 				}
 			default:
 				close;
-		}
+		} */
 	case 7:
-		switch(select("Stats:Skills:Etc:Cancel")) {
+		switch(select("Etc:Cancel")) {
 			case 1:
-				switch(select("Stat1:Stat2:Stat3:Cancel")) {
+				switch(select("Resist Neutral:Resist Water:Resist Earth:Resist Fire:Resist Wind:Resist Poison:Resist Holy:Resist Shadow:Resist Ghost:Resist Undead:Resist All:Cancel")) {
 					case 1:
-						mes "2Wow, you're super! 1111";
-						break;
+						mes "Resist Neutral";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,25;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
 					case 2:
-						mes "22Wow, you're super! 2222";
-						break;
+						mes "Resist Water";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,26;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
 					case 3:
-						mes "22Wow, you're super! 3333";
-						break;
-					default:
-						close;
-				}
-			case 2:
-				switch(select("Skill1:Skill2:Skill3:Cancel")) {
-					case 1:
-						mes "2Wow, you're super! 1111";
-						break;
-					case 2:
-						mes "22Wow, you're super! 2222";
-						break;
-					case 3:
-						mes "22Wow, you're super! 3333";
-						break;
-					default:
-						close;
-				}
-			case 3:
-				switch(select("ETC1:ETC2:ETC3:Cancel")) {
-					case 1:
-						mes "2Wow, you're super! 1111";
-						break;
-					case 2:
-						mes "22Wow, you're super! 2222";
-						break;
-					case 3:
-						mes "22Wow, you're super! 3333";
-						break;
+						mes "Resist Earth";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,27;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 4:
+						mes "Resist Fire";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,28;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 5:
+						mes "Resist Wind";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,29;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 6:
+						mes "Resist Poison";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,30;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 7:
+						mes "Resist Holy";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,31;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 8:
+						mes "Resist Shadow";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,32;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 9:
+						mes "Resist Ghost";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,33;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 10:
+						mes "Resist Undead";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,10;	// Maximum option effect value
+						set .@opt,34;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 11:
+						mes "Resist All";
+						set .@MinValue,1;	// Minimum option effect value
+						set .@MaxValue,5;	// Maximum option effect value
+						set .@opt,35;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
 					default:
 						close;
 				}
 			default:
 				close;
 		}
-	case 8:
+/* 	case 8:
 		mes "Cannot Enchant Left Hand/Shield.";
 		mes "Please put your Weapon on Right Hand.";
 		close; */
@@ -504,42 +544,42 @@ disable_items;
 				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Cancel")) {
 					case 1: //Fire Bolt
 						mes "Fire Bolt";
-						set .@MinValue,2;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,194;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 2: //Cold Bolt
 						mes "Colt Bolt";
-						set .@MinValue,2;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,195;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 3: //Lightning Bolt
 						mes "Lightning Bolt";
-						set .@MinValue,4;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,196;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 4: // Storm Gust
 						mes "Storm Gust";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,197;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 5: //Meteor Storm
 						mes "Meteor Storm";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,198;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 6: //Lord of Vermillion
 						mes "Lord of Vermillion";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,199;
 						mes "Max Value is "+.@MaxValue+".";
@@ -560,42 +600,42 @@ disable_items;
 						goto ValueRand;
 					case 9: //Spiral Pierce
 						mes "Spiral Pierce";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,202;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 10: //Bowling Bash
 						mes "Bowling Bash";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,203;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 11: // Bash
 						mes "Bash";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,204;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 12: //Double Strafe
 						mes "Double Strafe";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,205;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 13: //Sharpshooting
 						mes "Sharpshooting";
-						set .@MinValue,3;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,206;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 14: //Falcon Assault
 						mes "Falcon Assault";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,207;
 						mes "Max Value is "+.@MaxValue+".";
@@ -609,35 +649,35 @@ disable_items;
 						goto ValueRand;
 					case 16: //Holy Cross
 						mes "Holy Cross";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,25;	// Maximum option effect value
 						set .@opt,209;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 17: //Grand Cross
 						mes "Grand Cross";
-						set .@MinValue,3;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,210;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 18: //Finger Offensive
 						mes "Finger Offensive";
-						set .@MinValue,3;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,211;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 19: //Asura Strike
 						mes "Asura Strike";
-						set .@MinValue,3;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,212;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 20: //Soul Destroyer
 						mes "Soul Destroyer";
-						set .@MinValue,2;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,213;
 						mes "Max Value is "+.@MaxValue+".";
@@ -679,28 +719,28 @@ disable_items;
 						goto ValueRand;
 					case 26: //Arrow Vulcan
 						mes "Arrow Vulcan";
-						set .@MinValue,5;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,219;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 27: //Final Strike
 						mes "Final Strike";
-						set .@MinValue,2;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,220;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 28: //Acid Demonstration
 						mes "Acid Demonstration";
-						set .@MinValue,3;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,10;	// Maximum option effect value
 						set .@opt,221;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 29: //Demonstration
 						mes "Demonstration";
-						set .@MinValue,2;	// Minimum option effect value
+						set .@MinValue,1;	// Minimum option effect value
 						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,222;
 						mes "Max Value is "+.@MaxValue+".";
@@ -716,16 +756,14 @@ disable_items;
 						close;
 				}
 			case 3:
-				switch(select("ETC1:ETC2:ETC3:Cancel")) {
+				switch(select("Increase Healing Skills:Cancel")) {
 					case 1:
-						mes "2Wow, you're super! 1111";
-						break;
-					case 2:
-						mes "22Wow, you're super! 2222";
-						break;
-					case 3:
-						mes "22Wow, you're super! 3333";
-						break;
+						mes "Increase Healing";
+						set .@MinValue,5;	// Minimum option effect value
+						set .@MaxValue,50;	// Maximum option effect value
+						set .@opt,168;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
 					default:
 						close;
 				}
@@ -782,7 +820,7 @@ ValueRand:
 			mes "choose the same item enchantment";
 			mes "to reroll the value";
 			close;
-	} else set .@val,rand(.@MinValue,.@MaxValue);
+	} else set .@val,rand(.@MinValue,.@MaxValue/2);
 	
 
 

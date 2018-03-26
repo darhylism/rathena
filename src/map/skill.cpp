@@ -4818,7 +4818,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			}
 			if (skill_id == MO_EXTREMITYFIST) {
 				mbl = src; // For MO_EXTREMITYFIST
-				i = 3; // Move 3 cells (From caster)
+				i = 2; // Move 3 cells (From caster)
 			}
 			if (dir > 0 && dir < 4)
 				x = -i;
