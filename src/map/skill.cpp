@@ -4467,10 +4467,10 @@ static int skill_tarotcard(struct block_list* src, struct block_list *target, ui
 	}
 	default: // THE SUN - atk, matk, hit, flee and def reduced, immune to more tarot card effects
 	{
-#ifdef RENEWAL
+//#ifdef RENEWAL
 		//In renewal, this card gives the SC_TAROTCARD status change which makes you immune to other cards
 		sc_start(src, target, SC_TAROTCARD, 100, skill_lv, skill_get_time2(skill_id, skill_lv));
-#endif
+//#endif
 		sc_start(src, target, SC_INCATKRATE, 100, -20, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_INCMATKRATE, 100, -20, skill_get_time2(skill_id, skill_lv));
 		sc_start(src, target, SC_INCHITRATE, 100, -20, skill_get_time2(skill_id, skill_lv));

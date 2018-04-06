@@ -4329,27 +4329,23 @@ IG_Shapeshifter_Costume,19835,190,1,1,0,0,0	// 1x C_Lif_Doll_Hat
 IG_Shapeshifter_Costume,19839,200,1,1,0,0,0	// 1x C_Vanilmirth_Hat
 
 // July_Lucky_Scroll
-IG_July_Lucky_Scroll,4399,1,1,1,1,0,0	// 1x Thanatos_Card
-IG_July_Lucky_Scroll,4302,1,1,1,1,0,0	// 1x Tao_Gunka_Card
-IG_July_Lucky_Scroll,4376,10,1,1,1,0,0	// 1x Lady_Tanee_Card
-IG_July_Lucky_Scroll,4305,10,1,1,1,0,0	// 1x Turtle_General_Card
-IG_July_Lucky_Scroll,6239,100,1,1,1,0,0	// 1x Guarantee_Armor_11Up
-IG_July_Lucky_Scroll,6238,100,1,1,1,0,0	// 1x Guarantee_Weapon_11Up
-IG_July_Lucky_Scroll,6232,125,1,1,1,0,0	// 1x Guarantee_Armor_9Up
-IG_July_Lucky_Scroll,6228,125,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
-IG_July_Lucky_Scroll,6233,150,1,1,1,0,0	// 1x Guarantee_Armor_8Up
-IG_July_Lucky_Scroll,6229,150,1,1,1,0,0	// 1x Guarantee_Weapon_8Up
-IG_July_Lucky_Scroll,19116,200,1,1,1,0,0	// 1x Red_Baby_Dragon
-IG_July_Lucky_Scroll,22103,200,1,1,1,0,0	// 1x Excelion_Leg
-IG_July_Lucky_Scroll,6438,429,3,1,0,0,0	// 3x Unbreakable_Weap
-IG_July_Lucky_Scroll,6439,429,3,1,0,0,0	// 3x Unbreakable_Def
-IG_July_Lucky_Scroll,16770,1190,1,1,0,0,0	// 1x Silvervine_Fruit_Box10
-IG_July_Lucky_Scroll,14621,1130,20,1,0,0,0	// 20x LUK_Biscuit_Stick
-IG_July_Lucky_Scroll,14620,1130,20,1,0,0,0	// 20x DEX_Biscuit_Stick
-IG_July_Lucky_Scroll,14619,1130,20,1,0,0,0	// 20x INT_Biscuit_Stick
-IG_July_Lucky_Scroll,14618,1130,20,1,0,0,0	// 20x AGI_Biscuit_Stick
-IG_July_Lucky_Scroll,14617,1130,20,1,0,0,0	// 20x VIT_Biscuit_Stick
-IG_July_Lucky_Scroll,14616,1130,20,1,0,0,0	// 20x STR_Biscuit_Stick
+// GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+IG_July_Lucky_Scroll,4399,350,1,1,1,0,0	// 1x Thanatos_Card
+IG_July_Lucky_Scroll,6232,152,1,1,1,0,0	// 1x Guarantee_Armor_9Up
+IG_July_Lucky_Scroll,6228,499,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
+IG_July_Lucky_Scroll,6233,888,1,1,1,0,0	// 1x Guarantee_Armor_8Up
+IG_July_Lucky_Scroll,6229,751,1,1,1,0,0	// 1x Guarantee_Weapon_8Up
+IG_July_Lucky_Scroll,19116,500,1,1,1,0,0	// 1x Red_Baby_Dragon
+IG_July_Lucky_Scroll,5967,54,1,1,1,0,0	// 1x FlyingGalapago
+IG_July_Lucky_Scroll,5968,99,1,1,1,0,0	// 1x RDVAngelNurseCap
+IG_July_Lucky_Scroll,5969,22,1,1,1,0,0	// 1x QueenAnzRevenge
+IG_July_Lucky_Scroll,5943,44,1,1,1,0,0	// 1x Owlviscount_Silk_Hat
+IG_July_Lucky_Scroll,16771,901,100,1,0,0,0	// 100x Silvervine_Fruit_Box40
+IG_July_Lucky_Scroll,7642,899,500,1,0,0,0	// 500x Bloody Coin
+IG_July_Lucky_Scroll,12874,1323,1,1,0,0,0	// 1x Frost Giant Blood
+
+
+
 
 // Costama_Egg23
 IG_Costama_Egg23,20100,40,1,1,0,0,0	// 1x C_Volume_Fhat

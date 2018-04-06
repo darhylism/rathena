@@ -8,6 +8,8 @@
 //  Items are in same order as data\buyingstoreitemlist.txt, which
 //  must be edited as well for the client to accept added items.
 
+607  // Yggdrasilberry
+608  // Seed_Of_Yggdrasil
 969  // Gold
 4367  // B_Shecil_Card
 4399  // Thanatos_Card

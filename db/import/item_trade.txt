@@ -20,6 +20,8 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+607,128,100	// Yggdrasilberry
+608,128,100	// Seed_Of_Yggdrasil
 1198,1,100	// Buster Sword
 1650,9,100	// Almighty Staff
 1749,1,100	// Quincy_Bow
@@ -94,3 +96,7 @@
 35046,9,100	// arch_demon_wings
 35047,507,100	// Power_Proof
 35048,475,100	// Bound_Doppelganger_Card
+35060,9,100	// C_OAA
+35061,1,100	// saiyan_god_goten
+35062,1,100	// Goten_Aura
+35063,1,100	// entong_gel

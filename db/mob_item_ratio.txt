@@ -39,7 +39,7 @@
 31022,30000,2995 //Abandoned Teddy Bear Card
 6223,100
 6224,100
-6090,1000 //Refined Bradium
+6090,100 //Refined Bradium
 4399,40000 //thanatos card
 
 4456,35000 //Nidhoggur Shadow Card

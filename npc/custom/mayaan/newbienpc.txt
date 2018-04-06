@@ -114,24 +114,37 @@ if( !Class ){
 	}
 }
 
-
--	script	Jobra#newbe05::JobravB	-1,{
+new_1-2,103,22,4	script	Jobra#newbe05::JobravB	757,{
 if( Class ){
 	mes "Only Novice can use this...";
+	close;
 }else{
-
-
-.@size = getarraysize( .JobList );
-.size = getarraysize( .ItemList );
-for( .@i = 0; .@i < .@size; .@i++ )
-	.Menu$ = .Menu$ + jobname( .JobList[.@i] )+":";
-	
-	
-	.@i = select( .Menu$ ) - 1;
-	if( select( "Change to "+jobname( .JobList[.@i] )+"?:Cancel" ) == 1 ){
-		jobchange .JobList[.@i];
-		BaseLevel = .BaseLevel;
-		JobLevel = .JobLevel;
+	setarray .@jobs,4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020,4021,24,25,4047,4049,23,4030,4031,4032,4033,4034,4035,4037,4038,4039,4040,4041,4042,4037;
+	set .@size, getarraysize(.@jobs);
+	for(set .@i,0; .@i<.@size; set .@i,.@i+1)
+		set .@menu$,.@menu$+jobname(.@jobs[.@i])+":";
+	mes "[Jobra]";
+	mes "Welcome to Mayaan Server!";
+	mes "Please select a job.";
+	next;
+	set .@i, select(.@menu$)-1;
+	mes "[Jobra]";
+	mes "Are you sure you want to switch to the "+jobname(.@jobs[.@i])+" class?";
+	next;
+	if(select("Yes, I'm sure.:No, let me pick again.") == 2) {
+		mes "[Jobra]";
+		mes "Okay, take your time.";
+		close;
+	}
+	mes "[Jobra]";
+	mes "Job changed!";
+	mes "Please take some apples, too.";
+	mes "They'll come in handy.";
+	emotion e_lv2;
+		jobchange .@jobs[.@i];
+		sleep2 20;
+		BaseLevel = 255;
+		JobLevel = 80;
 		resetskill;
 		resetstatus;
 		statusup2 bStr,99;
@@ -140,35 +153,13 @@ for( .@i = 0; .@i < .@size; .@i++ )
 		statusup2 bAgi,99;
 		statusup2 bDex,99;
 		statusup2 bLuk,99;
-		SkillPoint = .SkillPoints;
-		mes "DONE";
-//		for( .@i = 0; .@i < .size; .@i++ )
-//			getitem .ItemList[.@i],.Amount[.@i];
-	}
+		SkillPoint = 140;
+	close;
 }
-close;
-
 
 OnInit:
-setarray .JobList[0],4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020,4021,24,25,4047,4049,23,4030,4031,4032,4033,4034,4035,4037,4038,4039,4040,4041,4042,4044;
-//setarray .ItemList[0],501,607,608;
-//setarray .Amount[0],1,2,3;
-.BaseLevel = 255;
-.JobLevel = 80;
-.SkillPoints = 140;
-
 waitingroom "Job Changer",0;
 end;
 }
-
-new_1-2,103,22,4	duplicate(JobravB)	Jobra#nv1b	757
-new_2-2,103,22,4	duplicate(JobravB)	Jobra#nv2b	757
-new_3-2,103,22,4	duplicate(JobravB)	Jobra#nv3b	757
-new_4-2,103,22,4	duplicate(JobravB)	Jobra#nv4b	757
-new_5-2,103,22,4	duplicate(JobravB)	Jobra#nv5b	757
 	
 new_1-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv1b	90
-new_2-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv2b	90
-new_3-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv3b	90
-new_4-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv4b	90
-new_5-2,100,29,4	duplicate(NvSprakkiB)	Sprakki#nv5b	90

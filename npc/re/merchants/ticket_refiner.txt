@@ -18,11 +18,11 @@
 
 // Main NPC :: safety_Ref_NPC
 //============================================================
-prontera,184,177,6	script	Refine Master	851,{
+prontera,187,167,6	script	Refine Master	851,{
 	disable_items;
-	if (countitem(6238) || countitem(6228) || countitem(6229) || countitem(6230) || countitem(6231) || countitem(6456))
+	if (countitem(35057) || countitem(6228) || countitem(6229) || countitem(6230) || countitem(6231) || countitem(6456))
 		set .@bWeaponUp,1;
-	if (countitem(6239) || countitem(6232) || countitem(6233) || countitem(6234) || countitem(6235) || countitem(6457))
+	if (countitem(35057) || countitem(6232) || countitem(6233) || countitem(6234) || countitem(6235) || countitem(6457))
 		set .@bArmorUp,1;
 	if (!.@bWeaponUp && !.@bArmorUp) {
 		mes "[Refine Master]";
@@ -69,18 +69,11 @@ prontera,184,177,6	script	Refine Master	851,{
 		mes "You have to equip the item you want to refine.";
 		close;
 	}
-	if (!getequipisenableref(.@part)) {
-		emotion e_otl;
-		mes "[Refine Master]";
-		mes "Oh, I'm sorry.";
-		mes "This item is impossible to refine.";
-		close;
-	}
 	switch(getequipweaponlv(.@part)) {
 	default:
 	case 0:
-		setarray .@tickets[0],6457,6235,6234,6233,6232,6239;
-		setarray .@levels[0],5,6,7,8,9,11;
+		setarray .@tickets[0],6457,6235,6234,6233,6232,35057;
+		setarray .@levels[0],5,6,7,8,9,10;
 		set .@type$,"Armor";
 		set .@check,.@bArmorUp;
 		break;
@@ -88,8 +81,8 @@ prontera,184,177,6	script	Refine Master	851,{
 	case 2:
 	case 3:
 	case 4:
-		setarray .@tickets[0],6456,6231,6230,6229,6228,6238;
-		setarray .@levels[0],5,6,7,8,9,11;
+		setarray .@tickets[0],6456,6231,6230,6229,6228,35057;
+		setarray .@levels[0],5,6,7,8,9,10;
 		set .@type$,"Weapon";
 		set .@check,.@bWeaponUp;
 		break;
