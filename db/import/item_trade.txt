@@ -100,3 +100,12 @@
 35061,1,100	// saiyan_god_goten
 35062,1,100	// Goten_Aura
 35063,1,100	// entong_gel
+35064,1,100	// Customz01
+35065,1,100	// Customz02
+35066,1,100	// Customz03
+35067,1,100	// Customz04
+35068,1,100	// Customz05
+35069,1,100	// Customz06
+35070,1,100	// Customz07
+35071,1,100	// fanque_gue
+35072,1,100	// Customz09

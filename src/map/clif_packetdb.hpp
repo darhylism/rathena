@@ -2282,6 +2282,12 @@
 	// Pet Evolution System
 	parseable_packet(0x09FB,-1,clif_parse_dull,0); // CZ_PET_EVOLUTION
 	packet(0x09FC,6); // ZC_PET_EVOLUTION_RESULT
+
+	// Quest UI
+	packet(0x08FE,-1); // ZC_HUNTING_QUEST_INFO
+	packet(0x09F8,-1); // ZC_ALL_QUEST_LIST3
+	packet(0x09F9,143); // ZC_ADD_QUEST_EX
+	packet(0x09FA,-1); // ZC_UPDATE_MISSION_HUNT_EX
 #endif
 
 // 2015-05-20aRagexe

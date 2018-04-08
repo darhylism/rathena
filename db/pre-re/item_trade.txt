@@ -453,8 +453,8 @@
 7950,499,100	// Ayothaya Fest Ticket
 
 // Episode 13.1
-6039,507,100	// Piece of Fish
-6048,507,100	// Unidentified Mineral
+6039,475,100	// Piece_Of_Fish
+6048,475,100	// Unidentified_Mineral
 6051,499,100	// Gray Hollow
 
 // Battleground Rewards (Krieger Von Midgard)
