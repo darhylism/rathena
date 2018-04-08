@@ -61,7 +61,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 		mes "You're not wearing";
 		mes "anything there that";
 		mes "I can refine.";
-		emotion e_an;
+		emotion ET_FRET;
 		close;
 	}
 	//Check to see if the items is already +MAX_REFINE
@@ -295,7 +295,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 		}
 		else if(getequiprefinerycnt(@part) != @refCount || getequipid(@part) != @refId) { // hacker has changed the item
 			mes .NpcName$;
-			emotion e_an;
+			emotion ET_FRET;
 			mes "Wait a second...";
 			mes "Do you think I'm stupid?!";
 			mes "You switched the item while I wasn't looking! Get out of here!";
@@ -349,7 +349,7 @@ poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
 				}
 
 				mes .NpcName$;
-				emotion (!rand(5))?e_cash:e_omg;
+				emotion (!rand(5))?ET_MONEY:ET_HUK;
 				
 				if(.@failType == 1) {
 					// -1

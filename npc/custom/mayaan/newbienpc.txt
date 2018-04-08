@@ -140,7 +140,7 @@ if( Class ){
 	mes "Job changed!";
 	mes "Please take some apples, too.";
 	mes "They'll come in handy.";
-	emotion e_lv2;
+	emotion ET_BIGTHROB;
 		jobchange .@jobs[.@i];
 		sleep2 20;
 		BaseLevel = 255;

@@ -157,31 +157,18 @@ T14: Go("gonryun",160,120);
 T15: Go("hugel",96,145);
 T16: Go("izlude",128,(checkre(3)?146:114));
 T17: Go("jawaii",251,132);
-<<<<<<< HEAD
-T18: Go("lighthalzen",158,92);
-T19: Go("louyang",217,100);
-T20: Go("xmas",147,134);
-T21: //Restrict("RE");
-	 Go("malangdo",140,114);
-T22: //Restrict("RE");
-	 Go("malaya",231,200);
-T23: Go("manuk",282,138);
-T24: Go("mid_camp",210,288);
-T25: //Restrict("RE");
-=======
-T18: Restrict("RE");
+T18: //Restrict("RE");
 	 Go("lasagna",193,182);
 T19: Go("lighthalzen",158,92);
 T20: Go("louyang",217,100);
 T21: Go("xmas",147,134);
-T22: Restrict("RE");
+T22: //Restrict("RE");
 	 Go("malangdo",140,114);
-T23: Restrict("RE");
+T23: //Restrict("RE");
 	 Go("malaya",231,200);
 T24: Go("manuk",282,138);
 T25: Go("mid_camp",210,288);
-T26: Restrict("RE");
->>>>>>> master
+T26: //Restrict("RE");
 	 Go("mora",55,146);
 T27: Go("morocc",156,93);
 T28: Go("moscovia",223,184);
@@ -252,11 +239,7 @@ F15: setarray @c[2],229,187;
 	 Disp("Louyang Field",1,1); Pick("lou_fild");
 F16: setarray @c[2],115,145;
 	 Disp("Lutie Field",1,1); Pick("xmas_fild");
-<<<<<<< HEAD
-F16: //Restrict("RE");
-=======
-F17: Restrict("RE");
->>>>>>> master
+F17: //Restrict("RE");
 	 setarray @c[2],40,272,207,180;
 	 Disp("Malaya Field",1,2); Pick("ma_fild");
 F18: setarray @c[2],35,236,35,262,84,365;
@@ -448,14 +431,9 @@ C8: Restrict("RE");
 // --------------------------------------------------
 	Guild_Dungeons:
 // --------------------------------------------------
-<<<<<<< HEAD
+
 menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4;
   //  	"Arunafeltz",G5, "Schwaltzvalt",G6;
-=======
-menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4,
-    	"Arunafeltz",G5, "Schwaltzvalt",G6, "Kafragarten",G7,
-		"Gloria",G8;
->>>>>>> master
 
 G1: Restrict("RE",2,3);
 	setarray @c[2],119,93,119,93,120,130;
@@ -473,7 +451,7 @@ G4: Restrict("RE",2,3);
 	setarray @c[2],116,45,116,45,152,118;
 	Disp("Britoniah F1:Britoniah F2:Hall of Abyss");
 	Pick("","gld_dun04","gld_dun04_2","gld2_gef");
-<<<<<<< HEAD
+	
 //G5: Go("arug_dun01",199,195);
 //G6: Go("schg_dun01",200,124);
 
@@ -500,15 +478,13 @@ S4: 	switch( rand(2) ) {
 		case 1:	warp "prontera",252,67;	end;
 	}
 S5: Go("poring_w01",109,133);
+
+OnInit:
+	.Satan_Morroc = true;	//	false will enable moc_fild 4,5,6,8,9,10,14,15 while disable moc_fild 20,21,22 Default is true.
+	.OnlyFirstFld = false;	//	true will teleport to the first level of the Fields  Default is false.
+	.OnlyFirstDun = false;	//	true will teleport to the first level of the Dungeons  Default is false.
+
 }
-=======
-G5: Go("arug_dun01",199,195);
-G6: Go("schg_dun01",200,124);
-G7: Restrict("RE");
-	Go("teg_dun01",42,36);
-G8: Restrict("RE");
-	Go("teg_dun02",26,160);
->>>>>>> master
 
 /*
 // --------------------------------------------------
@@ -580,20 +556,8 @@ S7: Go("p_track01",62,41);
 S8: Go("turbo_room",99,114);
 
 */
-=======
-S6: Go("gon_test",48,10);
-S7: Go("arena_room",100,88);
-S8: Go("p_track01",62,41);
-S9: Restrict("RE");
-	Go("paramk",97,17);
-S10: Go("turbo_room",99,114);
 
-OnInit:
-	.Satan_Morroc = true;	//	false will enable moc_fild 4,5,6,8,9,10,14,15 while disable moc_fild 20,21,22 Default is true.
-	.OnlyFirstFld = false;	//	true will teleport to the first level of the Fields  Default is false.
-	.OnlyFirstDun = false;	//	true will teleport to the first level of the Dungeons  Default is false.
-}
->>>>>>> master
+
 
 // --------------------------------------------------
 //	Duplicates:

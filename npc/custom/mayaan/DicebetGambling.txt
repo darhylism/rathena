@@ -142,9 +142,9 @@ OnAtcommandAcceptDB:
 	dispbottom strcharinfo(0)+" accepted your dice bet offer for "+@dicebet+"z.",0x63D1F4,@diceDealerCID;
 	setarray .@dice[1],58,59,60,61,62,63;
 	.@rand = rand(1,6);
-	emotion .@dice[.@rand],1,strcharinfo(0);
+	emotion .@dice[.@rand],strcharinfo(0);
 	.@rand1 = rand(1,6);
-	emotion .@dice[.@rand1],1,strcharinfo(0,@diceDealerCID);
+	emotion .@dice[.@rand1],strcharinfo(0,@diceDealerCID);
 	sleep2 1200;
 	if( !isloggedin(@diceDealerRID) || !@diceDealerCID ) { // Checks if the inviter logged out
 		dispbottom strcharinfo(0,@diceDealerCID)+" logged out and cancels the dice bet.",0x63D1F4;

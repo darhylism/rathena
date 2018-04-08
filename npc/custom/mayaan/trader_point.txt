@@ -40,7 +40,7 @@ prontera,147,167,4	script	Item2Pods	10044,{
 		mes "You can trade those points";
 		mes "for PODS later on my shop.";
 		mes "How does that sound?";
-		emotion e_cash;
+		emotion ET_MONEY;
 		close;
 	case 2:
 		mes "[^995050ITEM TRADER^000000]";
@@ -60,7 +60,7 @@ prontera,147,167,4	script	Item2Pods	10044,{
 		mes "[^995050ITEM TRADER^000000]";
 		mes "*yawn*";
 		mes "See you later!";
-		emotion e_yawn;
+		emotion ET_SLEEPY;
 		close;		
 	}
  
@@ -98,7 +98,7 @@ OnSellItem:
 	deletearray @sold_quantity[0], getarraysize(@sold_quantity);
 	if (!.@costume_id) {
 		mes "  ^777777(none)^000000";
-		emotion e_swt;
+		emotion ET_SWEAT;
 		close;
 	}
 	mes " ";
@@ -107,7 +107,7 @@ OnSellItem:
 	if(select(" > ^0055FFComplete trade...^000000: > ^777777Cancel^000000") == 2) {
 		mes "[ITEM TRADER]";
 		mes "Oh, okay...";
-		emotion e_hmm;
+		emotion ET_SCRATCH;
 		close;
 	}
 	for(set .@i,0; .@i<getarraysize(.@costume_id); set .@i,.@i+1)
@@ -115,7 +115,7 @@ OnSellItem:
 	setd .Points$, getd(.Points$)+.@costume_total;
 	mes "[ITEM TRADER]";
 	mes "All done!";
-	emotion e_ho;
+	emotion ET_DELIGHT;
 	close;
  
 OnBuyItem:
@@ -128,7 +128,7 @@ OnBuyItem:
 	if (.@cost > getd(.Points$)) {
 		mes "[ITEM TRADER]";
 		mes "You don't have enough Points.";
-		emotion e_omg;
+		emotion ET_HUK;
 	}
 	else {
 		mes "Items purchased:";
@@ -140,7 +140,7 @@ OnBuyItem:
 		mes " ";
 		mes "---------- Total: ^0055FF"+.@cost+" pt.^000000 -------";
 		setd .Points$, getd(.Points$)-.@cost;
-		emotion e_cash;
+		emotion ET_MONEY;
 	}
 	deletearray @bought_nameid[0], getarraysize(@bought_nameid);
 	deletearray @bought_quantity[0], getarraysize(@bought_quantity);
