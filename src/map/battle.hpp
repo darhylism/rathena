@@ -265,6 +265,8 @@ struct Battle_Config
 	int arrow_decrement;
 	int max_aspd;
 	int max_walk_speed;	//Maximum walking speed after buffs [Skotlex]
+	int max_hp_lv99;
+	int max_hp_lv150;
 	int max_hp;
 	int max_sp;
 	int max_lv, aura_lv;
@@ -316,6 +318,7 @@ struct Battle_Config
 	int vending_max_value;
 	int vending_over_max;
 	int vending_tax;
+	int vending_tax_min;
 	int show_steal_in_same_party;
 	int party_share_type;
 	int party_hp_mode;
@@ -636,6 +639,11 @@ struct Battle_Config
 	int allow_bound_sell;
 	int event_refine_chance;
 	int autoloot_adjust;
+	int broadcast_hide_name;
+	int skill_drop_items_full;
+    int feature_homunculus_autofeed;
+	int feature_homunculus_autofeed_rate;
+	int summoner_trait;
 
 #include "../custom/battle_config_struct.inc"
 };

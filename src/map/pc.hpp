@@ -1,8 +1,10 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
-
+#pragma once
 #ifndef _PC_HPP_
 #define _PC_HPP_
+
+#include <vector>
 
 #include "../common/mmo.h" // JOB_*, MAX_FAME_LIST, struct fame_list, struct mmo_charstatus
 #include "../common/strlib.h"// StringBuf
@@ -496,7 +498,7 @@ struct map_session_data {
 	int itemid;
 	short itemindex;	//Used item's index in sd->inventory [Skotlex]
 
-	short catch_target_class; // pet catching, stores a pet class to catch (short now) [zzo]
+	uint16 catch_target_class; // pet catching, stores a pet class to catch [zzo]
 
 	int8 spiritball, spiritball_old;
 	int spirit_timer[MAX_SPIRITBALL];
@@ -570,8 +572,8 @@ struct map_session_data {
 
 	char fakename[NAME_LENGTH]; // fake names [Valaris]
 
-	int duel_group; // duel vars [LuzZza]
-	int duel_invite;
+	size_t duel_group; // duel vars [LuzZza]
+	size_t duel_invite;
 
 	int killerrid, killedrid;
 
@@ -605,15 +607,13 @@ struct map_session_data {
 		int total_score;                  ///< Total achievement points
 		int level;                        ///< Achievement level
 		bool save;                        ///< Flag to know if achievements need to be saved
-		bool sendlist;                    ///< Flag to know if all achievements should be sent to the player (refresh list if an achievement has a title)
 		uint16 count;                     ///< Total achievements in log
 		uint16 incompleteCount;           ///< Total incomplete achievements in log
 		struct achievement *achievements; ///< Achievement log entries
 	} achievement_data;
 
 	// Title system
-	int *titles;
-	uint8 titleCount;
+	std::vector<int> titles;
 
 	/* ShowEvent Data Cache flags from map */
 	bool *qi_display;
@@ -780,6 +780,7 @@ enum weapon_type {
 	W_DOUBLE_DS, // dagger + sword
 	W_DOUBLE_DA, // dagger + axe
 	W_DOUBLE_SA, // sword + axe
+	MAX_WEAPON_TYPE_ALL,
 };
 
 #define WEAPON_TYPE_ALL ((1<<MAX_WEAPON_TYPE)-1)
