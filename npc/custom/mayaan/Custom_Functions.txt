@@ -14,7 +14,6 @@ getitem MGitem,1;
 announce strcharinfo(0)+" has obtained "+getitemname(MGitem)+" from Antonio Box!",bc_all,0x00FFFF,FW_NORMAL,15;
 return;
 }
-
 //===== rAthena Script =======================================
 //= Yuchinin Common Library
 //===== By: ==================================================
@@ -58,7 +57,150 @@ return;
 //= 2.4.1 Added explosion (Use in Cannon game)
 //============================================================
 
+function	script	abs	{
+	.@val = getarg(0);
+	if(.@val<0) .@val *= -1;
+	return .@val;
+}
 
+function	script	monster_fall	{
+	.@map$ = getarg(0);
+	.@mapx = getarg(1);
+	.@mapy = getarg(2);
+	.@mobid = getarg(3,1002);
+	.@radius = getarg(4,0);
+	if(.@radius>2) .@radius = 2;
+	if(getmonsterinfo(.@mobid,MOB_NAME)=="null") .@mobid = 1002;
+	for(.@i=.@mapx-.@radius;.@i<=.@mapx+.@radius;.@i++){
+		for(.@j=.@mapy-.@radius;.@j<=.@mapy+.@radius;.@j++){
+			if( checkcell(.@map$,.@i,.@j,cell_chkpass) ){
+				.@gid = monster(.@map$,.@i,.@j,"Bomb",.@mobid,1);
+				unitkill .@gid;
+			}
+		}
+	}
+	return;
+}
+
+function	script	monster_bomb	{
+	.@map$ = getarg(0);
+	.@mapx = getarg(1);
+	.@mapy = getarg(2);
+	.@power = getarg(3,100);
+	.@mobid = getarg(4,1792);
+	.@radius = getarg(5,0);
+	if(.@radius>2) .@radius = 2;
+	if(getmonsterinfo(.@mobid,MOB_NAME)=="null") .@mobid = 1792;
+	for(.@i=.@mapx-.@radius;.@i<=.@mapx+.@radius;.@i++){
+		for(.@j=.@mapy-.@radius;.@j<=.@mapy+.@radius;.@j++){
+			if( checkcell(.@map$,.@i,.@j,cell_chkpass) ){
+				.@gid = monster(.@map$,.@i,.@j,"Bomb",.@mobid,1);
+				if(.@power>0) setunitdata .@gid,UMOB_MAXHP,.@power;
+				unitskilluseid .@gid,173,1,.@gid,-99;
+			}
+		}
+	}
+	return;
+}
+
+function	script	explosion	{
+	.@map$ = getarg(0);
+	.@mapx = getarg(1);
+	.@mapy = getarg(2);
+	.@power = getarg(3,100);
+	if( !checkcell(.@map$,.@mapx,.@mapy,cell_chkpass) ) return;
+	setnpcdisplay("FAKE_EFFECT",139);
+	unitwarp getnpcid(0,"FAKE_EFFECT"),.@map$,.@mapx,.@mapy;
+	setunitdata getnpcid(0,"FAKE_EFFECT"),UNPC_MAXHP,.@power;
+	unitskilluseid getnpcid(0,"FAKE_EFFECT"),173,1,getnpcid(0,"FAKE_EFFECT"),-99;
+	return;
+}
+
+function	script	tempeffect	{
+	.@ef = getarg(0);
+	.@m$ = getarg(1);
+	.@mx = getarg(2);
+	.@my = getarg(3);
+	//dispbottom "tempeffect: Try to show effect "+.@ef+" at "+.@m$+","+.@mx+","+.@my;
+	//if( !checkcell(.@m$,.@mx,.@my,cell_chkpass) ) return;
+	setnpcdisplay("FAKE_EFFECT",139);
+	unitwarp getnpcid(0,"FAKE_EFFECT"),.@m$,.@mx,.@my;
+	callfunc("setVariable",".effect",.@ef,"FAKE_EFFECT");
+	donpcevent "FAKE_EFFECT::OnEffect";
+	return;
+}
+
+function	script	tempsoundeffect	{
+	.@ef$ = getarg(0);
+	.@m$ = getarg(1);
+	.@mx = getarg(2);
+	.@my = getarg(3);
+	//dispbottom "tempeffect: Try to show effect "+.@ef+" at "+.@m$+","+.@mx+","+.@my;
+	if( !checkcell(.@m$,.@mx,.@my,cell_chkpass) ) return;
+	setnpcdisplay("FAKE_SOUND",139);
+	unitwarp getnpcid(0,"FAKE_SOUND"),.@m$,.@mx,.@my;
+	callfunc("setVariable",".effect$",.@ef$,"FAKE_SOUND");
+	donpcevent "FAKE_SOUND::OnEffect";
+	return;
+}
+
+prt_fild08,123,317,4	script	FAKE_EFFECT	139,{
+end;
+OnEffect:
+   if(.effect) specialeffect(.effect);
+}
+
+prt_fild08,123,317,4	script	FAKE_SOUND	139,{
+end;
+OnEffect:
+   if(.effect$!="") soundeffectall .effect$,0;
+}
+
+function	script	elementid2name	{
+	setarray .@elementlist$,"Neutral","Water","Earth","Fire","Wind","Poison","Holy","Dark","Ghost","Undead";
+	return .@elementlist$[getarg(0)];
+}
+
+function	script	elementname2id	{
+	setarray .@elementlist$,"Neutral","Water","Earth","Fire","Wind","Poison","Holy","Dark","Ghost","Undead";
+	for(.@x=0;.@x<getarraysize(.@elementlist$);.@x++){
+		if(.@elementlist$[.@x]==getarg(0)) return .@x;
+	}
+	return -1;
+}
+
+function	script	arrfind_db	{
+	.@arrname$ = getarg(0);
+	.@arrfind$ = getarg(1);
+	for(.@x=0;.@x<getarraysize(getd(.@arrname$));.@x++){
+		explode(.@T$,getd(.@arrname$+"["+.@x+"]"),"|");
+		if(.@T$[0]==.@arrfind$) return .@x;
+	}
+	return -1;
+}
+
+function	script	arrget_db	{
+	.@arrname$ = getarg(0);
+	.@index1 = getarg(1);
+	.@index2 = getarg(2);
+	explode(.@T$,getd(.@arrname$+"["+.@index1+"]"),"|");
+	return .@T$[.@index2];
+}
+
+//=========================================
+//= Marquee(<"string">,{<delay>})
+//=========================================
+function	script	Marquee	{
+	.@str$ = "              "+getarg(0);
+	.@delay = getarg(1,100);
+	do{
+		.@str$ = delchar(.@str$,0);
+		delwaitingroom;
+		waitingroom .@str$,0;
+		sleep .@delay;
+	}while(getstrlen(.@str$));
+	return;
+}
 
 //=========================================
 //= CStr(<"string to change color">,{<"color name">})
@@ -107,6 +249,111 @@ function	script	findinventoryitem	{
 	return -1;
 }
 
+// int getmarketvar(int itemid, string var, string marketname)
+function	script	getmarketvar	{
+	.@marketname$ = getarg(2);
+	.@sql$ = "select "+getarg(1)+" from market where name = '"+.@marketname$+"' AND nameid = "+getarg(0);
+	//debugmes .@sql$;
+	.@count = query_sql(.@sql$,.@val);
+	if(.@count <= 0) return 0;
+	//debugmes getitemname(getarg(0))+": "+getarg(0)+" = "+.@val;
+	return .@val;
+}
+
+//===================================
+//=	marketshopcountitem(<itemid>,"<marketname>")
+//=	return item amount of the market npc
+//===================================
+function	script	marketshopcountitem	{
+	.@sql$ = "select amount from market where nameid = "+getarg(0)+" AND name = '"+getarg(1)+"'";
+	.@size = query_sql(.@sql$,.@amt);
+	if(.@size <= 0){
+		debugmes "marketshopcountitem: .@sql$ "+.@sql$;
+		debugmes "marketshopcountitem: item id "+getarg(0)+" or market named "+getarg(1)+" not found!";
+		return 0;
+	}
+	if(.@amt > 0) return .@amt;
+	return 0;
+}
+
+//===================================
+//=	marketshopcountitem2(<itemid>,"<townname>")
+//=	return item amount of the town market npc
+//===================================
+function	script	marketshopcountitem2	{
+	return marketshopcountitem(getarg(0),getarg(1)+"#"+getiteminfo(getarg(0),2));
+}
+
+//===================================
+//=	marketshopadditem(<itemid>,<amount>,"<marketname>"{,price})
+//===================================
+function	script	marketshopadditem	{
+	.@id = getarg(0);
+	.@amt = getarg(1);
+	.@market$ = getarg(2);
+	.@price = getarg(3,0);
+	.@amtfound = marketshopcountitem(.@id,.@market$);
+	if(.@amtfound){
+		npcshopupdate .@market$,.@id,.@price,.@amt+.@amtfound;
+		showscript "Add "+.@amt+" x "+getitemname(.@id)+" = "+(.@amt+.@amtfound),getnpcid(0);
+	}else{
+		npcshopadditem .@market$,.@id,.@price,.@amt;
+		showscript "Create "+.@amt+" x "+getitemname(.@id),getnpcid(0);
+	}
+	return;
+}
+
+//===================================
+//=	marketshopadditem2(<itemid>,<amount>,"<town>"{,price})
+//===================================
+function	script	marketshopadditem2	{
+	.@id = getarg(0);
+	.@amt = getarg(1);
+	.@market$ = getarg(2);
+	.@price = getarg(3,0);
+	marketshopadditem(.@id,.@amt,.@market$+"#"+getiteminfo(.@id,2),.@price);
+	return;
+}
+
+//===================================
+//=	marketshopdelitem(<itemid>,<amount>,"<marketname>")
+//=	return 1 on success
+//= return 0 on error
+//===================================
+function	script	marketshopdelitem	{
+	.@sql$ = "select amount from market where nameid = "+getarg(0)+" AND name = '"+getarg(2)+"'";
+	.@size = query_sql(.@sql$,.@amt);
+	if(.@size <= 0){
+		debugmes "marketshopdelitem: .@sql$ "+.@sql$;
+		debugmes "marketshopdelitem: item id "+getarg(0)+" or market named "+getarg(2)+" not found!";
+		return 0;
+	}
+	.@amt = marketshopcountitem(getarg(0),getarg(2));
+	if(getarg(1) >= .@amt){
+		npcshopdelitem(getarg(2),getarg(0));
+	}else{
+		npcshopupdate getarg(2),getarg(0),0,.@amt-getarg(1);
+	}
+	return 1;
+}
+
+//===================================
+//=	marketshopclear("<marketname>")
+//=	clear all item on marketshop
+//===================================
+function	script	marketshopclear	{
+	.@sql$ = "select nameid from market where name = '"+getarg(0)+"'";
+	.@size = query_sql(.@sql$,.@nameid);
+	if(.@size <= 0){
+		debugmes "marketshopclear: market named "+getarg(0)+" is empty. Nothing to clear.";
+		return 0;
+	}
+	for(.@x=0;.@x<.@size;.@x++){
+		npcshopupdate getarg(0),.@nameid[.@x],0,0;
+	}
+	showscript "Market Cleared",getnpcid(0);
+	return;
+}
 
 //===================================
 //=	getcharid2(<mode>,"<charname>")
@@ -223,6 +470,266 @@ function	script	display	{
 	return;
 }
 
+//===================================
+//=	getVariable(<"npc variable name">,{"<owner>"})
+//= return variable value
+//= owner will be calling npc if omitted
+//===================================
+function	script	getVariable	{
+	return getvariableofnpc(getd(getarg(0)),getarg(1,strnpcinfo(3)));
+}
+
+//===================================
+//=	setVariable(<"npc variable name">,<val>,{<"owner">})
+//= set variable value
+//= owner will be calling npc if omitted
+//===================================
+function	script	setVariable	{
+	set getvariableofnpc(getd(getarg(0)),getarg(2,strnpcinfo(3))),getarg(1);
+	return;
+}
+
+//===================================
+//=	arradd("<arrayname>",<value>,{<"owner">})
+//= add value to array
+//= owner will be calling npc if omitted
+//===================================
+function	script	arradd	{
+	.@size = getarraysize(getVariable(getarg(0),getarg(2,strnpcinfo(3))));
+	//debugmes ".@size = "+.@size;
+	setVariable(getarg(0)+"["+.@size+"]",getarg(1),getarg(2,strnpcinfo(3)));
+	.@size2 = getarraysize(getVariable(getarg(0),getarg(2,strnpcinfo(3))));
+	//debugmes ".@size2 = "+.@size2;
+	if(.@size==.@size2) return 0;
+	return getarg(1);
+}
+
+//===================================
+//=	arrdel("<arrayname>",<index>,{<"owner">})
+//= delete index from array
+//= owner will be calling npc if omitted
+//===================================
+function	script	arrdel	{
+	.@size = getarraysize(getVariable(getarg(0),getarg(2,strnpcinfo(3))));
+	deletearray getVariable(getarg(0)+"["+getarg(1)+"]",getarg(2,strnpcinfo(3))),1;
+/*	for(.@x=0;.@x < .@size;.@x++){
+		if( getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3))) == getarg(1) ){
+			deletearray getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3))),1;
+			//debugmes getarg(1)+" delete from "+getarg(0);
+			return getarg(1);
+		}
+	}
+*/
+	return 0;
+}
+
+//===================================
+// arrhas("<arrayname>",<value>,{<"owner">,<notsensitive>})
+//= check if value in array
+//= return 1 if in else return 0
+//===================================
+function	script	arrhas	{
+	.@size = getarraysize(getVariable(getarg(0),getarg(2,strnpcinfo(3))));
+	for(.@x=0;.@x < .@size;.@x++){
+		//dispbottom "Compare "+getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3)))+" == "+getarg(1);
+		if(getarg(3,0)){
+			if( strtolower(getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3)))) == strtolower(getarg(1)) ) return 1;
+		}else{
+			if( getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3))) == getarg(1) ) return 1;
+		}
+		
+	}
+	return 0;
+}
+
+//===================================
+// arrfind("<arrayname>",<value>,{<"owner">,<notsensitive>})
+//= return first found value index in array
+//= return -1 if not found
+//===================================
+function	script	arrfind	{
+	.@size = getarraysize(getVariable(getarg(0),getarg(2,strnpcinfo(3))));
+	for(.@x=0;.@x < .@size;.@x++){
+		//dispbottom "Compare "+getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3)))+" == "+getarg(1);
+		if(getarg(3,0)){
+			if( strtolower(getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3)))) == strtolower(getarg(1)) ) return .@x;
+		}else{
+			if( getVariable(getarg(0)+"["+.@x+"]",getarg(2,strnpcinfo(3))) == getarg(1) ) return .@x;
+		}
+	}
+	return -1;
+}
+
+//===================================
+// arrselect("<arrayname>",{<"label">,"<owner>"})
+//= return selected array value after selection
+//= label add before selection	
+//= owner will be calling npc if omitted
+//===================================
+function	script	arrselect	{
+	.@blist$ = "25003";
+	.@arrName$ = getarg(0);
+	.@owner$ = getarg(2,strnpcinfo(3));
+	.@label$ = getarg(1,"");
+	.@size = getarraysize(getVariable(.@arrName$,.@owner$));
+	.@m$ = "";
+	for(.@x=0;.@x<.@size;.@x++){
+		.@m$ = .@m$+.@label$+getVariable(.@arrName$+"["+.@x+"]",.@owner$)+":";
+	}
+	return getVariable(.@arrName$+"["+(select(.@m$)-1)+"]",.@owner$);
+}
+
+//==============================
+//= UpperFirst("<string>")
+//= return string with first string capital
+//==============================
+function	script	UpperFirst	{
+	.@s$ = getarg(0);
+	return Strtoupper(charat(.@s$,0)) + delchar(.@s$,0);
+	//return setchar(.@s$, charat(.@s$,0), 0);
+}
+
+//group_chk("variable",valuetocompare{,mode})
+function	script	group_chk	{
+	.@mode = getarg(2,0);
+	.@count = 0;
+	.@num = 0;
+	if(!.@mode){
+		getpartymember getcharid(1),1;
+		.@num = $@partymembercount;
+		for(.@x=0;.@x<.@num;.@x++){
+			if(getvar(getd(getarg(0)),$@partymembercid[.@x]) >= getarg(1)) .@count++;
+		}
+	}else{
+		getguildmember getcharid(2),1;
+		.@num = $@guildmembercount;
+		for(.@x=0;.@x<.@num;.@x++){
+			if(getvar(getd(getarg(0)),$@guildmembercid[.@x]) >= getarg(1)) .@count++;
+		}
+	}
+	if(.@count >= .@num) return 1;
+	return 0;
+}
+
+//===================================
+//=	answer_chk(<"str1:str2:...">/<"str1|str2">)
+//=	delimeter:
+//=	":" only need to meet any of these
+//=	"|" will need to meet all of these inside (no need in order)
+//= return 1 if condition meet
+//= return 0 if condition not meet
+//===================================
+function	script	answer_chk	{
+	deletearray @T$,getarraysize(@T$);
+	explode(@T$,getarg(0),":");
+	@size = getarraysize(@T$);
+	if(!compare(getarg(0),"|")){
+		input @in$;
+		for(.@i=0;.@i<@size;.@i++){
+			if(strtolower(@in$)==@T$[.@i]) return 1;
+		}
+	}else{
+		.@prefix$ = ".list";
+		.@char$ = strcharinfo(0)+"$";	// result will be .answerlist+charname+$ = .answerlistGM01$
+		.@var$ = .@prefix$+.@char$;
+		deletearray @T$,getarraysize(@T$);
+		explode(@T$,getarg(0),"|");
+		@size = getarraysize(@T$);
+		@count = 0;
+		for(.@i=0;.@i<@size;.@i++){
+			arradd(.@var$,@T$[.@i]);
+		}
+		for(.@i=0;.@i<@size;.@i++){
+			input @in$;
+			if(arrhas(.@var$,@in$,strnpcinfo(3),1)){
+				@count++;
+				mes "["+@count+"/"+@size+"] "+UpperFirst(@in$);
+				arrdel(.@var$,arrfind(.@var$,@in$,strnpcinfo(3),1));
+			}else{
+				return 0;
+			}
+		}
+		if(@count >= @size) return 1;
+	}
+	return 0;
+}
+
+// sortstringarray("<arrname>"{,<mode>})
+function	script	sortstringarray	{
+	.@varname$ = getarg(0);
+	.@mode = getarg(1,0);		// 0 ascending , 1 descending
+	copyarray .@temparr$[0],getVariable(.@varname$+"[0]"),getarraysize(getVariable(.@varname$));
+	setarray .@T$,"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z";
+	for( .@x=(!.@mode?0:getarraysize(.@T$)-1) ; (!.@mode?.@x<getarraysize(.@T$):.@x>=0) ; .@x+=(!.@mode?1:-1) ){
+		for(.@y=0;.@y<getarraysize(.@temparr$);.@y++){
+			if( strtoupper(charat(.@temparr$[.@y],0)) == strtoupper(.@T$[.@x]) ){
+				.@SortedString$[getarraysize(.@SortedString$)] = .@temparr$[.@y];
+				deletearray .@temparr$[.@y],1;
+				.@y--;
+			}
+		}
+		if(!getarraysize(.@temparr$)) break;	// stop sorting if no more item left
+	}
+	for(.@x=0;.@x<getarraysize(.@SortedString$);.@x++)
+		setVariable(.@varname$+"["+.@x+"]",.@SortedString$[.@x]);
+	return;
+}
+
+function	script	BubbleComb	{	
+// BubbleComb(arr[,type]); Sorts the given array (type 1 = ascending (default); 2 = descending)
+	set .@Type,(getarg(1,1) == 2 ? -1 : 1);
+	set .@Gap,set(.@Size,getarraysize(getarg(0)));
+	do {
+		if(.@Gap>1) set .@Gap,(.@Gap*100)/140;
+		set .@Swap,0;
+		for(set .@i,0; (.@i+.@Gap)<.@Size; set .@i,.@i+1){
+			sleep( (.@i%1024==0)*20 );
+			if(getelementofarray(getarg(0),.@i)*.@Type > getelementofarray(getarg(0),.@i+.@Gap)*.@Type){
+				set .@tmp,getelementofarray(getarg(0),.@i);
+				set getelementofarray(getarg(0),.@i),getelementofarray(getarg(0),.@i+.@Gap);
+				set getelementofarray(getarg(0),.@i+.@Gap),.@tmp;
+				set .@Swap,1;
+			}
+		}
+	} while(.@Swap || .@Gap>1);
+	return;
+}
+
+//=========================================
+//= getpercent(<currentval>,<maxval>)
+//= return percent rate
+//=========================================
+function	script	getpercent	{
+	.@current = getarg(0);
+	.@max = getarg(1);
+	if(!.@current) return 0;
+	return .@current*100/.@max;
+}
+
+function	script	getpercentbar	{
+	.@current = getarg(0,0);
+	.@max = getarg(1,100);
+	.@color1$ = getarg(2,"GREEN");
+	.@color2$ = getarg(3,"RED");
+	.@char$ = "l";
+	.@dot = 4;
+	if(.@current>.@max) .@current = .@max;
+	if(!.@current || .@max<0){
+		for(.@x=0;.@x<=6*.@dot;.@x++){
+			set .@t1$,.@t1$+.@char$;
+		}
+		return callfunc("CStr",.@t1$,.@color2$)+" [ 0% ]";
+	}
+	.@cal = .@current*100/.@max;
+	for(.@x=0;.@x<.@cal/.@dot;.@x++){
+		set .@t1$,.@t1$+.@char$;
+		.@c++;
+	}
+	for(.@x=0;.@x<((100/.@dot)-.@c);.@x++){
+		set .@t2$,.@t2$+.@char$;
+	}
+	return callfunc("CStr",.@t1$,.@color1$)+callfunc("CStr",.@t2$,.@color2$)+" [ "+callfunc("CStr",.@cal)+"% ]";
+}
 
 //=========================================
 //= getRemain(<sec>,{<langtype>})
@@ -250,6 +757,26 @@ function	script	showscript2	{
 	return;
 }
 
+//=========================================
+//= npcmes(<"npcname">,"mes1:mes2|mes1:mes2")
+//= npcmes("Kafra","Hello adventurer, how are you?:This is my 2rd message.|Hmm... ok..:See you soon.|Bye.")
+//= after the delimiter | will auto next
+//=========================================
+function	script	npcmes	{
+	.@n$ = getarg(0);
+	deletearray .@T$,getarraysize(.@T$);
+	explode(.@T$,getarg(1),"|");
+	for(.@x=0;.@x<getarraysize(.@T$);.@x++){
+		mes .@n$;
+		deletearray .@TT$,getarraysize(.@TT$);
+		explode(.@TT$,.@T$[.@x],":");
+		for(.@y=0;.@y<getarraysize(.@TT$);.@y++){
+			mes .@TT$[.@y];
+		}
+		if(.@x+1 < getarraysize(.@T$)) next;
+	}
+	return;
+}
 
 //=========================================
 //= Navi(<"name">,<"mapname">{,< x >,< y >})
@@ -271,6 +798,17 @@ function	script	Url	{
 	return "<URL>"+getarg(1,getarg(0))+"<INFO>"+getarg(0)+",300,300</INFO></URL>";
 }
 
+//=========================================
+//= itembreak(<itemid>,<rate>)
+//= delete worn out item with rate
+//=========================================
+function	script	itembreak	{
+	if(rand(1,10000)<=getarg(1)){
+		showscript getitemname(getarg(0))+" worn out!";
+		delitem getarg(0),1;
+	}
+	return;
+}
 
 //=========================================
 //= itemname(<itemid>)
@@ -326,6 +864,38 @@ function	script	itemcheck	{
 			.@id = atoi(.@TT$[0]);
 			.@amt = atoi(.@TT$[1])*.@mul;
 			if(.@amt>0) delitem .@id,.@amt;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+function	script	varcheck	{
+	.@iteminfo$ = getarg(0);
+	.@mode = getarg(1,0);
+	if(.@iteminfo$ == "") return 2;
+	explode(.@T$,.@iteminfo$,"|");
+	if(!.@mode){
+		mes "Variable Requirement:";
+		.@bool = 1;
+		for(.@x=0;.@x<getarraysize(.@T$);.@x++){
+			explode(.@TT$,.@T$[.@x],":");
+			.@var$ = .@TT$[0];
+			.@amt = atoi(.@TT$[1]);
+			if(getd(.@var$) < .@amt){
+				mes " > "+.@var$+" ["+CStr(getd(.@var$),"green")+"/"+.@amt+"]";
+				.@bool = 0;
+			}else{
+				mes " > "+.@var$+" ["+CStr(getd(.@var$),"red")+"/"+.@amt+"]";
+			}
+		}
+		return .@bool;
+	}else{
+		for(.@x=0;.@x<getarraysize(.@T$);.@x++){
+			explode(.@TT$,.@T$[.@x],":");
+			.@var$ = .@TT$[0];
+			.@amt = atoi(.@TT$[1]);
+			set getd(.@var$),getd(.@var$)-.@amt;
 		}
 		return 1;
 	}

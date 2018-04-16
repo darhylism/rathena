@@ -50,3 +50,4 @@
 4363,50000 //hp card
 4365,50000 //hw card
 4367,50000 //sniper card
+6004,150000 //Cursed Bapho Doll

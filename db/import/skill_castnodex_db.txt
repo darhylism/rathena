@@ -14,3 +14,4 @@
 // Note: Delay setting '1' only makes sense when delay_dependon_dex is enabled.
 // Example: 46,1,1 = Double Strafe's cast time and delay is not affected by dex.
 
+397,0,0	//LK_SPIRALPIERCE

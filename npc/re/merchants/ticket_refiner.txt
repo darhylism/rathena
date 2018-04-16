@@ -69,13 +69,6 @@ prontera,187,167,6	script	Refine Master	851,{
 		mes "You have to equip the item you want to refine.";
 		close;
 	}
-	if (!getequipisenableref(.@part)) {
-		emotion ET_OTL;
-		mes "[Refine Master]";
-		mes "Oh, I'm sorry.";
-		mes "This item is impossible to refine.";
-		close;
-	}
 	switch(getequipweaponlv(.@part)) {
 	default:
 	case 0:

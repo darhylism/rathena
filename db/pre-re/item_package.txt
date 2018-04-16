@@ -4330,18 +4330,18 @@ IG_Shapeshifter_Costume,19839,200,1,1,0,0,0	// 1x C_Vanilmirth_Hat
 
 // July_Lucky_Scroll
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
-IG_July_Lucky_Scroll,4399,350,1,1,1,0,0	// 1x Thanatos_Card
-IG_July_Lucky_Scroll,6232,152,1,1,1,0,0	// 1x Guarantee_Armor_9Up
-IG_July_Lucky_Scroll,6228,499,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
+IG_July_Lucky_Scroll,4399,177,1,1,1,0,0	// 1x Thanatos_Card
+IG_July_Lucky_Scroll,6232,78,1,1,1,0,0	// 1x Guarantee_Armor_9Up
+IG_July_Lucky_Scroll,6228,155,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
 IG_July_Lucky_Scroll,6233,888,1,1,1,0,0	// 1x Guarantee_Armor_8Up
 IG_July_Lucky_Scroll,6229,751,1,1,1,0,0	// 1x Guarantee_Weapon_8Up
-IG_July_Lucky_Scroll,19116,500,1,1,1,0,0	// 1x Red_Baby_Dragon
-IG_July_Lucky_Scroll,5967,54,1,1,1,0,0	// 1x FlyingGalapago
+IG_July_Lucky_Scroll,19116,88,1,1,1,0,0	// 1x Red_Baby_Dragon
+IG_July_Lucky_Scroll,5967,3,1,1,1,0,0	// 1x FlyingGalapago
 IG_July_Lucky_Scroll,5968,99,1,1,1,0,0	// 1x RDVAngelNurseCap
-IG_July_Lucky_Scroll,5969,22,1,1,1,0,0	// 1x QueenAnzRevenge
-IG_July_Lucky_Scroll,5943,44,1,1,1,0,0	// 1x Owlviscount_Silk_Hat
-IG_July_Lucky_Scroll,16771,901,100,1,0,0,0	// 100x Silvervine_Fruit_Box40
-IG_July_Lucky_Scroll,7642,899,500,1,0,0,0	// 500x Bloody Coin
+IG_July_Lucky_Scroll,5969,2,1,1,1,0,0	// 1x QueenAnzRevenge
+IG_July_Lucky_Scroll,5943,1,1,1,1,0,0	// 1x Owlviscount_Silk_Hat
+IG_July_Lucky_Scroll,16771,4,100,1,0,0,0	// 100x Silvervine_Fruit_Box40
+IG_July_Lucky_Scroll,7642,900,500,1,0,0,0	// 500x Bloody Coin
 IG_July_Lucky_Scroll,12874,1323,1,1,0,0,0	// 1x Frost Giant Blood
 
 

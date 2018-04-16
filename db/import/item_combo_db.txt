@@ -260,7 +260,7 @@
 4006:4266,{ bonus bFlee,18; }
 4009:4179,{ bonus bFlee,18; }
 4014:4306,{ bonus bFlee,18; }
-4015:5967,{ bonus2 bSubEle,Ele_All,10; }
+4015:5967,{ bonus2 bSubEle,Ele_All,5; }
 4021:4211,{ bonus bFlee,18; }
 4025:4222,{ bonus2 bAddEffWhenHit,Eff_Sleep,600; }
 4028:4296,{ bonus bStr,3; }
@@ -279,7 +279,7 @@
 4153:4247:4273,{ bonus3 bAddMonsterDropItem,544,RC_Fish,3000; bonus2 bAddEle,Ele_Water,30; }
 4153:18554,{ bonus2 bAddEle,Ele_Water,10; }
 
-4163:5967,{ bonus bAspdRate,3; bonus bAspd,1; bonus bNoWeaponDamage,5; if (getequiprefinerycnt(EQI_HAND_R) > 10 && getiteminfo(getequipid(EQI_HAND_R),11) == 11) bonus bAspd,1; }
+4163:5967,{ bonus bAspdRate,3; bonus bAspd,1; bonus bNoWeaponDamage,5; if (getequiprefinerycnt(EQI_HAND_R) >= 10 && getiteminfo(getequipid(EQI_HAND_R),11) == 11) bonus bAspd,1; }
 
 4169:4488,{ if(getequiprefinerycnt(EQI_SHOES) >= 15) { bonus bMaxHPrate,15; bonus bMaxSPrate,15; } else { bonus bMaxHPrate,10; bonus bMaxSPrate,10; } }
 4172:4210:4230:4257:4272,{ bonus bAgi,5; bonus bStr,5; bonus bAspdRate,5; bonus bSpeedRate,25; bonus bSPDrainValue,1; if(BaseClass==Job_Thief) bonus bNoGemStone,0; }

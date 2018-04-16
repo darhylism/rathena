@@ -109,3 +109,7 @@
 35070,1,100	// Customz07
 35071,1,100	// fanque_gue
 35072,1,100	// Customz09
+35075,1,100	// jing_white_saiyan
+35076,1,100	// le_project_mayhem
+35079,1,100	// saiyan_trunks
+35080,1,100	// aura_trunks

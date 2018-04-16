@@ -432,8 +432,8 @@ C8: Restrict("RE");
 	Guild_Dungeons:
 // --------------------------------------------------
 
-menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4;
-  //  	"Arunafeltz",G5, "Schwaltzvalt",G6;
+menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4,
+    	"Arunafeltz",G5, "Schwaltzvalt",G6;
 
 G1: Restrict("RE",2,3);
 	setarray @c[2],119,93,119,93,120,130;
@@ -452,8 +452,8 @@ G4: Restrict("RE",2,3);
 	Disp("Britoniah F1:Britoniah F2:Hall of Abyss");
 	Pick("","gld_dun04","gld_dun04_2","gld2_gef");
 	
-//G5: Go("arug_dun01",199,195);
-//G6: Go("schg_dun01",200,124);
+G5: Go("arug_dun01",199,195);
+G6: Go("schg_dun01",200,124);
 
 // --------------------------------------------------
 	Instances:
