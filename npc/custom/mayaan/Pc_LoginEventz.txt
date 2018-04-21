@@ -1,0 +1,9 @@
+-	script	LoginEventz	-1,{
+ 
+OnPCLoginEvent:
+sc_end SC_ENDURE;
+atcommand "@join #global";
+atcommand "@join #support";
+atcommand "@join #trade";
+end;
+}

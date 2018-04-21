@@ -113,3 +113,6 @@
 35076,1,100	// le_project_mayhem
 35079,1,100	// saiyan_trunks
 35080,1,100	// aura_trunks
+35081,1,100	// tuks_black_cap
+35082,1,100	// Trending_sword
+35083,9,100	// Omega_Red_Demon
