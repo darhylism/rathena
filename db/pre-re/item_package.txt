@@ -1104,22 +1104,23 @@ IG_Animal_Scroll,5217,5,1,1,0,0,1	// 1x Magestic_Goat_TW
 IG_Animal_Scroll,5222,5,1,1,0,0,1	// 1x Fish_On_Head_
 IG_Animal_Scroll,12086,185,5,1,0,0,1	// 5x Agi_Dish06
 
-IG_Heart_Scroll,2701,5,1,1,0,0,1	// 1x Orleans_Glove
-IG_Heart_Scroll,2528,5,1,1,0,0,1	// 1x Wool_Scarf
-IG_Heart_Scroll,5288,15,1,1,0,0,1	// 1x Red_Glasses
-IG_Heart_Scroll,12073,200,7,1,0,0,1	// 7x Str_Dish08
-IG_Heart_Scroll,12085,200,5,1,0,0,1	// 5x Vit_Dish10
-IG_Heart_Scroll,2677,1,1,1,0,0,1	// 1x Spiritual_Ring
-IG_Heart_Scroll,12089,200,5,1,0,0,1	// 5x Agi_Dish09
-IG_Heart_Scroll,2664,40,1,1,0,0,1	// 1x Scarf_Belt
-IG_Heart_Scroll,2680,5,1,1,0,0,1	// 1x Lesser_Elemental_Ring
-IG_Heart_Scroll,12097,200,8,1,0,0,1	// 8x Luk_Dish07
-IG_Heart_Scroll,5130,20,1,1,0,0,1	// 1x Lion_Mask
-IG_Heart_Scroll,5076,20,1,1,0,0,1	// 1x Fur_Hat
-IG_Heart_Scroll,5123,20,1,1,0,0,1	// 1x Ulle_Cap
-IG_Heart_Scroll,5256,4,1,1,0,0,1	// 1x Valkyrie_Feather_Band
-IG_Heart_Scroll,5115,20,1,1,0,0,1	// 1x Winter_Hat
-IG_Heart_Scroll,2283,45,1,1,0,0,1	// 1x Ear_Mufs
+// GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+IG_Heart_Scroll,19132,155,1,1,1	// 1x Masquerade
+IG_Heart_Scroll,19126,11,1,1,1	// 1x Magical Booster
+IG_Heart_Scroll,19181,15,1,1,1	// 1x New Wave Sunglasses
+IG_Heart_Scroll,18937,10,1,1,1	// 1x Memories Of Lovers
+IG_Heart_Scroll,6232,23,1,1,1	// 1x Guarantee_Armor_9Up
+IG_Heart_Scroll,6228,22,1,1,1	// 1x Guarantee_Weapon_9Up
+IG_Heart_Scroll,6233,233,1,1,1	// 1x +8 Armor Refine
+IG_Heart_Scroll,6229,222,1,1,1	// 1x +8 Weapon Refine
+IG_Heart_Scroll,14603,334,5,1,0	// 5x Mistress Scroll
+IG_Heart_Scroll,14597,336,1,1,0	// 1x Phreeoni Scroll
+IG_Heart_Scroll,12218,900,1,1,0	// 1x Assumptio Scroll
+IG_Heart_Scroll,12746,899,1,1,1	// 1x Destruction Scroll
+IG_Heart_Scroll,12414,955,3,1,0	// 1x Guarana Candy
+IG_Heart_Scroll,14536,966,3,1,0	// 1x Abrasive
+IG_Heart_Scroll,7642,900,300,1,0,0,0	// 300x Bloody Coin
+
 
 IG_New_Year_Scroll,12903,1500,1,1,0,0,0	// 1x Str_Dish_Box
 IG_New_Year_Scroll,12904,1500,1,1,0,0,0	// 1x Agi_Dish_Box
@@ -4330,20 +4331,18 @@ IG_Shapeshifter_Costume,19839,200,1,1,0,0,0	// 1x C_Vanilmirth_Hat
 
 // July_Lucky_Scroll
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
-IG_July_Lucky_Scroll,4399,177,1,1,1,0,0	// 1x Thanatos_Card
 IG_July_Lucky_Scroll,6232,78,1,1,1,0,0	// 1x Guarantee_Armor_9Up
 IG_July_Lucky_Scroll,6228,155,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
 IG_July_Lucky_Scroll,6233,888,1,1,1,0,0	// 1x Guarantee_Armor_8Up
 IG_July_Lucky_Scroll,6229,751,1,1,1,0,0	// 1x Guarantee_Weapon_8Up
-IG_July_Lucky_Scroll,19116,88,1,1,1,0,0	// 1x Red_Baby_Dragon
-IG_July_Lucky_Scroll,5967,3,1,1,1,0,0	// 1x FlyingGalapago
-IG_July_Lucky_Scroll,5968,99,1,1,1,0,0	// 1x RDVAngelNurseCap
-IG_July_Lucky_Scroll,5969,2,1,1,1,0,0	// 1x QueenAnzRevenge
-IG_July_Lucky_Scroll,5943,1,1,1,1,0,0	// 1x Owlviscount_Silk_Hat
+IG_July_Lucky_Scroll,19116,22,1,1,1,0,0	// 1x Red_Baby_Dragon
+IG_July_Lucky_Scroll,5967,2,1,1,1,0,0	// 1x FlyingGalapago
+IG_July_Lucky_Scroll,5968,3,1,1,1,0,0	// 1x RDVAngelNurseCap
+IG_July_Lucky_Scroll,5969,1,1,1,1,0,0	// 1x QueenAnzRevenge
+IG_July_Lucky_Scroll,5943,55,1,1,1,0,0	// 1x Owlviscount_Silk_Hat
 IG_July_Lucky_Scroll,16771,4,100,1,0,0,0	// 100x Silvervine_Fruit_Box40
 IG_July_Lucky_Scroll,7642,900,500,1,0,0,0	// 500x Bloody Coin
-IG_July_Lucky_Scroll,12874,1323,1,1,0,0,0	// 1x Frost Giant Blood
-
+IG_July_Lucky_Scroll,18947,55,1,1,1,0,0	// 1x Jiraiyas Pipe
 
 
 

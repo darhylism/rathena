@@ -11296,7 +11296,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 		{
 			switch( ud->skill_id )
 			{
-			case GS_DESPERADO:
+//			case GS_DESPERADO:
 			case RL_FIREDANCE:
 				sd->canequip_tick = tick + skill_get_time(ud->skill_id, ud->skill_lv);
 				break;

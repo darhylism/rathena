@@ -217,12 +217,13 @@ OnEnable:
 job_star,101,38,4	script	The Manager	1_M_MOC_LORD,{
 
 	mes "[The Manager]";
-	mes "You lose! +5 PvP points";
-	#PVPPOINTS += 5;
-	dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
-	next;
-		warp "poring_w02",99,72;
-		close;
+	mes "You  Lose!";
+	mes "Pvp Points +5";
+	close2;
+	warp "Save",0,0;
+		#PVPPOINTS += 5;
+		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
+	end;
 }
 
 // mapflag

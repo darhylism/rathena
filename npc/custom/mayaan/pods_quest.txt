@@ -23,14 +23,14 @@
 //============================================================
 
 // Shop NPCs -- supplying no argument displays entire menu.
-//	callfunc "sanshop"{,<shop ID>{,<shop ID>{,...}}};
+//	callfunc "podshop"{,<shop ID>{,<shop ID>{,...}}};
 //============================================================
-poring_w02,99,41,4	script	Santa Quest	4_M_SANTA,{ callfunc "sanshop"; }
+poring_w02,95,41,4	script	PODS Shop	4_M_MAYOR,{ callfunc "podshop"; }
 
 
 // Script Core
 //============================================================
--	script	sanshop	-1,{ 
+-	script	podshop	-1,{ 
 function Add; function Chk; function Slot;
 OnInit:
 	freeloop(1);
@@ -57,7 +57,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Quest";
+	setarray .Shops$[1],"PODS SHOP";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -66,37 +66,15 @@ OnInit:
 //	    <required item ID>,<required item amount>{,...});
 // -----------------------------------------------------------
 	
-	Add(1,35000,1,0,10,677,1);
-	Add(1,35001,1,0,10,677,1);
-	Add(1,35002,1,0,10,677,1);
-	Add(1,35003,1,0,10,677,1);
-	Add(1,1198,1,0,50,677,5);
-	Add(1,13184,1,0,50,677,5);
-	Add(1,13185,1,0,50,677,5);
-	Add(1,13186,1,0,50,677,5);
-	Add(1,13187,1,0,50,677,5);
-	Add(1,35005,1,0,10,677,5);
-	Add(1,35006,1,0,10,677,5);
-	Add(1,35011,1,0,10,677,5);
+	Add(1,14363,5,0,10,677,1,7179,1);
+	Add(1,35084,1,0,10,677,5,7179,5);
+	Add(1,35085,1,0,10,677,5,7179,5);
+	Add(1,35086,1,0,10,677,5,7179,5);
+	Add(1,35087,1,0,10,677,5,7179,5);
+	Add(1,35088,1,0,10,677,5,7179,5);
+	Add(1,35089,1,0,10,677,5,7179,5);
+	Add(1,35090,1,0,10,677,5,7179,5);
 	
-	Add(1,35013,1,0,50,677,20); //EKE
-	Add(1,35029,1,0,50,677,5); //alucard
-	Add(1,35040,1,0,50,677,5); //chii_ears
-	Add(1,35015,1,0,50,677,5); //face_of_death
-	Add(1,35014,1,0,50,677,5); //hood_of_death
-	Add(1,35016,1,0,10,677,5); //kakashi_head_protector
-	Add(1,35018,1,0,50,677,5); //heart_sunglasses
-	Add(1,35012,1,0,50,677,5); //cat_o_ninetails
-	Add(1,35010,1,0,50,677,5); //moonlight_hat
-	Add(1,35009,1,0,50,677,5); //moobert_hat
-	Add(1,1749,1,0,50,677,5); //quincy_bow
-	Add(1,35026,1,0,50,677,5); //dj_headset
-	Add(1,35027,1,0,50,677,5); //state_alchemist_pocket_watch
-	Add(1,35028,1,0,50,677,5); //haruhi_ribbons
-	Add(1,35030,1,0,50,677,5); //pikachu_ears
-	Add(1,35039,1,0,50,677,5); //piamette_headband
-	Add(1,35017,1,0,50,677,5); //double_bunny_ears
-//	Add(1,NOID,1,77777777,0,7563,300,7511,300,29001,1,5045,1,7117,100,618,10,7751,100); //rune_of_prophecies
 
 // -----------------------------------------------------------
 
@@ -104,7 +82,7 @@ OnInit:
 	set .menu$,"";
 	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
 		set .menu$, .menu$+.Shops$[.@i]+":";
-		npcshopdelitem "sanshop"+.@i,909;
+		npcshopdelitem "podshop"+.@i,909;
 	}
 	end;
 
@@ -123,8 +101,8 @@ OnMenu:
 		end;
 	}
 	dispbottom "Select one item at a time.";
-	callshop "sanshop"+@shop_index,1;
-	npcshopattach "sanshop"+@shop_index;
+	callshop "podshop"+@shop_index,1;
+	npcshopattach "podshop"+@shop_index;
 	end;
 
 OnBuyItem:
@@ -136,7 +114,7 @@ OnBuyItem:
 		message strcharinfo(0),"You can't purchase that many "+getitemname(.@q[0])+".";
 		end;
 	}
-	mes "[Santa Quest]";
+	mes "[PODS Shop]";
 	mes "Reward: ^0055FF"+((.@q[2] > 1)?.@q[2]+"x ":"")+Slot(.@q[0])+"^000000";
 	mes "Requirements:";
 	disable_items;
@@ -153,12 +131,12 @@ OnBuyItem:
 		switch(select(" ~ Purchase ^0055FF"+getitemname(.@q[0])+"^000000:"+((.@preview && !@qe[7])?" ~ Preview...":"")+": ~ ^777777Cancel^000000")) {
 		case 1:
 			if (@qe[0]) { 
-				mes "[Santa Quest]";
+				mes "[PODS Shop]";
 				mes "You're missing one or more quest requirements.";
 				close;
 			}
 			if (!checkweight(.@q[0],.@q[2])) {
-				mes "[Santa Quest]";
+				mes "[PODS Shop]";
 				mes "^FF0000You need "+(((.@q[2]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" additional weight capacity to complete this trade.^000000";
 				close;
 			}
@@ -206,7 +184,7 @@ function Add {
 			setarray .@j[.@i-2],getarg(.@i),getarg(.@i+1);
 	}
 	copyarray getd(".q_"+getarg(0)+"_"+getarg(1)+"[0]"),.@j[0],getarraysize(.@j);
-	npcshopadditem "sanshop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	npcshopadditem "podshop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
 	return;
 }
 
@@ -229,22 +207,22 @@ function Slot {
 }
 
 
-function	script	sanshop	{
+function	script	podshop	{
 	deletearray @i[0],getarraysize(@i);
 	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
 		set @i[.@i],getarg(.@i);
-	doevent "sanshop::OnMenu";
+	doevent "podshop::OnMenu";
 	end;
 }
 
 
 // Dummy shop data -- copy as needed.
 //============================================================
--	shop	sanshop1	-1,909:-1
--	shop	sanshop2	-1,909:-1
--	shop	sanshop3	-1,909:-1
--	shop	sanshop4	-1,909:-1
--	shop	sanshop5	-1,909:-1
+-	shop	podshop1	-1,909:-1
+-	shop	podshop2	-1,909:-1
+-	shop	podshop3	-1,909:-1
+-	shop	podshop4	-1,909:-1
+-	shop	podshop5	-1,909:-1
 
 
-mall01,105,99,4	duplicate(Santa Quest)	Santa Quest#Mall01	4_M_SANTA
+mall01,106,104,4	duplicate(PODS Shop)	PODS Shop#Mall01	4_M_MAYOR

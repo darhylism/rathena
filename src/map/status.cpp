@@ -7853,6 +7853,7 @@ static int status_get_sc_interval(enum sc_type type)
 		case SC_LEECHESEND:
 			return 1000;
 		case SC_BURNING:
+			return 250;
 		case SC_PYREXIA:
 			return 3000;
 		case SC_MAGICMUSHROOM:
@@ -8497,6 +8498,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_CRYSTALIZE:
 		if ((type == SC_FREEZING && sc->data[SC_BURNING]) || sc->data[SC_WARMER])
 			return 0; // Immune to Frozen and Freezing status if under Warmer status. [Jobbie]
+		break;
+	case SC_SPIDERWEB:
+		if (sc->data[SC_BURNING])
+			return 0; // Immune to Spiderweb if under Burning status. [darhylism]
 		break;
 	case SC_SLEEP:
 		if (sc->data[SC_GVG_SLEEP])
@@ -12801,7 +12806,8 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			int64 damage = 1000 + (3 * status->max_hp) / 100; // Deals fixed (1000 + 3%*MaxHP)
 			map_freeblock_lock();
 			dounlock = true;
-			status_fix_damage(bl, bl, damage, clif_damage(bl, bl, tick, 0, 1, damage, 1, DMG_NORMAL, 0, false));
+//			status_fix_damage(bl, bl, damage, clif_damage(bl, bl, tick, 0, 1, damage, 1, DMG_NORMAL, 0, false));
+			status_fix_damage(bl, bl, damage, clif_damage(bl, bl, tick, 0, 1, damage, 1, DMG_ENDURE, 0, false));
 		}
 		break;
 

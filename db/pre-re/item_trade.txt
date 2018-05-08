@@ -21,6 +21,7 @@
 //	Only groups of group-level 50 and up can override this setting.
 
 // Wedding Related items
+547,128,100	// White_Slim_Potion
 2634,507,100	// Wedding Ring
 2635,507,100	// Wedding Ring
 

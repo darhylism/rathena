@@ -25,10 +25,15 @@
 1198,1,100	// Buster Sword
 1650,9,100	// Almighty Staff
 1749,1,100	// Quincy_Bow
+2185,483,100	// Magic_Reflect
+2186,483,100	// Great_Encyclopedia_Revision
 2674,448,100	// Honor_Ring
 2730,448,100	// Morroc_Seal
 2731,448,100	// Morroc_Charm_Stone
 2732,448,100	// Morroc_Ring
+2963,483,100	// Body_Power_Up_Ring
+2964,483,100	// Ring_Of_Spell_Explosion
+6671,499,100	// Geffen_Coin_Magic_Tournament
 7179,329,100	// Donation_Card
 12274,507,100	// Gold_Pill_1
 12884,9,100	// Infinite_Concentration_Potion
@@ -40,6 +45,7 @@
 13186,1,100	// Havoc
 13187,1,100	// Sweeper
 13810,475,100	// Blue_Potion_Box
+14103,473,100	// F_Max_Weight_Up_Box
 14158,473,100	// F_Bubble_Gum_Box
 14178,473,100	// F_Token_Of_Siegfried_Box
 14209,473,100	// F_Siegfried_Box5
@@ -47,6 +53,8 @@
 14215,473,100	// F_Bubble_Gum_Box1
 14216,473,100	// F_Bubble_Gum_Box5
 14545,475,100	// Battle_Manual_X3
+15073,483,100	// Anti-Magic_Suits
+15074,483,100	// Geffen_Magic_Robe
 35000,1,100	// Giant_Sting_Card
 35001,1,100	// Giant_Thara_Frog_Card
 35002,1,100	// Giant_Crusier_Card
@@ -116,3 +124,13 @@
 35081,1,100	// tuks_black_cap
 35082,1,100	// Trending_sword
 35083,9,100	// Omega_Red_Demon
+35084,9,100	// Rune_of_Prophecies
+35085,9,100	// chopper_hat
+35086,9,100	// luck_o_irish
+35087,9,100	// skeggiod_hat
+35088,9,100	// karus_hat
+35089,9,100	// tilt_hat
+35090,9,100	// WinRAR_Hat
+35091,128,100	// ignition_potionz
+35092,1,100	// god_auraz
+35093,9,100	// hax_archangel

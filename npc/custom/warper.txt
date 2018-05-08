@@ -458,11 +458,12 @@ G6: Go("schg_dun01",200,124);
 // --------------------------------------------------
 	Instances:
 // --------------------------------------------------
-menu	"Horror Toy Factory",I1, "Endless Tower",I4, "Nidhoggur's Nest",I7, "Sealed Shrine",I11;
+menu	"Horror Toy Factory",I1, "Endless Tower",I4, "Nidhoggur's Nest",I7, "Geffen Magic Tournament",I8, "Sealed Shrine",I11;
 
 I1: Go("xmas",235,299);
 I4: Go("e_tower",72,112);
 I7: Go("nyd_dun02",95,193);
+I8:	Go("dali",94,141);
 I11: Go("monk_test",306,143);
 
 // --------------------CUSTOMIZED------------------------------
