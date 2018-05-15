@@ -77,7 +77,7 @@ OnInit:
 	// Event monster ID's
 	setarray .event_mobs[0],
 		2564, // Fenrir
-		2997, // Celine Kimi
+		2996, // Celine Kimi
 		1956, // Naght Seiger
 		2202; // Kraken
 

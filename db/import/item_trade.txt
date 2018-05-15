@@ -134,3 +134,4 @@
 35091,128,100	// ignition_potionz
 35092,1,100	// god_auraz
 35093,9,100	// hax_archangel
+35094,9,100	// maya_hat
