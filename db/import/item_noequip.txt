@@ -38,3 +38,11 @@
 2629,2	//Megingjorde
 2629,4	//Megingjorde
 2629,8	//Megingjorde
+
+2383,2	//Brynhild
+2383,4	//Brynhild
+2383,8	//Brynhild
+
+35049,2048	//Pori Pori Box
+35049,4	//Pori Pori Box
+35049,8	//Pori Pori Box

@@ -12,6 +12,7 @@
 608  // Seed_Of_Yggdrasil
 969  // Gold
 4128  // Golden_Bug_Card
+4359  // B_Eremes_Card
 4365  // B_Katrinn_Card
 4367  // B_Shecil_Card
 4399  // Thanatos_Card
@@ -20,3 +21,4 @@
 12885  // Infinite_Awakening_Potion
 12886  // Infinite_Berserk_Potion
 12887  // C_Wing_Of_Fly
+35095  // Linkz_Scrollz

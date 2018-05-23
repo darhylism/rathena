@@ -6,3 +6,4 @@
 // NOTE:
 // There is a max concurrent number of entries set in src/map/itemdb.h as MAX_ITEMDELAYS.
 
+35095,60000	//Soul Link Scroll

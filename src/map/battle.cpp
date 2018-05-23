@@ -6480,13 +6480,13 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #else
 		case HT_LANDMINE:
 		case MA_LANDMINE:
-			md.damage = skill_lv * (sstatus->dex + 75) * (100 + sstatus->int_) / 100;
+			md.damage = (skill_lv * 15) * (sstatus->dex + 75) * (100 + sstatus->int_) / 100;
 			break;
 		case HT_BLASTMINE:
-			md.damage = skill_lv * (sstatus->dex / 2 + 50) * (100 + sstatus->int_) / 100;
+			md.damage = (skill_lv * 50) * (sstatus->dex / 2 + 50) * (100 + sstatus->int_) / 100;
 			break;
 		case HT_CLAYMORETRAP:
-			md.damage = skill_lv * (sstatus->dex / 2 + 75) * (100 + sstatus->int_) / 100;
+			md.damage = (skill_lv * 15) * (sstatus->dex / 2 + 75) * (100 + sstatus->int_) / 100;
 			break;
 #endif
 		case HT_BLITZBEAT:

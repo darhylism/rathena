@@ -76,8 +76,8 @@ OnInit:
 
 	// Event monster ID's
 	setarray .event_mobs[0],
-		2564, // Fenrir
-		2996, // Celine Kimi
+		1917, // Wounded Morroc
+		1502, // Pori Pori
 		1956, // Naght Seiger
 		2202; // Kraken
 
@@ -124,13 +124,13 @@ OnInit:
 	// Start event on script load (For testing purposes)
 	donpcevent .npc_name$ + "::OnEnable";
 	end;
-
 OnEnable:
-OnClock0205:
-OnClock0605:
-OnClock1202:
-OnClock1502:
-OnClock2359:
+OnClock0305:
+OnClock0905:
+OnClock1105:
+OnClock1505:
+OnClock1805:
+OnClock2305:
 	// Announce event will start soon
 	announce "[World Boss] A rift on time and space is about to be opened! A World Boss will appear in " + (.event_sleep / 60000) + " minute! Prepare your Hunting Party!", bc_all, 0xFF0000;
 
@@ -1168,11 +1168,12 @@ poring_w02,106,101,4	script	World Boss#info	495,5,5,{
 	} else {
 		mes "Status: ^CC3300Inactive^000000";
 		mes "Event timetable:";
-		mes "^777777 ~ 02:05 ^000000";
-		mes "^777777 ~ 06:05 ^000000";
-		mes "^777777 ~ 12:02 ^000000";
-		mes "^777777 ~ 15:02 ^000000";
-		mes "^777777 ~ 23:59 ^000000";
+		mes "^777777 ~ 03:05 ^000000";
+		mes "^777777 ~ 09:05 ^000000";
+		mes "^777777 ~ 11:05 ^000000";
+		mes "^777777 ~ 15:05 ^000000";
+		mes "^777777 ~ 18:05 ^000000";
+		mes "^777777 ~ 23:05 ^000000";
 		mes "Wait until the event starts.";
 	}
 	// GM level 60+ has access to menu

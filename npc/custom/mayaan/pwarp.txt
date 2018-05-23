@@ -62,9 +62,13 @@ poring_w01,78,92,0	warp	poring1-12	1,1,poring_w01,94,71
 //}
 
 //Market Place settings
+poring_w02	mapflag	town
+poring_w02	mapflag	restricted	7
 poring_w02	mapflag	noteleport
 poring_w02	mapflag	nomemo
 poring_w02	mapflag	nobranch
+poring_w01	mapflag	town
+poring_w01	mapflag	restricted	7
 poring_w01	mapflag	noteleport
 poring_w01	mapflag	nomemo
 poring_w01	mapflag	nobranch

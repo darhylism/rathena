@@ -52,6 +52,7 @@
 14210,473,100	// F_Siegfried_Box20
 14215,473,100	// F_Bubble_Gum_Box1
 14216,473,100	// F_Bubble_Gum_Box5
+14536,473,100	// Abrasive
 14545,475,100	// Battle_Manual_X3
 15073,483,100	// Anti-Magic_Suits
 15074,483,100	// Geffen_Magic_Robe
@@ -135,3 +136,4 @@
 35092,1,100	// god_auraz
 35093,9,100	// hax_archangel
 35094,9,100	// maya_hat
+35096,1,100	// dogz_horn

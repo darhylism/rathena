@@ -1,4 +1,4 @@
-prontera,145,151,4	script	Stop The Clock	4_M_KHKIEL,{
+poring_w02,81,92,4	script	Stop The Clock	4_M_KHKIEL,{
 
 if(.game == 1 && getgmlevel() > 0)	{
 	message strcharinfo(0), "GM's are not allowed to join this event.";
@@ -13,7 +13,7 @@ for (set .@i,0;.@i<.@size;set .@i,.@i+1) {
 		}
 	}
 	set @stopped, .i;
-	mapannounce "prontera",""+strcharinfo(0)+" stopped the clock at "+@stopped+".",0;
+	mapannounce "poring_w02",""+strcharinfo(0)+" stopped the clock at "+@stopped+".",0;
 	set $@stoppedstc$[.cstc],strcharinfo(0);
 	set .cstc,.cstc+1;
 	if (@stopped >= 1001) {
@@ -100,58 +100,61 @@ set .winner2$[0], "";
 set .lowest, 0;
 set .j,0;
 set .wins,0;
-announce ""+.GMName$+": Stop the Clock at prontera [145,151]! Starting in 5 seconds!",0;
+announce ""+.GMName$+": Stop the Clock at Poring Market [81,93]! Starting in 5 seconds!",0;
 initnpctimer;
 end;
 
 OnTimer3000:
-mapannounce "prontera",""+.GMName$+": Stop the clock as close to 1000 as possible! Players who stopped the clock higher than 1000 automatically lose, then those who stopped the clock at exactly 1000 will receive a item! To stop the clock, just click the npc.",0;
+mapannounce "poring_w02",""+.GMName$+": Stop the clock as close to 1000 as possible! Players who stopped the clock higher than 1000 automatically lose, then those who stopped the clock at exactly 1000 will receive a item! To stop the clock, just click the npc.",0;
 end;
 
 OnTimer10000:
 announce ""+.GMName$+": Stop the Clock starts now!",0;
 stopnpctimer;
 set .game, 1;
+set .slipers, rand(19,25);
 
 for(set .i, 0; .i < 300;set .i, .i + 100)	{
-		mapannounce "prontera"," "+.i+" ",0;
+		mapannounce "poring_w02"," "+.i+" ",0;
 		specialeffect(18, AREA, playerattached());
-		sleep2 700;
+		sleep 700;
 		}
 
 
 for(set .i, 300; .i < 600;set .i, .i + 100)	{
-		mapannounce "prontera"," "+.i+" ",0;
+		mapannounce "poring_w02"," "+.i+" ",0;
 		specialeffect(18, AREA, playerattached());
-		sleep2 500;
+		sleep 500;
 		}
 
 for(set .i, 600; .i < 950;set .i, .i + 10)	{
-		mapannounce "prontera"," "+.i+" ",0;
+		mapannounce "poring_w02"," "+.i+" ",0;
 		specialeffect(18, AREA, playerattached());
-		sleep2 100;
+		sleep 100;
 		}
 
 for(set .i, 950; .i < 1000;set .i, .i + 1)	{
-		mapannounce "prontera"," "+.i+" ",0;
+		mapannounce "poring_w02"," "+.i+" ",0;
 		specialeffect(18, AREA, playerattached());
-		sleep2 20;
+		sleep .slipers;
 		}
 
 for(set .i, 1000; .i < 1050;set .i, .i + 1)	{
-		mapannounce "prontera"," "+.i+" ",0;
+		mapannounce "poring_w02"," "+.i+" ",0;
 		specialeffect(18, AREA, playerattached());
-		sleep2 15;
+		sleep 15;
 		}
 
 set .game, 0;
+set .slipers,0;
 
 if (.lowest == 1000) {
 	set .@size,getarraysize(.winner$);
 	for(set .@i,0;.@i<.@size;set .@i,.@i+1) {
-	getitem 7037,5,getcharid(3,.winner$[.@i]);
+	getitem 6224,15,getcharid(3,.winner$[.@i]);
+	getitem 6223,10,getcharid(3,.winner$[.@i]);
 	announce "Jackpot! "+.winner$[.@i]+" stopped the clock at exactly "+.lowest+"!",0;	
-	sleep2 1;
+	sleep 1;
 	}
 	set .stc_ongoing,0;
 	end;
@@ -163,9 +166,9 @@ if(.winner2$[.wins] == "") {
 	}
 	set .@size,getarraysize(.winner2$);	
 	for (set .@i,0;.@i<.@size;set .@i,.@i+1) {
-			getitem 7037,1,getcharid(3,.winner2$[.@i]);
+			getitem 12103,2,getcharid(3,.winner2$[.@i]);
 			announce ""+.winner2$[.@i]+" wins! He stopped the clock at "+.nearest+", Congratulations!.",0;
-			sleep2 1;
+			sleep 1;
 			}
 		set .stc_ongoing,0;
 	end;
