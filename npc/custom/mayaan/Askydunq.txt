@@ -394,6 +394,8 @@ OnPCLoadMapEvent:
 }
 
 // Mapflags
+Askydun	mapflag	town
+Askydun	mapflag	restricted	7
 Askydun	mapflag	nobranch
 Askydun	mapflag	nowarpto	99
 Askydun	mapflag	loadevent

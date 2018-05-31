@@ -395,8 +395,8 @@
 2181,Hervor,Hervor,4,10,,1500,,100,,0,0xFFFFFFFF,63,2,32,,1,,2,{ bonus bMdef,5; bonus2 bSubRace,RC_All,30; bonus bUnbreakableArmor,1; },{},{}
 2182,Hervor_Alvitr,Hervor Alvitr,4,0,,3000,,150,,0,0x000FDF80,58,2,32,1,100,0,2,{ bonus bMdef,10; bonus bVit,20; bonus2 bSubRace,RC_All,30; bonus bUnbreakableShield,1; autobonus2 "{ sc_end SC_STUN; sc_end SC_SLEEP; sc_end SC_CURSE; sc_end SC_STONE; sc_end SC_POISON; sc_end SC_BLIND; sc_end SC_SILENCE; sc_end SC_BLEEDING; sc_end SC_CONFUSION; sc_end SC_FREEZE; bonus2 bResEff,Eff_Stun,10000; bonus2 bResEff,Eff_Sleep,10000; bonus2 bResEff,Eff_Curse,10000; bonus2 bResEff,Eff_Stone,10000; bonus2 bResEff,Eff_Poison,10000; bonus2 bResEff,Eff_Blind,10000; bonus2 bResEff,Eff_Silence,10000; bonus2 bResEff,Eff_Bleeding,10000; bonus2 bResEff,Eff_Confusion,10000; bonus2 bResEff,Eff_Freeze,10000; }",10,60000,BF_SHORT; },{},{}
 2183,Impr_Angel's_Safeguard,Advanced Angelic Guard,4,10000,,400,,30,,1,0x00000001,63,2,32,,99,1,1,{ bonus2 bSubRace,RC_Demon,5; bonus2 bSubEle,Ele_All,5; bonus2 bSubEle,Ele_Neutral,-5; },{},{}
-2185,Magic_Reflect,Magic Reflect,4,10,,1000,,50,,1,0xFFFFFFFF,63,2,32,,99,1,3,{ bonus bMdef,10; bonus bMagicDamageReturn,3+((getrefine()>=9) ? 3 : 0); },{},{}
-2186,Great_Encyclopedia_Revision,Great Encyclopedia Revision,4,10,,200,0:5,50,,1,0x00810100,63,2,32,,99,1,4,{ bonus bInt,3; bonus bDex,2; .@r = getrefine(); bonus bCritical,3+((.@r >= 7) ? 2 : 0); if(.@r >= 9) bonus bMatk,5; },{},{}
+2185,Magic_Reflect,Magic Reflect,4,10,,1000,,10,,1,0xFFFFFFFF,63,2,32,,99,1,3,{ bonus bMdef,10; bonus bMagicDamageReturn,3+((getrefine()>=9) ? 3 : 0); },{},{}
+2186,Great_Encyclopedia_Revision,Great Encyclopedia Revision,4,10,,200,0:5,10,,1,0x00810100,63,2,32,,99,1,4,{ bonus bInt,3; bonus bDex,2; .@r = getrefine(); bonus bCritical,3+((.@r >= 7) ? 2 : 0); if(.@r >= 9) bonus bMatk,5; },{},{}
 2187,Shield_of_Gray,Shield of Gray,4,10,,2000,,75,,1,0xFFFFFFFF,58,2,32,,120,1,3,{ .@r = getrefine(); bonus2 bSubEle,Ele_Holy,30+.@r; bonus bMdef,9+.@r/3; },{},{}
 2188,Svalinn_J,Svalinn,4,10,,500,,80,,1,0xFFFFFFFF,63,2,32,,65,1,3,{ .@r = getrefine(); bonus bMaxHP,9+.@r/3; bonus2 bAddEle,Ele_Water,4+.@r/3*5; },{},{}
 2189,Mad_Bunny,Mad Bunny Shield,4,10,,100,,40,,1,0xFFFFFFFF,63,2,32,,30,1,6,{ bonus2 bSubEle,Ele_All,5; bonus bMdef,6; bonus bDex,1; },{},{}
@@ -3089,8 +3089,8 @@
 15068,Im_Angel's_Protection,Advanced Angelic Protection,4,10000,,600,,40,,1,0x00000001,63,2,16,,99,1,0,{ bonus bMdef,30; },{},{}
 15069,Suit_Of_Sid,Suit Of Sid,4,20,,1000,,30,,0,0xFFFFFFFF,63,2,16,,0,1,0,{},{},{}
 15070,Clothes_of_Happiness,Clothes of Happiness,4,10,,1000,,5,,1,0xFFFFFFFF,63,2,16,,1,1,,{ bonus bMdef,5; bonus bLuk,getrefine(); },{},{}
-15073,Anti-Magic_Suits,Anti-Magic Suits,4,10,,1500,,50,,1,0xFFFFFFFF,63,2,16,,99,1,0,{ .@r = getrefine(); bonus bMaxHPrate,5+((.@r >= 9) ? 2 : 0); bonus bMdef,10+((.@r >= 7) ? 5 : 0); },{},{}
-15074,Geffen_Magic_Robe,Geffen Magic Robe,4,10,,1000,,40,,1,0xFFFFFFFF,63,2,16,,99,1,0,{ .@r = getrefine(); bonus bUseSPrate,-10-((.@r>=7) ? 5: 0); bonus bVariableCastrate,-15-((.@r>=9) ? 5: 0); bonus bNoCastCancel2,1; },{},{}
+15073,Anti-Magic_Suits,Anti-Magic Suits,4,10,,1500,,10,,1,0xFFFFFFFF,63,2,16,,99,1,0,{ .@r = getrefine(); bonus bMaxHPrate,5+((.@r >= 9) ? 2 : 0); bonus bMdef,10+((.@r >= 7) ? 5 : 0); },{},{}
+15074,Geffen_Magic_Robe,Geffen Magic Robe,4,10,,1000,,7,,1,0xFFFFFFFF,63,2,16,,99,1,0,{ .@r = getrefine(); bonus bUseSPrate,-10-((.@r>=7) ? 5: 0); bonus bVariableCastrate,-15-((.@r>=9) ? 5: 0); bonus bNoCastCancel2,1; },{},{}
 15088,School_Uniform,School Uniform,4,20,,500,,25,,1,0xFFFFFFFF,63,2,16,,0,1,0,{ bonus bAgi,1; bonus bLuk,1; bonus bMaxHP,BaseLevel*3; bonus bMaxSP,BaseLevel/2; },{},{}
 15089,Menswear,Menswear,4,10,,300,,40,,0,0xFFFFFFFE,63,2,16,,80,1,,{ .@r = getrefine(); bonus bAspdRate,3+((.@r>=7)?2:0); bonus bDelayrate,-3-((.@r>=7)?2:0); bonus bVariableCastrate,-3-((.@r>=7)?2:0); },{},{}
 15090,Armor_of_Gray,Armor of Gray,4,10,,2400,,90,,1,0x000654E2,63,2,16,,120,1,0,{ bonus bMdef,10; bonus2 bSubEle,Ele_Holy,10+getrefine()*2; },{},{}
@@ -7243,3 +7243,5 @@
 35094,maya_hat,Maya Helm,4,100000,10,10,0,5,0,1,0xFFFFFFFF,63,2,256,0,0,0,1752,{ if (getrefine() > 6) { bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",8,400,BF_MAGIC,0; } else { bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",7,550,BF_MAGIC,0; } },{},{}
 35095,Linkz_Scrollz,Soul Link Scroll,2,0,,0,,,,,0x83EFDFFF,63,,,,,,,{ callfunc "F_Linkz"; },{},{}
 35096,dogz_horn,Dogz Horn,4,100000,10,40,0,5,0,0,0xFFFFFFFF,63,2,256,0,1,0,1753,{ bonus2 bSubRace,RC_DemiHuman,12; bonus2 bSubRace,RC_Player,12; bonus bBaseAtk,(JobLevel*2)/7; },{},{}
+35097,C_False Apprentice,Costume False apprentice,12,100000,10,10,0,0,0,0,0xFFFFFFFF,63,2,3145728,0,1,,0,{changebase 0;},{},{changebase class;}
+35098,C_Costum of Youth,Costume COY,12,100000,10,10,0,0,0,0,0xFFFFFFFF,63,2,3145728,0,1,,0,{},{if(BaseJob == Job_Knight) changebase 7; else if(BaseJob == Job_Monk) changebase 15; else if(BaseJob == Job_Crusader) changebase 14; else if(BaseJob == Job_Priest) changebase 8; else if(BaseJob == Job_Hunter) changebase 11; else if(BaseJob == Job_Bard) changebase 19; else if(BaseJob == Job_Dancer) changebase 20; else if(BaseJob == Job_Assassin) changebase 12; else if(BaseJob == Job_Rogue) changebase 17; else if(BaseJob == Job_Blacksmith) changebase 10; else if(BaseJob == Job_Alchemist) changebase 18; else if(BaseJob == Job_Wizard) changebase 9; else if(BaseJob == Job_Sage) changebase 16; },{ changebase class; }

@@ -137,3 +137,5 @@
 35093,9,100	// hax_archangel
 35094,9,100	// maya_hat
 35096,1,100	// dogz_horn
+35097,1,100	// C_False Apprentice
+35098,1,100	// C_Costum of Youth
