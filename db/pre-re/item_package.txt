@@ -1106,9 +1106,10 @@ IG_Animal_Scroll,12086,185,5,1,0,0,1	// 5x Agi_Dish06
 
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
 IG_Heart_Scroll,19132,155,1,1,1	// 1x Masquerade
+IG_Heart_Scroll,18947,21,1,1,1	// 1x Jiraiyas Pipe
 IG_Heart_Scroll,19126,16,1,1,1	// 1x Magical Booster
 IG_Heart_Scroll,19181,15,1,1,1	// 1x New Wave Sunglasses
-IG_Heart_Scroll,18937,13,1,1,1	// 1x Memories Of Lovers
+IG_Heart_Scroll,18937,12,1,1,1	// 1x Memories Of Lovers
 IG_Heart_Scroll,6232,23,1,1,1	// 1x Guarantee_Armor_9Up
 IG_Heart_Scroll,6228,22,1,1,1	// 1x Guarantee_Weapon_9Up
 IG_Heart_Scroll,6233,233,1,1,1	// 1x +8 Armor Refine

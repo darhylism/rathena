@@ -1,5 +1,21 @@
 
-
+function	script	F_GoChapon	{
+if (rand(1500) < 1) setarray .@i[0],18600,18550,18865,19111;
+else if (rand(1500) < 2) setarray .@i[0],28302,28303,28304,28305;
+else if (rand(1500) < 4) setarray .@i[0],28304,28302;
+else if (rand(1500) < 5) setarray .@i[0],28302;
+else if (rand(1500) < 6) setarray .@i[0],28304;
+else if (rand(1500) < 7) setarray .@i[0],18600,18550,18865,19111;
+else if (rand(1500) < 11) setarray .@i[0],18550;
+else if (rand(1500) < 12) setarray .@i[0],18865;
+else if (rand(1500) < 88) setarray .@i[0],14363,14363,14805;
+else if (rand(1500) < 700) setarray .@i[0],14363,14363,14805;
+else setarray .@i[0],22772,22771,22775,12875,14363;
+set GOItem,.@i[rand(getarraysize(.@i))];
+getitem GOItem,1;
+announce strcharinfo(0)+" has obtained "+getitemname(GOItem)+" from June Gachapon!",bc_all,0x00FFFF,FW_NORMAL,15;
+return;
+}
 
 function	script	F_Gashapon	{
 if (rand(100) < 4) setarray .@i[0],35032,35038,5739,5740;

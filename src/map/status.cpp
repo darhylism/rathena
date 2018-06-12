@@ -2819,7 +2819,7 @@ int status_calc_mob_(struct mob_data* md, enum e_status_calc_opt opt)
 				ud->skill_id = ((TBL_PC*)mbl)->menuskill_id;
 			switch(ud->skill_id) {
 				case AM_SPHEREMINE:
-					status->max_hp = 2000 + 400*ud->skill_lv;
+					status->max_hp = 20000 + 10000*ud->skill_lv;
 					break;
 				case KO_ZANZOU:
 					status->max_hp = 3000 + 3000 * ud->skill_lv;
@@ -9523,7 +9523,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			// Val1 Skill LV of Autospell
 			// Val2 Skill ID to cast
 			// Val3 Max Lv to cast
-			val4 = 5 + val1*2; // Chance of casting
+			val4 = 6 + val1; // Chance of casting
 			break;
 		case SC_VOLCANO:
 			{
@@ -9590,7 +9590,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			break;
 #ifndef RENEWAL_ASPD
 		case SC_SPEARQUICKEN:
-			val2 = 200+10*val1;
+			val2 = 600+10*val1;
 			break;
 #endif
 		case SC_DANCING:
@@ -10006,7 +10006,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val3 = val4 = 0;
 			break;
 		case SC_MAXOVERTHRUST:
-			val2 = 20*val1; // Power increase
+			val2 = 100*val1; // Power increase
 			break;
 		case SC_OVERTHRUST:
 		case SC_ADRENALINE2:
@@ -10909,7 +10909,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_APPLEIDUN:
 		{
 			struct map_session_data * s_sd = BL_CAST(BL_PC, src);
-			val2 = (5 + 2 * val1) + (status_get_vit(src) / 10); //HP Rate: (5 + 2 * skill_lv) + (vit/10) + (BA_MUSICALLESSON level)
+			val2 = (10 + 2 * val1) + (status_get_vit(src) / 10); //HP Rate: (10 + 2 * skill_lv) + (vit/10) + (BA_MUSICALLESSON level)
 			if (s_sd)
 				val2 += pc_checkskill(s_sd, BA_MUSICALLESSON) / 2;
 			break;

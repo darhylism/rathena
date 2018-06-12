@@ -904,6 +904,12 @@ OnTimer28500:
 	mes "The cursed knight...";
 	mes "Please help me save the soul of Sakray.";
 	next;
+//Temporary Disabled
+	mes "[King]";
+	mes "ohh sorry i forgot...";
+	mes "[GM] Deviant is not yet finish crafting equipments.";
+	close;
+/*
 	setarray .@item_name$[0],
 		"Thanatos Sword", "Thanatos Great Sword", "Thanatos Spear", "Thanatos Long Spear", "Thanatos Staff",
 		"Thanatos Two-handed Staff", "Thanatos Bow", "Thanatos Dagger", "Thanatos Katar", "Thanatos Knuckle",
@@ -964,6 +970,7 @@ OnTimer28500:
 		getitem .@items_list[.@s],1;
 		close;
 	}
+*/
 }
 
 1@spa,210,28,0	script	Way out of Palace	WARPNPC,2,2,{

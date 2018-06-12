@@ -57,7 +57,7 @@ OnInit:
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"Quest";
+	setarray .Shops$[1],"Santa Quest", "Upper Costumes";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -96,7 +96,10 @@ OnInit:
 	Add(1,35030,1,0,50,677,5); //pikachu_ears
 	Add(1,35039,1,0,50,677,5); //piamette_headband
 	Add(1,35017,1,0,50,677,5); //double_bunny_ears
-//	Add(1,NOID,1,77777777,0,7563,300,7511,300,29001,1,5045,1,7117,100,618,10,7751,100); //rune_of_prophecies
+
+	Add(2,19686,1,0,50,677,100); //Santa Hairband
+	Add(2,19701,1,0,50,677,100); //Red Bonnet
+	Add(2,19687,1,0,50,677,100); //Lush Rose
 
 // -----------------------------------------------------------
 

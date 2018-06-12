@@ -56,3 +56,5 @@
 4457,30000 // Naght Seiger Card
 4556,50000 // Fenrir Card
 4474,30000 //Zakudam Card
+
+6672,10000 //Gray Shard

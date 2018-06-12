@@ -603,6 +603,11 @@ OnStop:
 
 OnStartArena:
 	set .@GID,getcharid(2);
+	
+	//Agit Break player announce and record break.
+	query_sql( "INSERT INTO `emp_branking` SET `char_id`='"+getcharid(0)+"',`name`='"+strcharinfo(0)+"',`emp_bcount`='1' ON DUPLICATE KEY UPDATE `emp_bcount`=`emp_bcount`+1" );
+	announce " Player [ "+.@breaker$+" ] of the ["+getguildname(.@GID)+"] guild conquered the ["+.@region$+" "+charat(strnpcinfo(2),3)+"] stronghold of "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
+	
 	set .@region$, (compare(strnpcinfo(4),"arug"))?"Valfreyja":"Nithafjoll";
 	// Lower castle Economy
 	set .@Economy,getcastledata(strnpcinfo(4),2)-5;
@@ -620,7 +625,7 @@ OnStartArena:
 	// Disable Kafra
 	disablenpc "Kafra Employee#"+strnpcinfo(2);
 
-	announce " Player [ "+.@breaker$+" ] of the ["+getguildname(.@GID)+"] guild conquered the ["+.@region$+" "+charat(strnpcinfo(2),3)+"] stronghold of "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
+	
 	mapannounce strnpcinfo(4),"The emperium has been shattered!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnReset";
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),1),2;

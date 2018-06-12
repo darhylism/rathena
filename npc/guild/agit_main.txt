@@ -101,6 +101,9 @@ OnStartArena:
 // The Emperium has been broken.
 OnAgitBreak:
 	set .@GID,getcharid(2);
+	// Set breaker points
+	query_sql( "INSERT INTO `emp_branking` SET `char_id`='"+getcharid(0)+"',`name`='"+strcharinfo(0)+"',`emp_bcount`='1' ON DUPLICATE KEY UPDATE `emp_bcount`=`emp_bcount`+1" );
+	
 	// Show and log error if an unguilded player breaks the Emperium. (Should NEVER happen)
 	if (.@GID <= 0) {
 		set .@notice$,"Character "+strcharinfo(0)+" ("+getcharid(0)+") broke the Emperium in Castle: "+strnpcinfo(2)+" while guildless. No data will be saved and Emperium respawned.";

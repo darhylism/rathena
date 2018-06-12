@@ -139,3 +139,6 @@
 35096,1,100	// dogz_horn
 35097,1,100	// C_False Apprentice
 35098,1,100	// C_Costum of Youth
+35099,1,100	// kuronekoz_Mayhem
+35100,1,100	// tonex_hg
+35101,9,100	// hokagi_hgpvp

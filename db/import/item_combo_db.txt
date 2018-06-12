@@ -175,6 +175,10 @@
 2660:18937,{ bonus bStr,7; bonus bAtk,20; }
 2661:18937,{ bonus bAgi,7; bonus bFlee,15; }
 2662:18937,{ bonus bDex,7; bonus bHit,10; }
+2659:35099,{ bonus bInt,8; bonus bMaxSPrate,5;}
+2660:35099,{ bonus bStr,7; bonus bAtk,20; }
+2661:35099,{ bonus bAgi,7; bonus bFlee,15; }
+2662:35099,{ bonus bDex,7; bonus bHit,10; }
 2677:28602,{ bonus2 bCastrate,"PR_MAGNUS",-25; bonus bHealPower,10; bonus bAddItemHealRate,10; autobonus2 "{ bonus bIgnoreMDefRace,RC_All; }",getequiprefinerycnt(EQI_HAND_R)*20,2000,BF_SHORT|BF_NORMAL; /* Confirm: Success rate and duration */ }
 //2679:2792,{ bonus4 bAutoSpell,"MO_EXTREMITYFIST",1,3,1; bonus3 bAutoSpell,"PR_LEXAETERNA",1,20; bonus3 bAutoSpell,"AS_SONICBLOW",5,50; bonus3 bAutoSpell,"MO_INVESTIGATE",5,20; bonus3 bAutoSpell,"ASC_METEORASSAULT",2,50; }
 2701:2881,{ bonus bMatkRate,20; }
@@ -436,6 +440,11 @@
 18937:28303,{ bonus bStr,7; bonus bAtk,20; }
 18937:28304,{ bonus bAgi,7; bonus bFlee,15; }
 18937:28305,{ bonus bDex,7; bonus bHit,10; }
+35099:28302,{ bonus bInt,8; bonus bMaxSPrate,5; }
+35099:28303,{ bonus bStr,7; bonus bAtk,20; }
+35099:28304,{ bonus bAgi,7; bonus bFlee,15; }
+35099:28305,{ bonus bDex,7; bonus bHit,10; }
+
 18997:28326:28327,{ bonus bSpeedRate,10; bonus bAtk,50; bonus bMatk,50; if(getequiprefinerycnt(EQI_HEAD_TOP)>=9){ bonus bMaxHPrate,10; bonus bMaxSPrate,50; } }
 19026:20756,{ .@r = getequiprefinerycnt(EQI_GARMENT); bonus2 bSPGainRace,RC_Fish,10; bonus3 bAddMonsterDropItem,551,RC_Fish,(5+.@r); bonus2 bAddItemHealRate,551,5; bonus bHPrecovRate,(5+.@r); }
 19026:22059,{ bonus2 bCriticalAddRace,RC_Fish,(10+getequiprefinerycnt(EQI_SHOES)); }
