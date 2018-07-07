@@ -3121,14 +3121,14 @@ struct Damage battle_calc_skill_base_damage(struct Damage wd, struct block_list 
 				if (index >= 0 &&
 					sd->inventory_data[index] &&
 					sd->inventory_data[index]->type == IT_WEAPON)
-					wd.damage = sd->inventory_data[index]->weight*9/100; //80% of weight
+					wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
 
 				ATK_ADDRATE(wd.damage, wd.damage2, 50*skill_lv); //Skill modifier applies to weight only.
 			} else {
 				wd.damage = battle_calc_base_damage(src, sstatus, &sstatus->rhw, sc, tstatus->size, 0); //Monsters have no weight and use ATK instead
 			}
 
-			i = 10 + sstatus->str/2;
+			i = 10 + sstatus->str/5;
 			i*=i;
 			ATK_ADD(wd.damage, wd.damage2, i); //Add str bonus.
 			switch (tstatus->size) { //Size-fix. Is this modified by weapon perfection?

@@ -53,12 +53,7 @@ OnInit:
 	.loot_mode = 4;             // Event loot distribution mode. Look npc_loot_mode_desc for descriptions
 	.loop_max = 100;            // Maximum number of loops (When selecting a random party member)
 	.treasure_chests = 10;      // Number of duplicate Treasure Chest NPC's (Important!)
-
-	// Experience increases during event
-	.base_exp_multiplier = 3;   // Event base exp rating multiplier
-	.job_exp_multiplier = 3;    // Event job exp rating multiplier
-	.floating_rates = 0;        // Increase servers exp and drop rates for 1 hour after boss kill(0=Disable, 1=Enable)
-
+	
 	// Monsters default attributes
 	.MOB_MAXHP = 55000000;     // How much HP can monster have at maximum
 	.MOB_HP = 40000000;          // How much HP monster has on spawn
@@ -94,7 +89,7 @@ OnInit:
 
 	// Event map names
 	setarray .event_maps$[0],
-		"prontera", "morocc", "geffen", "payon",
+		"morocc", "geffen", "payon",
 		"alberta", "aldebaran", "xmas", "comodo",
 		"yuno", "amatsu", "gonryun", "umbala",
 		"louyang", "ayothaya", "einbroch", "hugel",
@@ -175,8 +170,6 @@ OnClock2305:
 	setmapflag .@map_name$, MF_NOMVPLOOT; // Disable Boss monster loot drops
 	setmapflag .@map_name$, MF_NOPENALTY; // Disable Exp and Zeny penalty
 	setmapflag .@map_name$, MF_MONSTER_NOTELEPORT; // Disable monster teleport
-	setmapflag .@map_name$, MF_BEXP, ($@WB_MF_BASEEXP[.@index] * .base_exp_multiplier); // Set Base Exp rating
-	setmapflag .@map_name$, MF_JEXP, ($@WB_MF_JOBEXP[.@index] * .job_exp_multiplier); // Set Job Exp rating
 	setmapflag .@map_name$, MF_FOG; // Enable FOG effect
 
 	// Summon event monster unit
@@ -238,10 +231,6 @@ OnDisable:
 	// Stop unit radar
 	donpcevent "WorldBossRadar::OnDisable";
 
-	// Reset server exp and drop rates
-	if ( .floating_rates ) {
-		donpcevent "WorldBossRates::OnDisable";
-	}
 
 	// Loop all events
 	for ( .@i = 0; .@i < getarraysize($@WB_GID); .@i++ ) {
@@ -287,10 +276,6 @@ OnMonsterDeath:
 	sleep2 500;
 	announce "[Word Boss] All Players Nearby can get their rewards for participating on the spawned treasure chest!",bc_blue|bc_all;
 	
-	// Increase server exp and drop rates for limited time
-	if ( .floating_rates ) {
-		donpcevent "WorldBossRates::OnEnable";
-	}
 
 	// Get index if map name are same
 	.@index = -1;
@@ -1060,97 +1045,6 @@ OnTimer300000:
 	end;
 }
 
-// World Boss Floating Rates
--	script	WorldBossRates	-1,{
-OnInterIfInitOnce:
-	// Set once on server start
-	$wb_battle_flags = 0;
-	// Set servers default battle flags
-	$wb_base_exp_rate = getBattleFlag("base_exp_rate");
-	$wb_job_exp_rate = getBattleFlag("job_exp_rate");
-	$wb_item_rate_common = getBattleFlag("item_rate_common");
-	$wb_item_rate_common_boss = getBattleFlag("item_rate_common_boss");
-	$wb_item_rate_common_mvp = getBattleFlag("item_rate_common_mvp");
-	$wb_item_rate_heal = getBattleFlag("item_rate_heal");
-	$wb_item_rate_heal_boss = getBattleFlag("item_rate_heal_boss");
-	$wb_item_rate_heal_mvp = getBattleFlag("item_rate_heal_mvp");
-	$wb_item_rate_use = getBattleFlag("item_rate_use");
-	$wb_item_rate_use_boss = getBattleFlag("item_rate_use_boss");
-	$wb_item_rate_use_mvp = getBattleFlag("item_rate_use_mvp");
-	$wb_item_rate_equip = getBattleFlag("item_rate_equip");
-	$wb_item_rate_equip_boss = getBattleFlag("item_rate_equip_boss");
-	$wb_item_rate_equip_mvp = getBattleFlag("item_rate_equip_mvp");
-	$wb_item_rate_card = getBattleFlag("item_rate_card");
-	$wb_item_rate_card_boss = getBattleFlag("item_rate_card_boss");
-	$wb_item_rate_card_mvp = getBattleFlag("item_rate_card_mvp");
-	$wb_item_rate_mvp = getBattleFlag("item_rate_mvp");
-	$wb_item_rate_adddrop = getBattleFlag("item_rate_adddrop");
-	$wb_item_rate_treasure = getBattleFlag("item_rate_treasure");
-	end;
-OnInit:
-	// Reset rates on script load
-	if ( $wb_base_exp_rate && getBattleFlag("base_exp_rate") != $wb_base_exp_rate )
-		donpcevent strnpcinfo(0)+"::OnDisable";
-	end;
-OnEnable:
-	// Check already enabled
-	if ( !$wb_battle_flags ) {
-		// Double server ratings
-		setBattleFlag("base_exp_rate", $wb_base_exp_rate * 2);
-		setBattleFlag("job_exp_rate", $wb_job_exp_rate * 2);
-		setBattleFlag("item_rate_common", $wb_item_rate_common * 2);
-		setBattleFlag("item_rate_common_boss", $wb_item_rate_common_boss * 2);
-		setBattleFlag("item_rate_common_mvp", $wb_item_rate_common_mvp * 2);
-		setBattleFlag("item_rate_heal", $wb_item_rate_heal * 2);
-		setBattleFlag("item_rate_heal_boss", $wb_item_rate_heal_boss * 2);
-		setBattleFlag("item_rate_heal_mvp", $wb_item_rate_heal_mvp * 2);
-		setBattleFlag("item_rate_use", $wb_item_rate_use * 2);
-		setBattleFlag("item_rate_use_boss", $wb_item_rate_use_boss * 2);
-		setBattleFlag("item_rate_use_mvp", $wb_item_rate_use_mvp * 2);
-		setBattleFlag("item_rate_equip", $wb_item_rate_equip * 2);
-		setBattleFlag("item_rate_equip_boss", $wb_item_rate_equip_boss * 2);
-		setBattleFlag("item_rate_equip_mvp", $wb_item_rate_equip_mvp * 2);
-		setBattleFlag("item_rate_card", $wb_item_rate_card * 2);
-		setBattleFlag("item_rate_card_boss", $wb_item_rate_card_boss * 2);
-		setBattleFlag("item_rate_card_mvp", $wb_item_rate_card_mvp * 2);
-		setBattleFlag("item_rate_mvp", $wb_item_rate_mvp * 2);
-		setBattleFlag("item_rate_adddrop", $wb_item_rate_adddrop * 2);
-		setBattleFlag("item_rate_treasure", $wb_item_rate_treasure * 2);
-	}
-	announce "[World Boss] Experience and Drop rates has been doubled for one hour! Enjoy!", bc_all, 0x00FF00;
-	$wb_battle_flags = 1;
-	initnpctimer;
-	end;
-OnDisable:
-	// Reset normal rates
-	setBattleFlag("base_exp_rate", $wb_base_exp_rate);
-	setBattleFlag("job_exp_rate", $wb_job_exp_rate);
-	setBattleFlag("item_rate_common", $wb_item_rate_common);
-	setBattleFlag("item_rate_common_boss", $wb_item_rate_common_boss);
-	setBattleFlag("item_rate_common_mvp", $wb_item_rate_common_mvp);
-	setBattleFlag("item_rate_heal", $wb_item_rate_heal);
-	setBattleFlag("item_rate_heal_boss", $wb_item_rate_heal_boss);
-	setBattleFlag("item_rate_heal_mvp", $wb_item_rate_heal_mvp);
-	setBattleFlag("item_rate_use", $wb_item_rate_use);
-	setBattleFlag("item_rate_use_boss", $wb_item_rate_use_boss);
-	setBattleFlag("item_rate_use_mvp", $wb_item_rate_use_mvp);
-	setBattleFlag("item_rate_equip", $wb_item_rate_equip);
-	setBattleFlag("item_rate_equip_boss", $wb_item_rate_equip_boss);
-	setBattleFlag("item_rate_equip_mvp", $wb_item_rate_equip_mvp);
-	setBattleFlag("item_rate_card", $wb_item_rate_card);
-	setBattleFlag("item_rate_card_boss", $wb_item_rate_card_boss);
-	setBattleFlag("item_rate_card_mvp", $wb_item_rate_card_mvp);
-	setBattleFlag("item_rate_mvp", $wb_item_rate_mvp);
-	setBattleFlag("item_rate_adddrop", $wb_item_rate_adddrop);
-	setBattleFlag("item_rate_treasure", $wb_item_rate_treasure);
-	$wb_battle_flags = 0;
-	stopnpctimer;
-	end;
-OnTimer3600000: // 1 hour
-	donpcevent strnpcinfo(0)+"::OnDisable";
-	end;
-}
-
 // NPC World Boss Information
 poring_w02,106,101,4	script	World Boss#info	495,5,5,{
 	mes "[ " + strnpcinfo(1) + " ]";
@@ -1262,8 +1156,6 @@ S_Mapflags:
 			mes " ^777777 NoMVPLoot : " + $@WB_MF_NOMVPLOOT[.@i] + "^000000";
 			mes " ^777777 NoPenalty : " + $@WB_MF_NOPENALTY[.@i] + "^000000";
 			mes " ^777777 NoMobTele : " + $@WB_MF_NOMOBTELE[.@i] + "^000000";
-			mes " ^777777 BaseExp : " + $@WB_MF_BASEEXP[.@i] + "^000000";
-			mes " ^777777 JobExp : " + $@WB_MF_JOBEXP[.@i] + "^000000";
 			mes " ^777777 Fog : " + $@WB_MF_FOG[.@i] + "^000000";
 			mes .@map$ + " : New Flags";
 			mes " ^777777 PartyLock : " + getmapflag(.@map$, MF_PARTYLOCK) + "^000000";
@@ -1271,8 +1163,6 @@ S_Mapflags:
 			mes " ^777777 NoMVPLoot : " + getmapflag(.@map$, MF_NOMVPLOOT) + "^000000";
 			mes " ^777777 NoPenalty : " + getmapflag(.@map$, MF_NOPENALTY) + "^000000";
 			mes " ^777777 NoMobTele : " + getmapflag(.@map$, MF_MONSTER_NOTELEPORT) + "^000000";
-			mes " ^777777 BaseExp : " + getmapflag(.@map$, MF_BEXP) + "^000000";
-			mes " ^777777 JobExp : " + getmapflag(.@map$, MF_JEXP) + "^000000";
 			mes " ^777777 Fog : " + getmapflag(.@map$, MF_FOG) + "^000000";
 			mes "^777777-------^000000";
 		}

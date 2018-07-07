@@ -23,14 +23,14 @@
 //============================================================
 
 // Shop NPCs -- supplying no argument displays entire menu.
-//	callfunc "podshop"{,<shop ID>{,<shop ID>{,...}}};
+//	callfunc "rbshopz"{,<shop ID>{,<shop ID>{,...}}};
 //============================================================
-poring_w02,95,41,4	script	PODS Shop	4_M_MAYOR,{ callfunc "podshop"; }
+Askydun,80,93,4	script	Rebirth Shop	4_M_MAYOR,{ callfunc "rbshopz"; }
 
 
 // Script Core
 //============================================================
--	script	podshop	-1,{ 
+-	script	rbshopz	-1,{ 
 function Add; function Chk; function Slot;
 OnInit:
 	freeloop(1);
@@ -50,14 +50,14 @@ OnInit:
 //	setarray .Points$[0],"<variable name>","<display name>";
 // -----------------------------------------------------------
 
-	setarray .Points$[0],"#HR_COIN","Hourly Points";
+	setarray .Points$[0],"RBPOINTS","Rebirth Points";
 
 // -----------------------------------------------------------
 //  Shop IDs -- to add shops, copy dummy data at bottom of file.
 //	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
 // -----------------------------------------------------------
 
-	setarray .Shops$[1],"PODS SHOP";
+	setarray .Shops$[1],"Rebirth Shop";
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -66,19 +66,11 @@ OnInit:
 //	    <required item ID>,<required item amount>{,...});
 // -----------------------------------------------------------
 	
-	Add(1,35105,5,0,10,677,1,7179,1);
 	
-	Add(1,35104,5,0,10,677,1,7179,1);
-	
-	Add(1,35094,1,0,10,677,1,7179,5);
-	Add(1,35084,1,0,10,677,5,7179,5);
-	Add(1,35085,1,0,10,677,5,7179,5);
-	Add(1,35086,1,0,10,677,5,7179,5);
-	Add(1,35087,1,0,10,677,5,7179,5);
-	Add(1,35088,1,0,10,677,5,7179,5);
-	Add(1,35089,1,0,10,677,5,7179,5);
-	Add(1,35090,1,0,10,677,5,7179,5);
-	
+	Add(1,35106,10,0,1,677,1); //Essence Rune fragment
+	Add(1,35108,1,0,0,35106,20000); //Omega Dark Angel
+	Add(1,35109,1,0,0,35106,20000); //Omega Arch Angel
+	Add(1,35110,1,0,0,35106,20000); //Omega Red Demon
 
 // -----------------------------------------------------------
 
@@ -86,7 +78,7 @@ OnInit:
 	set .menu$,"";
 	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
 		set .menu$, .menu$+.Shops$[.@i]+":";
-		npcshopdelitem "podshop"+.@i,909;
+		npcshopdelitem "rbshopz"+.@i,909;
 	}
 	end;
 
@@ -105,8 +97,8 @@ OnMenu:
 		end;
 	}
 	dispbottom "Select one item at a time.";
-	callshop "podshop"+@shop_index,1;
-	npcshopattach "podshop"+@shop_index;
+	callshop "rbshopz"+@shop_index,1;
+	npcshopattach "rbshopz"+@shop_index;
 	end;
 
 OnBuyItem:
@@ -118,7 +110,7 @@ OnBuyItem:
 		message strcharinfo(0),"You can't purchase that many "+getitemname(.@q[0])+".";
 		end;
 	}
-	mes "[PODS Shop]";
+	mes "[Rebirth Shop]";
 	mes "Reward: ^0055FF"+((.@q[2] > 1)?.@q[2]+"x ":"")+Slot(.@q[0])+"^000000";
 	mes "Requirements:";
 	disable_items;
@@ -135,12 +127,12 @@ OnBuyItem:
 		switch(select(" ~ Purchase ^0055FF"+getitemname(.@q[0])+"^000000:"+((.@preview && !@qe[7])?" ~ Preview...":"")+": ~ ^777777Cancel^000000")) {
 		case 1:
 			if (@qe[0]) { 
-				mes "[PODS Shop]";
+				mes "[Rebirth Shop]";
 				mes "You're missing one or more quest requirements.";
 				close;
 			}
 			if (!checkweight(.@q[0],.@q[2])) {
-				mes "[PODS Shop]";
+				mes "[Rebirth Shop]";
 				mes "^FF0000You need "+(((.@q[2]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" additional weight capacity to complete this trade.^000000";
 				close;
 			}
@@ -188,7 +180,7 @@ function Add {
 			setarray .@j[.@i-2],getarg(.@i),getarg(.@i+1);
 	}
 	copyarray getd(".q_"+getarg(0)+"_"+getarg(1)+"[0]"),.@j[0],getarraysize(.@j);
-	npcshopadditem "podshop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	npcshopadditem "rbshopz"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
 	return;
 }
 
@@ -211,22 +203,19 @@ function Slot {
 }
 
 
-function	script	podshop	{
+function	script	rbshopz	{
 	deletearray @i[0],getarraysize(@i);
 	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
 		set @i[.@i],getarg(.@i);
-	doevent "podshop::OnMenu";
+	doevent "rbshopz::OnMenu";
 	end;
 }
 
 
 // Dummy shop data -- copy as needed.
 //============================================================
--	shop	podshop1	-1,909:-1
--	shop	podshop2	-1,909:-1
--	shop	podshop3	-1,909:-1
--	shop	podshop4	-1,909:-1
--	shop	podshop5	-1,909:-1
-
-
-mall01,106,104,4	duplicate(PODS Shop)	PODS Shop#Mall01	4_M_MAYOR
+-	shop	rbshopz1	-1,909:-1
+-	shop	rbshopz2	-1,909:-1
+-	shop	rbshopz3	-1,909:-1
+-	shop	rbshopz4	-1,909:-1
+-	shop	rbshopz5	-1,909:-1

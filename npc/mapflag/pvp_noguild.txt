@@ -93,4 +93,4 @@ pvp_n_8-2	mapflag	pvp_noguild
 pvp_n_8-3	mapflag	pvp_noguild
 pvp_n_8-4	mapflag	pvp_noguild
 pvp_n_8-5	mapflag	pvp_noguild
-pvp_2vs2	mapflag	pvp_noguild
+//pvp_2vs2	mapflag	pvp_noguild

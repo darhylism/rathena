@@ -39,6 +39,7 @@ guild_vs2	mapflag	loadevent
 guild_vs3	mapflag	loadevent
 guild_vs4	mapflag	loadevent
 guild_vs5	mapflag	loadevent
+prt_are01	mapflag	loadevent
 
 -	script	DOTAPVP	-1,{
 OnInit:
@@ -109,7 +110,8 @@ OnInit:
 		"guild_vs2",
 		"guild_vs3",
 		"guild_vs4",
-		"guild_vs5";
+		"guild_vs5",
+		"prt_are01";
 		
 //	anti-sit-killer system
 	// a player must kill another player with this minimum <this number> base level to get the announcement and in the ladder.
@@ -122,7 +124,7 @@ OnInit:
 	// when a player kill another same player <this number> times in a row, the player is warp back to save point.
 	// and the player's streak, kills, and ownage count will deduct accordingly
 	// 0 - off this system
-	set .counttopunish, 4;
+	set .counttopunish, 15;
 
 	// minimum level range to kill another player
 	// eg. when set to 20, player level 99 needs to kill another player with minimum level of 79 to get announcement and increase the kill rank.

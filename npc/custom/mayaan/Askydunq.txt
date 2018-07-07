@@ -380,7 +380,7 @@ gon_fild01,301,293,3	duplicate(4th Guardian)	4th Guardian#6-1	4_M_YOUNGKNIGHT
 -	script	quest_restriction	-1,{
 
 OnPCLoadMapEvent:
-	if (getgmlevel()==99) end;
+	if (getgmlevel()>50) end;
 	if( strcharinfo(3) == "Askydun" ) {
 	if(askydun == 0||askydun == 1||askydun == 2||askydun == 3||askydun == 4||askydun == 5||askydun == 6||askydun == 7) {
 	dispbottom "Map Restriction : we identify that you are not allowed to enter this map.";
@@ -397,5 +397,5 @@ OnPCLoadMapEvent:
 Askydun	mapflag	town
 Askydun	mapflag	restricted	7
 Askydun	mapflag	nobranch
-Askydun	mapflag	nowarpto	99
+Askydun	mapflag	nowarpto	50
 Askydun	mapflag	loadevent

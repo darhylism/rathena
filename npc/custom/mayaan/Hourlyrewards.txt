@@ -24,7 +24,6 @@
 L_startH:
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastpickfallen' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
 		announce "An admin Manually Reseted Falled Hero Reward, You can now claim it again.",bc_all,0x00FF00,FW_NORMAL,25;
-		
 		addrid(0);
 		#lastpickfallen = 0;
 		end;
@@ -38,14 +37,17 @@ end;
 //		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
 //		query_sql( "DELETE FROM acc_reg_num` WHERE `key` = '#lastTimeSpin' AND `account_id` IN ( SELECT `account_id` FROM `char` WHERE `login` = 0 GROUP BY `account_id` ) " );
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#lastpickfallen' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
-		sleep2 500;
+		sleep2 200;
 		query_sql("UPDATE `acc_reg_num` SET `value` = 0 WHERE `key` = '#daily_minute_count' AND `account_id` IN ( SELECT `account_id` FROM `char` GROUP BY `account_id` ) " );
-		sleep2 500;
+		sleep2 200;
+		query_sql("UPDATE `char_reg_num` SET `value` = 0 WHERE `key` = 'rbdaily' AND `char_id` IN ( SELECT `char_id` FROM `char` GROUP BY `char_id` ) " );
+		sleep2 200;
 		announce "It is 12:01AM Server time. Fallen Hero Rewards, Hourly Points and other cooldowns have been reseted, Please relog to avoid errors.",bc_all,0x00FF00,FW_NORMAL,25;
 		sleep2 200;
 		addrid(0);
 		#lastpickfallen = 0;
 		#daily_minute_count = 0;
+		rbdaily = 0;
 		end;
 	   
     OnUpdate:

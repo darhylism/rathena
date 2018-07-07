@@ -117,7 +117,7 @@
 35069,1,100	// Customz06
 35070,1,100	// Customz07
 35071,1,100	// fanque_gue
-35072,1,100	// Customz09
+35072,1,100	// eeyon_hgz
 35075,1,100	// jing_white_saiyan
 35076,1,100	// le_project_mayhem
 35079,1,100	// saiyan_trunks
@@ -142,3 +142,10 @@
 35099,1,100	// kuronekoz_Mayhem
 35100,1,100	// tonex_hg
 35101,9,100	// hokagi_hgpvp
+35106,507,100	// essence_fragmentz
+35107,9,100	// trinity_HG
+35108,507,100	// Omega_Arch_Demon_B
+35109,507,100	// Omega_Arch_Angel_B
+35110,507,100	// Omega_Red_Demon_B
+35115,1,100	// Omegaz_lordzie
+35116,507,100	// Kill_runez
