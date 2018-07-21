@@ -89,11 +89,8 @@ OnInit:
 
 	// Event map names
 	setarray .event_maps$[0],
-		"morocc", "geffen", "payon",
-		"alberta", "aldebaran", "xmas", "comodo",
-		"yuno", "amatsu", "gonryun", "umbala",
-		"louyang", "ayothaya", "einbroch", "hugel",
-		"rachel", "veins", "moscovia";
+		"pay_gld", "alde_gld", "prt_gld",
+		"gef_fild13", "aru_gld", "sch_gld", "abyss_03";
 
 	// Event loot distribution mode description
 	setarray .loot_mode_desc$[0],

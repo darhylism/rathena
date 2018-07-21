@@ -149,3 +149,4 @@
 35110,507,100	// Omega_Red_Demon_B
 35115,1,100	// Omegaz_lordzie
 35116,507,100	// Kill_runez
+35117,1,100	// jan_rae_mvp

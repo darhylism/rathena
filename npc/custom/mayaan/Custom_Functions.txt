@@ -1,12 +1,12 @@
 
 
 function	script	F_JulyGocha	{
-if (rand(700) < 1) setarray .@i[0],19140,18936;
-else if (rand(700) < 4) setarray .@i[0],5462,5560,18936,19140;
-else if (rand(700) < 44) setarray .@i[0],18936,5560;
-else if (rand(700) < 55) setarray .@i[0],5462;
-else if (rand(700) < 66) setarray .@i[0],5560;
-else if (rand(700) < 300) setarray .@i[0],6228,6232;
+if (rand(955) < 1) setarray .@i[0],19140,18936;
+else if (rand(955) < 5) setarray .@i[0],5462,5560,18936;
+else if (rand(955) < 6) setarray .@i[0],18936,5560;
+else if (rand(955) < 18) setarray .@i[0],5462;
+else if (rand(955) < 22) setarray .@i[0],5560;
+else if (rand(955) < 300) setarray .@i[0],6228,6232;
 else setarray .@i[0],22772,22771,22775,12875;
 set GO2Item,.@i[rand(getarraysize(.@i))];
 getitem GO2Item,1;
@@ -15,12 +15,12 @@ return;
 }
 
 function	script	F_Zero1	{
-if (rand(900) < 4) setarray .@i[0],28302,28303,28304,28305,18937,19132,19126,18947;
-else if (rand(900) < 1) setarray .@i[0],28302,28303,28304,28305;
-else if (rand(900) < 9) setarray .@i[0],28304,28302,19132,19126,18947;
-else if (rand(900) < 15) setarray .@i[0],28302,19132,19126,18947;
-else if (rand(900) < 3) setarray .@i[0],6228,6232;
-else if (rand(900) < 400) setarray .@i[0],6228,6232;
+if (rand(1000) < 2) setarray .@i[0],28302,28303,28304,28305,18937,19132,19126,18947;
+else if (rand(1000) < 1) setarray .@i[0],28302,28303,28304,28305;
+else if (rand(1000) < 3) setarray .@i[0],28304,28302,19132,19126,18947;
+else if (rand(1000) < 44) setarray .@i[0],28302,19132,18947;
+else if (rand(1000) < 3) setarray .@i[0],6228,6232;
+else if (rand(1000) < 300) setarray .@i[0],6228,6232;
 else setarray .@i[0],22772,22771,22775,12875;
 set GO1Item,.@i[rand(getarraysize(.@i))];
 getitem GO1Item,1;

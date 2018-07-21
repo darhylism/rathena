@@ -45,7 +45,7 @@ switch(select("I'd like to know more about this process:I'm ready!:Cancel")) {
 			delitem 677,10;
 			Resetlvl 1;
 			SkillPoint = 80;
-			set RBPOINTS,.@rbstats;
+			RBPOINTS += .@rbstats;
 			rbdaily++;
 			set 265q,0;
 			Rebirth++;
@@ -109,20 +109,20 @@ switch(select("I'd like to know more about this process:I'm ready!:Cancel")) {
 		mes "[^FF0000Premium Spirit^000000]";
 		mes "Oh! you want to be reborn!";
 		next;
-		if (countitem(677) < 10 || countitem(35111) < 1) goto R_Sorry3;
+		if (countitem(677) < 5 || countitem(35111) < 1) goto R_Sorry3;
 		if (BaseLevel < .@blvl) goto R_Sorry;
 		if (rbdaily > 12) goto R_Sorry2;
 		mes "[^FF0000Premium Spirit^000000]";
 		mes "Come back again!";
 		goto R_Reborn;
 		close;
-			
+		
 		R_Reborn:
-			set RBPOINTS,.@rbstats;
+			RBPOINTS += .@rbstats;
 			SkillPoint = 80;
 			rbdaily++;
 			delitem 35111,1;
-			delitem 677,10;
+			delitem 677,5;
 			message strcharinfo(0),"You got a total of "+(RBPOINTS)+" Rebirth Points.";
 			close;
 
@@ -140,7 +140,7 @@ switch(select("I'd like to know more about this process:I'm ready!:Cancel")) {
 		R_Sorry3:
 			mes "[^FF0000Premium Spirit^000000]";
 			mes "You need 1x ^0055FFPremium Rebirth Egg^000000.";
-			mes "& 10 Platinum Coin as a payment.";
+			mes "& 5 Platinum Coin as a payment.";
 			close;
 	case 3:
 		mes "[^FF0000Premium Spirit^000000]";

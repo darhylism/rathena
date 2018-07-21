@@ -1714,7 +1714,7 @@
 12740,73,100	// Amplification Scroll
 12741,73,100	// Intellect Amplification Scroll
 12745,507,100	// Skull Scroll
-12746,499,100	// Destruction Scroll
+12746,465,100	// Destruction_Scroll
 12754,499,100	// New Year Bun
 12755,499,100	// Traditional Firecrack
 12756,499,100	// New Gift Envelope
