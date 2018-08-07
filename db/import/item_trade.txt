@@ -34,7 +34,8 @@
 2963,483,100	// Body_Power_Up_Ring
 2964,483,100	// Ring_Of_Spell_Explosion
 6671,499,100	// Geffen_Coin_Magic_Tournament
-7179,329,100	// Donation_Card
+7179,321,100	// Donation_Card
+12218,475,100	// Assumptio_5_Scroll
 12274,507,100	// Gold_Pill_1
 12884,9,100	// Infinite_Concentration_Potion
 12885,9,100	// Infinite_Awakening_Potion
@@ -47,6 +48,7 @@
 13810,475,100	// Blue_Potion_Box
 14103,473,100	// F_Max_Weight_Up_Box
 14158,473,100	// F_Bubble_Gum_Box
+14172,475,100	// F_Assumptio_5_Scroll_Box
 14178,473,100	// F_Token_Of_Siegfried_Box
 14209,473,100	// F_Siegfried_Box5
 14210,473,100	// F_Siegfried_Box20
@@ -100,7 +102,7 @@
 35041,9,100	// vendetta
 35042,9,100	// Music Ring
 35043,9,100	// Wise Valkyrie Helm
-35044,9,100	// Gangster_Scarf
+35044,1,100	// Gangster_Scarf
 35045,9,100	// arch_angel_wings
 35046,9,100	// arch_demon_wings
 35047,507,100	// Power_Proof
@@ -125,17 +127,17 @@
 35081,1,100	// tuks_black_cap
 35082,1,100	// Trending_sword
 35083,9,100	// Omega_Red_Demon
-35084,9,100	// Rune_of_Prophecies
-35085,9,100	// chopper_hat
-35086,9,100	// luck_o_irish
-35087,9,100	// skeggiod_hat
-35088,9,100	// karus_hat
-35089,9,100	// tilt_hat
-35090,9,100	// WinRAR_Hat
+35084,1,100	// Rune_of_Prophecies
+35085,1,100	// chopper_hat
+35086,1,100	// luck_o_irish
+35087,1,100	// skeggiod_hat
+35088,1,100	// karus_hat
+35089,1,100	// tilt_hat
+35090,1,100	// WinRAR_Hat
 35091,128,100	// ignition_potionz
 35092,1,100	// god_auraz
 35093,9,100	// hax_archangel
-35094,9,100	// maya_hat
+35094,1,100	// maya_hat
 35096,1,100	// dogz_horn
 35097,1,100	// C_False Apprentice
 35098,1,100	// C_Costum of Youth
@@ -150,3 +152,5 @@
 35115,1,100	// Omegaz_lordzie
 35116,507,100	// Kill_runez
 35117,1,100	// jan_rae_mvp
+35118,1,100	// burning_hornz
+35119,9,100	// Eeyon_Spiritzfire

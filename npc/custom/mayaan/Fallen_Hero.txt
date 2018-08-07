@@ -28,13 +28,9 @@ ma_in01,49,99,3	script	Fallen Hero#main	651,{
 	mes "[ ^0000FFFallen Hero^000000 ]";
 	mes "Random item";
 	mes "for today...";
-	if (rand(100) < 2) setarray .@i[0],5184,5199,5209,5762,5467,12202,12204,12205,12203,12207,12206,7776; // 2% chance
-	else if (rand(100) < 7) setarray .@i[0],12884,12885,12886,12887; // 7% chance
-	else if (rand(100) < 14) setarray .@i[0],12202,12204,12205,12203,12207,12206; // 14% chance
-	else if (rand(100) < 21) setarray .@i[0],7619,7620,12202,12204,12205,12203,12207,12206; // 21% chance
-	else if (rand(100) < 28) setarray .@i[0],14545,13758,12214,13582,12210,13607,7621; // 28% chance
-	else if (rand(100) < 35) setarray .@i[0],14587,14519,14517,14518,14520; // 35% chance
-	else setarray .@i[0],13698,13697,12221,14175,12202,12204,12205; // 65% chance
+	if (rand(100) < 10) setarray .@i[0],6232,6228,13710,12916,5184,5199,5209,5762,5467; // 10% chance
+	else if (rand(100) < 20) setarray .@i[0],12884,12885,12886,12887,35078; // 20% chance
+	else setarray .@i[0],13698,13697,14175,14587,12920,12921,14192,16504,12922,7776,12412,35111; // 70% chance
 	set FHitem,.@i[rand(getarraysize(.@i))];
 	getitem FHitem,1;
 	announce strcharinfo(0)+" has obtained "+getitemname(FHitem)+" from our Fallen Hero!",bc_all,0x00FFFF,FW_NORMAL,15;

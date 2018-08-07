@@ -3514,7 +3514,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			skillratio += 65 * skill_lv;
 			break;
 		case AS_GRIMTOOTH:
-			skillratio += 20 * skill_lv;
+			skillratio += 50 * skill_lv;
 			break;
 		case AS_POISONREACT:
 			skillratio += 30 * skill_lv;
@@ -3592,7 +3592,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			skillratio += 40 * skill_lv;
 			break;
 		case MO_FINGEROFFENSIVE:
-			skillratio += 50 * skill_lv;
+			skillratio += 75 * skill_lv;
 			break;
 		case MO_INVESTIGATE:
 			skillratio += 75 * skill_lv;
@@ -3648,7 +3648,7 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 			skillratio += 100 + 50 * skill_lv;
 			break;
 		case CG_ARROWVULCAN:
-			skillratio += 100 + 140 * skill_lv;
+			skillratio += 100 + 200 * skill_lv;
 			break;
 		case AS_SPLASHER:
 			skillratio += 400 + 50 * skill_lv;
@@ -3687,11 +3687,11 @@ static int battle_calc_attack_skill_ratio(struct Damage wd, struct block_list *s
 		case TK_JUMPKICK:
 			//Different damage formulas depending on damage trigger
 			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == skill_id)
-				skillratio += -100 + 4 * status_get_lv(src); //Tumble formula [4%*baselevel]
+				skillratio += -100 + 7 * status_get_lv(src); //Tumble formula [4%*baselevel]
 			else if (wd.miscflag) {
-				skillratio += -100 + 4 * status_get_lv(src); //Running formula [4%*baselevel]
+				skillratio += -100 + 7 * status_get_lv(src); //Running formula [4%*baselevel]
 				if (sc && sc->data[SC_SPURT]) //Spurt formula [8%*baselevel]
-					skillratio *= 2;
+					skillratio *= 9;
 			}
 			else
 				skillratio += -70 + 10 * skill_lv;
@@ -4497,8 +4497,8 @@ struct Damage battle_attack_sc_bonus(struct Damage wd, struct block_list *src, s
 				ATK_ADDRATE(wd.damage, wd.damage2, map_flag_gvg2(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
 				RE_ALLATK_ADDRATE(wd, map_flag_gvg2(src->m) ? 25 : 100); //+25% dmg on woe/+100% dmg on nonwoe
 			} else if (skill_id == CR_SHIELDBOOMERANG && sc->data[SC_SPIRIT]->val2 == SL_CRUSADER) {
-				ATK_ADDRATE(wd.damage, wd.damage2, 200);
-				RE_ALLATK_ADDRATE(wd, 200);
+				ATK_ADDRATE(wd.damage, wd.damage2, 400);
+				RE_ALLATK_ADDRATE(wd, 400);
 			}
 		}
 		if (sc->data[SC_EDP]) {
@@ -5896,9 +5896,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 10 * skill_lv;
 						break;
 					case AL_HOLYLIGHT:
-						skillratio += 100;
+						skillratio += 900;
 						if (sd && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_PRIEST)
-							skillratio *= 5; //Does 5x damage include bonuses from other skills?
+							skillratio += 200; //Does 5x damage include bonuses from other skills?
 						break;
 					case AL_RUWACH:
 						skillratio += 45;
@@ -6498,14 +6498,14 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				//Blitz-beat Damage
 				if(!sd || !(skill = pc_checkskill(sd,HT_STEELCROW)))
 					skill = 0;
-				md.damage = (sstatus->dex / 10 + sstatus->int_ / 2 + skill * 3 + 40) * 2;
+				md.damage = (sstatus->dex / 2 + sstatus->int_ / 2 + skill * 3 + 40) * 2;
 				if(mflag > 1) //Autocasted Blitz
 					nk |= NK_SPLASHSPLIT;
 				if (skill_id == SN_FALCONASSAULT) {
 					//Div fix of Blitzbeat
 					DAMAGE_DIV_FIX2(md.damage, skill_get_num(HT_BLITZBEAT, 5));
 					//Falcon Assault Modifier
-					md.damage = md.damage * (150 + 70 * skill_lv) / 100;
+					md.damage = md.damage * (sstatus->dex * 2 + sstatus->int_ * 2) * skill_lv / 130;
 				}
 			}
 			break;
@@ -6549,7 +6549,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				md.damage -= totaldef + totalmdef;
 			}
 #else
-			md.damage = 500 + rnd()%500 + 5 * skill_lv * sstatus->int_;
+			md.damage = 500 + rnd()%500 + 10 * skill_lv * sstatus->int_;
 			nk |= NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 #endif
 			break;
@@ -6557,7 +6557,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #ifdef RENEWAL
 			md.damage = 500 + 100 * skill_lv;
 #else
-			md.damage = 200 + 200 * skill_lv;
+			md.damage = 1000 + 5000 * skill_lv;
 #endif
 			md.dmotion = 0; //No flinch animation
 			break;

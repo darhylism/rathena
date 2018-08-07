@@ -10,12 +10,14 @@
 
 607  // Yggdrasilberry
 608  // Seed_Of_Yggdrasil
+678  // Poison_Bottle
 969  // Gold
 4128  // Golden_Bug_Card
 4359  // B_Eremes_Card
 4365  // B_Katrinn_Card
 4367  // B_Shecil_Card
 4399  // Thanatos_Card
+4418  // Gazeti_Card
 4425  // Atroce_Card
 12884  // Infinite_Concentration_Potion
 12885  // Infinite_Awakening_Potion

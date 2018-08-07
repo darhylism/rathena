@@ -165,7 +165,7 @@ OnInit:
 	
 	// How many players to start?
 	// default = 4 (2v2)
-	.minplayers = 4;
+	.minplayers = 2;
 	
 	// How many mins before rune is spawned
 	// default : 1 min

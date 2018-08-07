@@ -37,8 +37,9 @@ mall01,95,106,7	script	Elemental Master	1_M_WIZARD,{
 			set .@part,9;
 			set .@indx,1;
 			set .@val,0;
-			if (rand(100) < 2) setarray .@i[0],182,184;
-			else if (rand(100) < 10) setarray .@i[0],175,176,177,178,179,180,181,182,184;
+			if (rand(1000) < 10) setarray .@i[0],183;
+			else if (rand(1000) < 50) setarray .@i[0],182,184;
+			else if (rand(1000) < 200) setarray .@i[0],175,176,177,178,179,180,181,182,184;
 			else setarray .@i[0],175,176,177,178,179,180;
 			set .@opt,.@i[rand(getarraysize(.@i))];
 			next;

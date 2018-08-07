@@ -16268,7 +16268,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, uint16
 			break;
 		case AL_HOLYLIGHT:
 			if(sc && sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_PRIEST)
-				req.sp *= 5;
+				req.sp *= 2;
 			break;
 		case SL_SMA:
 		case SL_STUN:

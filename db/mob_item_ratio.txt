@@ -43,7 +43,7 @@
 4399,50000 //thanatos card
 
 4456,35000 //Nidhoggur Shadow Card
-2554,7500 //Nydhorgg's Shadow Garb
+2554,750 //Nydhorgg's Shadow Garb
 4357,50000 //LK card
 4359,50000 //sinx card
 4361,50000 //mastersmith card

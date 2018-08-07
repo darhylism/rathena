@@ -1,0 +1,62 @@
+-	script	monsterdrops	-1,{
+
+OnInit:
+addmonsterdrop 1502,7179,10;
+addmonsterdrop 1038,7179,25;
+addmonsterdrop 1086,7179,25;
+addmonsterdrop 1087,7179,25;
+addmonsterdrop 1150,7179,25;
+addmonsterdrop 1157,7179,25;
+addmonsterdrop 1251,7179,25;
+addmonsterdrop 1272,7179,25;
+addmonsterdrop 1312,7179,25;
+addmonsterdrop 1389,7179,25;
+addmonsterdrop 1511,7179,25;
+addmonsterdrop 1492,7179,40;
+addmonsterdrop 1418,7179,40;
+addmonsterdrop 1630,7179,40;
+addmonsterdrop 1039,7179,40;
+addmonsterdrop 1046,7179,40;
+addmonsterdrop 1059,7179,40;
+addmonsterdrop 1112,7179,40;
+addmonsterdrop 1115,7179,40;
+addmonsterdrop 1147,7179,40;
+addmonsterdrop 1159,7179,40;
+addmonsterdrop 1190,7179,40;
+addmonsterdrop 1252,7179,40;
+addmonsterdrop 1785,7179,40;
+addmonsterdrop 2996,7179,40;
+addmonsterdrop 1658,7179,50;
+addmonsterdrop 1685,7179,50;
+addmonsterdrop 1871,7179,50;
+addmonsterdrop 1885,7179,50;
+addmonsterdrop 1373,7179,50;
+addmonsterdrop 1623,7179,50;
+addmonsterdrop 2202,7179,50;
+addmonsterdrop 1708,7179,50;
+addmonsterdrop 1779,7179,50;
+addmonsterdrop 1956,7179,50;
+addmonsterdrop 1734,7179,55;
+addmonsterdrop 3981,7179,55;
+addmonsterdrop 3982,7179,55;
+addmonsterdrop 3983,7179,55;
+addmonsterdrop 3984,7179,55;
+addmonsterdrop 2564,7179,65;
+addmonsterdrop 1646,7179,70;
+addmonsterdrop 1647,7179,70;
+addmonsterdrop 1648,7179,70;
+addmonsterdrop 1649,7179,70;
+addmonsterdrop 1650,7179,70;
+addmonsterdrop 1651,7179,70;
+addmonsterdrop 1719,7179,70;
+addmonsterdrop 1583,7179,70;
+addmonsterdrop 1768,7179,70;
+addmonsterdrop 1688,7179,70;
+addmonsterdrop 1751,7179,70;
+addmonsterdrop 2022,7179,80;
+addmonsterdrop 1832,7179,85;
+addmonsterdrop 1874,7179,90;
+addmonsterdrop 1917,7179,95;
+end;
+
+}

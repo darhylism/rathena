@@ -11,7 +11,7 @@
 //= Exchange costume for points.
 //============================================================
  
-prontera,147,167,4	script	Item2Pods	10044,{
+poring_w02,96,86,4	script	Item2Pods	10044,{
 	mes "[^995050ITEM TRADER^000000]";
 	mes "Hi, "+strcharinfo(0)+"!";
 	mes "What can I do for you?";
@@ -149,26 +149,26 @@ OnBuyItem:
 OnInit:
 	set .Points$,"#ITEM2PODZ";	// Variable to store points.
 	setarray .Shop[0],		// Shop items: <ID>,<point cost>
-	  677,110, 7179,5000;
+	7179,5000;
 
-	setarray .Points[0],400,2000,2500,3000,5000,6000,8000,20000;	// Points per <Class 1>,<Class 2>,<Class 3>,<Class 4>
+	setarray .Points[0],20000,25000,30000,45000,55000,60000,75000,150000;	// Points per <Class 1>,<Class 2>,<Class 3>,<Class 4>
 	
 	set .class1$,
-		"2524,2357,2421,2375,2374,2433";
+		"4359,31023,4363,4365,4357,4361,4367,4399";
 	set .class2$,
-		"35005,35006,35011,35016,35026,35040";		
+		"35085,35088,35086,35094,35084,35087,35089,35090";		
 	set .class3$,
-		"2678,2679,2702,2423,1565,4047,4174,4128,4318";		
+		"2554,4556";		
 	set .class4$,
-		"35000,35001,35002,35003";
+		"2630,2383,35044,2629,1530,2410";
 	set .class5$,
-		"35027,35036,35037,35012,35018,35028,35029,35030,35017,35013,35039,13184,13185,13186,13187";
+		"5013";
 	set .class6$,
-		"4441,4386,4236,4372,4425,4376";
+		"19126,5943";
 	set .class7$,
-		"35009,35010,35014,35015,1749,1198,35038";
+		"18937";
 	set .class8$,
-		"4408,4456,4403,4302,4145,4407,4430";
+		"5969";
 	
 	npcshopdelitem "item2pod",909;
 	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
@@ -178,6 +178,3 @@ OnInit:
 	end;
 }
 -	shop	item2pod	-1,909:-1
-
-ma_in01,25,87,4	duplicate(Item2Pods)	Item2Pods#1	10044
-poring_w02,101,78,4	duplicate(Item2Pods)	Item2Pods#2	10044

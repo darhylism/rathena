@@ -255,7 +255,7 @@ disable_items;
 					case 6:
 						mes "Resist Holy";
 						set .@MinValue,2;	// Minimum option effect value
-						set .@MaxValue,20;	// Maximum option effect value
+						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,31;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -269,7 +269,7 @@ disable_items;
 					case 8:
 						mes "Resist Ghost";
 						set .@MinValue,2;	// Minimum option effect value
-						set .@MaxValue,20;	// Maximum option effect value
+						set .@MaxValue,30;	// Maximum option effect value
 						set .@opt,33;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -603,7 +603,7 @@ disable_items;
 						close;
 				}
 			case 2:
-				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Cancel")) {
+				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Sonic Blow:Cancel")) {
 					case 1: //Fire Bolt
 						mes "Fire Bolt";
 						set .@MinValue,1;	// Minimum option effect value
@@ -628,21 +628,21 @@ disable_items;
 					case 4: // Storm Gust
 						mes "Storm Gust";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,30;	// Maximum option effect value
+						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,197;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 5: //Meteor Storm
 						mes "Meteor Storm";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,30;	// Maximum option effect value
+						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,198;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					case 6: //Lord of Vermillion
 						mes "Lord of Vermillion";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,30;	// Maximum option effect value
+						set .@MaxValue,50;	// Maximum option effect value
 						set .@opt,199;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -782,7 +782,7 @@ disable_items;
 					case 26: //Arrow Vulcan
 						mes "Arrow Vulcan";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,40;	// Maximum option effect value
+						set .@MaxValue,70;	// Maximum option effect value
 						set .@opt,219;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -796,7 +796,7 @@ disable_items;
 					case 28: //Acid Demonstration
 						mes "Acid Demonstration";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,10;	// Maximum option effect value
+						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,221;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -811,6 +811,13 @@ disable_items;
 						mes "Holy Light";
 						set .@MinValue,5;	// Minimum option effect value
 						set .@MaxValue,50;	// Maximum option effect value
+						set .@opt,223;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 31: //Sonic Blow
+						mes "Sonic Blow";
+						set .@MinValue,2;	// Minimum option effect value
+						set .@MaxValue,15;	// Maximum option effect value
 						set .@opt,223;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
