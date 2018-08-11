@@ -342,3 +342,8 @@ OnMyMobDead:
 	monster instance_mapname("guild_vs2-2"),49,49,"--ja--",.@mobid,1,instance_npcname("#SCMLControl") + "::OnMyMobDead";
 	end;
 }
+
+guild_vs2-2,53,53,4	script	Repairman#mvptrials	4_M_04,{
+	callfunc "repairmain","Repairman";
+	end;
+}

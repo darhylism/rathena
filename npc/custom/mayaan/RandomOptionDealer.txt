@@ -603,7 +603,7 @@ disable_items;
 						close;
 				}
 			case 2:
-				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Sonic Blow:Cancel")) {
+				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Jupitel Thunder:Cancel")) {
 					case 1: //Fire Bolt
 						mes "Fire Bolt";
 						set .@MinValue,1;	// Minimum option effect value
@@ -740,7 +740,7 @@ disable_items;
 					case 20: //Soul Destroyer
 						mes "Soul Destroyer";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,10;	// Maximum option effect value
+						set .@MaxValue,20;	// Maximum option effect value
 						set .@opt,213;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -782,7 +782,7 @@ disable_items;
 					case 26: //Arrow Vulcan
 						mes "Arrow Vulcan";
 						set .@MinValue,1;	// Minimum option effect value
-						set .@MaxValue,70;	// Maximum option effect value
+						set .@MaxValue,90;	// Maximum option effect value
 						set .@opt,219;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
@@ -814,11 +814,11 @@ disable_items;
 						set .@opt,223;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
-					case 31: //Sonic Blow
-						mes "Sonic Blow";
-						set .@MinValue,2;	// Minimum option effect value
-						set .@MaxValue,15;	// Maximum option effect value
-						set .@opt,223;
+					case 31: //Jupitel Thunder
+						mes "Jupitel Thunder";
+						set .@MinValue,50;	// Minimum option effect value
+						set .@MaxValue,250;	// Maximum option effect value
+						set .@opt,224;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					default:

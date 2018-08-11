@@ -18,7 +18,7 @@
 
 // Main NPC :: safety_Ref_NPC
 //============================================================
-prontera,187,167,6	script	Refine Master	851,{
+prontera,164,155,4	script	Refine Master	851,{
 	disable_items;
 	if (countitem(35057) || countitem(6228) || countitem(6229) || countitem(6230) || countitem(6231) || countitem(6456))
 		set .@bWeaponUp,1;

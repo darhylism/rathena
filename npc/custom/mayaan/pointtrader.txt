@@ -1,4 +1,4 @@
-prontera,147,170,3	script	Point Trader	719,{
+prontera,136,170,4	script	Point Trader	719,{
     set @name$,"^FF0000Trader^000000";
     mes @name$;
     mes "What do you want to do?";

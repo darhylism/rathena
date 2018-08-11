@@ -73,3 +73,5 @@ W_cancel:
 	close;
 
 }
+
+guild_vs2-2,46,53,4	duplicate(Kalbolaryo)	Kalbolaryo#mvp	4_M_MINISTER

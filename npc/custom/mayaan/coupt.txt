@@ -58,7 +58,7 @@ end;
 
 
 brasilis,192,213,4	duplicate(Coupon Exchanger)	Coupon Exchanger#bras	4_F_NACORURI
-prontera,145,165,4	duplicate(Coupon Exchanger)	Coupon Exchanger#prontera	4_F_NACORURI
+prontera,154,196,4	duplicate(Coupon Exchanger)	Coupon Exchanger#prontera	4_F_NACORURI
 Askydun,96,111,4	duplicate(Coupon Exchanger)	Coupon Exchanger#Askydun	4_F_NACORURI
 splendide,188,143,4	duplicate(Coupon Exchanger)	Coupon Exchanger#splendide	4_F_NACORURI
 morocc,148,102,4	duplicate(Coupon Exchanger)	Coupon Exchanger#morocc	4_F_NACORURI

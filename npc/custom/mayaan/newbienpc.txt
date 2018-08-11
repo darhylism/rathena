@@ -77,7 +77,7 @@ if( !Class ){
 			rentitem 35051,1209600; // Beginner Bow
 			rentitem 35052,1209600; // Beginner Sword
 			rentitem 35053,1209600; // Beginner Mace
-			#HR_COIN += 70;
+			#HR_COIN += 15;
 			dispbottom "You now have " +#HR_COIN+ " Hourly points.";
 			set #newaccount,1;
 			close2;

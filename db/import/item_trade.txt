@@ -46,6 +46,7 @@
 13186,1,100	// Havoc
 13187,1,100	// Sweeper
 13810,475,100	// Blue_Potion_Box
+13995,475,100	// Speed_Up_Potion_Box10
 14103,473,100	// F_Max_Weight_Up_Box
 14158,473,100	// F_Bubble_Gum_Box
 14172,475,100	// F_Assumptio_5_Scroll_Box
@@ -154,3 +155,7 @@
 35117,1,100	// jan_rae_mvp
 35118,1,100	// burning_hornz
 35119,9,100	// Eeyon_Spiritzfire
+35120,507,100	// Guild_Master_Boxu
+35121,507,100	// Guild_Member_Boxu
+35122,507,100	// Recruitment_bonus_Boxu
+35123,321,100	// Event_card

@@ -62,63 +62,63 @@ end;
             default:
                 break;
             case 60: // 60 minutes
-                #HR_COIN += 5;
+                #HR_COIN += 25;
 				dispbottom "You received 5 Hourly points by staying ingame for 1 hour";
 				dispbottom "The hourly points system has started please continue to be online to gain rewards.";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 120: // 120 minutes
-                #HR_COIN += 10;
+                #HR_COIN += 30;
 				dispbottom "You received 10 Hourly points due to playing for 2 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 180: // 180 minutes
-                #HR_COIN += 15;
+                #HR_COIN += 35;
 				dispbottom "You received 15 Hourly points due to playing for 3 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 240: // 240 minutes
-                #HR_COIN += 20;
+                #HR_COIN += 40;
 				dispbottom "You received 20 Hourly points due to playing for 4 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 300: // 300 minutes
-                #HR_COIN += 25;
+                #HR_COIN += 45;
 				dispbottom "You received 25 Hourly points due to playing for 5 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 360: // 360 minutes
-                #HR_COIN += 30;
+                #HR_COIN += 50;
 				dispbottom "You received 30 Hourly points due to playing for 6 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 420: // 420 minutes
-                #HR_COIN += 35;
+                #HR_COIN += 55;
 				dispbottom "You received 35 Hourly points due to playing for 7 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 480: // 480 minutes
-                #HR_COIN += 40;
+                #HR_COIN += 60;
 				dispbottom "You received 40 Hourly points due to playing for 8 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 540: // 540 minutes
-                #HR_COIN += 45;
+                #HR_COIN += 65;
 				dispbottom "You received 45 Hourly points due to playing for 9 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 600: // 600 minutes
-                #HR_COIN += 50;
+                #HR_COIN += 70;
 				dispbottom "You received 50 Hourly points due to playing for 10 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 660: // 660 minutes
-                #HR_COIN += 55;
+                #HR_COIN += 75;
 				dispbottom "You received 55 Hourly points due to playing for 11 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 720: // 720 minutes
-                #HR_COIN += 60;
+                #HR_COIN += 80;
 				dispbottom "You received 60 Hourly points due to playing for 12 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
@@ -137,7 +137,7 @@ prontera,147,173,3	script	Hourly Shop#PRT	716,{
 	mes "I come from Valhalla to aid you.";
 	mes "what do you want to buy?.";
 	next;
-	switch(select("Cards:Equipments:Usable:ETC:Close")) {
+	switch(select("Equipments:Usable:ETC:Close")) {
 		case 1:
 			close2;
 			callshop "1shop#hourly", 1;
@@ -150,20 +150,14 @@ prontera,147,173,3	script	Hourly Shop#PRT	716,{
 			close2;
 			callshop "3shop#hourly", 1;
 			end;
-		case 4:
-			close2;
-			callshop "4shop#hourly", 1;
-			end;
 		default:
 			close;
 	}
 }
 ma_in01,31,93,3	duplicate(Hourly Shop#PRT)	Hourly Shop#HED	716
 
--	pointshop	1shop#hourly	-1,#HR_COIN,4128:390,4047:300,4174:300,4305:75,4142:75,4035:30,4058:30,4133:30,35000:250,35001:250,35002:250,35003:250
+-	pointshop	1shop#hourly	-1,#HR_COIN,35118:1000,2702:25,2124:5,2357:25,2524:25,2421:25,2115:25,2710:5000,13953:25,12106:390,5463:100,5594:100,5325:100,5388:75,5286:75,18656:1000,5372:25000
 
--	pointshop	2shop#hourly	-1,#HR_COIN,2702:1000,2124:50,2357:390,2524:390,2421:390,2115:150,2767:3,2769:3,2768:3,2771:3,2765:3,2766:3,2770:3,2710:5000,13953:25,12106:390,5463:100,5594:100,5325:100,5388:75,5286:75,18656:1000,5372:25000
+-	pointshop	2shop#hourly	-1,#HR_COIN,12549:20,13995:20,12680:15,35049:100,12578:60,14533:50,12210:50,12412:300,12214:50,12302:15,12172:10,12162:10,12182:10,12202:75,12204:75,12205:75,12203:75,12207:75,12206:75
 
--	pointshop	3shop#hourly	-1,#HR_COIN,13534:1,13810:2,13995:10,35049:390,12578:100,14533:10,12210:300,12412:500,12214:50,12302:15,616:3,678:5,12172:10,12162:10,12182:10,12202:150,12204:150,12205:150,12203:150,12207:150,12206:150
-
--	pointshop	4shop#hourly	-1,#HR_COIN,7776:1000,7620:100,7619:100,13889:5,13890:5
+-	pointshop	3shop#hourly	-1,#HR_COIN,7776:1000,7620:100,7619:100,13889:5,13890:5
