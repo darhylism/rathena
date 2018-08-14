@@ -1,13 +1,13 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
-#ifndef _CHRIF_HPP_
-#define _CHRIF_HPP_
+#ifndef CHRIF_HPP
+#define CHRIF_HPP
 
 #include <time.h>
 
-#include "../common/cbasetypes.h"
-#include "../common/socket.h" // enum chrif_req_op
+#include "../common/cbasetypes.hpp"
+#include "../common/socket.hpp" // enum chrif_req_op
 
 //fwd declaration
 struct map_session_data;
@@ -97,4 +97,4 @@ bool chrif_gepard_ack_block(int fd);
 int chrif_gepard_req_unblock(unsigned int unique_id, const char* violator_name, unsigned int violator_aid, unsigned int initiator_aid);
 bool chrif_gepard_ack_unblock(int fd);
 
-#endif /* _CHRIF_HPP_ */
+#endif /* CHRIF_HPP */

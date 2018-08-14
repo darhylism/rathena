@@ -1,25 +1,20 @@
-/**
- * @file ipban.c
- * Module purpose is to read configuration for login-server and handle accounts,
- *  and also to synchronize all login interfaces: loginchrif, loginclif, logincnslif.
- * Licensed under GNU GPL.
- *  For more information, see LICENCE in the main folder.
- * @author Athena Dev Teams < r15k
- * @author rAthena Dev Team
- */
+// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "ipban.hpp"
 
 #include <stdlib.h>
 #include <string.h>
 
-#include "../common/cbasetypes.h"
-#include "../common/showmsg.h"
-#include "../common/sql.h"
-#include "../common/strlib.h"
-#include "../common/timer.h"
-#include "../common/socket.h"
+#include "../common/socket.hpp"
 #include <stdio.h>
+
+#include "../common/cbasetypes.hpp"
+#include "../common/showmsg.hpp"
+#include "../common/sql.hpp"
+#include "../common/strlib.hpp"
+#include "../common/timer.hpp"
+
 #include "login.hpp"
 #include "loginlog.hpp"
 
@@ -38,7 +33,7 @@ static int cleanup_timer_id = INVALID_TIMER;
 static bool ipban_inited = false;
 
 //early declaration
-int ipban_cleanup(int tid, unsigned int tick, int id, intptr_t data);
+TIMER_FUNC(ipban_cleanup);
 
 /**
  * Check if ip is in the active bans list.
@@ -104,7 +99,7 @@ void ipban_log(uint32 ip) {
  * @param data: unused
  * @return 0
  */
-int ipban_cleanup(int tid, unsigned int tick, int id, intptr_t data) {
+TIMER_FUNC(ipban_cleanup){
 	if( !login_config.ipban )
 		return 0;// ipban disabled
 
