@@ -63,63 +63,63 @@ end;
                 break;
             case 60: // 60 minutes
                 #HR_COIN += 25;
-				dispbottom "You received 5 Hourly points by staying ingame for 1 hour";
+				dispbottom "You received 25 Hourly points by staying ingame for 1 hour";
 				dispbottom "The hourly points system has started please continue to be online to gain rewards.";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 120: // 120 minutes
                 #HR_COIN += 30;
-				dispbottom "You received 10 Hourly points due to playing for 2 consecutive hours";
+				dispbottom "You received 30 Hourly points due to playing for 2 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 180: // 180 minutes
                 #HR_COIN += 35;
-				dispbottom "You received 15 Hourly points due to playing for 3 consecutive hours";
+				dispbottom "You received 35 Hourly points due to playing for 3 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 240: // 240 minutes
                 #HR_COIN += 40;
-				dispbottom "You received 20 Hourly points due to playing for 4 consecutive hours";
+				dispbottom "You received 40 Hourly points due to playing for 4 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 300: // 300 minutes
                 #HR_COIN += 45;
-				dispbottom "You received 25 Hourly points due to playing for 5 consecutive hours";
+				dispbottom "You received 45 Hourly points due to playing for 5 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 360: // 360 minutes
                 #HR_COIN += 50;
-				dispbottom "You received 30 Hourly points due to playing for 6 consecutive hours";
+				dispbottom "You received 50 Hourly points due to playing for 6 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
             case 420: // 420 minutes
                 #HR_COIN += 55;
-				dispbottom "You received 35 Hourly points due to playing for 7 consecutive hours";
+				dispbottom "You received 55 Hourly points due to playing for 7 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 480: // 480 minutes
                 #HR_COIN += 60;
-				dispbottom "You received 40 Hourly points due to playing for 8 consecutive hours";
+				dispbottom "You received 60 Hourly points due to playing for 8 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 540: // 540 minutes
                 #HR_COIN += 65;
-				dispbottom "You received 45 Hourly points due to playing for 9 consecutive hours";
+				dispbottom "You received 65 Hourly points due to playing for 9 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 600: // 600 minutes
                 #HR_COIN += 70;
-				dispbottom "You received 50 Hourly points due to playing for 10 consecutive hours";
+				dispbottom "You received 70 Hourly points due to playing for 10 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 660: // 660 minutes
                 #HR_COIN += 75;
-				dispbottom "You received 55 Hourly points due to playing for 11 consecutive hours";
+				dispbottom "You received 75 Hourly points due to playing for 11 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";				
                 break;
             case 720: // 720 minutes
                 #HR_COIN += 80;
-				dispbottom "You received 60 Hourly points due to playing for 12 consecutive hours";
+				dispbottom "You received 80 Hourly points due to playing for 12 consecutive hours";
 				dispbottom "Hourly Points: Please use @hreward if you want to check the time accumulate per minute";
                 break;
         }
