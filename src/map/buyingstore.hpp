@@ -49,6 +49,7 @@ struct s_autotrader {
 		head_dir, ///< Head direction
 		sit; ///< Is sitting?
 	char title[MESSAGE_SIZE]; ///< Store name
+	unsigned short vend_loot;		// Extended Vending system [Lilith]
 	uint32 limit; ///< Maximum zeny to be spent (for buyingstore)
 	uint16 count; ///< Number of item in store
 	struct s_autotrade_entry **entries; ///< Store details

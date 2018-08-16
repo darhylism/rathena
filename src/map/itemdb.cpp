@@ -30,6 +30,7 @@ static DBMap *itemdb_randomopt_group; /// Random option group DB
 struct item_data *dummy_item; /// This is the default dummy item used for non-existant items. [Skotlex]
 
 struct s_roulette_db rd;
+struct s_item_vend item_vend[MAX_INVENTORY]; /// Technoken
 
 /**
 * Check if combo exists
@@ -250,12 +251,12 @@ char itemdb_pc_get_itemgroup(uint16 group_id, bool identify, struct map_session_
 	struct s_item_group_db *group;
 
 	nullpo_retr(1,sd);
-	
+
 	if (!(group = (struct s_item_group_db *) uidb_get(itemdb_group, group_id))) {
 		ShowError("itemdb_pc_get_itemgroup: Invalid group id '%d' specified.\n",group_id);
 		return 2;
 	}
-	
+
 	// Get the 'must' item(s)
 	if (group->must_qty) {
 		for (i = 0; i < group->must_qty; i++)
@@ -604,7 +605,7 @@ static bool itemdb_read_group(char* str[], int columns, int current) {
 	memset(&entry, 0, sizeof(entry));
 	entry.amount = 1;
 	entry.bound = BOUND_NONE;
-	
+
 	str[0] = trim(str[0]);
 	if( ISDIGIT(str[0][0]) ){
 		group_id = atoi(str[0]);
@@ -680,7 +681,7 @@ static bool itemdb_read_group(char* str[], int columns, int current) {
 	if( columns > 7 ) entry.GUID = atoi(str[7]) > 0;
 	if( columns > 8 ) entry.bound = cap_value(atoi(str[8]),BOUND_NONE,BOUND_MAX-1);
 	if( columns > 9 ) entry.isNamed = atoi(str[9]) > 0;
-	
+
 	if (!(group = (struct s_item_group_db *) uidb_get(itemdb_group, group_id))) {
 		CREATE(group, struct s_item_group_db, 1);
 		group->id = group_id;
@@ -691,7 +692,7 @@ static bool itemdb_read_group(char* str[], int columns, int current) {
 	if (!rand_group) {
 		RECREATE(group->must, struct s_item_group_entry, group->must_qty+1);
 		group->must[group->must_qty++] = entry;
-		
+
 		// If 'must' item isn't set as random item, skip the next process
 		if (!prob) {
 			return true;
@@ -702,13 +703,13 @@ static bool itemdb_read_group(char* str[], int columns, int current) {
 		rand_group -= 1;
 
 	random = &group->random[rand_group];
-	
+
 	RECREATE(random->data, struct s_item_group_entry, random->data_qty+prob);
 
 	// Put the entry to its rand_group
 	for (j = random->data_qty; j < random->data_qty+prob; j++)
 		random->data[j] = entry;
-	
+
 	random->data_qty += prob;
 	return true;
 }
@@ -922,7 +923,7 @@ static bool itemdb_read_flag(char* fields[], int columns, int current) {
 		ShowError("itemdb_read_flag: Invalid item item with id %hu\n", nameid);
 		return true;
 	}
-	
+
 	flag = abs(atoi(fields[1]));
 	set = atoi(fields[1]) > 0;
 
@@ -1200,6 +1201,33 @@ static void itemdb_roulette_free(void) {
 	}
 }
 
+/**
+* Extended Vending system [Lilith]
+**/
+static bool itemdb_read_vending(char* fields[], int columns, int current)
+{
+	struct item_data* id;
+	unsigned short nameid;
+
+	nameid = atoi(fields[0]);
+
+	if ((id = itemdb_exists(nameid)) == NULL)
+	{
+		ShowWarning("itemdb_read_vending: Invalid item id %hu.\n", nameid);
+		return false;
+	}
+
+	if (id->type == IT_ARMOR || id->type == IT_WEAPON || id->type == IT_SHADOWGEAR)
+	{
+		ShowWarning("itemdb_read_vending: item id %hu cannot be equipment or weapon.\n", nameid);
+		return false;
+	}
+
+	item_vend[current].itemid = nameid;
+
+	return true;
+}
+
 /*======================================
  * Applies gender restrictions according to settings. [Skotlex]
  *======================================*/
@@ -1395,7 +1423,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 static int itemdb_readdb(void){
 	const char* filename[] = {
 		DBPATH"item_db.txt",
-		DBIMPORT"/item_db.txt" 
+		DBIMPORT"/item_db.txt"
 	};
 
 	int fi;
@@ -1581,7 +1609,7 @@ static int itemdb_read_sqldb(void) {
 bool itemdb_isNoEquip(struct item_data *id, uint16 m) {
 	if (!id->flag.no_equip)
 		return false;
-	
+
 	struct map_data *mapdata = map_getmapdata(m);
 
 	if ((id->flag.no_equip&1 && !mapdata_flag_vs2(mapdata)) || // Normal
@@ -1795,18 +1823,18 @@ static void itemdb_read(void) {
 		"",
 		"/" DBIMPORT,
 	};
-	
+
 	if (db_use_sqldbs)
 		itemdb_read_sqldb();
 	else
 		itemdb_readdb();
-	
+
 	for(i=0; i<ARRAYLENGTH(dbsubpath); i++){
 		uint8 n1 = (uint8)(strlen(db_path)+strlen(dbsubpath[i])+1);
 		uint8 n2 = (uint8)(strlen(db_path)+strlen(DBPATH)+strlen(dbsubpath[i])+1);
 		char* dbsubpath1 = (char*)aMalloc(n1+1);
 		char* dbsubpath2 = (char*)aMalloc(n2+1);
-		
+
 
 		if(i==0) {
 			safesnprintf(dbsubpath1,n1,"%s%s",db_path,dbsubpath[i]);
@@ -1816,7 +1844,7 @@ static void itemdb_read(void) {
 			safesnprintf(dbsubpath1,n1,"%s%s",db_path,dbsubpath[i]);
 			safesnprintf(dbsubpath2,n1,"%s%s",db_path,dbsubpath[i]);
 		}
-		
+
 		sv_readdb(dbsubpath1, "item_avail.txt",         ',', 2, 2, -1, &itemdb_read_itemavail, i > 0);
 		sv_readdb(dbsubpath2, "item_stack.txt",         ',', 3, 3, -1, &itemdb_read_stack, i > 0);
 		sv_readdb(dbsubpath1, "item_nouse.txt",         ',', 3, 3, -1, &itemdb_read_nouse, i > 0);
@@ -1827,6 +1855,7 @@ static void itemdb_read(void) {
 		sv_readdb(dbsubpath1, "item_findingore.txt",	',', 2, 10, -1, &itemdb_read_group, i > 0);
 		sv_readdb(dbsubpath2, "item_giftbox.txt",		',', 2, 10, -1, &itemdb_read_group, i > 0);
 		sv_readdb(dbsubpath2, "item_misc.txt",			',', 2, 10, -1, &itemdb_read_group, i > 0);
+		sv_readdb(dbsubpath1, "item_vending.txt",		',', 1, 1, ARRAYLENGTH(item_vend), &itemdb_read_vending, i); // Extended Vending system [Lilith]
 #ifdef RENEWAL
 		sv_readdb(dbsubpath2, "item_package.txt",		',', 2, 10, -1, &itemdb_read_group, i > 0);
 #endif
@@ -1944,6 +1973,7 @@ void itemdb_reload(void) {
 	itemdb_randomopt_group->clear(itemdb_randomopt_group, itemdb_randomopt_group_free);
 	itemdb->clear(itemdb, itemdb_final_sub);
 	db_clear(itemdb_combo);
+	memset(item_vend, 0, sizeof(item_vend)); // Extended Vending system [Lilith]
 	if (battle_config.feature_roulette)
 		itemdb_roulette_free();
 
