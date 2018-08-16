@@ -1,0 +1,10 @@
+// Specific items for Vending System
+// Format: ItemID
+// Max items is equal MAX_INVENTORY ( 100 by default )
+
+// PODS
+7179
+// Platinum Coin
+677
+// Mithril Coin
+674

@@ -1096,4 +1096,7 @@ void clif_attendence_response( struct map_session_data *sd, int32 data );
 
 void clif_weight_limit( struct map_session_data* sd );
 
-#endif /* CLIF_HPP */
+/// Extended Vending [Lilith]
+int clif_vend(struct map_session_data *sd, int skill_lv);
+
+#endif /* _CLIF_HPP_ */

@@ -647,6 +647,16 @@ struct Battle_Config
 	int homunculus_autofeed_always;
 	int feature_attendance;
 	int feature_privateairship;
+	/**
+	* Extended Vending system [Lilith]
+	**/
+	int extended_vending;
+	int show_broadcas_info;
+	int show_item_vending;
+	int ex_vending_info;
+	int ex_vending_report;
+	int item_zeny;
+	int item_cash;
 
 #include "../custom/battle_config_struct.inc"
 };
