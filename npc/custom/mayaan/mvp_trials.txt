@@ -155,7 +155,7 @@ Askydun,90,118,4	script	MvP Trials	4_MAN_GALTUN,{
 	end;
 OnInit:
 	// Cooldown of entering in seconds
-	.enter_cooldown = 165600;
+	.enter_cooldown = 82800;
 	
 	// entrance fee (in Zeny)
 	.register_cost = 250000000;

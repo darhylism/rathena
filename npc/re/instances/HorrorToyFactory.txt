@@ -188,9 +188,9 @@ xmas,233,305,4	script	Factory Dimension Telep	PORTAL,{
 		mes "You don't have any support? Please organize a party and come again if you go in alone.";
 		close;
 	}
-	switch( checkquest(12331,PLAYTIME) ) {
+	switch(checkquest(12331,PLAYTIME)) {
 	case -1:
-		switch( instance_enter("Horror Toy Factory") ) {
+		switch(instance_enter("Horror Toy Factory")) {
 		case 3:
 			mes "An unknown error has occurred.";
 			close;
@@ -1519,7 +1519,7 @@ OnTimer1000:
 			makeitem 603,1, 'xm_d_map$,213,141;// Old_Blue_Box
 		if (rand(1,1000) > 700)
 			makeitem 616,1, 'xm_d_map$,214,141;// Old_Card_Album
-		if (rand(1,1000) > 980)
+		if (rand(1,1000) > 950)
 			makeitem 13442,1, 'xm_d_map$,215,141;// Old_Parasol
 		break;
 	case 3:
@@ -1552,18 +1552,18 @@ OnTimer1000:
 			makeitem 644,1, 'xm_d_map$,225,141;// Gift_Box
 		if (rand(1,1000) > 700)
 			makeitem 616,1, 'xm_d_map$,226,141;// Old_Card_Album
-		if (rand(1,1000) > 955)
+		if (rand(1,1000) > 950)
 			makeitem 2976,1, 'xm_d_map$,227,141;// Red_Lantern
 		break;
 	case 6:
 		.@num = rand(2,6);
 		for ( .@i = 0; .@i < .@num; .@i++ )
-			makeitem 7642,1, 'xm_d_map$, rand(208,212), rand(134,138);// Bloody_Coin
+			makeitem 2976,1, 'xm_d_map$, rand(208,212), rand(134,138);// Red_Lantern
 		if (rand(1,1000) > 400)
 			makeitem 603,1, 'xm_d_map$,209,136;// Old_Blue_Box
 		if (rand(1,1000) > 800)
 			makeitem 12246,1, 'xm_d_map$,210,136;// Magic_Card_Album
-		if (rand(1,1000) > 980)
+		if (rand(1,1000) > 950)
 			makeitem 2977,1, 'xm_d_map$,211,136;// Hurt_Mind
 		break;
 	case 7:
@@ -1574,7 +1574,7 @@ OnTimer1000:
 			makeitem 7229,1, 'xm_d_map$,213,136;// Silver_Bullion
 		if (rand(1,1000) > 600)
 			makeitem 617,1, 'xm_d_map$,214,136;// Old_Violet_Box
-		if (rand(1,1000) > 920)
+		if (rand(1,1000) > 900)
 			makeitem 22534,1, 'xm_d_map$,215,136;// Closedmind_Box
 		break;
 	case 8:
@@ -1585,7 +1585,7 @@ OnTimer1000:
 			makeitem 7228,1, 'xm_d_map$,217,136;// Gold_Bullion
 		if (rand(1,1000) > 700)
 			makeitem 616,1, 'xm_d_map$,218,136;// Old_Card_Album
-		if (rand(1,1000) > 980)
+		if (rand(1,1000) > 950)
 			makeitem 2978,1, 'xm_d_map$,219,136;// KindHeart
 		break;
 	case 9:
@@ -1596,7 +1596,7 @@ OnTimer1000:
 			makeitem 644,1, 'xm_d_map$,221,136;// Gift_Box
 		if (rand(1,1000) > 800)
 			makeitem 12246,1, 'xm_d_map$,222,136;// Magic_Card_Album
-		if (rand(1,1000) > 980)
+		if (rand(1,1000) > 950)
 			makeitem 18848,1, 'xm_d_map$,223,136;// Lush_Rose
 		break;
 	case 10:

@@ -3142,7 +3142,7 @@ struct Damage battle_calc_skill_base_damage(struct Damage wd, struct block_list 
 				wd.damage = battle_calc_base_damage(src, sstatus, &sstatus->rhw, sc, tstatus->size, 0); //Monsters have no weight and use ATK instead
 			}
 
-			i = 10 + sstatus->str/5;
+			i = 10 + sstatus->str/4;
 			i*=i;
 			ATK_ADD(wd.damage, wd.damage2, i); //Add str bonus.
 			switch (tstatus->size) { //Size-fix. Is this modified by weapon perfection?
@@ -4408,6 +4408,12 @@ static int64 battle_calc_skill_constant_addition(struct Damage wd, struct block_
 	switch (skill_id) {
 		case MO_EXTREMITYFIST:
 			atk = 250 + 150 * skill_lv;
+			break;
+		case CR_HOLYCROSS:
+			if (sstatus->matk_max > sstatus->matk_min)
+				atk = (sstatus->matk_min + rnd()%(sstatus->matk_max - sstatus->matk_min)) * skill_lv;
+			else
+				atk = sstatus->matk_min * skill_lv;
 			break;
 #ifndef RENEWAL
 		case GS_MAGICALBULLET:
@@ -6551,7 +6557,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				md.damage -= totaldef + totalmdef;
 			}
 #else
-			md.damage = 500 + rnd()%500 + 10 * skill_lv * sstatus->int_;
+			md.damage = 500 + rnd()%500 + 11 * skill_lv * sstatus->int_;
 			nk |= NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 #endif
 			break;
