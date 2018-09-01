@@ -511,6 +511,7 @@
 	export_parameter("BaseClass",SP_BASECLASS);
 	export_parameter("killerrid",SP_KILLERRID);
 	export_parameter("killedrid",SP_KILLEDRID);
+	export_parameter("killedgid",SP_KILLEDGID);
 	export_parameter("Sitting",SP_SITTING);
 	export_parameter("CharMoves",SP_CHARMOVE);
 	export_parameter("CharRename",SP_CHARRENAME);
@@ -1512,6 +1513,7 @@
 	export_constant(SC_GLASTHEIM_STATE);
 	export_constant(SC_GLASTHEIM_ITEMDEF);
 	export_constant(SC_GLASTHEIM_HPSP);
+	export_constant(SC_ANCILLA);
 #ifdef RENEWAL
 	export_constant(SC_EXTREMITYFIST2);
 #endif
@@ -4013,7 +4015,12 @@
 	export_constant(QTYPE_EVENT);
 	export_constant(QTYPE_EVENT2);
 	export_constant(QTYPE_WARG);
+	export_constant(QTYPE_CLICKME);
+	export_constant(QTYPE_DAILYQUEST);
 	export_constant(QTYPE_WARG2);
+	export_constant(QTYPE_EVENT3);
+	export_constant(QTYPE_JOBQUEST);
+	export_constant(QTYPE_JUMPING_PORING);
 	export_constant(QTYPE_NONE);
 
 	/* font weight types */
@@ -6033,6 +6040,10 @@
 	export_constant_npc(JT_4_EP17_MIGUEL);
 	export_constant_npc(JT_4_EP17_NIHIL_K);
 	export_constant_npc(JT_4_EP17_MIGUEL_D);
+	export_constant_npc(JT_4_ED_SCHMIDT);
+	export_constant_npc(JT_4_ED_OSCAR);
+	export_constant_npc(JT_4_ED_ORB);
+	export_constant_npc(JT_4_ED_FENCE);
 	#undef export_constant_npc
 
 	/* special effects */
