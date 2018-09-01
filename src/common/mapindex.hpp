@@ -6,7 +6,7 @@
 
 #include "../common/mmo.hpp"
 
-#define MAX_MAPINDEX 2000
+#define MAX_MAPINDEX 10000
 
 //Some definitions for the mayor city maps.
 #define MAP_PRONTERA "prontera"
