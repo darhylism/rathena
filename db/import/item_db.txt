@@ -29,6 +29,8 @@
 12193,Brezel,Pretzel,2,20,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 5,5; },{},{}
 2554,Piece_Of_Angent_Skin,Nydhorgg's Shadow Garb,4,20,,400,,5,,1,0x83EFDFFF,63,2,4,,90,1,0,{ bonus2 bSubEle,Ele_Neutral,7; bonus2 bSubEle,Ele_Water,7; bonus2 bSubEle,Ele_Earth,7; bonus2 bSubEle,Ele_Fire,7; bonus2 bSubEle,Ele_Wind,7; bonus2 bSubEle,Ele_Poison,7; bonus2 bSubEle,Ele_Holy,7; bonus2 bSubEle,Ele_Dark,7; bonus2 bSubEle,Ele_Ghost,7; bonus2 bSubEle,Ele_Undead,7; bonus bMaxSP,(BaseLevel/3)+(getrefine()*10); bonus2 bSPDrainRate,10,1; bonus bMdef,3; },{},{}
 2219,Flu_Mask_,Flu Mask,4,300,,100,,10,,1,0xFFFFFFFF,7,2,1,,0,0,8,{ bonus2 bResEff,Eff_Silence,1000; },{},{}
+12531,White_Potion_Box,White Potion Box,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 504,100; },{},{}
+12549,White_Slim_Pot_Box2,White Slim Pot Box2,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 547,200; },{},{}
 13414,Elemental_Sword,Elemental Sword,5,20,,1200,105,,1,3,0x000654E2,2,2,2,3,70,1,2,{ bonus bStr,2; bonus bInt,4; bonus bDex,1; bonus bMatkRate,5; bonus2 bAddEle,Ele_Neutral,10; if(BaseJob==JOB_ASSASSIN) { bonus3 bAutoSpell,"MG_COLDBOLT",3,50; bonus4 bAutoSpellOnSkill,"MG_COLDBOLT","MG_FIREBOLT",3,300; bonus4 bAutoSpellOnSkill,"MG_FIREBOLT","MG_LIGHTNINGBOLT",3,300; bonus4 bAutoSpellOnSkill,"MG_LIGHTNINGBOLT","WZ_EARTHSPIKE",3,1000; } else { bonus3 bAutoSpell,"MG_COLDBOLT",3,50; bonus4 bAutoSpellOnSkill,"MG_COLDBOLT","MG_FIREBOLT",3,400; bonus4 bAutoSpellOnSkill,"MG_FIREBOLT","MG_LIGHTNINGBOLT",3,400; bonus4 bAutoSpellOnSkill,"MG_LIGHTNINGBOLT","WZ_EARTHSPIKE",3,1000; } },{},{}
 2980,Evilspirit_Gloves,Evilspirit Gloves,4,10,,100,,,,1,0xFFFFFFFF,63,2,136,,110,1,,{ bonus bMaxHP,500; bonus bMaxSP,200; skill "PF_SPIDERWEB",1; bonus2 bSkillCooldown,405,10000; },{},{}
 4359,B_Eremes_Card,Assassin Cross Card,6,20,,10,,,,,,,,4,,,,,{ skill "AS_CLOAKING",10; bonus2 bSkillCooldown,135,5000; },{},{ sc_end SC_CLOAKING; }
@@ -7250,7 +7252,7 @@
 35090,WinRAR_Hat,WinRAR Hat,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,256,0,0,0,1749,{ bonus bAddMaxWeight,30000; bonus bMaxHPrate,-30; },{},{}
 35091,ignition_potionz,Ignition Potion,2,0,,10,,,,,0x83EFDFFF,63,,,,,,,{ sc_start SC_BURNING,15000,1; sc_start SC_ENDURE,15000,10; sc_end SC_SPIDERWEB; },{},{}
 35092,god_auraz,Katsuto Black Man,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,512,0,0,0,1750,{ bonus bAgi,5; bonus bInt,2; bonus bDex,4; skill "AL_HEAL",5+7*(getskilllv("AL_HEAL")==10); },{},{}
-35093,hax_archangel,Hax Wing,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,1742,{ bonus bLuk,+10; bonus bStr,+10; },{},{}
+35093,hax_archangel,Hax Wing,4,100000,10,10,0,10,0,0,0xFFFFFFFF,63,2,1,0,0,0,383,{ bonus bLuk,+10; bonus bStr,+10; },{},{}
 35094,maya_hat,Maya Helm,4,100000,10,10,0,5,0,1,0xFFFFFFFF,63,2,256,0,0,0,1752,{ if (getrefine() > 8) { bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",2,400,BF_MAGIC,0; } else { bonus5 bAutoSpellWhenHit,"NPC_MAGICMIRROR",1,300,BF_MAGIC,0; } },{},{}
 35095,Linkz_Scrollz,Soul Link Scroll,2,0,,0,,,,,0x83EFDFFF,63,,,,,,,{ callfunc "F_Linkz"; },{},{}
 35096,dogz_horn,Dogz Horn,4,100000,10,0,0,0,0,0,0xFFFFFFFF,63,2,1024,0,1,0,1753,{},{},{}
@@ -7282,3 +7284,8 @@
 35122,Recruitment_bonus_Boxu,Recruitment Package Box,2,0,,0,,,,,0x83EFDFFF,63,,,,,,,{ getitem 12412,10; getitem 35056,100; getitem 13583,1; getitem 35078,10; getitem 35091,10; },{},{}
 35123,Event_card,Mayaan Event Token,2,2,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ set #EVENTPOINTZ, #EVENTPOINTZ+1; dispbottom "You have received 1 Event Point."; },{},{}
 35124,Event_Tokenz_box,Mayaan Event Token Box,2,0,,0,,,,,0x83EFDFFF,63,,,,,,,{ getitem 35123,10; },{},{}
+35125,Eeyon_bincantation,Eeyon Black Incantation,4,100000,10,10,0,10,0,1,0xFFFFFFFF,63,2,1,0,0,0,1766,{ bonus2 bResEff,Eff_Poison,10000; },{},{}
+35126,C_cursed_armor,Eeyon Cursed Armor,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1767,{},{},{}
+35127,C_furry_bcoat,Eeyon Black Coat,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1769,{},{},{}
+35128,C_Spell_barrier,Eeyon Spell Barrier,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1768,{},{},{}
+35129,C_shenron_draco,Draco Shenron,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1770,{},{},{}

@@ -829,7 +829,7 @@
 12493,475,100	// Lucky Egg C4
 12529,475,100	// White Slim Potion Box
 12530,475,100	// Mastela Fruit Box
-12531,475,100	// White Potion Box
+12531,475,100	// White_Potion_Box
 12532,475,100	// Royal Jelly Box2
 12533,475,100	// Blue Herb Box2
 12534,475,100	// Yggdrasil Seed Box
@@ -838,7 +838,7 @@
 12541,499,100	// Fortune Cookie1
 12542,499,100	// Fortune Cookie2
 12543,499,100	// Fortune Cookie3
-12549,475,100	// White Slim Pot Box2
+12549,475,100	// White_Slim_Pot_Box2
 12550,475,100	// Poison Bottle Box2
 12714,467,100	// Easter Scroll
 12900,457,100	// Battle Manual Box

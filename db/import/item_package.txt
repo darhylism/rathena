@@ -2,3 +2,16 @@
 //
 // Structure of Database:
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+
+IG_Low_Coin_Pocket,12636,800,1,1,0,0,0	// 1x Malang_Sp_Can
+IG_Low_Coin_Pocket,6304,1,1,1,0,0,0	// 1x Sapa_Feat_Cert
+IG_Low_Coin_Pocket,6420,100,1,1,0,0,0	// 1x Cgrade_Coin
+IG_Low_Coin_Pocket,12636,150,1,2,0,0,0	// 1x Malang_Sp_Can
+IG_Low_Coin_Pocket,6380,1,1,1,0,0,0	// 1x Mora_Coin
+IG_Low_Coin_Pocket,6421,200,1,2,0,0,0	// 1x Dgrade_Coin
+IG_Low_Coin_Pocket,12636,150,1,2,0,0,0	// 1x Malang_Sp_Can
+IG_Low_Coin_Pocket,6080,1,1,1,0,0,0	// 1x Manuk_Coin
+IG_Low_Coin_Pocket,6422,200,1,2,0,0,0	// 1x Egrade_Coin
+IG_Low_Coin_Pocket,12636,100,1,3,0,0,0	// 1x Malang_Sp_Can
+IG_Low_Coin_Pocket,6081,1,1,1,0,0,0	// 1x Splendide_Coin
+IG_Low_Coin_Pocket,6422,300,1,3,0,0,0	// 1x Egrade_Coin

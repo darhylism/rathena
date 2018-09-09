@@ -1,20 +1,56 @@
 poring_w02,101,89,4	script	Vote Shop#1	4_M_BUDDHIST,{
+
+//Function Prototypes
+function getPoints;//This will return the points of the player stored in the database
+function updatePoints;//This will updates the points of the player stored in the database
+
+
 	mes "[Vote Monk NPC]";
 	mes "I come from Valhalla to aid you.";
 	mes "What do you want to buy?.";
 	mes "WARNING: Prices can be subject to change every update.";
 	next;
-	switch(select("General Item Shop:Costumes:Close")) {
-		case 1:
+	switch(select("Redeem Vote Points:General Item Shop:Costumes:Close")) {
+		case 2:
 			close2;
 			callshop "1eshop#votze", 1;
 			end;
-		case 2:
+		case 3:
 			close2;
 			callshop "2eshop#votze", 1;
 			end;
+		case 1:
+			set .@points,getPoints(getcharid(3));
+			mes "This will convert CP Vote pt(s) to NPC Vote pt(s)";	
+			mes "You currently have "+.@points+" CP Vote pt(s).";
+			switch(select("Redeem:Close")) {
+			case 1:
+				next;
+				updatePoints(getcharid(3),.@points);
+				mes "You converted "+.@points+" CP Vote pt(s).";
+				mes "Congrats! you now have "+#VOTEPOINTS+" NPC Vote pt(s).";
+			default:
+				close;
+			}
 		default:
 			close;
+	}
+end;
+//Functions Bodies
+	function updatePoints {
+		set .@account_id,getarg(0);
+		set .@usedPoints,getarg(1);
+		#VOTEPOINTS += .@usedPoints;
+		query_sql("UPDATE `cp_v4p_voters` SET points=(points-"+.@usedPoints+") WHERE account_id='"+.@account_id+"'");
+		return;
+	}
+
+	function getPoints {
+		set .@account_id,getarg(0);
+		query_sql("SELECT `points` FROM `cp_v4p_voters` WHERE account_id="+.@account_id+" LIMIT 1",.@points);
+		if(getarraysize(.@points)==0)
+			return 0;		
+		return .@points[0];
 	}
 }
 

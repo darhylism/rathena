@@ -1000,7 +1000,7 @@ rockrdg1
 rockrdg2
 1@gl_k2
 2@gl_k2
-//1@xm_d2
+1@xm_d2
 pay_d03_i
 gef_d01_i
 ice_d03_i

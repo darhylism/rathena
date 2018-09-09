@@ -63,14 +63,14 @@ malangdo,220,167,5	script	Coin Exchanger CX-1	564,{
 	}
 	mes "[Coin Exchanger CX-1]";
 	mes "----Rate of exchange----";
-	mes "Higher exchange - 30 to 10";
-	mes "Lower exchange - 10 to 30";
+	mes "Higher exchange - 30 to 15";
+	mes "Lower exchange - 15 to 30";
 	mes "------------------------";
 	mes "^ff3333When you exchange, we charge a fee according to the current market price.^000000";
 	next;
 	setarray .@exchange_name$[0],"higher","lower";
-	setarray .@exchange_rate[0],30,10;
-	setarray .@exchange_loss[0],rand(1,4),rand(1,2); // Amount deducted per exchange.
+	setarray .@exchange_rate[0],30,15;
+	setarray .@exchange_loss[0],rand(1,4),rand(1,3); // Amount deducted per exchange.
 	setarray .@exchange_id[0],.@coins[.@coin_select-1],.@coins[.@coin_select+1];
 	if (.@exchange_id[0] == .@coins[1]) .@exchange_id[0] = 0; // Cannot exchange for Silvervine.
 	.@menu$ = "Stop:";
@@ -122,12 +122,12 @@ malangdo,218,165,5	script	Special Vending Machine	562,{
 	mes "Welcome to CX-82. You have a Silvervine Fruit, so you can purchase the Malangdo Specialty that has special ability.";
 	next;
 	callsub L_AddItem, //DisplayName,ItemID,Cost
-		"Seagod's Protection [23 hours]",16740,4,
-		"Seagod's Protection [7 days]",16763,12,
-		"Seagod's Protection [15 days]",16764,24,
-		"Octopus Hunting Stick [23 hours]",16765,2,
-		"Octopus Hunting Stick [3 days]",16766,5,
-		"Octopus Hunting Stick [7 days]",16767,10,
+		"Seagod's Protection [23 hours]",16740,10,
+		"Seagod's Protection [7 days]",16763,70,
+		"Seagod's Protection [15 days]",16764,150,
+		"Octopus Hunting Stick [23 hours]",16765,10,
+		"Octopus Hunting Stick [3 days]",16766,30,
+		"Octopus Hunting Stick [7 days]",16767,70,
 		"Premium Lubricant",6441,56,
 		"Ordinary Lubricant",6440,36,
 		"Sillit Pong",6443,192;

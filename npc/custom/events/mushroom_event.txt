@@ -32,19 +32,19 @@ prontera,142,228,6	script	Find the Mushroom	1084,{
 	mes "Start the event?";
 	next;
 	if (select("- No:- Yes") == 1) close;
-	donpcevent strnpcinfo(0) + "::OnMinute10";
+	donpcevent strnpcinfo(0) + "::OnMinute15";
 	mes "[ Find The Mushroom ]";
 	mes "Event started!";
 	close;
 
 OnInit:
-	.prize = 512;	// Reward item ID
-	.amount = 10;	// Reward item amount
+	.prize = 35124;	// Reward item ID
+	.amount = 1;	// Reward item amount
 	.GM = 60;		// GM level required to access NPC
 	setarray .maps_list$[0],"izlude","geffen","morocc","prontera"; // Possible maps
 	end;
 
-OnMinute10:	// Start time (every hour)
+OnMinute15:	// Start time (every hour)
 	if (.status) end;
 	.status = 1;
 	.@spawn = rand(1,10);	// How many Mushrooms should spawn?

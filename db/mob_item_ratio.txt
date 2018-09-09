@@ -58,3 +58,6 @@
 4474,30000 //Zakudam Card
 
 6672,10000 //Gray Shard
+
+//Malangdo
+12615,75000 //poor coin bag

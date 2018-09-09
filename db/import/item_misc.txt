@@ -2,3 +2,250 @@
 // Structure of Database:
 // GroupID,ItemID,Rate
 //
+
+// Improved Coin Bag
+IG_Improved_Coin_Bag,6080,4	// Manuk Coin
+IG_Improved_Coin_Bag,6081,4	// Splendide Coin
+IG_Improved_Coin_Bag,6304,4	// Proof Of Sapha's Honor
+IG_Improved_Coin_Bag,6380,4	// Mora Village Coin
+IG_Improved_Coin_Bag,6418,1	// A Grade Coin
+IG_Improved_Coin_Bag,6419,2	// B Grade Coin
+IG_Improved_Coin_Bag,6420,1	// C Grade Coin
+IG_Improved_Coin_Bag,12636,10	// Malangdo Canned Specialties
+// Intermediate Coin Bag
+IG_Intermediate_Coin_Bag,6080,4	// Manuk Coin
+IG_Intermediate_Coin_Bag,6081,4	// Splendide Coin
+IG_Intermediate_Coin_Bag,6304,3	// Proof Of Sapha's Honor
+IG_Intermediate_Coin_Bag,6380,4	// Mora Village Coin
+IG_Intermediate_Coin_Bag,6419,1	// B Grade Coin
+IG_Intermediate_Coin_Bag,6420,2	// C Grade Coin
+IG_Intermediate_Coin_Bag,6421,1	// D Grade Coin
+IG_Intermediate_Coin_Bag,12636,11	// Malangdo Canned Specialties
+// Minor Coin Bag
+IG_Minor_Coin_Bag,6080,1	// Manuk Coin
+IG_Minor_Coin_Bag,6081,1	// Splendide Coin
+IG_Minor_Coin_Bag,6304,1	// Proof Of Sapha's Honor
+IG_Minor_Coin_Bag,6380,1	// Mora Village Coin
+IG_Minor_Coin_Bag,6420,6	// C Grade Coin
+IG_Minor_Coin_Bag,6421,7	// D Grade Coin
+IG_Minor_Coin_Bag,6422,8	// E Grade Coin
+IG_Minor_Coin_Bag,12636,15	// Malangdo Canned Specialties
+// S Grade Coin Bag
+IG_S_Grade_Coin_Bag,6423,3	// Sea God's Wrath
+IG_S_Grade_Coin_Bag,6418,2	// A Grade Coin
+IG_S_Grade_Coin_Bag,6419,1	// B Grade Coin
+// A Grade Coin Bag
+IG_A_Grade_Coin_Bag,6418,3	// A Grade Coin
+IG_A_Grade_Coin_Bag,6419,2	// B Grade Coin
+IG_A_Grade_Coin_Bag,6420,1	// C Grade Coin
+// Advanced Weapons Box
+IG_Advanced_Weapons_Box,1130,2	// Nagan
+IG_Advanced_Weapons_Box,1131,7	// Ice_Falchon
+IG_Advanced_Weapons_Box,1132,1	// Edge
+IG_Advanced_Weapons_Box,1133,7	// Fire_Brand
+IG_Advanced_Weapons_Box,1134,7	// Caesar's Sword
+IG_Advanced_Weapons_Box,1135,7	// Cutlas
+IG_Advanced_Weapons_Box,1136,7	// Solar_Sword
+IG_Advanced_Weapons_Box,1137,2	// Excalibur
+IG_Advanced_Weapons_Box,1138,7	// Mysteltainn
+IG_Advanced_Weapons_Box,1139,7	// Tirfing
+IG_Advanced_Weapons_Box,1140,7	// Byeollungum
+IG_Advanced_Weapons_Box,1141,7	// Immaterial_Sword
+IG_Advanced_Weapons_Box,1148,7	// Star_Dust_Blade
+IG_Advanced_Weapons_Box,1164,7	// Muramasa
+IG_Advanced_Weapons_Box,1165,2	// Masamune
+IG_Advanced_Weapons_Box,1166,7	// Dragon_Slayer
+IG_Advanced_Weapons_Box,1167,7	// Schweizersabel
+IG_Advanced_Weapons_Box,1168,7	// Zweihander
+IG_Advanced_Weapons_Box,1169,2	// Executioner
+IG_Advanced_Weapons_Box,1170,7	// Katzbalger
+IG_Advanced_Weapons_Box,1171,7	// Zweihander_
+IG_Advanced_Weapons_Box,1175,2	// Altas_Weapon
+IG_Advanced_Weapons_Box,1176,7	// Muscle_Cutter
+IG_Advanced_Weapons_Box,1178,7	// Schweizersabel_
+IG_Advanced_Weapons_Box,1179,2	// Executioner__
+IG_Advanced_Weapons_Box,1180,7	// Dragon_Slayer_
+IG_Advanced_Weapons_Box,1181,7	// Tae_Goo_Lyeon
+IG_Advanced_Weapons_Box,1182,7	// Bloody_Eater
+IG_Advanced_Weapons_Box,1185,1	// Violet_Fear
+IG_Advanced_Weapons_Box,1186,1	// Death_Guidance
+IG_Advanced_Weapons_Box,1188,7	// Veteran_Sword
+IG_Advanced_Weapons_Box,1189,5	// Krasnaya
+IG_Advanced_Weapons_Box,1196,2	// Chrome_Metal_Two-Hand_Sword
+IG_Advanced_Weapons_Box,1223,2	// Forturn_Sword
+IG_Advanced_Weapons_Box,1224,4	// Sword_Breaker
+IG_Advanced_Weapons_Box,1227,5	// Weeder_Knife
+IG_Advanced_Weapons_Box,1228,2	// Combat_Knife
+IG_Advanced_Weapons_Box,1229,5	// Kitchen_Knife
+IG_Advanced_Weapons_Box,1230,1	// Ice_Pick
+IG_Advanced_Weapons_Box,1231,1	// Bazerald
+IG_Advanced_Weapons_Box,1232,5	// Assasin_Dagger
+IG_Advanced_Weapons_Box,1233,5	// Exorciser
+IG_Advanced_Weapons_Box,1234,2	// Moonlight_Dagger
+IG_Advanced_Weapons_Box,1235,5	// Azoth
+IG_Advanced_Weapons_Box,1236,5	// Sucsamad
+IG_Advanced_Weapons_Box,1237,5	// Grimtooth
+IG_Advanced_Weapons_Box,1240,5	// Princess_Knife
+IG_Advanced_Weapons_Box,1241,5	// Cursed_Dagger
+IG_Advanced_Weapons_Box,1242,5	// Counter_Dagger
+IG_Advanced_Weapons_Box,1244,5	// Holy_Dagger
+IG_Advanced_Weapons_Box,1261,1	// Infiltrator
+IG_Advanced_Weapons_Box,1263,5	// Unholy_Touch
+IG_Advanced_Weapons_Box,1265,2	// Bloody_Roar
+IG_Advanced_Weapons_Box,1266,1	// Infiltrator_
+IG_Advanced_Weapons_Box,1268,2	// Wild_Beast_Claw
+IG_Advanced_Weapons_Box,1269,2	// Inverse_Scale
+IG_Advanced_Weapons_Box,1270,5	// Drill_Katar
+IG_Advanced_Weapons_Box,1271,5	// Blood_Tears
+IG_Advanced_Weapons_Box,1284,5	// Krishna
+IG_Advanced_Weapons_Box,1285,5	// Chakram
+IG_Advanced_Weapons_Box,1305,5	// Cleaver
+IG_Advanced_Weapons_Box,1311,5	// Vecer_Axe
+IG_Advanced_Weapons_Box,1363,2	// Bloody_Axe
+IG_Advanced_Weapons_Box,1364,5	// Great_Axe
+IG_Advanced_Weapons_Box,1365,5	// Sabbath
+IG_Advanced_Weapons_Box,1366,1	// Light Epsilon
+IG_Advanced_Weapons_Box,1367,5	// Slaughter
+IG_Advanced_Weapons_Box,1368,5	// Tomahawk
+IG_Advanced_Weapons_Box,1369,2	// Guillotine
+IG_Advanced_Weapons_Box,1370,1	// Doom_Slayer
+IG_Advanced_Weapons_Box,1371,1	// Doom_Slayer_
+IG_Advanced_Weapons_Box,1376,1	// Heart_Breaker
+IG_Advanced_Weapons_Box,1377,1	// Hurricane_Fury
+IG_Advanced_Weapons_Box,1385,5	// Bradium_Stonehammer
+IG_Advanced_Weapons_Box,1387,2	// Giant_Axe
+IG_Advanced_Weapons_Box,1413,5	// Gungnir
+IG_Advanced_Weapons_Box,1414,5	// Gelerdria
+IG_Advanced_Weapons_Box,1415,2	// Brocca
+IG_Advanced_Weapons_Box,1416,5	// Tjungkuletti
+IG_Advanced_Weapons_Box,1418,5	// Gungnir_
+IG_Advanced_Weapons_Box,1420,5	// Long_Horn
+IG_Advanced_Weapons_Box,1421,2	// Battle_Hook
+IG_Advanced_Weapons_Box,1422,1	// Hunting_Spear
+IG_Advanced_Weapons_Box,1433,2	// Imperial_Spear
+IG_Advanced_Weapons_Box,1466,5	// Crescent_Scythe
+IG_Advanced_Weapons_Box,1467,5	// Bill_Guisarme
+IG_Advanced_Weapons_Box,1468,5	// Zephyrus
+IG_Advanced_Weapons_Box,1469,5	// Longinus's_Spear
+IG_Advanced_Weapons_Box,1470,5	// Brionac
+IG_Advanced_Weapons_Box,1471,5	// Hell_Fire
+IG_Advanced_Weapons_Box,1473,5	// Wizardy_Staff
+IG_Advanced_Weapons_Box,1474,5	// Gae_Bolg
+IG_Advanced_Weapons_Box,1477,5	// Spectral_Spear
+IG_Advanced_Weapons_Box,1478,5	// Ahlspiess
+IG_Advanced_Weapons_Box,1479,5	// Spectral_Spear_
+IG_Advanced_Weapons_Box,1480,5	// Gae_Bolg_
+IG_Advanced_Weapons_Box,1481,5	// Zephyrus_
+IG_Advanced_Weapons_Box,1484,2	// Cardo
+IG_Advanced_Weapons_Box,1523,2	// Spike
+IG_Advanced_Weapons_Box,1524,5	// Golden_Mace
+IG_Advanced_Weapons_Box,1525,5	// Long_Mace
+IG_Advanced_Weapons_Box,1527,5	// Quadrille
+IG_Advanced_Weapons_Box,1528,1	// Grand_Cross
+IG_Advanced_Weapons_Box,1538,2	// Spike_
+IG_Advanced_Weapons_Box,1539,5	// Golden_Mace_
+IG_Advanced_Weapons_Box,1540,1	// Grand_Cross_
+IG_Advanced_Weapons_Box,1541,5	// Nemesis
+IG_Advanced_Weapons_Box,1557,5	// Book_Of_The_Apocalypse
+IG_Advanced_Weapons_Box,1558,5	// Girl's_Diary
+IG_Advanced_Weapons_Box,1559,5	// Legacy_Of_Dragon
+IG_Advanced_Weapons_Box,1561,5	// Hardcover_Book
+IG_Advanced_Weapons_Box,1562,5	// Battlefield_Textbook
+IG_Advanced_Weapons_Box,1565,1	// Ledger of Death
+IG_Advanced_Weapons_Box,1616,5	// Wing Staff
+IG_Advanced_Weapons_Box,1629,5	// Gentleman's Staff
+IG_Advanced_Weapons_Box,1631,5	// Holy_Stick
+IG_Advanced_Weapons_Box,1636,1	// Thorn_Staff
+IG_Advanced_Weapons_Box,1637,1	// Eraser
+IG_Advanced_Weapons_Box,1643,5	// Dead_Tree_Cane
+IG_Advanced_Weapons_Box,1654,2	// Mental_Stick
+IG_Advanced_Weapons_Box,1719,2	// Bow_Of_Roguemaster
+IG_Advanced_Weapons_Box,1720,2	// Bow_Of_Rudra
+IG_Advanced_Weapons_Box,1722,2	// Ballista
+IG_Advanced_Weapons_Box,1724,5	// Dragon_Wing
+IG_Advanced_Weapons_Box,1725,5	// Bow_Of_Minstrel
+IG_Advanced_Weapons_Box,1727,2	// Balistar_
+IG_Advanced_Weapons_Box,1737,5	// Ixion_Wing
+IG_Advanced_Weapons_Box,1740,5	// Nepenthes_Bow
+IG_Advanced_Weapons_Box,1741,5	// Cursed_Lyre
+IG_Advanced_Weapons_Box,1745,5	// Falken_Blitz
+IG_Advanced_Weapons_Box,1813,5	// Kaiser_Knuckle
+IG_Advanced_Weapons_Box,1814,1	// Berserk
+IG_Advanced_Weapons_Box,1815,5	// Claw_Of_Garm
+IG_Advanced_Weapons_Box,1816,1	// Berserk_
+IG_Advanced_Weapons_Box,1830,2	// Sura's Rampage
+IG_Advanced_Weapons_Box,1913,5	// Electronic_Guitar
+IG_Advanced_Weapons_Box,1918,5	// Oriental_Lute
+IG_Advanced_Weapons_Box,1920,1	// Berserk_Guitar
+IG_Advanced_Weapons_Box,1922,5	// Oriental_Lute_
+IG_Advanced_Weapons_Box,1926,5	// Harp_Of_Nepenthes
+IG_Advanced_Weapons_Box,1930,2	// Green_Whistle
+IG_Advanced_Weapons_Box,1962,5	// Lariat_Whip
+IG_Advanced_Weapons_Box,1963,5	// Rapture_Rose
+IG_Advanced_Weapons_Box,1964,5	// Chemeti_Whip
+IG_Advanced_Weapons_Box,1969,5	// Blade_Whip
+IG_Advanced_Weapons_Box,1970,5	// Queen's_Whip
+IG_Advanced_Weapons_Box,1972,5	// Electric_Eel
+IG_Advanced_Weapons_Box,1973,5	// Sea_Witch_Foot
+IG_Advanced_Weapons_Box,1974,5	// Carrot_Whip
+IG_Advanced_Weapons_Box,1976,5	// Queen's_Whip_
+IG_Advanced_Weapons_Box,1979,5	// Stem_Of_Nepenthes
+IG_Advanced_Weapons_Box,1984,2	// Stem_Whip
+IG_Advanced_Weapons_Box,1985,1	// Rose_Vine
+IG_Advanced_Weapons_Box,2000,1	// Destruction_Rod
+IG_Advanced_Weapons_Box,2001,5	// Divine_Cross
+IG_Advanced_Weapons_Box,2004,5	// Kronos
+IG_Advanced_Weapons_Box,2005,5	// Dea_Staff
+IG_Advanced_Weapons_Box,13046,5	// Krieg
+IG_Advanced_Weapons_Box,13047,5	// Weihna
+IG_Advanced_Weapons_Box,13061,5	// Black_Wing
+IG_Advanced_Weapons_Box,13062,1 // Ancient_Dagger
+IG_Advanced_Weapons_Box,13421,5	// Ruber
+IG_Advanced_Weapons_Box,13431,2	// Chrome_Metal_Sword
+IG_Advanced_Weapons_Box,16000,5	// Erde
+IG_Advanced_Weapons_Box,16001,5	// Red_Square_Bag
+IG_Advanced_Weapons_Box,16010,5	// Red_Ether_Bag
+IG_Advanced_Weapons_Box,18103,5	// Mystic_Bow
+IG_Advanced_Weapons_Box,1476,1	// Crescent_Scythe_
+IG_Advanced_Weapons_Box,1526,5	// Slash
+IG_Advanced_Weapons_Box,1290,1	// Agent_Katar
+IG_Advanced_Weapons_Box,1291,1	// Guillotine_Katar
+IG_Advanced_Weapons_Box,1392,1	// Ygnus_Stale
+IG_Advanced_Weapons_Box,1393,1	// End_Sektura
+IG_Advanced_Weapons_Box,1435,1	// Cannon_Spear
+IG_Advanced_Weapons_Box,1584,1	// Chilly_Spell_Book
+IG_Advanced_Weapons_Box,1659,1	// Recovery_Light
+IG_Advanced_Weapons_Box,13069,1	// Aztoe_Nail
+IG_Advanced_Weapons_Box,13070,1	// Scarletto_Nail
+IG_Advanced_Weapons_Box,16017,1	// Bloody_Cross
+IG_Advanced_Weapons_Box,18109,1	// Catapult
+IG_Advanced_Weapons_Box,18110,1	// Big_CrossBow
+IG_Advanced_Weapons_Box,18111,1	// Creeper_Bow
+// Splendid Box
+IG_Splendid_Box,1189,1	// Krasnaya
+IG_Splendid_Box,1191,1	// Alca Bringer
+IG_Splendid_Box,1196,1	// Two-Handed Chrome Metal Sword
+IG_Splendid_Box,1284,1	// Krishna
+IG_Splendid_Box,1285,1	// Chakram
+IG_Splendid_Box,1287,1	// Durga
+IG_Splendid_Box,1311,1	// Vecer Axe
+IG_Splendid_Box,1387,1	// Giant Axe
+IG_Splendid_Box,1433,1	// Imperial Spear
+IG_Splendid_Box,1649,1	// Laphine Staff
+IG_Splendid_Box,1745,1	// Falken Blitz
+IG_Splendid_Box,1746,1	// Elven Bow
+IG_Splendid_Box,1930,1	// Green Whistle
+IG_Splendid_Box,1984,1	// Stem Whip
+IG_Splendid_Box,2148,1	// Rosa Shield
+IG_Splendid_Box,2153,1	// Imperial Guard
+IG_Splendid_Box,13046,1	// Krieg
+IG_Splendid_Box,13047,1	// Weihna
+IG_Splendid_Box,13061,1	// Black Wing
+IG_Splendid_Box,13421,1	// Ruber
+IG_Splendid_Box,15000,1	// Bone Plate
+IG_Splendid_Box,15014,1	// Ebone Armor
+IG_Splendid_Box,16000,1	// Erde
+IG_Splendid_Box,16001,1	// Red Square Bag
+IG_Splendid_Box,16003,1	// Carga Mace
+IG_Splendid_Box,16010,1	// Red Ether Bag
+IG_Splendid_Box,18103,2	// Mystic Bow

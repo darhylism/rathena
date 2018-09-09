@@ -237,7 +237,6 @@ job_star	mapflag	nobranch
 job_star	mapflag	noicewall
 job_star	mapflag	nopenalty
 job_star	mapflag	nobranch
-job_star	mapflag	noexp
 job_star	mapflag	noreturn
 job_star	mapflag	pvp_noparty
 

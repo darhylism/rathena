@@ -33,10 +33,13 @@
 2732,448,100	// Morroc_Ring
 2963,483,100	// Body_Power_Up_Ring
 2964,483,100	// Ring_Of_Spell_Explosion
+6417,459,100	// Silvervine
 6671,499,100	// Geffen_Coin_Magic_Tournament
 7179,321,100	// Donation_Card
 12218,475,100	// Assumptio_5_Scroll
 12274,507,100	// Gold_Pill_1
+12531,475,100	// White_Potion_Box
+12549,475,100	// White_Slim_Pot_Box2
 12884,9,100	// Infinite_Concentration_Potion
 12885,9,100	// Infinite_Awakening_Potion
 12886,9,100	// Infinite_Berserk_Potion
@@ -159,3 +162,4 @@
 35121,507,100	// Guild_Member_Boxu
 35122,507,100	// Recruitment_bonus_Boxu
 35123,321,100	// Event_card
+35125,9,100	// Eeyon_bincantation

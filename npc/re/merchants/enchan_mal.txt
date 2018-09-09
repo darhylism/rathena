@@ -32,7 +32,7 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 	mes "[Mayomayo]";
 	mes "Wow welcome. It is new Mayomayo refinement store~ I enchant some luxury weapons including level 4 weapons.";
 	next;
-	switch(select("Any store policy changes?:Enchant High Ranked Weapon:Initialize Enchant (Need Silvervine Fruit)")) {
+	switch(select("Any store policy changes?:Enchant High Ranked Weapon:Initialize Enchant (Need 30 Silvervine Fruit)")) {
 	case 1:
 		mes "[Mayomayo]";
 		mes "When I enchant weapons, the slotted cards or refined level are dissipated sometimes. I hated it. However, one day I found how to do it without any extinction.";
@@ -620,9 +620,9 @@ L_Socket:
 			mes "If you change your mind, come back anytime.";
 			close;
 		}
-		if (countitem(6417) == 0) {
+		if (countitem(6417) < 30) {
 			mes "[Mayomayo]";
-			mes "I'm sorry. You don't have Silvervine Fruit. Please check your inventory again?";
+			mes "I'm sorry. You don't have GM Enchantment Ticket. Please check your inventory again?";
 			close;
 		}
 		if (!getequipisequiped(EQI_HAND_R)) {
@@ -638,7 +638,7 @@ L_Socket:
 		specialeffect2 EF_REPAIRWEAPON;
 		mes "[Mayomayo]";
 		mes "Initialize the enchant effect from the equipment.";
-		delitem 6417,1; //Silvervine
+		delitem 6417,30; //GM Enchantment Ticket
 
 		// anti-hack
 		if (callfunc("F_IsEquipIDHack", EQI_HAND_R, .@equip_id) || callfunc("F_IsEquipRefineHack", EQI_HAND_R, .@equip_refine) || 
