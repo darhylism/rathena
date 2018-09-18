@@ -230,3 +230,4 @@ RDMOPT_VAR_ACIDDEMONSTRATION_SKILL,{ bonus2 bSkillAtk,490,getrandomoptinfo(ROA_V
 RDMOPT_VAR_DEMONSTRATION_SKILL,{ bonus2 bSkillAtk,229,getrandomoptinfo(ROA_VALUE);  }
 RDMOPT_VAR_HOLYLIGHT_SKILL,{ bonus2 bSkillAtk,156,getrandomoptinfo(ROA_VALUE);  }
 RDMOPT_VAR_JUPITEL_SKILL,{ bonus2 bSkillAtk,84,getrandomoptinfo(ROA_VALUE);  }
+RDMOPT_VAR_RAID_SKILL,{ bonus2 bSkillAtk,214,getrandomoptinfo(ROA_VALUE);  }

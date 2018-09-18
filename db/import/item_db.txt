@@ -7289,3 +7289,4 @@
 35127,C_furry_bcoat,Eeyon Black Coat,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1769,{},{},{}
 35128,C_Spell_barrier,Eeyon Spell Barrier,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1768,{},{},{}
 35129,C_shenron_draco,Draco Shenron,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,0,1770,{},{},{}
+35130,phoenix_willz,Fenrir Phoenix,4,100000,10,0,0,0,0,0,0xFFFFFFFF,63,2,1024,0,1,0,1771,{},{},{}

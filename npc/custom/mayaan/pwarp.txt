@@ -67,6 +67,8 @@ poring_w02	mapflag	restricted	7
 poring_w02	mapflag	noteleport
 poring_w02	mapflag	nomemo
 poring_w02	mapflag	nobranch
+poring_w02	mapflag	noicewall
+poring_w02	mapflag	autotrade
 poring_w01	mapflag	town
 poring_w01	mapflag	restricted	7
 poring_w01	mapflag	noteleport

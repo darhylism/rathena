@@ -603,7 +603,7 @@ disable_items;
 						close;
 				}
 			case 2:
-				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Jupitel Thunder:Cancel")) {
+				switch(select("Fire Bolt:Cold Bolt:Lightning Bolt:Storm Gust:Meteor Storm:Lord of Vermillion:Cart Termination:Mamonite:Spiral Pierce:Bowling Bash:Bash:Double Strafe:Sharp Shooting:Falcon Assault:Sacrifice:Holy Cross:Grand Cross:Finger Offensive:Asura Strike:Soul Destroyer:Meteor Assault:Flying Side kick:Esma:Tracking:Desperado:Arrow Vulcan:Final Strike:Acid Demonstration:Demonstration:Holy Light:Jupitel Thunder:Raid:Cancel")) {
 					case 1: //Fire Bolt
 						mes "Fire Bolt";
 						set .@MinValue,1;	// Minimum option effect value
@@ -819,6 +819,13 @@ disable_items;
 						set .@MinValue,50;	// Minimum option effect value
 						set .@MaxValue,250;	// Maximum option effect value
 						set .@opt,224;
+						mes "Max Value is "+.@MaxValue+".";
+						goto ValueRand;
+					case 32: //Raid
+						mes "Raid";
+						set .@MinValue,22;	// Minimum option effect value
+						set .@MaxValue,50;	// Maximum option effect value
+						set .@opt,225;
 						mes "Max Value is "+.@MaxValue+".";
 						goto ValueRand;
 					default:

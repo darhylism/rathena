@@ -163,3 +163,4 @@
 35122,507,100	// Recruitment_bonus_Boxu
 35123,321,100	// Event_card
 35125,9,100	// Eeyon_bincantation
+35130,1,100	// phoenix_willz
