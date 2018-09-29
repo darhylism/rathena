@@ -1730,7 +1730,7 @@ const unsigned char* shield_matrix = (const unsigned char*)
 
 void gepard_config_read()
 {
-	char* conf_name = "conf/gepard_shield.conf";
+	const char* conf_name = "conf/gepard_shield.conf";
 	char line[1024], w1[1024], w2[1024];
 
 	FILE* fp = fopen(conf_name, "r");
