@@ -328,7 +328,7 @@ enum emotion_type {
 	ET_MAX
 };
 
-enum clr_type : uint8_t 
+enum clr_type : uint8_t
 {
 	CLR_OUTSIGHT = 0,
 	CLR_DEAD,
@@ -337,7 +337,7 @@ enum clr_type : uint8_t
 	CLR_TRICKDEAD,
 };
 
-enum map_property : uint8_t 
+enum map_property : uint8_t
 {// clif_map_property
 	MAPPROPERTY_NOTHING       = 0,
 	MAPPROPERTY_FREEPVPZONE   = 1,
@@ -348,7 +348,7 @@ enum map_property : uint8_t
 	MAPPROPERTY_DENYSKILLZONE = 6,
 };
 
-enum map_type : uint8_t 
+enum map_type : uint8_t
 {// clif_map_type
 	MAPTYPE_VILLAGE              = 0,
 	MAPTYPE_VILLAGE_IN           = 1,
@@ -377,7 +377,7 @@ enum map_type : uint8_t
 	MAPTYPE_UNUSED               = 29,
 };
 
-enum useskill_fail_cause : uint8_t 
+enum useskill_fail_cause : uint8_t
 {// clif_skill_fail
 	USESKILL_FAIL_LEVEL = 0,
 	USESKILL_FAIL_SP_INSUFFICIENT = 1,
@@ -1095,4 +1095,8 @@ void clif_attendence_response( struct map_session_data *sd, int32 data );
 
 void clif_weight_limit( struct map_session_data* sd );
 
-#endif /* CLIF_HPP */
+// Gepard Shield
+bool clif_gepard_process_packet(struct map_session_data* sd);
+// Gepard Shield
+
+#endif /* _CLIF_HPP_ */

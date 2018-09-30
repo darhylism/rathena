@@ -115,7 +115,8 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 		}
 	}
 
-	login_log(ip, sd->userid, 100, "login ok");
+	gepard_update_last_unique_id(sd->account_id, session[fd]->gepard_info.unique_id);
+	login_log(fd, ip, sd->userid, 100, "login ok");
 	ShowStatus("Connection of the account '%s' accepted.\n", sd->userid);
 
 	WFIFOHEAD(fd,header+size*server_num);
@@ -202,11 +203,11 @@ static void logclif_auth_failed(struct login_session_data* sd, int result) {
 	if (login_config.log_login)
 	{
 		if(result >= 0 && result <= 15)
-		    login_log(ip, sd->userid, result, msg_txt(result));
+		    login_log(fd, ip, sd->userid, result, msg_txt(result));
 		else if(result >= 99 && result <= 104)
-		    login_log(ip, sd->userid, result, msg_txt(result-83)); //-83 offset
+		    login_log(fd, ip, sd->userid, result, msg_txt(result-83)); //-83 offset
 		else
-		    login_log(ip, sd->userid, result, msg_txt(22)); //unknow error
+		    login_log(fd, ip, sd->userid, result, msg_txt(22)); //unknow error
 	}
 
 	if( (result == 0 || result == 1) && login_config.dynamic_pass_failure_ban )
@@ -238,7 +239,7 @@ static void logclif_auth_failed(struct login_session_data* sd, int result) {
 		timestamp2string(WFIFOCP(fd,3), 20, unban_time, login_config.date_format);
 	}
 	WFIFOSET(fd,23);
-#endif	
+#endif
 }
 
 /**
@@ -426,7 +427,7 @@ static int logclif_parse_reqcharconnec(int fd, struct login_session_data *sd, ch
 
 		ShowInfo("Connection request of the char-server '%s' @ %u.%u.%u.%u:%u (account: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, ip);
 		sprintf(message, "charserver - %s@%u.%u.%u.%u:%u", server_name, CONVIP(server_ip), server_port);
-		login_log(session[fd]->client_addr, sd->userid, 100, message);
+login_log(fd, session[fd]->client_addr, sd->userid, 100, message);
 
 		result = login_mmo_auth(sd, true);
 		if( runflag == LOGINSERVER_ST_RUNNING &&
@@ -492,7 +493,7 @@ int logclif_parse(int fd) {
 		if( login_config.ipban && ipban_check(ipl) )
 		{
 			ShowStatus("Connection refused: IP isn't authorised (deny/allow, ip: %s).\n", ip);
-			login_log(ipl, "unknown", -3, "ip banned");
+			login_log(fd, ipl, "unknown", -3, "ip banned");
 			WFIFOHEAD(fd,23);
 			WFIFOW(fd,0) = 0x6a;
 			WFIFOB(fd,2) = 3; // 3 = Rejected from Server
@@ -511,6 +512,24 @@ int logclif_parse(int fd) {
 		uint16 command = RFIFOW(fd,0);
 		int next=1;
 
+		// Gepard Shield by Functor
+		if (is_gepard_active == true)
+		{
+			bool is_processed = gepard_process_packet(fd, session[fd]->rdata + session[fd]->rdata_pos, 0, &session[fd]->recv_crypt);
+
+			if (is_processed == true)
+			{
+				if (command == CS_GEPARD_INIT_ACK)
+				{
+					gepard_check_unique_id(fd, session[fd]->gepard_info.unique_id);
+				}
+
+				return 0;
+			}
+		}
+		// Gepard Shield by Functor
+
+
 		switch( command )
 		{
 		// New alive packet: used to verify if client is always alive.
@@ -526,7 +545,7 @@ int logclif_parse(int fd) {
 		case 0x01fa: // S 01fa <version>.L <username>.24B <password hash>.16B <clienttype>.B <?>.B(index of the connection in the clientinfo file (+10 if the command-line contains "pc"))
 		case 0x027c: // S 027c <version>.L <username>.24B <password hash>.16B <clienttype>.B <?>.13B(junk)
 		case 0x0825: // S 0825 <packetsize>.W <version>.L <clienttype>.B <userid>.24B <password>.27B <mac>.17B <ip>.15B <token>.(packetsize - 0x5C)B
-			next = logclif_parse_reqauth(fd,  sd, command, ip); 
+			next = logclif_parse_reqauth(fd,  sd, command, ip);
 			break;
 		// Sending request of the coding key
 		case 0x01db: next = logclif_parse_reqkey(fd, sd); break;
