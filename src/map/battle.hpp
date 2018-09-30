@@ -644,6 +644,7 @@ struct Battle_Config
 	int autoloot_adjust;
 	int broadcast_hide_name;
 	int skill_drop_items_full;
+	int switch_remove_edp;
 	int feature_homunculus_autofeed;
 	int summoner_trait;
 	int homunculus_autofeed_always;
@@ -659,6 +660,7 @@ struct Battle_Config
 	int ex_vending_report;
 	int item_zeny;
 	int item_cash;
+	int rental_transaction;
 
 #include "../custom/battle_config_struct.inc"
 };
