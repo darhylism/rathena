@@ -37,7 +37,7 @@ OnActive:
 
 
 new_1-1,66,112,1	script	Barricade#001	1905,{
-	message strcharinfo(0),"[Barricade]: Mayaan Server will officially launch on Nov 15 2017 @8:00PM GMT+8";
+	message strcharinfo(0),"[Barricade]: Mayaan Server is Currently ongoing on an OVERHAUL TO RENEWAL. Barricade will open at Oct 13,2018";
 	end;
 
 	OnEnable:
