@@ -1,0 +1,94 @@
+//================= Hercules Script=======================================
+//=       _   _                     _
+//=      | | | |                   | |
+//=      | |_| | ___ _ __ ___ _   _| | ___  ___
+//=      |  _  |/ _ \ '__/ __| | | | |/ _ \/ __|
+//=      | | | |  __/ | | (__| |_| | |  __/\__ \
+//=      \_| |_/\___|_|  \___|\__,_|_|\___||___/
+//================= License===============================================
+//= This file is part of Hercules.
+//= http: //herc.ws - http: //github.com/HerculesWS/Hercules
+//=
+//= Copyright (C)  Emistry
+//= Copyright (C)  Ridley
+//=
+//= Hercules is free software: you can redistribute it and/or modify
+//= it under the terms of the GNU General Public License as published by
+//= the Free Software Foundation, either version 3 of the License, or
+//= (at your option) any later version.
+//=
+//= This program is distributed in the hope that it will be useful,
+//= but WITHOUT ANY WARRANTY; without even the implied warranty of
+//= MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//= GNU General Public License for more details.
+//=
+//= You should have received a copy of the GNU General Public License
+//= along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+//=========================================================================
+//= @itemall to give item to all players online
+//= @itemmap to give item to all players on same map as you
+//================= Description===========================================
+//= Use command to track a specific player
+//================= Current Version=======================================
+//= 1.0a
+//=========================================================================
+
+-	script	atcmd_item	FAKE_NPC,{
+
+// configuration start
+OnInit:
+	bindatcmd("itemmap", strnpcinfo(0) +"::OnAtcommanda", 80, 99); // who can use it?
+	bindatcmd("itemall", strnpcinfo(0) +"::OnAtcommandb", 80, 99); // who can use it?
+	.max = 50; // max amount of items to give out at once
+	end;
+// configuration end
+
+OnAtcommanda:
+	.@type = 1; // @itemmap
+	.@gmmap$ = strcharinfo(3);
+OnAtcommandb:
+	if (.@atcmd_numparameters <= 1) { // need to input something
+		message(strcharinfo(0), sprintf(("Usage: %s <Item ID>, <Amount"), .@atcmd_command$));
+		message(strcharinfo(0), sprintf(("%s failed."), .@atcmd_command$));
+		end;
+	}
+	.@itemid = atoi(.@atcmd_parameters$[0]); // check item
+	.@amount = atoi(.@atcmd_parameters$[1]);
+	if (getitemname(.@itemid) == "null") {
+		message(strcharinfo(0), "Item not found.");
+		end;
+	} else if (.@amount == 0 || .@amount > .max) {
+		message(strcharinfo(0), sprintf(("Invalid amount of Items. Needs to be between 1 and %d."), .max));
+		end;
+	}
+	.@self_id = getcharid(0);
+	if (!.@type)
+		.@users = getusers(1);
+	else
+		.@users = getusers(0);
+	while (.@count < .@users) { // Emistry Function
+		query_sql("SELECT `account_id`, `name` FROM `char` WHERE `online` = 1 ORDER BY `account_id` LIMIT 128 OFFSET "+.@offset, .@aids, .@name$);
+		.@i = 0;
+		.@size = getarraysize(.@aids);
+		while (.@i < .@size) {
+			if (.@aids[.@i] != .@self_id) {
+				if (.@type == 1) {
+					getmapxy(.@map$, .@x, .@y, 0, .@name$[.@i]);
+					if (.@map$ == .@gmmap$) {
+						getitem(.@itemid, .@amount, .@aids[.@i]);
+						.@gave++;
+					}
+				} else {
+					getitem(.@itemid, .@amount, .@aids[.@i]);
+					.@gave++;
+				}
+			}
+			.@count++;
+			.@i++;
+		}
+		.@offset = .@offset + .@size;
+		deletearray(.@aids, .@size);
+		deletearray(.@name$, .@size);
+	}
+	dispbottom(sprintf(("Gave %d x %s to %d Players."), .@amount, getitemname(.@itemid), .@gave));
+}

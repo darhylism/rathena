@@ -1,0 +1,38 @@
+Askydun,52,110,5	script	Odin	2_M_MOLGENSTEIN,{
+if( 265q == 1 )	goto 265F;
+if(BaseLevel < 255 || 265q == 0) goto questnow;
+
+questnow:
+mes "[Odin]";
+mes "You need ^3355FFProof of Power^000000 to be strong!";
+mes "if you dont have it talk to <NAVI>Lenneth<INFO>Askydun,164,87,0,000,0</INFO></NAVI> first!";
+menu 
+	"I have it!",265citem,
+	"Where is lenneth?",incompl;
+265citem:
+next;
+if(BaseLevel < 255 || countitem(35047)<1)
+goto incompl;
+	set BaseLevel, 265;
+	atcommand "@allskill";
+	set 265q,1;
+announce "["+strcharinfo(0)+"] has become a 265 Level Character.",bc_blue|bc_all;
+next;
+mes "[Odin]";
+mes "Congratulations";
+close;
+
+265F:
+mes "[Odin]";
+mes "Too Weak";
+close;
+
+incompl:
+next;
+mes "[Odin]";
+mes "You dont have ^3355FFProof of Power^000000?";
+mes "You are not ^3355FF255^000000?";
+mes "if you dont have it talk to <NAVI>Lenneth<INFO>Askydun,164,87,0,000,0</INFO></NAVI> at Askydun 164 87 first!";
+viewpoint 1,164,87,1,0x55FF33;
+close;
+}

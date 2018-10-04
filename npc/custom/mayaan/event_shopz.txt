@@ -1,0 +1,35 @@
+poring_w02,96,89,4	script	Event Shop#1	4_M_BOSSCAT,{
+	mes "[Event Boss Catz]";
+	mes "I come from Valhalla to aid you.";
+	mes "What do you want to buy?.";
+	mes "WARNING: Prices can be subject to change every update.";
+	next;
+	switch(select("General Item Shop:Rare Equipments:Upper Costumes:Middle Costumes:Close")) {
+		case 1:
+			close2;
+			callshop "1eshop#eventz", 1;
+			end;
+		case 2:
+			close2;
+			callshop "2eshop#eventz", 1;
+			end;
+		case 3:
+			close2;
+			callshop "3eshop#eventz", 1;
+			end;
+		case 4:
+			close2;
+			callshop "4eshop#eventz", 1;
+			end;
+		default:
+			close;
+	}
+}
+
+-	pointshop	1eshop#eventz	-1,#EVENTPOINTZ,677:3,35056:2,35078:100,35073:100,35074:100,12887:100,12886:100,12885:100,12884:100,35059:2000
+
+-	pointshop	2eshop#eventz	-1,#EVENTPOINTZ,5969:10000,18937:7000,19126:5000,18947:500,35094:3000,35090:3000,35089:3000,35088:3000,35087:3000,35086:3000,35085:3000,35084:3000,35098:3000,35097:3000
+
+-	pointshop	3eshop#eventz	-1,#EVENTPOINTZ,19751:500,19967:500,20491:700,20099:1000,20499:1000
+
+-	pointshop	4eshop#eventz	-1,#EVENTPOINTZ,19624:1000,20147:1000,20146:1000,19781:1000,19621:1000

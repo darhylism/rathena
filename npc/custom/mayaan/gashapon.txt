@@ -1,0 +1,61 @@
+prontera,143,171,4	script	Merry	4_F_KID3,{
+	mes "[Merry]";
+	mes "I come from Lutie to aid you.";
+	mes "I can make you a gift for your love ones!.";
+	next;
+	switch(select("Make Merry Gachabox:Close")) {
+		case 1:
+			mes "[Merry]";
+			mes "^3355FFMerry Gachabox^000000 1 Pc.";
+			mes "^3355FFThe Gift Boxes are of different color^000000";
+			mes "^3355FFItem ID's 664,665,666,667^000000";
+			setarray .@Items[0],35050,7034,40,664,2,665,2,666,2,667,2,2236,1;
+			break;
+		default:
+			close;
+	}
+	
+	mes "^FF0000The items I need are as follows:^000000";
+	set .@itemmissing,0;
+	for(set .@i,1; .@i<getarraysize(.@Items); set .@i,.@i+2) {
+		set .@amount,.@Items[.@i+1];
+		set .@id,.@Items[.@i];
+		mes " ~ "+.@amount+"x "+((countitem(.@id)<.@amount)?("^dd3355"):("^33dd55"))+getitemname(.@id)+((getitemslots(.@id)>0)?" ["+getitemslots(.@id)+"]":"")+"^000000";
+		if (countitem(.@id) < .@amount) 
+			set .@itemmissing,1;
+	}
+	if (.@itemmissing) {
+		next;
+		mes "[Merry]";
+		mes "Go on and find all these items.";
+		mes "I will wait here to aid you.";
+		close;
+	}
+	next;
+	mes "[Merry]";
+	mes "Do you desire ^3355FF"+getitemname(.@Items[0])+"^000000?";
+	next;
+	if(select("No","Yes")==1) {
+		mes "[Merry]";
+		mes "Please return if you change your mind.";
+		close;
+	}
+	mes "[Merry]";
+	mes "Here is your ^3355FF"+getitemname(.@Items[0])+"^000000.";
+	mes "May it serve you well.";
+	//second check if the player tries to bypass the first
+	for(set .@i,1; .@i<getarraysize(.@Items); set .@i,.@i+2) {
+		set .@amount,.@Items[.@i+1];
+		set .@id,.@Items[.@i];
+		if (countitem(.@id) < .@amount) 
+			close;
+	}
+	// Delete the items _after_ the second check
+	for(set .@i,1; .@i<getarraysize(.@Items); set .@i,.@i+2) {
+		set .@amount,.@Items[.@i+1];
+		set .@id,.@Items[.@i];
+		delitem .@id, .@amount;
+	}
+	getitem .@Items[0],1;
+	close;
+}

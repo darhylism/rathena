@@ -1,0 +1,22 @@
+prontera,132,217,5	script	Pvp Shop#1	4_F_VALKYRIE2,{
+	mes "[PvP Valkyrie]";
+	mes "I come from Valhalla to aid you.";
+	mes "What do you want to buy?.";
+	next;
+	switch(select("General PvP Shop:Siege Set:Close")) {
+		case 1:
+			close2;
+			callshop "1pshop#pvpshopz", 1;
+			end;
+		case 2:
+			close2;
+			callshop "2pshop#pvpshopz", 1;
+			end;
+		default:
+			close;
+	}
+}
+
+-	pointshop	1pshop#pvpshopz	-1,#PVPPOINTS,35007:10000,35008:10000,35083:10000,5518:5000,7776:400,35095:60,14191:25,13607:25,12210:7,14545:15,12214:7,7621:10,6223:5,6224:4
+
+-	pointshop	2pshop#pvpshopz	-1,#PVPPOINTS,15046:250,15047:250,15048:250,2586:250,2587:250,2483:250,2484:250,2485:250

@@ -26,6 +26,9 @@ prontera,154,197,3	script	MVP Warper	768,{
 	close;
 }
 
+poring_w02,88,101,4	duplicate(MVP Warper)	MVP Warper#poring	768
+Askydun,80,109,4	duplicate(MVP Warper)	MVP Warper#Askydun	768
+
 // Information
 quiz_00,49,31,4	script	MVP Arena Guide	778,{
 	mes "[ ^0065DFMVP Arena Guide^000000 ]";
@@ -282,3 +285,83 @@ pvp_n_5-5	mapflag	pvp_nightmaredrop	off
 pvp_n_6-5	mapflag	pvp_nightmaredrop	off
 pvp_n_7-5	mapflag	pvp_nightmaredrop	off
 pvp_n_8-5	mapflag	pvp_nightmaredrop	off
+pvp_n_1-1	mapflag	pvp	off
+pvp_n_2-1	mapflag	pvp	off
+pvp_n_3-1	mapflag	pvp	off
+pvp_n_4-1	mapflag	pvp	off
+pvp_n_5-1	mapflag	pvp	off
+pvp_n_6-1	mapflag	pvp	off
+pvp_n_7-1	mapflag	pvp	off
+pvp_n_8-1	mapflag	pvp	off
+pvp_n_1-2	mapflag	pvp	off
+pvp_n_2-2	mapflag	pvp	off
+pvp_n_3-2	mapflag	pvp	off
+pvp_n_4-2	mapflag	pvp	off
+pvp_n_5-2	mapflag	pvp	off
+pvp_n_6-2	mapflag	pvp	off
+pvp_n_7-2	mapflag	pvp	off
+pvp_n_8-2	mapflag	pvp	off
+pvp_n_1-3	mapflag	pvp	off
+pvp_n_2-3	mapflag	pvp	off
+pvp_n_3-3	mapflag	pvp	off
+pvp_n_4-3	mapflag	pvp	off
+pvp_n_5-3	mapflag	pvp	off
+pvp_n_6-3	mapflag	pvp	off
+pvp_n_7-3	mapflag	pvp	off
+pvp_n_8-3	mapflag	pvp	off
+pvp_n_1-4	mapflag	pvp	off
+pvp_n_2-4	mapflag	pvp	off
+pvp_n_3-4	mapflag	pvp	off
+pvp_n_4-4	mapflag	pvp	off
+pvp_n_5-4	mapflag	pvp	off
+pvp_n_6-4	mapflag	pvp	off
+pvp_n_7-4	mapflag	pvp	off
+pvp_n_8-4	mapflag	pvp	off
+pvp_n_1-5	mapflag	pvp	off
+pvp_n_2-5	mapflag	pvp	off
+pvp_n_3-5	mapflag	pvp	off
+pvp_n_4-5	mapflag	pvp	off
+pvp_n_5-5	mapflag	pvp	off
+pvp_n_6-5	mapflag	pvp	off
+pvp_n_7-5	mapflag	pvp	off
+pvp_n_8-5	mapflag	pvp	off
+pvp_n_1-1	mapflag	noteleport	off
+pvp_n_2-1	mapflag	noteleport	off
+pvp_n_3-1	mapflag	noteleport	off
+pvp_n_4-1	mapflag	noteleport	off
+pvp_n_5-1	mapflag	noteleport	off
+pvp_n_6-1	mapflag	noteleport	off
+pvp_n_7-1	mapflag	noteleport	off
+pvp_n_8-1	mapflag	noteleport	off
+pvp_n_1-2	mapflag	noteleport	off
+pvp_n_2-2	mapflag	noteleport	off
+pvp_n_3-2	mapflag	noteleport	off
+pvp_n_4-2	mapflag	noteleport	off
+pvp_n_5-2	mapflag	noteleport	off
+pvp_n_6-2	mapflag	noteleport	off
+pvp_n_7-2	mapflag	noteleport	off
+pvp_n_8-2	mapflag	noteleport	off
+pvp_n_1-3	mapflag	noteleport	off
+pvp_n_2-3	mapflag	noteleport	off
+pvp_n_3-3	mapflag	noteleport	off
+pvp_n_4-3	mapflag	noteleport	off
+pvp_n_5-3	mapflag	noteleport	off
+pvp_n_6-3	mapflag	noteleport	off
+pvp_n_7-3	mapflag	noteleport	off
+pvp_n_8-3	mapflag	noteleport	off
+pvp_n_1-4	mapflag	noteleport	off
+pvp_n_2-4	mapflag	noteleport	off
+pvp_n_3-4	mapflag	noteleport	off
+pvp_n_4-4	mapflag	noteleport	off
+pvp_n_5-4	mapflag	noteleport	off
+pvp_n_6-4	mapflag	noteleport	off
+pvp_n_7-4	mapflag	noteleport	off
+pvp_n_8-4	mapflag	noteleport	off
+pvp_n_1-5	mapflag	noteleport	off
+pvp_n_2-5	mapflag	noteleport	off
+pvp_n_3-5	mapflag	noteleport	off
+pvp_n_4-5	mapflag	noteleport	off
+pvp_n_5-5	mapflag	noteleport	off
+pvp_n_6-5	mapflag	noteleport	off
+pvp_n_7-5	mapflag	noteleport	off
+pvp_n_8-5	mapflag	noteleport	off

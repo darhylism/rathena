@@ -1,0 +1,81 @@
+//===== rAthena warp =======================================
+//= Market Place
+//===== By: ==================================================
+//= Lupus
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Dewarpion: =========================================
+//= This warp should move vending crowds from Prontera
+//= streets to a suitable market place. Save your traffic 8)
+//===== Additional Comments: =================================
+//= 1.1 Optimized it, Removed labels. [Spre]
+//============================================================
+
+poring_w02,125,127,0	warp	poring1-1	1,1,poring_w02,170,169
+
+poring_w02,170,166,0	warp	poring1-2	1,1,poring_w02,125,124
+
+
+poring_w02,170,184,0	warp	poring1-3	1,1,poring_w01,112,135
+
+
+poring_w02,93,113,0	warp	poring1-4	1,1,poring_w02,104,117
+
+
+poring_w02,104,114,0	warp	poring1-5	1,1,poring_w02,93,110
+
+
+poring_w02,104,52,0	warp	poring1-6	1,1,poring_w02,93,48
+
+
+poring_w02,93,51,0	warp	poring1-7	1,1,poring_w02,104,55
+
+poring_w02,73,127,0	warp	poring1-13	1,1,poring_w02,26,173
+
+poring_w02,25,166,0	warp	poring1-14	1,1,poring_w02,73,120
+
+poring_w01,115,134,0	warp	poring1-8	1,1,poring_w02,96,72
+
+
+poring_w01,125,91,0	warp	poring1-9	1,1,poring_w01,109,71
+
+
+poring_w01,111,71,0	warp	poring1-10	1,1,poring_w01,123,91
+
+
+poring_w01,92,71,0	warp	poring1-11	1,1,poring_w01,80,92
+
+
+poring_w01,78,92,0	warp	poring1-12	1,1,poring_w01,94,71
+
+
+
+//poring_w02,99,72,0	script	Change_Save	139,1,1,{
+//OnTouch:
+//	if (Class==Job_Novice && BaseExp==0 && BaseLevel==1) {
+//		savepoint "poring_w02",99,72;
+//		set BaseExp,1; // (no need to create a new variable)
+//	}
+//	end;
+//}
+
+//Market Place settings
+poring_w02	mapflag	town
+poring_w02	mapflag	restricted	7
+poring_w02	mapflag	noteleport
+poring_w02	mapflag	nomemo
+poring_w02	mapflag	nobranch
+poring_w02	mapflag	noicewall
+poring_w02	mapflag	autotrade
+poring_w01	mapflag	town
+poring_w01	mapflag	restricted	7
+poring_w01	mapflag	noteleport
+poring_w01	mapflag	nomemo
+poring_w01	mapflag	nobranch
+poring_w01	mapflag	autotrade
+poring_w01	mapflag	nodrop
+poring_w01	mapflag	nochat
+poring_w01	mapflag	noicewall
+

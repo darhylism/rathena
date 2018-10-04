@@ -18,13 +18,14 @@
 //= http://irowiki.org/wiki/God_Items_Quest_3
 //============================================================ 
 
-prontera,147,171,5	script	Lenneth	811,{
+Askydun,164,87,5	script	Lenneth	811,{
 	mes "[Lenneth]";
 	mes "I come from Valhalla to aid you.";
 	mes "I can transmute for you many of the Valhallen items,";
 	mes "although they require many rare elements to make.";
 	next;
-	switch(select("Mjolnir:Sleipnir:Brisingamen:Gleipnir:Megingjard:Asprika:Brynhild:Hervor:Jormungand:Muspellium:Essence Of Rune:Close")) {
+//	switch(select("Mjolnir:Sleipnir:Brisingamen:Gleipnir:Megingjard:Asprika:Brynhild:Hervor:Jormungand:Muspellium:Essence Of Rune:Close")) {
+	switch(select("Mjolnir:Sleipnir:Brisingamen:Gleipnir:Megingjard:Proof of Power:Close")) {
 		case 1:
 			mes "[Lenneth]";
 			mes "^3355FFMjolnir^000000 is the mighty Hammer of Thor.";
@@ -51,6 +52,11 @@ prontera,147,171,5	script	Lenneth	811,{
 			setarray .@Items[0],2629,7058,1,2627,1,969,20,726,10,984,10;
 			break;
 		case 6:
+			mes "[Lenneth]";
+			mes "The ^3355FFProof of Power!^000000 Required item for 265 Quest!.";
+			setarray .@Items[0],35047,993,100,990,100,991,100,7169,30,1004,50,748,200,1026,200,7005,200,7510,10,7562,5,7451,10;
+			break;
+/*		case 6:
 			mes "[Lenneth]";
 			mes "The ^3355FFAsprika^000000 is the light of gods.";
 			setarray .@Items[0],2541,7835,1,7836,1,7837,1,7838,1,2513,1,7063,100,7291,10,7293,10,985,20;
@@ -80,6 +86,7 @@ prontera,147,171,5	script	Lenneth	811,{
 			mes "The ^3355FFEssence Of Rune^000000 is required to make ^3355FFJormungand^000000 and ^3355FFHervor^000000.";
 			setarray .@Items[0],6604,12735,200,12736,100;
 			break;
+--Removed */
 		default:
 			close;
 	}
@@ -126,5 +133,6 @@ prontera,147,171,5	script	Lenneth	811,{
 		delitem .@id, .@amount;
 	}
 	getitem .@Items[0],1;
+	announce strcharinfo(0)+" has created a GOD Artifact "+(getitemname(.@Items[0]))+"!",bc_all,0x00FFFF,FW_NORMAL,25;
 	close;
 }

@@ -1,0 +1,221 @@
+//**********************************************************************************
+// ____                    _                                            _   _  ____ 
+//|  _ \ ___   ___   ____ | |  ___   ____   ___   ___   __  ___   _  _ | |_| |/ __ |
+//| |__// _ \ / _ \ |  _ \| | / _ \ |  _ \ / _ \ /  _| / _)/ _ \ | \| ||___  |\__  |
+//| |  |  __/ ||_|| | |__/| ||  __/ | |__/|  __/ | |  _\ \ ||_|| | \\ |    | |   | |
+//|_|___\___|_\___/_| |___|_|_\___|_| |____\___|_|_|_(___/ \___/_|_|\_|____|_|___|_|
+//------------------|_|-------------|_|---------------------------------------------
+//**********************************************************************************
+//===== rAthena Script =============================================================
+//= Antonio Invasion
+//===== By: ========================================================================
+//= Peopleperson49 (Eddie) - peopleperson49@hotmail.com
+//===== Start Date: ================================================================
+//= 22MAY2012
+//===== Current Version: ===========================================================
+//= 1.9
+//===== Compatible With: ===========================================================
+//= rAthena SVN
+//===== Description: ===============================================================
+//= Antonios spawn in a random town. Every 10 minutes the remaining Antonios warp to
+//=	another town. After all Antonios are killed & the Antonio Leader is killed.
+//=	The script ends after 1 hour or if the Antonio Leader is killed. I wrote this
+//=	from scratch as an event for my wife!
+//===== Version Control: ===========================================================
+//= 1.0 First Version.
+//= 1.1 Added every town map as a possible location for Antonios to warp to.
+//= 1.2 Added function to respawn the Antonio Leader if all Antonios are killed.
+//=		This includes if @killmonster is used.
+//= 1.3 Added function carry over the remaining number of Antonios with each warp to
+//=		a new town.
+//= 1.4	Modified script so that if all Antonios are killed and the Antonio Leader is
+//=		already spawned that only the Antonio Leader will spawn in the new town.
+//= 1.5	Added in function for my wife if she kills the Antonio Leader with one of
+//=		her characters.
+//= 1.6 Fixed the playernotattached error when you use killmonster command in game.
+//=		If killmonster is used with normal Antonios it will spawn the Antonio
+//=		Leader. If killmonster is used with the Antonio Leader it will end the
+//=		event.
+//= 1.7 Optomized script with callsub.
+//= 1.8	Added easy to set OnInit variables.
+//= 1.9 Rearranged order that final prize is given and the announcement to make more
+//= 	sense.
+//===== Additional Comments: =======================================================
+//= Currently have it set to happend every four hours starting at 1000 and ending at
+//==================================================================================
+-	script	AntonioInvasion	-1,{
+OnInit:
+set $AIItemPrize,35050;		//Set item prize here.
+set $AIItemAmount,1;		//Set item amount here.
+set $AntonioAmount,10;		//Set amount of antonios to start here.
+if($AntonioEventStart==1) {
+	if($Antonio_Alive>0) { monster $AntonioMapAdd$,0,0,"Antonio",1247,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
+	if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Antonio Leader",1247,1,"AntonioInvasion::OnAntonioLeaderKill"; }
+}
+end;
+
+//==================================================================================
+//--------|Starting Town|-----------------------------------------------------------
+//==================================================================================
+OnClock0100:
+OnClock0300:
+OnClock0600:
+OnClock0900:
+OnClock1200:
+OnClock1500:
+OnClock1800:
+OnClock2100:
+OnClock2300:
+set $Antonio_Alive,$AntonioAmount;
+set $AntonioEventStart,1;
+callsub S_PickTown;
+announce ""+$Antonio_Alive+" Antonio"+($Antonio_Alive!=1?"s":"")+" "+($Antonio_Alive!=1?"have":"has")+" appeared in "+$AntonioMapName$+"!",bc_all,0x06E7E2,FW_NORMAL,25;
+monster $AntonioMapAdd$,0,0,"Antonio",1247,$Antonio_Alive,"AntonioInvasion::OnAntonioKill";
+end;
+//==================================================================================
+//--------|Middle Towns|------------------------------------------------------------
+//==================================================================================
+OnClock0110:
+OnClock0120:
+OnClock0130:
+OnClock0140:
+OnClock0150:
+OnClock0310:
+OnClock0320:
+OnClock0330:
+OnClock0340:
+OnClock0350:
+OnClock0610:
+OnClock0620:
+OnClock0630:
+OnClock0640:
+OnClock0650:
+OnClock0910:
+OnClock0920:
+OnClock0930:
+OnClock0940:
+OnClock0950:
+OnClock1210:
+OnClock1220:
+OnClock1230:
+OnClock1240:
+OnClock1250:
+OnClock1510:
+OnClock1520:
+OnClock1530:
+OnClock1540:
+OnClock1550:
+OnClock1810:
+OnClock1820:
+OnClock1830:
+OnClock1840:
+OnClock1850:
+OnClock2110:
+OnClock2120:
+OnClock2130:
+OnClock2140:
+OnClock2150:
+OnClock2310:
+OnClock2320:
+OnClock2330:
+OnClock2340:
+OnClock2350:
+if($AntonioEventStart!=1) { end; }
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
+sleep2 1000;
+callsub S_PickTown;
+sleep2 1000;
+announce "The Antonios have teleported away!",bc_all;
+sleep2 5000;
+announce ""+$Antonio_Alive+" Antonio"+($Antonio_Alive!=1?"s":"")+" "+($Antonio_Alive!=1?"have":"has")+" appeared in "+$AntonioMapName$+"!",bc_all,0x06E7E2,FW_NORMAL,25;
+if($AntonioLeaderSpawn==1) { monster $AntonioMapAdd$,0,0,"Antonio Leader",1247,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { monster $AntonioMapAdd$,0,0,"Antonio",1247,$Antonio_Alive,"AntonioInvasion::OnAntonioKill"; }
+end;
+
+//==================================================================================
+//--------|Ending Script|-----------------------------------------------------------
+//==================================================================================
+OnClock0700:
+OnClock1000:
+OnClock1300:
+OnClock1600:
+OnClock1900:
+OnClock2200:
+if($AntonioEventStart!=1) { end; }
+set $AntonioEventStart,0;
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
+sleep2 1000;
+announce "All the Antonios have retreated without a trace!",bc_all;
+sleep2 5000;
+announce "It seems the Invasion is over!",bc_all;
+end;
+
+//==================================================================================
+//--------|Antonio Kill Script|-----------------------------------------------------
+//==================================================================================
+OnAntonioKill:
+set $Antonio_Alive,$Antonio_Alive-1;
+if(playerattached()!=0) { if(rand(1,100)<=10) { dispbottom "You got the Antonio's christmas gift!"; getitem groupranditem(IG_GiftBox),1; } atcommand "@showmobs Antonio"; }
+if($Antonio_Alive<=0) { set $AntonioLeaderSpawn,1; announce "The Antonio Leader has spawned in "+$AntonioMapName$+"!",bc_all,0x06E7E2,FW_NORMAL,25; monster $AntonioMapAdd$,0,0,"Antonio Leader",1247,1,"AntonioInvasion::OnAntonioLeaderKill"; } else { announce "There "+($Antonio_Alive!=1?"are":"is")+" still "+$Antonio_Alive+" Antonio"+($Antonio_Alive!=1?"s":"")+" alive!",bc_map; }
+end;
+
+OnAntonioLeaderKill:
+set $AntonioEventStart,0;
+set $AntonioLeaderSpawn,0;
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
+announce "It seems the Antonio invasion is over!",bc_all;
+if(playerattached()!=0) {
+	sleep2 1000;
+	dispbottom "You got the Antonio Leader's christmas gift!";	
+	getitem $AIItemPrize,$AIItemAmount;
+	announce strcharinfo(0)+" has killed the Antonio Leader and was awarded a worthy prize!",bc_all;
+
+	getitem groupranditem(IG_VioletBox),1;
+}
+end;
+
+S_PickTown:
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioKill";
+killmonster $AntonioMapAdd$,"AntonioInvasion::OnAntonioLeaderKill";
+sleep2 1000;
+set $@AntonioMob,rand(1,28);
+if($@AntonioMob==1) { set $AntonioMapAdd$,"splendide"; set $AntonioMapName$,"Splendide"; }
+if($@AntonioMob==2) { set $AntonioMapAdd$,"izlude"; set $AntonioMapName$,"Izlude"; }
+if($@AntonioMob==3) { set $AntonioMapAdd$,"payon"; set $AntonioMapName$,"Payon"; }
+if($@AntonioMob==4) { set $AntonioMapAdd$,"geffen"; set $AntonioMapName$,"Geffen"; }
+if($@AntonioMob==5) { set $AntonioMapAdd$,"morocc"; set $AntonioMapName$,"Morocc"; }
+if($@AntonioMob==6) { set $AntonioMapAdd$,"prontera"; set $AntonioMapName$,"Prontera"; }
+if($@AntonioMob==7) { set $AntonioMapAdd$,"alberta"; set $AntonioMapName$,"Alberta"; }
+if($@AntonioMob==8) { set $AntonioMapAdd$,"aldebaran"; set $AntonioMapName$,"Aldebaran"; }
+if($@AntonioMob==9) { set $AntonioMapAdd$,"amatsu"; set $AntonioMapName$,"Amatsu"; }
+if($@AntonioMob==10) { set $AntonioMapAdd$,"einbech"; set $AntonioMapName$,"Einbech"; }
+if($@AntonioMob==11) { set $AntonioMapAdd$,"einbroch"; set $AntonioMapName$,"Einbroch"; }
+if($@AntonioMob==12) { set $AntonioMapAdd$,"hugel"; set $AntonioMapName$,"Hugel"; }
+if($@AntonioMob==13) { set $AntonioMapAdd$,"lighthalzen"; set $AntonioMapName$,"Lighthalzen"; }
+if($@AntonioMob==14) { set $AntonioMapAdd$,"manuk"; set $AntonioMapName$,"Manuk"; }
+if($@AntonioMob==15) { set $AntonioMapAdd$,"moscovia"; set $AntonioMapName$,"Moscovia"; }
+if($@AntonioMob==16) { set $AntonioMapAdd$,"yuno"; set $AntonioMapName$,"Yuno"; }
+if($@AntonioMob==17) { set $AntonioMapAdd$,"brasilis"; set $AntonioMapName$,"Brasilis"; }
+if($@AntonioMob==18) { set $AntonioMapAdd$,"ayothaya"; set $AntonioMapName$,"Ayothaya"; }
+if($@AntonioMob==19) { set $AntonioMapAdd$,"comodo"; set $AntonioMapName$,"Comodo"; }
+if($@AntonioMob==20) { set $AntonioMapAdd$,"dewata"; set $AntonioMapName$,"Dewata"; }
+if($@AntonioMob==21) { set $AntonioMapAdd$,"dicastes01"; set $AntonioMapName$,"El Dicastes"; }
+if($@AntonioMob==22) { set $AntonioMapAdd$,"eclage"; set $AntonioMapName$,"Eclage"; }
+if($@AntonioMob==23) { set $AntonioMapAdd$,"gonryun"; set $AntonioMapName$,"Gonryun"; }
+if($@AntonioMob==24) { set $AntonioMapAdd$,"hugel"; set $AntonioMapName$,"Hugel"; }
+if($@AntonioMob==25) { set $AntonioMapAdd$,"jawaii"; set $AntonioMapName$,"Jawaii"; }
+if($@AntonioMob==26) { set $AntonioMapAdd$,"malaya"; set $AntonioMapName$,"Malaya"; }
+if($@AntonioMob==27) { set $AntonioMapAdd$,"umbala"; set $AntonioMapName$,"Umbala"; }
+if($@AntonioMob==28) { set $AntonioMapAdd$,"xmas"; set $AntonioMapName$,"Lute"; }
+return;
+}
+
+/*
+You can add this to your mob_db2, make a entire new mob, or use the original. The original gives to many items everytime you kill one. Item 28471 is a custom item.
+1247,ANTONIO,Antonio,Antonio,10,1,1,3,2,1,13,21,160,0,1,1,1,50,100,100,10,12,1,7,66,0xC1,100,720,720,432,0,0,0,0,0,0,0,5136,100,5811,100,12132,10000,14550,1000,12225,200,12132,10000,12354,60,0,0,0,0,28741,10
+
+item_db
+12132,Santa_Bag_RoUG,Santa's Bag,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ dispbottom "All Antonios on this map are now reveiled."; atcommand "@showmobs Antonio"; },{},{}
+*/

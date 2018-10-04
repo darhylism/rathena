@@ -16,8 +16,8 @@
 -	script	Healer	-1,{
 
 	.@Price = 0;	// Zeny required for heal
-	.@Buffs = 0;	// Also buff players? (1: yes / 0: no)
-	.@Delay = 0;	// Heal delay, in seconds
+	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
+	.@Delay = 2;	// Heal delay, in seconds
 
 	if (@HD > gettimetick(2))
 		end;
@@ -31,11 +31,15 @@
 	}
 	specialeffect2 EF_HEAL2;
 	percentheal 100,100;
-	if (.@Buffs) {
+	if (.@Buffs && BaseLevel > 264) {
 		specialeffect2 EF_INCAGILITY;
-		sc_start SC_INCREASEAGI,240000,10;
+		sc_start SC_INCREASEAGI,300000,10;
 		specialeffect2 EF_BLESSING;
-		sc_start SC_BLESSING,240000,10;
+		sc_start SC_BLESSING,300000,10;
+		specialeffect2 EF_SUFFRAGIUM;
+		sc_start SC_SUFFRAGIUM,300000,10;
+		specialeffect2 EF_IMPOSITIO;
+		sc_start SC_IMPOSITIO,300000,10;
 	}
 	if (.@Delay)
 		@HD = gettimetick(2) + .@Delay;
@@ -74,6 +78,9 @@ umbala,105,148,3	duplicate(Healer)	Healer#umb	909
 veins,217,121,4	duplicate(Healer)	Healer#ve	909
 xmas,143,136,4	duplicate(Healer)	Healer#xmas	909
 yuno,164,45,4	duplicate(Healer)	Healer#yuno	909
+poring_w02,116,82,4	duplicate(Healer)	Healer#poring1	909
+poring_w02,80,82,4	duplicate(Healer)	Healer#poring2	909
+mall01,97,90,4	duplicate(Healer)	Healer#mall01	909
 
 // Duplicates (Renewal)
 //============================================================

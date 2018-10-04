@@ -1,0 +1,64 @@
+/*
+-- ------------------------------------
+--  Table structure for `emp_branking`
+-- ------------------------------------
+DROP TABLE IF EXISTS `emp_branking`;
+CREATE TABLE `emp_branking` (
+	`char_id` int(11) unsigned NOT NULL default '0',
+	`name` varchar(30) NOT NULL DEFAULT '',
+	`emp_bcount` int(11) unsigned NOT NULL default '0',
+	PRIMARY KEY  (`char_id`)
+) ENGINE=MyISAM;
+-- ------------------------------------
+--  End of table `emp_branking`.
+-- ------------------------------------
+*/
+
+/* Insert this after emperium kill
+query_sql( "INSERT INTO `emp_branking` SET `char_id`='"+getcharid(0)+"',`name`='"+strcharinfo(0)+"',`emp_bcount`='1' ON DUPLICATE KEY UPDATE `emp_bcount`=`emp_bcount`+1" );
+*/
+
+ma_in01,24,97,4	script	Breaker Rankings	410,{
+
+set .@menu$, "- Check TOP 10 Breaker ranking:- Check my stats";
+if (getgmlevel() >= 80) { set .@menu$, .@menu$ + ":- ^FF0000Reset All Rankings^000000"; }
+
+mes "[Top " +$@top +" Solo Breaker Rank]";
+mes "Note: By just ^FF0000 Breaking Emperium^000000 automatically you will get 1 Point/Break";
+mes "Please select an option.";
+next;
+switch(select(.@menu$)) {
+case 1:
+	query_sql( "SELECT `name`,`emp_bcount` FROM `emp_branking` ORDER BY `emp_bcount` DESC LIMIT 10",.@Name$,.@Count );
+	if( getarraysize( .@Name$ ) ){
+		for( set .@i,0; .@i < getarraysize( .@Name$ ); set .@i,.@i + 1 )
+			mes "~Top ^FF0000"+( .@i + 1 )+"^000000 ^0000FF"+.@Name$[.@i]+"^000000 with ^FF0000"+.@Count[.@i]+"^000000 Emperiums broke.";
+	}else{
+		mes "No Record Found.";
+	}
+	close;
+case 2:
+	query_sql "SELECT `emp_bcount` FROM `emp_branking` WHERE `char_id` = "+getcharid(0),.@amount;
+	if (.@amount) {
+		mes "[Top " +$@top +" Breaker Rank]";
+		mes "You have broken ^FF0000"+.@amount+"^000000 Emperium"+( ( .@amount == 1)? "." : "s." );
+	}else{
+		mes "No Record Found.";
+	}
+	close;
+case 3:
+	mes "[Top " +$@top +" Breaker Rank]";
+	mes "This will delete all existing rankings.";
+	mes "Do you want to proceed?";
+	next;
+	if (select("No:Yes") == 1) end;
+	query_sql "DELETE FROM `emp_branking`";
+	mes "[Top " +$@top +" Breaker Rank]";
+	mes "All rankings have been reset.";
+	close;
+	}
+	end;
+	
+OnInit:
+waitingroom "Breaker Rankings",0;
+}

@@ -1,0 +1,61 @@
+
+
+
+//job3_guil02,51,35,2	script	Fallen Hero#main	651,{
+ma_in01,49,99,3	script	Fallen Hero#main	651,{
+	
+	.Fneed_minute = 480;
+
+
+	mes "[ ^0000FFFallen Hero^000000 ]";
+//	cutin "jpn_jennifer02",2;
+	mes "You need to be online at least";
+	mes "480 minutes to claim rewards!";
+	mes "Accumulated "+#daily_minute_count+" / "+.Fneed_minute+" minute(s) - "+ ( ( #daily_minute_count < .Fneed_minute )?" Daily reward in Progress":"Completed" );
+	if ( #daily_minute_count < .Fneed_minute ) {
+	close2;
+//	cutin "",255;
+	end;
+	} else
+	next;
+	if(gettimetick(2) - #lastpickfallen > (60 * 60 * 24)) {
+//	cutin "jpn_jennifer01",2;
+	mes "[ ^0000FFFallen Hero^000000 ]";
+	mes "hello "+strcharinfo(0)+" ";
+	mes "Get free items every day.";
+	mes "Let's hope that this day will get something";
+	next;
+	mes "[ ^0000FFFallen Hero^000000 ]";
+	mes "Random item";
+	mes "for today...";
+	if (rand(100) < 10) setarray .@i[0],6232,6228,13710,12916,5184,5199,5209,5762,5467; // 10% chance
+	else if (rand(100) < 20) setarray .@i[0],12884,12885,12886,12887,35078; // 20% chance
+	else setarray .@i[0],13698,13697,14175,14587,12920,12921,14192,16504,12922,7776,12412,35111; // 70% chance
+	set FHitem,.@i[rand(getarraysize(.@i))];
+	getitem FHitem,1;
+	announce strcharinfo(0)+" has obtained "+getitemname(FHitem)+" from our Fallen Hero!",bc_all,0x00FFFF,FW_NORMAL,15;
+	mes "You get "+getitemname(FHitem)+"";
+	
+	
+	
+		set #lastpickfallen,gettimetick(2);
+		next;
+		mes "To come back to win new";
+		close2;
+//		cutin "",255;
+	}
+		else if(gettimetick(2) - #lastpickfallen < (60 * 60 * 24)) {
+	mes "[ ^0000FFDaily Login^000000 ]";
+//	cutin "jpn_jennifer02",2;
+	mes "You already claimed your reward!";
+	mes "the cooldown time";
+	mes "resets ^00FF00@12:01AM GMT+8!^000000 everyday!";
+	close2;
+//	cutin "",255;
+	}
+}
+
+ma_in01,31,86,3	duplicate(Ripped Cabus#GymPass)	Ripped Cabus#GymPass2	899
+ma_in01,28,95,5	duplicate(Top Pvp Ladder#PVP)	Top Pvp Ladder#HQ	4_M_CHNGENERL
+ma_in01,44,104,5	duplicate(MayaanRO Item Redeemer)	MayaanRO Item Redeemer#HQ	987
+ma_in01,25,78,0	warp	HQ1-1	1,1,poring_w02,99,77

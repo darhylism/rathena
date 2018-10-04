@@ -1,0 +1,150 @@
+Askydun,77,90,4	script	Ethereal Spirit	802,{
+
+set .@blvl, 265;	 //Minimum Base Level for Rebirth
+set .@rbstats, 10;	//Bonus points per rebirth
+
+mes "[^FF0000Ethereal Spirit^000000]";
+mes "*Rustle, Rustle*";
+next;
+mes "[^FF0000Ethereal Spirit^000000]";
+mes "Hello "+strcharinfo(0)+", I'm ^0055FFEthereal Spirit^000000.";
+mes "I can allow you to Rebirth";
+mes "if you are ready...";
+mes "just pay 10 Platinum Coins...";
+next;
+mes "This will be rebirth number "+(rbdaily + 1)+" for this day";
+next;
+switch(select("I'd like to know more about this process:I'm ready!:Cancel")) {
+	case 1:
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "This is how it works.";
+		mes "Whenever you reach base level ^0055FF"+.@blvl+"^000000, you can be reborn again into a ^0055FFLevel 1^000000, and recieve ^0055FF"+.@rbstats+"^000000 Rebirth points ^0055FFPer Rebirth^000000.";
+		next;
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "Rebirth Points can be use to buy items on the Rebirth Shop";
+		mes "Normal Rebirth have Max of 10 Rebirth per day";
+		mes "Now come back when you are ready to do business...";
+		close;
+	case 2:
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "Well well well... ";
+		mes "What do we have here?";
+		next;
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "Oh! you want to be reborn!";
+		next;
+		if (BaseLevel < .@blvl) goto R_Sorry;
+		if (rbdaily > 9) goto R_Sorry2;
+		if (countitem(677) < 10) goto R_Sorry3;
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "Come back again!";
+		goto R_Reborn;
+		close;
+			
+		R_Reborn:
+			delitem 677,10;
+			Resetlvl 1;
+			SkillPoint = 80;
+			RBPOINTS += .@rbstats;
+			rbdaily++;
+			set 265q,0;
+			Rebirth++;
+			message strcharinfo(0),"You got a total of "+(RBPOINTS)+" Rebirth Points.";
+			close;
+
+		R_Sorry:
+			mes "[^FF0000Ethereal Spirit^000000]";
+			mes "I'm sorry but you must meet the basic ^0055FFrequirements^000000.";
+			mes "Your base level is lower than ^0055FF"+(.@blvl)+"^000000.";
+			close;
+		R_Sorry2:
+			mes "[^FF0000Ethereal Spirit^000000]";
+			mes "I'm sorry but you must meet the basic ^0055FFrequirements^000000.";
+			mes "You have already Rebirthed a maximum of 10x Per day.";
+			mes "You can do Premium Rebirth for additional of 3 Rebirths.";
+			mes "or Just wait for the ^0055FDaily Reset @12:01AM GMT+8^000000.";
+			close;
+		R_Sorry3:
+			mes "[^FF0000Premium Spirit^000000]";
+			mes "You need 10 Platinum Coin as a payment.";
+			close;
+	case 3:
+		mes "[^FF0000Ethereal Spirit^000000]";
+		mes "Very well... come again soon.";
+		close;
+	}
+}
+
+Askydun,74,87,4	script	Premium Spirit	802,{
+
+set .@blvl, 265;	 //Minimum Base Level for Rebirth
+set .@rbstats, 10;	//Bonus points per rebirth
+
+mes "[^FF0000Premium Spirit^000000]";
+mes "*Rustle, Rustle*";
+next;
+mes "[^FF0000Premium Spirit^000000]";
+mes "Hello "+strcharinfo(0)+", I'm ^0055FFPremium Spirit^000000.";
+mes "I can allow you to have Rebirth Points Easily.";
+mes "Without having to go through actual rebirth.";
+mes "if you pay...";
+mes "This will be rebirth number "+(rbdaily + 1)+" for this day";
+next;
+switch(select("I'd like to know more about this process:I'm ready!:Cancel")) {
+	case 1:
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "This is how it works.";
+		mes "You will instantly recieve ^0055FF"+.@rbstats+"^000000 Rebirth points ^0055FFPer Rebirth^000000.";
+		next;
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "Rebirth Points can be use to buy items on the Rebirth Shop";
+		mes "Premium Rebirth have Max of 13 Rebirth per day";
+		mes "Now come back when you are ready to do business...";
+		close;
+	case 2:
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "Well well well... ";
+		mes "What do we have here?";
+		next;
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "Oh! you want to be reborn!";
+		next;
+		if (countitem(677) < 5 || countitem(35111) < 1) goto R_Sorry3;
+		if (BaseLevel < .@blvl) goto R_Sorry;
+		if (rbdaily > 12) goto R_Sorry2;
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "Come back again!";
+		goto R_Reborn;
+		close;
+		
+		R_Reborn:
+			RBPOINTS += .@rbstats;
+			SkillPoint = 80;
+			rbdaily++;
+			delitem 35111,1;
+			delitem 677,5;
+			message strcharinfo(0),"You got a total of "+(RBPOINTS)+" Rebirth Points.";
+			close;
+
+		R_Sorry:
+			mes "[^FF0000Premium Spirit^000000]";
+			mes "I'm sorry but you must meet the basic ^0055FFrequirements^000000.";
+			mes "Your base level is lower than ^0055FF"+(.@blvl)+"^000000.";
+			close;
+		R_Sorry2:
+			mes "[^FF0000Premium Spirit^000000]";
+			mes "I'm sorry but you must meet the basic ^0055FFrequirements^000000.";
+			mes "You have already Rebirthed a maximum of 13x Per day";
+			mes "Please wait for the ^0055FDaily Reset @12:01AM GMT+8^000000.";
+			close;	
+		R_Sorry3:
+			mes "[^FF0000Premium Spirit^000000]";
+			mes "You need 1x ^0055FFPremium Rebirth Egg^000000.";
+			mes "& 5 Platinum Coin as a payment.";
+			close;
+	case 3:
+		mes "[^FF0000Premium Spirit^000000]";
+		mes "Very well... come again soon.";
+		close;
+	}
+}

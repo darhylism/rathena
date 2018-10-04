@@ -1,0 +1,72 @@
+poring_w02,82,101,4	script	Coupon Exchanger	4_F_NACORURI,{
+
+    set @name$,"[^FF0000Coupon Exchanger^000000]";
+    mes @name$;
+    mes "What do you want to do?";
+    next;
+    switch(select("Information","Convert berry","Nothing")) {
+
+        case 1:
+            mes @name$;
+            mes "I can convert your Coupon/s into usable items and vice versa.";
+            mes "1 Coupon = 100 Yggdrasil Berry";
+            close;
+
+        case 2:
+            switch(select("Berry to Coupon","Coupon to Berry")) {
+
+                case 1:
+                    if(countitem(607) < 100) goto noBerry;
+                    if (checkweight(35056,1) == 0 ) goto overWeight;
+                    delitem 607,100;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 35056,1;
+                    close;
+
+                case 2:
+                    if(countitem(35056) < 1) goto noCoupon;
+                    if (checkweight(607,100) == 0 ) goto overWeight;
+                    delitem 35056,1;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 607,100;
+                    close;
+			}
+		default:
+			close;
+            }
+            end;
+noBerry:
+    mes @name$;
+    mes "I'm Sorry but you don't have enough items.";
+    close;
+
+overWeight:
+    mes @name$;
+    mes "Sorry you're overweight.";
+    close;
+
+noCoupon:
+    mes @name$;
+    mes "I'm Sorry but you don't have Coupons.";
+    close;
+OnInit:
+        waitingroom "Coupon Trader",0;  // WITH WAITING ROOM
+end;
+}
+
+
+brasilis,192,213,4	duplicate(Coupon Exchanger)	Coupon Exchanger#bras	4_F_NACORURI
+prontera,154,196,4	duplicate(Coupon Exchanger)	Coupon Exchanger#prontera	4_F_NACORURI
+Askydun,96,111,4	duplicate(Coupon Exchanger)	Coupon Exchanger#Askydun	4_F_NACORURI
+splendide,188,143,4	duplicate(Coupon Exchanger)	Coupon Exchanger#splendide	4_F_NACORURI
+morocc,148,102,4	duplicate(Coupon Exchanger)	Coupon Exchanger#morocc	4_F_NACORURI
+geffen,120,56,4	duplicate(Coupon Exchanger)	Coupon Exchanger#geffen	4_F_NACORURI
+izlude,133,122,4	duplicate(Coupon Exchanger)	Coupon Exchanger#izlude	4_F_NACORURI
+aldebaran,144,128,4	duplicate(Coupon Exchanger)	Coupon Exchanger#aldebaran	4_F_NACORURI
+comodo,207,151,4	duplicate(Coupon Exchanger)	Coupon Exchanger#comodo	4_F_NACORURI
+mora,47,153,4	duplicate(Coupon Exchanger)	Coupon Exchanger#mora	4_F_NACORURI
+malangdo,118,125,4	duplicate(Coupon Exchanger)	Coupon Exchanger#malangdo	4_F_NACORURI
+dewata,192,170,5	duplicate(Coupon Exchanger)	Coupon Exchanger#dewataa	4_F_NACORURI
+rachel,121,132,4	duplicate(Coupon Exchanger)	Coupon Exchanger#rachel	4_F_NACORURI

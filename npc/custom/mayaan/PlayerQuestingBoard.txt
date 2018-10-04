@@ -1,0 +1,696 @@
+//===== rAthena Script =======================================
+//= Player Questing Board
+//===== By: ==================================================
+//= Yuchinin
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= A questing board which anyone can post request on it and 
+//= other that meet the requirement can turn-in the request and 
+//= claim the reward.
+//=====******** Note ********=================================
+//= This script need my release of:
+//= 1. Common Useful Function	(common.txt)
+//= Better let it load first before adding my other script.
+//===== Additional Comments: =================================
+//= 0.9d - Temporary fix the OnSellItem not store the details 
+//=        of non equipment other than id and amount
+//= 0.9e - Fixed completed request cant get take down by owner
+//= 0.9f - Fixed zeny reward not get deduct from quest owner.
+//= 0.9g - Remove the debugmes
+//= 1.0 - Fixed a minor bug
+//===== Todo: ================================================
+//= 1. Change log from status to actual log and delete expired or completed request
+//= 2. Make it compatible with newest RANDOM OPTIONS Item
+//= 3. Add blacklist check
+//= 4. Add weight check
+//============================================================
+
+-	script	Player Questing Board::pqb	-1,{
+function postdetailverify;
+function getQuest;
+function requestitemchk;
+function requestitemget;
+function requestitemdel;
+function delrequest;
+function getquestdata;
+function setquestdata;
+function expiredchk;
+function selectRequest;
+function isequipment;
+function isitemset;
+function cleartemplist;
+function issetitemdetail;
+function initialize;
+
+Main:
+expiredchk();
+	mes .n$;
+	mes "Check Information on how does it work.";
+	next;
+	mes CStr("Information:","Red");
+	mes CStr("--------------------","Neutral");
+	mes "Available Request: "+CStr(getQuest("available"),(getQuest("available")?"Neutral":"RED"));
+	mes "Accepted Quest: "+CStr(getQuest("accepted"),(getQuest("accepted")?"Neutral":"RED"));
+	mes "My Request: "+CStr(getQuest("self"),(getQuest("self")?"Neutral":"RED"));
+	next;
+	switch( select("Information",(getQuest("available")?"View Available Request":""),(getQuest("accepted")?"View Accepted Request":""),(getQuest("self")<.post_limit?"Post New Request":""),(getQuest("self")?"View My Request":"")) ){
+		case 1:
+			// information here
+			mes .n$;
+			mes "A questing board which anyone can post request on it and other that meet the requirement can turn-in the request and claim the reward.";
+			next;
+			mes .n$;
+			mes "Post limit per character: "+.post_limit;
+			mes "Post fee per request: "+CZeny(.post_fee);
+			break;
+		case 2:
+			// get unclaimed quest list
+			selectRequest(0);
+			break;
+		case 3:
+			// view acccepter quest list
+			selectRequest(1);
+			break;
+		case 4:
+			// denied posting if over posting limit per char or old quest still there
+OnPostSetup:
+			// show details
+			do{
+				.@bool = postdetailverify();
+				debugmes "postdetailverify bool: "+.@bool;
+				switch( select("Back",(@title$==""?"Set":"Change")+" Title",(!@zeny_rq?"Set":"Change")+" Zeny Request",(isitemset(0)?"Change":"Set")+" Item Request",(@zeny_rq?"":(!@zeny_rw?"Set":"Change")+" Zeny Reward"),(isitemset(1)?"Change":"Set")+" Item Reward",CStr("Post Request",(.@bool?"green":"red"))) ){
+					case 1:
+						// back
+						next;
+						goto Main;
+					case 2:
+						// title
+						input @title$;
+						mes "Title change to "+@title$;
+						break;
+					case 3:
+						// zeny request
+						input @zeny_rq,0;
+						mes "Zeny Request set to "+@zeny_rq;
+						break;
+					case 4:
+						// item request
+						@qbtype = 0;
+						callshop "questingboard#shop",2;
+						npcshopattach "questingboard#shop";
+						message strcharinfo(0),"[ "+strnpcinfo(0)+" ] Sell the request item through selling window, the item will not actually get sell.";
+						message strcharinfo(0),"[ "+strnpcinfo(0)+" ] Only first "+.item_set_max+" item will get registered.";
+						end;
+					case 5:
+						// zeny reward
+						input @zeny_rw,0,Zeny;
+						mes "Zeny Reward set to "+@zeny_rw;
+						break;
+					case 6:
+						// item reward
+						@qbtype = 1;
+						callshop "questingboard#shop",2;
+						npcshopattach "questingboard#shop";
+						message strcharinfo(0),"[ "+strnpcinfo(0)+" ] Sell the reward item through selling window, the item will not actually get sell.";
+						message strcharinfo(0),"[ "+strnpcinfo(0)+" ] Only first "+.item_set_max+" item will get registered.";
+						end;
+					case 7:
+						// post request
+						if(!.@bool){
+							mes "Requirement not meet!";
+							break;
+						}
+						mes "Confirm to post this request now?";
+						next;
+						if(select("- No","- Yes (Cost "+CZeny(.post_fee)+(@zeny_rw?" + "+CZeny(@zeny_rw):"")+")")==1) break;
+						Zeny = Zeny - .post_fee - @zeny_rw;
+						// query to database
+						query_sql("INSERT INTO questingboard SET title = '"+@title$+"', zeny_request = "+@zeny_rq+", zeny_reward = "+@zeny_rw+", requester_id = "+getcharid(0)+", requester_tick = "+(gettimetick(2)+.post_tick_length));
+						query_sql("SELECT id FROM questingboard ORDER BY id DESC LIMIT 1",.@id);
+						
+						for(.@x=0;.@x<getarraysize(@request_nameid);.@x++){
+							query_sql("INSERT INTO questingboard_item SET type = 0, request_id = "+.@id+",nameid = "+@request_nameid[.@x]+",amount = "+@request_quantity[.@x]+",identify = "+@request_identify[.@x]+",refine = "+@request_refine[.@x]+",attribute = "+@request_attribute[.@x]+",card0 = "+@request_card1[.@x]+",card1 = "+@request_card2[.@x]+",card2 = "+@request_card3[.@x]+",card3 = "+@request_card4[.@x]);
+						}
+						for(.@x=0;.@x<getarraysize(@reward_nameid);.@x++){
+							delitem2(@reward_nameid[.@x],@reward_quantity[.@x],@reward_identify[.@x],@reward_refine[.@x],@reward_attribute[.@x],@reward_card1[.@x],@reward_card2[.@x],@reward_card3[.@x],@reward_card4[.@x]);
+							query_sql("INSERT INTO questingboard_item SET type = 1, request_id = "+.@id+",nameid = "+@reward_nameid[.@x]+",amount = "+@reward_quantity[.@x]+",identify = "+@reward_identify[.@x]+",refine = "+@reward_refine[.@x]+",attribute = "+@reward_attribute[.@x]+",card0 = "+@reward_card1[.@x]+",card1 = "+@reward_card2[.@x]+",card2 = "+@reward_card3[.@x]+",card3 = "+@reward_card4[.@x]);
+						}
+						mes .n$;
+						mes "Request successfully posted!";
+						announce strcharinfo(0)+" has just submitted a request [ "+@title$+" ] in "+strnpcinfo(0),0;
+						@title$ = "";
+						@zeny_rq = 0;
+						@zeny_rw = 0;
+						cleartemplist(0);
+						cleartemplist(1);
+						next;
+						goto Main;
+						
+				}
+				next;
+			}while(1==1);
+			break;
+		case 5:
+			// my request list
+			selectRequest(2);
+			break;
+	}
+	next;
+	goto Main;
+
+OnSellItem:
+	cleartemplist(@qbtype);
+	@size = getarraysize(@sold_nameid);
+	if(@size>.item_set_max) @size = .item_set_max;
+	for (@i = 0; @i < @size; @i++) {
+		// should make a verify here
+		// check if the item is allow to put on request
+		if(!@qbtype){
+			// request 0
+			.@min = .item_min;
+			.@max = .item_max;
+			.@label$ = "Request";
+			
+			// id
+			@request_nameid[@i] = @sold_nameid[@i];
+			
+			mes "Item "+.@label$+" Setup ["+(@i+1)+"/"+(getarraysize(@sold_nameid))+"]";
+			
+			if(isequipment(@sold_nameid[@i])) @request_quantity[@i] = 1;
+			
+			if(!@request_quantity[@i]){
+				// amount
+				mes CStr("?","red")+" x "+Itemlink( @sold_nameid[@i] );
+				mes "Range from "+.@min+"-"+.@max;
+				input .@amount,.@min,.@max;
+				@request_quantity[@i] = .@amount;
+				mes CStr(.@amount,"red")+" x "+Itemlink( @sold_nameid[@i] );
+			}
+			
+			if( getiteminfo(@sold_nameid[@i],2) == 4 || getiteminfo(@sold_nameid[@i],2) == 5 ){
+				// refine
+				mes "+"+CStr("?","red")+" "+Itemlink( @sold_nameid[@i] ,1);
+				mes "Range from 0-20";
+				input .@amount,0,20;
+				@request_refine[@i] = .@amount;
+				mes (.@amount?"+"+CStr(.@amount,"red"):"Classic")+" "+Itemlink( @sold_nameid[@i] ,1);
+			}
+			// Temporary disable
+				//@request_attribute[@i] = @sold_attribute[@i];
+				//@request_identify[@i] = @sold_identify[@i];
+				
+				// temporary fix
+				if(!isequipment(@sold_nameid[@i])) @request_identify[@i] = 1;
+				else @request_identify[@i] = @sold_identify[@i];
+				
+				//@request_card1[@i] = @sold_card1[@i];
+				//@request_card2[@i] = @sold_card2[@i];
+				//@request_card3[@i] = @sold_card3[@i];
+				//@request_card4[@i] = @sold_card4[@i];
+			next;
+		} else {
+			// reward 1
+			//.@min = 1;
+			//.@max = countitem( @sold_nameid[@i] );
+			//.@label$ = "Reward";
+			
+			@reward_nameid[@i] = @sold_nameid[@i];
+			@reward_quantity[@i] = @sold_quantity[@i];
+			@reward_refine[@i] = @sold_refine[@i];
+			@reward_attribute[@i] = @sold_attribute[@i];
+			
+			// temporary fix
+			if(!isequipment(@sold_nameid[@i])) @reward_identify[@i] = 1;
+			else @reward_identify[@i] = @sold_identify[@i];
+			
+			@reward_card1[@i] = @sold_card1[@i];
+			@reward_card2[@i] = @sold_card2[@i];
+			@reward_card3[@i] = @sold_card3[@i];
+			@reward_card4[@i] = @sold_card4[@i];
+			/*
+			dispbottom "@reward_nameid["+@i+"] = "+@reward_nameid[@i];
+			dispbottom "@reward_quantity["+@i+"] = "+@reward_quantity[@i];
+			dispbottom "@reward_refine["+@i+"] = "+@reward_refine[@i];
+			dispbottom "@reward_attribute["+@i+"] = "+@reward_attribute[@i];
+			dispbottom "@reward_identify["+@i+"] = "+@reward_identify[@i];
+			dispbottom "@reward_card1["+@i+"] = "+@reward_card1[@i];
+			dispbottom "@reward_card2["+@i+"] = "+@reward_card2[@i];
+			dispbottom "@reward_card3["+@i+"] = "+@reward_card3[@i];
+			dispbottom "@reward_card4["+@i+"] = "+@reward_card4[@i];
+			*/
+		}
+	}
+	deletearray @sold_nameid,getarraysize(@sold_nameid);
+	deletearray @sold_quantity,getarraysize(@sold_quantity);
+	deletearray @sold_refine,getarraysize(@sold_refine);
+	deletearray @sold_attribute,getarraysize(@sold_attribute);
+	deletearray @sold_identify,getarraysize(@sold_identify);
+	deletearray @sold_card1,getarraysize(@sold_card1);
+	deletearray @sold_card2,getarraysize(@sold_card2);
+	deletearray @sold_card3,getarraysize(@sold_card3);
+	deletearray @sold_card4,getarraysize(@sold_card4);
+	goto OnPostSetup;
+	
+OnCheckQuest:
+mes "[ My Accepted Request ]";
+selectRequest(1,1);	// is check call
+end;
+	
+/*
+	@sold_nameid     - item ID sold
+	@sold_quantity   - amount sold
+	@sold_refine     - refine count
+	@sold_attribute  - if the item is broken (1) or not (0)
+	@sold_identify   - if the item is identified (1) or not (0)
+	@sold_card1      - card slot 1
+	@sold_card2      - card slot 2
+	@sold_card3      - card slot 3
+	@sold_card4      - card slot 4
+*/
+
+function selectRequest {
+	.@mode = getarg(0);
+	.@ischeckcall = getarg(1,0);
+	@page = 1;
+	@index = 0;
+	do{
+		expiredchk();
+		if(.@mode==0){
+			.@count = query_sql("SELECT id, title, requester_id, requester_tick, accepter_id, accepter_tick, status, zeny_request, zeny_reward FROM questingboard WHERE requester_id != "+getcharid(0)+" AND accepter_id != "+getcharid(0)+.sql_available_prefix$,.@id,.@title$,.@requesterid,.@requestertick,.@accepterid,.@acceptertick,.@status,.@zenyrequest,.@zenyreward);
+		} else if(.@mode==1){
+			.@count = query_sql("SELECT id, title, requester_id, requester_tick, accepter_id, accepter_tick, status, zeny_request, zeny_reward FROM questingboard WHERE accepter_id = "+getcharid(0)+.sql_accepted_prefix$,.@id,.@title$,.@requesterid,.@requestertick,.@accepterid,.@acceptertick,.@status,.@zenyrequest,.@zenyreward);
+		} else if(.@mode==2){
+			.@count = query_sql("SELECT id, title, requester_id, requester_tick, accepter_id, accepter_tick, status, zeny_request, zeny_reward FROM questingboard WHERE requester_id = "+getcharid(0)+.sql_myrequest_prefix$,.@id,.@title$,.@requesterid,.@requestertick,.@accepterid,.@acceptertick,.@status,.@zenyrequest,.@zenyreward);
+		}
+
+		@num = 0;
+		.@m$ = "";
+		for(.@x=@index;.@x<.per_page+@index;.@x++){
+			if(.@x >= .@count) break;
+			.@m$ = .@m$ +.@id[.@x]+". "+.@title$[.@x]+":";
+			@num++;
+			@lastindex = .@x;
+		}
+		if(@lastindex+1 > .per_page){
+			// show previous page
+			@prevpage = 1;
+			//.@m$ = .@m$ + "Previous Page ("+(@page)+"/"+(.@count/.per_page)+"):";
+			.@m$ = .@m$ + "<< Page "+(@page-1)+" <<:";
+		}else{
+			@prevpage = 0;
+			.@m$ = .@m$ + ":";
+		}
+		if(.@count <= 0){
+			mes "List empty!";
+			return;
+		}
+		if(.@count > @lastindex+1){
+			// show next page
+			@nextpage = 1;
+			//.@m$ = .@m$ + "Next Page ("+(@page)+"/"+(.@count/.per_page)+"):";
+			.@m$ = .@m$ + ">> Page "+(@page+1)+" >>:";
+		}else{
+			@nextpage = 0;
+			.@m$ = .@m$ + ":";
+		}
+		//next;
+		.@s = select(.@m$);
+		if(.@s > @num ){
+			if(.@s==@num+1){
+				// previous button
+				@index-=.per_page;
+				@page--;
+				//dispbottom "prev";
+			}else if(.@s==@num+2){
+				// next button
+				@index+=.per_page;
+				@page++;
+				//dispbottom "next";
+			}
+		}else{
+			.@tindex = .@s+@index-1;
+			.@hasrequestzeny = 1;
+			mes "["+.@id[.@tindex]+"] "+.@title$[.@tindex],.linestring$;
+			.@hasrequestitem = requestitemchk(.@id[.@tindex],0,(.@mode==1?1:0));
+			if(.@zenyrequest[.@tindex]){
+				if(Zeny < .@zenyrequest[.@tindex]){
+					.@hasrequestzeny = 0;
+				}
+				mes "Zeny Request:"," > "+CStr(CZeny(.@zenyrequest[.@tindex]),Zeny<.@zenyrequest[.@tindex]?"red":"green");
+			}
+			mes .linestring$;
+			// check if have the set reward
+			requestitemchk(.@id[.@tindex],1);
+			if(.@zenyreward[.@tindex]){
+				mes "Zeny Reward:"," > "+CZeny(.@zenyreward[.@tindex]);
+			}
+			//next;
+			if(.@mode==0){
+				if(.@requestertick[.@tindex]-gettimetick(2) >= 0) mes "Request Expired: "+(getRemain(.@requestertick[.@tindex]-gettimetick(2)));
+				.@s = select("Back","Back to Main","Accept Request");
+				if(.@s==2){
+					return;
+				}else if(.@s==3){
+					if(getquestdata(.@id[.@tindex],"accepter_id")){
+						// request occupied
+						mes CStr("This request is no longer available!","red");
+					}else{
+						setquestdata(.@id[.@tindex],"accepter_id",getcharid(0));
+						if(gettimetick(2)+.accepter_tick_length > getquestdata(.@id[.@tindex],"requester_tick")){
+							setquestdata(.@id[.@tindex],"accepter_tick",getquestdata(.@id[.@tindex],"requester_tick"));
+						}else{
+							setquestdata(.@id[.@tindex],"accepter_tick",gettimetick(2)+.accepter_tick_length);
+						}
+						
+						mes "Request Accepted!";
+						message strcharinfo(0),"["+strnpcinfo(0)+"] Request "+.@title$[.@tindex]+" accepted!";
+					}
+				}
+			} 
+			else if(.@mode==1) {
+				if(.@requestertick[.@tindex]-gettimetick(2) >= 0) mes "Request Expired: "+(getRemain(.@requestertick[.@tindex]-gettimetick(2)));
+				if(.@acceptertick[.@tindex]-gettimetick(2) >= 0) mes "Bind Expired: "+(getRemain(.@acceptertick[.@tindex]-gettimetick(2)));
+				//dispbottom ".@hasrequestitem "+.@hasrequestitem+" .@hasrequestzeny "+.@hasrequestzeny;
+				.@s = select("Back",(!.@ischeckcall?"Back to Main":""),(.@hasrequestitem && .@hasrequestzeny && !.@ischeckcall)?"Turn in Request":""));
+				if(.@s==2){
+					return;
+				} else if(.@s==3) {
+					if( gettimetick(2) >= getquestdata(.@id[.@tindex],"requester_tick") || gettimetick(2) >= getquestdata(.@id[.@tindex],"accepter_tick") ){
+						// request occupied
+						mes CStr("This request is no longer available!","red");
+					} else {
+						Zeny = Zeny - .@zenyrequest[.@tindex];
+						Zeny = Zeny + .@zenyreward[.@tindex];
+						requestitemdel(.@id[.@tindex],0);	// delete request item from accepter
+						requestitemget(.@id[.@tindex],1);	// get reward item
+						setquestdata(.@id[.@tindex],"status",2);	// status 2 = request completed / reward claimed
+						mes "Request Turned In!";
+						message strcharinfo(0),"["+strnpcinfo(0)+"] Request "+.@title$[.@tindex]+" turned in!";
+					}
+				}
+			}
+			else if(.@mode==2){
+				if(.@requestertick[.@tindex]-gettimetick(2) >= 0 && .@status[.@tindex] ==0) mes "Request Expired in "+(getRemain(.@requestertick[.@tindex]-gettimetick(2)));
+				if(.@accepterid[.@tindex]) mes "Current Accepter > "+strcharinfo2(0,.@accepterid[.@tindex]);
+				if(.@acceptertick[.@tindex]-gettimetick(2) >= 0) mes "Bind Expired in "+(getRemain(.@acceptertick[.@tindex]-gettimetick(2)));
+				.@s = select("Back","Back to Main",(getquestdata(.@id[.@tindex],"status")==2?"Get Requested Item":""),(getquestdata(.@id[.@tindex],"status")!=2?"Take Down Request":""),(getquestdata(.@id[.@tindex],"status")==1?"Renew Request ("+CZeny(.post_fee)+")":""));
+				if(.@s==2){
+					return;
+				} else if(.@s==3){
+					requestitemget(.@id[.@tindex],0);	// get request item
+					Zeny = Zeny + .@zenyrequest[.@tindex];
+					setquestdata(.@id[.@tindex],"status",3);	// status 3 = request completed / request claimed
+					mes "Request Completed!";
+					message strcharinfo(0),"["+strnpcinfo(0)+"] Request "+.@title$[.@tindex]+" completed!";
+				} else if(.@s==4){
+					Zeny = Zeny + .@zenyreward[.@tindex];
+					requestitemget(.@id[.@tindex],1);	// get back reward item
+					delrequest(.@id[.@tindex]);
+					mes "Request deleted!";
+					message strcharinfo(0),"["+strnpcinfo(0)+"] Request "+.@title$[.@tindex]+" deleted!";
+				} else if(.@s==5){
+					if(Zeny < .post_fee){
+						mes "Not enough Zeny to renew this request!";
+						break;
+					}
+					Zeny = Zeny - .post_fee;
+					setquestdata(.@id[.@tindex],"status",0);	// status 0 = request active
+					setquestdata(.@id[.@tindex],"requester_tick",gettimetick(2)+.post_tick_length);	// renew quest length
+					mes "Request renewed!";
+					message strcharinfo(0),"[ "+strnpcinfo(0)+" ] Request "+.@title$[.@tindex]+" renewed!";
+					announce strcharinfo(0)+" has just renewed a request [ "+.@title$+" ] in "+strnpcinfo(0),0;
+				}
+			}
+			next;
+		}
+		
+	} while(1==1);
+}
+
+// 
+function getquestdata {
+	query_sql("SELECT "+getarg(1)+" FROM questingboard WHERE id = "+getarg(0),.@data);
+	return .@data;
+}
+
+//
+function setquestdata {
+	query_sql("UPDATE questingboard SET "+getarg(1)+" = "+getarg(2)+" WHERE id = "+getarg(0));
+	return;
+}
+
+// perform request expired check
+function expiredchk {
+	query_sql("UPDATE questingboard SET accepter_id = 0, accepter_tick = 0 WHERE status = 0 AND accepter_tick <= "+gettimetick(2));
+	query_sql("UPDATE questingboard SET status = 1 WHERE status = 0 AND requester_tick <= "+gettimetick(2));
+	// send back the requester item to requester?
+	return;
+}
+
+function getQuest {
+	.@type$ = getarg(0);
+	if(.@type$=="available"){
+		query_sql("SELECT count(*) AS count FROM questingboard WHERE requester_id != "+getcharid(0)+" AND accepter_id != "+getcharid(0)+.sql_available_prefix$,.@count);
+	}else if(.@type$=="accepted"){
+		query_sql("SELECT count(*) AS count FROM questingboard WHERE accepter_id = "+getcharid(0)+.sql_accepted_prefix$,.@count);
+	}else if(.@type$=="self"){
+		query_sql("SELECT count(*) AS count FROM questingboard WHERE requester_id = "+getcharid(0)+.sql_myrequest_prefix$,.@count);
+	}
+	return .@count;
+}
+
+function getAvailableQuest {
+	//.@count = query_sql("SELECT id FROM questingboard WHERE requester_id != "+getcharid(0),.@id);
+	query_sql("SELECT count(*) AS count FROM questingboard WHERE requester_id != "+getcharid(0)+" AND accepter_id != "+getcharid(0)+.sql_available_prefix$,.@count);
+	return .@count;
+}
+
+function getAcceptedQuest {
+	query_sql("SELECT count(*) AS count FROM questingboard WHERE accepter_id = "+getcharid(0)+.sql_accepted_prefix$,.@count);
+	return .@count;
+}
+
+function getMyRequest {
+	query_sql("SELECT count(*) AS count FROM questingboard WHERE requester_id = "+getcharid(0)+.sql_myrequest_prefix$,.@count);
+	return .@count;
+}
+
+function isitemset {
+	.@type = getarg(0);	// 0 request 1 reward
+	.@prefix$ = "@"+(!.@type?"request":"reward");
+	for(.@x=0;.@x<getarraysize(getd(.@prefix$));.@x++){
+		if( getd(.@prefix$+"_nameid["+.@x+"]") && getd(.@prefix$+"_quantity["+.@x+"]") ) return 1;
+	}
+	return 0;
+}
+
+function cleartemplist {
+	.@type = getarg(0);	// 0 request 1 reward
+	.@prefix$ = "@"+(!.@type?"request":"reward")+"_";
+	setarray .@temparray$,"nameid","quantity","refine","attribute","identify","card1","card2","card3","card4";
+	for(.@x=0;.@x<getarraysize(.@temparray$);.@x++)
+		deletearray getd(.@prefix$+.@temparray$[.@x]),getarraysize(getd(.@prefix$+.@temparray$[.@x]));
+	return;
+}
+
+function isequipment {
+	return (getiteminfo(getarg(0),2)==4||getiteminfo(getarg(0),2)==5?1:0);
+}
+
+function issetitemdetail {
+	.@type = getarg(0);	// 0 request 1 reward
+	.@label$ = (!.@type?"request":"reward");
+	.@prefix$ = "@"+.@label$+"_";
+	if(getarraysize( getd(.@prefix$+"nameid") ) > 0){
+		.@isset = 1;
+		mes "Item "+.@label$+":";
+		for(.@x=0;.@x<getarraysize( getd(.@prefix$+"nameid") );.@x++){
+			
+			if(.@type){
+				// get current inventory list to check whether special item is still exists for reward
+				//debugmes "issetitemdetail: "+getitemname(getd(.@prefix$+"nameid["+.@x+"]"));
+				//debugmes "issetitemdetail: is identify "+getd(.@prefix$+"identify["+.@x+"]");
+				.@amt = countitem2(getd(.@prefix$+"nameid["+.@x+"]"),getd(.@prefix$+"identify["+.@x+"]"),getd(.@prefix$+"refine["+.@x+"]"),getd(.@prefix$+"attribute["+.@x+"]"),getd(.@prefix$+"card1["+.@x+"]"),getd(.@prefix$+"card2["+.@x+"]"),getd(.@prefix$+"card3["+.@x+"]"),getd(.@prefix$+"card4["+.@x+"]"));
+				//dispbottom ".@amt = "+.@amt;
+				//debugmes "issetitemdetail: itemcount "+getitemname(getd(.@prefix$+"nameid["+.@x+"]"))+" = "+.@amt+" amount set: "+getd(.@prefix$+"quantity["+.@x+"]");
+				if(.@amt <= 0){
+					//.@isset = 0; // now issufficient item will just get deleted from array instead
+					dispbottom "["+strnpcinfo(0)+"]: You don't have any "+getitemname(getd(.@prefix$+"nameid["+.@x+"]"))+", removed it from reward list!";
+					deletearray getd(.@prefix$+"nameid["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"quantity["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"refine["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"attribute["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"identify["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"card1["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"card2["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"card3["+.@x+"]"),1;
+					deletearray getd(.@prefix$+"card4["+.@x+"]"),1;
+					.@x--;
+					continue;
+				}else if( .@amt < getd(.@prefix$+"quantity["+.@x+"]") && .@amt > 0 ){
+					dispbottom "["+strnpcinfo(0)+"]: Reward amount of "+getitemname(getd(.@prefix$+"nameid["+.@x+"]"))+" been set from "+getd(.@prefix$+"quantity["+.@x+"]")+" > "+.@amt+" since this is only amount you got!";
+					set getd(.@prefix$+"quantity["+.@x+"]"),.@amt;
+					//.@isset = 0; // now issufficient item will just set to current amount instead
+				}
+			}
+			if(isequipment(getd(.@prefix$+"nameid["+.@x+"]"))){
+				if(getd(.@prefix$+"identify["+.@x+"]")){
+					mes (.@x+1)+". "+(getd(.@prefix$+"refine["+.@x+"]")?"+"+getd(.@prefix$+"refine["+.@x+"]")+" ":"")+Itemlink(getd(.@prefix$+"nameid["+.@x+"]"),1);
+					for(.@y=1;.@y<=4;.@y++){
+						mes (getitemname(getd(.@prefix$+"card"+.@y+"["+.@x+"]"))=="null"?"":" S"+.@y+" ["+Itemlink(getd(.@prefix$+"card"+.@y+"["+.@x+"]"))+"]");
+					}
+				}else{
+					mes (.@x+1)+". "+CStr("Unknown "+getitemname(getd(.@prefix$+"nameid["+.@x+"]")),"red");
+				}
+			}else{
+				mes (.@x+1)+". "+getd(.@prefix$+"quantity["+.@x+"]")+" x "+Itemlink(getd(.@prefix$+"nameid["+.@x+"]"));
+			}
+		}
+	}
+	return .@isset;
+}
+
+// requestitemchk(<requestid>,<type>{,<iscountitem>})
+function requestitemchk {
+	.@requestid = getarg(0);
+	.@type = getarg(1,0);	// 0 request 1 reward
+	.@label$ = (!.@type?"request":"reward");
+	.@countitem = getarg(2,0);
+	.@count = query_sql("SELECT nameid, amount, identify, refine, attribute, card0, card1, card2, card3 FROM questingboard_item WHERE type = "+.@type+" AND request_id = "+.@requestid,.@nameid,.@amount,.@identify,.@refine,.@attribute,.@card0,.@card1,.@card2,.@card3);
+	if(.@count <= 0){
+		//debugmes "requestitemchk: requestid "+.@requestid+" type "+.@type+" not found in questingboard_item table!";
+		return 1;
+	}
+	.@bool = 1;
+	mes "Item "+.@label$+":";
+	for(.@x=0;.@x<.@count;.@x++){
+		if(.@countitem){
+			.@amt = countitem2(.@nameid[.@x],.@identify[.@x],.@refine[.@x],.@attribute[.@x],.@card0[.@x],.@card1[.@x],.@card2[.@x],.@card3[.@x]);
+			if(.@bool && .@amt < .@amount[.@x]) .@bool = 0;
+		}
+		if(isequipment(.@nameid[.@x])){
+			if(.@identify[.@x]){
+				mes (.@x+1)+". "+(.@refine[.@x]?"+"+.@refine[.@x]+" ":"")+Itemlink(.@nameid[.@x],1)+(.@countitem?" ("+CStr(.@amt+"/"+.@amount[.@x],(.@amt < .@amount[.@x]?"red":"green"))+")":"");
+				for(.@y=0;.@y<4;.@y++){
+					mes (getitemname(getd(".@card"+.@y+"["+.@x+"]"))=="null"?"":" S"+(.@y+1)+" ["+Itemlink(getd(".@card"+.@y+"["+.@x+"]"))+"]");
+				}
+			}else{
+				mes (.@x+1)+". "+CStr("Unknown "+getitemname(.@nameid[.@x]),"red");
+			}
+		}else{
+			mes (.@x+1)+". "+.@amount[.@x]+" x "+Itemlink(.@nameid[.@x])+(.@countitem?" ("+CStr(.@amt+"/"+.@amount[.@x],(.@amt < .@amount[.@x]?"red":"green"))+")":"");
+		}
+	}
+	return .@bool;
+}
+
+// requestitemget(<requestid>,<type>)
+function requestitemget {
+	.@requestid = getarg(0);
+	.@type = getarg(1,0);	// 0 request 1 reward
+	.@count = query_sql("SELECT nameid, amount, identify, refine, attribute, card0, card1, card2, card3 FROM questingboard_item WHERE type = "+.@type+" AND request_id = "+.@requestid,.@nameid,.@amount,.@identify,.@refine,.@attribute,.@card0,.@card1,.@card2,.@card3);
+	if(.@count <= 0){
+		//debugmes "requestitemget: requestid "+.@requestid+" type "+.@type+" not found in questingboard_item table!";
+		return 0;
+	}
+	for(.@x=0;.@x<.@count;.@x++){
+		getitem2(.@nameid[.@x],.@amount[.@x],.@identify[.@x],.@refine[.@x],.@attribute[.@x],.@card0[.@x],.@card1[.@x],.@card2[.@x],.@card3[.@x]);
+	}
+	return;
+}
+
+// requestitemdel(<requestid>,<type>)
+function requestitemdel {
+	.@requestid = getarg(0);
+	.@type = getarg(1,0);	// 0 request 1 reward
+	.@count = query_sql("SELECT nameid, amount, identify, refine, attribute, card0, card1, card2, card3 FROM questingboard_item WHERE type = "+.@type+" AND request_id = "+.@requestid,.@nameid,.@amount,.@identify,.@refine,.@attribute,.@card0,.@card1,.@card2,.@card3);
+	if(.@count <= 0){
+		//debugmes "requestitemdel: requestid "+.@requestid+" type "+.@type+" not found in questingboard_item table!";
+		return 0;
+	}
+	for(.@x=0;.@x<.@count;.@x++){
+		delitem2(.@nameid[.@x],.@amount[.@x],.@identify[.@x],.@refine[.@x],.@attribute[.@x],.@card0[.@x],.@card1[.@x],.@card2[.@x],.@card3[.@x]);
+	}
+	return;
+}
+
+function delrequest {
+	.@id = getarg(0);
+	query_sql("DELETE FROM questingboard WHERE id = "+.@id);
+	query_sql("DELETE FROM questingboard_item WHERE request_id = "+.@id);
+	return;
+}
+
+// void
+function postdetailverify {
+	.@bool = 1;
+	mes (@title$==""?CStr("Title not set","red"):@title$),.linestring$;
+	.@rq = issetitemdetail(0);
+	if(@zeny_rq){
+		.@rq++;
+		mes "Zeny Request:"," > "+CZeny(@zeny_rq);
+	}
+	if(!.@rq && !@zeny_rq){
+		.@bool = 0;
+		mes CStr("Request not set!","red");
+	} 
+	mes .linestring$;
+	// check if have the set reward
+	.@rw = issetitemdetail(1);
+	//debugmes "postdetailverify: .@rw = "+.@rw;
+	
+	if(@zeny_rw){
+		if(Zeny < @zeny_rw+.post_fee){
+			.@bool = 0;
+			mes CStr("Not enough Zeny! "+CZeny(@zeny_rw+.post_fee)+" needed!","red");
+		}
+		mes "Zeny Reward:"," > "+CStr(CZeny(@zeny_rw),(.@bool?"green":"red"));
+	}else if(Zeny < .post_fee){
+		.@bool = 0;
+		mes CStr("Not enough Zeny! "+CZeny(.post_fee)+" needed!","red");
+	}
+	if(!.@rw && !@zeny_rw){
+		.@bool = 0;
+		mes CStr("Reward not set!","red");	
+	}
+	// last check if request is correctly set
+	if( @title$=="") .@bool = 0;
+	return .@bool;
+}
+
+function initialize {
+	query_sql("CREATE TABLE IF NOT EXISTS `questingboard` (`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,`title` varchar(45) NOT NULL DEFAULT '',`requester_id` int(11) unsigned NOT NULL DEFAULT '0',`requester_tick` int(10) unsigned DEFAULT NULL,`accepter_id` int(11) unsigned NOT NULL DEFAULT '0',`accepter_tick` int(10) unsigned DEFAULT NULL,`status` tinyint(2) NOT NULL DEFAULT '0',`zeny_request` bigint(20) unsigned DEFAULT NULL,`zeny_reward` bigint(20) unsigned DEFAULT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;");
+	query_sql("CREATE TABLE IF NOT EXISTS `questingboard_item` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT,`request_id` int(11) unsigned NOT NULL DEFAULT '0',`type` tinyint(1) unsigned NOT NULL DEFAULT '0',`nameid` smallint(5) unsigned NOT NULL DEFAULT '0',`amount` smallint(11) unsigned NOT NULL DEFAULT '0',`identify` smallint(6) unsigned NOT NULL DEFAULT '0',`refine` tinyint(3) unsigned NOT NULL DEFAULT '0',`attribute` tinyint(4) unsigned NOT NULL DEFAULT '0',`card0` smallint(5) unsigned NOT NULL DEFAULT '0',`card1` smallint(5) unsigned NOT NULL DEFAULT '0',`card2` smallint(5) unsigned NOT NULL DEFAULT '0',`card3` smallint(5) unsigned NOT NULL DEFAULT '0',PRIMARY KEY (`id`),KEY `request_id` (`request_id`)) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;");
+	
+	bindatcmd "checkquest",strnpcinfo(3)+"::OnCheckQuest";
+	return;
+}
+	
+OnInit:
+	.linestring$ = "________________________";
+	.n$ = "[ "+strnpcinfo(0)+" ]";
+	.post_fee = 5000;				// zeny fee when posting quest
+	.post_tick_length = 24*60*60;	// time before quest expired (default 24 hours)
+	.accepter_tick_length = 1*60*60;// time before accepted quest get expired (default 1 hours)
+	.post_limit = 1;				// limit of post a char can put on
+	.per_page = 3;					// request amount per page
+	.item_set_max = 5;				// maximum item to be registered via selling window
+	.item_min = 1;					// minimum item request amount
+	.item_max = 999;				// maximum item request amount
+	waitingroom "Player Quest's",0;
+
+	.sql_available_prefix$ = " AND status = 0 AND accepter_id = 0";
+	.sql_accepted_prefix$ = " AND status = 0";
+	.sql_myrequest_prefix$ = " AND status != 3";
+	initialize();
+}
+
+-	shop	questingboard#shop	618,512:-1
+
+izlude,126,150,5	duplicate(pqb)	Player Questing Board#1	837
+prontera,160,187,4	duplicate(pqb)	Player Questing Board#2	837
+poring_w02,109,78,4	duplicate(pqb)	Player Questing Board#3	837
+ma_in01,26,95,5	duplicate(pqb)	Player Questing Board#4	837

@@ -1,0 +1,586 @@
+//===== rAthena Script =======================================
+//= Rune War - (from Ragnarok Event v2)
+//===============  by: =============================
+//= pajodex
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project (pajodex)
+//===== Description: =========================================
+/*
+Rune War (from Ragnarok Event v2)
+		
+	Battleground script that runs OnClockxxxx time on server.
+An npc will appear at prontera for registration. After some time
+RegistrationNPC will disappear. All registered players will
+be divided into 2 teams.
+
+	Players have to eliminate the enemy to gain points. Team
+with the most points accumulated wins.
+
+	A rune will be spawned at the center of the map. Runes similar
+to Dota 2.
+
+	* disclaimer * this runs like the War Over Rune but it is
+my own version. Since this is free, i did not add any special
+features. 
+
+ 
+	Enjoy!
+
+*/
+//=====******** Note ********=================================
+//= if you find bugs or problem, please do tell DM me at
+//= Discord (pajodex#1328) or rAthena (pajodex) 
+//= open for suggestions
+//===== Additional Comments: =================================
+/* 	
+	1.0 - Initial release
+*/
+//=============================================================
+
+function	script	F_ShuffleNumbers	{
+	deletearray getarg(2);
+	.@static = getarg(0);
+	.@range = getarg(1) +1 - .@static;
+	.@count = getarg(3, .@range);
+	if (.@range <= 0 || .@count <= 0)
+		return 0;
+	if (.@count > .@range)
+		.@count = .@range;
+	for (.@i = 0; .@i < .@range; ++.@i)
+		.@temparray[.@i] = .@i;
+	for (.@i = 0; .@i < .@count; ++.@i) {
+		.@rand = rand(.@range);
+		set getelementofarray( getarg(2), .@i ), .@temparray[.@rand] + .@static;
+		.@temparray[.@rand] = .@temparray[--.@range];
+	}
+	return .@count;
+}
+
+guild_vs4,50,50,0	script	Rune#11	100,1,1,{
+end;
+
+OnStart:
+	.rune = rand(1,4);
+	if(!checkre(0))
+		setnpcdisplay strnpcinfo(3), .npc_view_re[.rune];
+	else
+		setnpcdisplay strnpcinfo(3), .npc_view_pre[.rune];
+	end;
+
+OnTouch:
+	if( getvariableofnpc( .start, "runewar#main" ) == 1 ) {
+		if(!.getrune) {
+			if(.rune == 1) {
+				skill "AS_CLOAKING",10,1;
+				sc_start SC_CLOAKING, (.duration * 1000), 10;
+				specialeffect2 120;
+			}
+			if(.rune == 2) {
+				sc_start SC_SPEEDUP0,(.duration * 1000),25;
+				specialeffect2 507;
+			}
+			if(.rune == 3) {
+				sc_start SC_INCATKRATE,(.duration * 1000), 100; 
+				sc_start SC_INCMATKRATE,(.duration * 1000), 100;
+				specialeffect2 220;
+			}
+			if(.rune == 4) {
+				sc_start4 SC_REGENERATION,(.duration * 1000),-10,1,0,0;
+				percentheal 10, 0;
+				specialeffect2 EF_HEAL;
+			}
+			mapannounce strnpcinfo(4), strcharinfo(0)+ " has picked up ["+.Rune$[.rune]+"] rune.", bc_blue;
+			setnpcdisplay strnpcinfo(3), HIDDEN_WARP_NPC;
+			.getrune = 1;
+			attachnpctimer;
+			initnpctimer;
+		}
+	}
+	end;
+	
+OnTimer6000:
+	sc_end SC_CLOAKING;
+	sc_end SC_REGENERATION;
+	end;
+	
+OnTimer60000:
+	.countTimer++;
+	if(.countTimer == .respawn_time) {
+		stopnpctimer;
+		detachnpctimer;
+		.rune = rand(1,4);
+		.countTimer = .getrune = 0;
+		if(!checkre(0))
+			setnpcdisplay strnpcinfo(3), .npc_view_re[.rune];
+		else
+			setnpcdisplay strnpcinfo(3), .npc_view_pre[.rune];
+	}
+	setnpctimer 0;	
+	end;
+	
+OnInit:
+	// =============
+	// Rune Settings
+	// =============
+	
+	// Rune names (in-order)
+	setarray .Rune$[1], 
+		"Invisibility", 
+		"Haste",
+		"Double Damage",
+		"Regeneration";
+	
+	// NPC View ID if server in renewal mode
+	setarray .npc_view_re[1], 
+		2450, 
+		2696,
+		2697,
+		2703;
+	
+	// NPC View ID if server in pre-renewal mode	
+	setarray .npc_view_pre[1], 
+		1120, 
+		1096,
+		1582,
+		1031;
+		
+	// Rune effect duration (seconds)
+	.duration = 30; 
+	
+	// Respawn time of rune after being pick-ed up (minutes)
+	.respawn_time = 1; 
+	
+	// disable npc on start of server
+	disablenpc "Rune#11";
+	end;
+}
+
+guild_vs4,0,0,0	script	runewar#main	100,{
+OnInit:
+	// =============
+	// Game Settings
+	// =============
+	
+	// How many players to start?
+	// default = 4 (2v2)
+	.minplayers = 2;
+	
+	// How many mins before rune is spawned
+	// default : 1 min
+	.runespawn = 1;
+	
+	// Event duration in minutes..
+	// default : 10 mins
+	.duration = 10;
+	
+	// Reward settings
+	setarray .rwd[0],
+		35116, 10,	// win team reward
+		35116, 5,		// lose team reward
+		35056, 20,	// win team reward
+		35056, 10;		// lose team reward
+	
+	delwall "RWarWall#1";
+	delwall "RWarWall#2";
+	setwall strnpcinfo(4), 72, 53, 8, 4, 0, "RWarWall#1";
+	setwall strnpcinfo(4), 27, 53, 8, 4, 0, "RWarWall#2";
+	bindatcmd "startrune",strnpcinfo(3)+"::OnAtCmd",0,60;
+	end;
+	
+// OnClock timers
+OnClock0105:
+OnClock0605:
+OnClock1205:
+OnClock1905:
+OnClock2305:
+OnAtCmd:
+	if( .rstart == 1 ) end;
+	donpcevent "lmtshop#1::OnReset";
+	donpcevent "lmtshop#2::OnReset";
+	announce "[ Rune War ] : Registration will start in 18 Seconds.",0;
+	sleep 6000;
+	announce "[ Rune War ] : Registration will start in 12 Seconds.",0;
+	sleep 6000;
+	announce "[ Rune War ] : Registration will start in 6 Seconds.",0;
+	sleep 6000;
+	announce "[ Rune War ] : You may now proceed to prontera if you want to join.",0;
+	.rstart = 1;
+	query_sql "DELETE FROM `dual_login`";
+	sleep 1000;
+	announce "[ Rune War ] : Registration ends in 3 mins.",0;
+	sleep 60000;
+	announce "[ Rune War ] : Registration ends in 2 mins.",0;
+	sleep 1000;
+	announce "[ Rune War ] : You may now proceed to prontera if you want to join.",0;
+	sleep 59000;
+	announce "[ Rune War ] : Registration ends in 1 min.",0;
+	sleep 1000;
+	announce "[ Rune War ] : You may now proceed to prontera if you want to join.",0;
+	sleep 59000;
+	if( getvariableofnpc(.size, "rwr") < .minplayers ) {
+		announce "[ Rune War ] : Too few players registered.",0;
+		sleep 5000;
+		announce "[ Rune War ] : Terminating event.",0;
+		.rstart = 0;
+		query_sql "DELETE FROM `dual_login`";
+		sleep 5000;
+		donpcevent "rwr::OnTerminate";
+		announce "[ Rune War ] : Event Terminated Join the Next Rune war.",0;
+		end;
+	}
+	else
+	donpcevent "rwr::OnStart";
+	announce "[ Rune War ] : Rune War will start in a few moment.",0;
+	end;
+	
+OnStart:
+	.rstart = 1;
+	sleep 5000;
+	.red = bg_create ( strnpcinfo(4), 7, 49, strnpcinfo(0)+"::OnRedQuit", strnpcinfo(0)+"::OnRedDie" );
+	.blue =  bg_create ( strnpcinfo(4), 92, 49, strnpcinfo(0)+"::OnBlueQuit", strnpcinfo(0)+"::OnBlueDie" ); 
+	callfunc "F_ShuffleNumbers", 0, getarraysize(.aid_)-1, .@r;
+	for ( .@i = 0; .@i < getarraysize(.aid_); ++.@i ) {
+		attachrid .aid_[.@r[.@i]];
+		bg_join ( .@i % 2 )? .red : .blue;
+	}
+	detachrid;
+	sleep 1000;
+	announce "Kill as much enemy as you can to earn points.", bc_npc | bc_map | bc_blue;
+	sleep 1000;
+	announce "Team who gains most points until event ends wins.", bc_npc | bc_map | bc_blue;
+	sleep 1000;
+	announce "Start battle!", bc_npc | bc_map | bc_blue;
+	bg_warp .red, strnpcinfo(4),50,70;
+	bg_warp .blue, strnpcinfo(4),50,30;
+	
+	sleep .runespawn * 60000;
+	
+	enablenpc "Rune#11";
+	donpcevent "Rune#11::OnStart";
+	announce "A Power Rune has spawn at the center of the map.", bc_npc | bc_map | bc_blue;
+	
+	sleep ( .duration - .runespawn ) * 60000;
+	
+	if( .redpoints > .bluepoints )
+		callsub L_reward, .red, .blue, "Red";
+	else if( .bluepoints > .redpoints )
+		callsub L_reward, .blue, .red, "Blue";
+	else if( .bluepoints = .redpoints )
+		announce "Battle ended up with a tie!", bc_npc | bc_map | bc_blue;
+	mapwarp strnpcinfo(4),"prontera",150,180,0;
+	.redpoints = .bluepoints = .rstart = 0;
+	bg_updatescore strnpcinfo(4), 0, 0;
+	bg_destroy .red;
+	bg_destroy .blue;
+	disablenpc "Rune#11";
+	query_sql "DELETE FROM `dual_login`";
+	end;
+	
+L_reward:
+	announce getarg(2) +" team has won!", bc_npc | bc_map | bc_blue;
+	bg_get_data getarg(0), 1;
+	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+		getitem .rwd[0],.rwd[1], $@arenamembers[.@i];
+		getitem .rwd[4],.rwd[5], $@arenamembers[.@i];
+	}
+	sleep 1;
+	bg_get_data getarg(1), 1;
+	for ( .@i = 0; .@i < $@arenamemberscount; ++.@i ){
+		getitem .rwd[2],.rwd[3], $@arenamembers[.@i];
+		getitem .rwd[6],.rwd[7], $@arenamembers[.@i];
+	}
+	return;
+	
+OnRedQuit: callsub L_Quit, .red, "Red";
+OnBlueQuit: callsub L_Quit, .blue, "Blue";
+L_Quit:
+	if ( bg_get_data( getarg(0), 0 ) ) end;
+	announce "All "+ getarg(2) +" team members has Quit!", bc_npc | bc_map | bc_blue;
+	sleep 1000;
+	callsub L_reward, ( getarg(0) == .red ) ? .red : .blue, ( getarg(0) == .red ) ? .blue : .red, ( getarg(0) == .red ) ? "Red" : "Blue";
+	awake instance_npcname( strnpcinfo(0) );
+	end;
+
+OnRedDie: callsub L_die, "Red";
+OnBlueDie: callsub L_die, "Blue";
+L_die:
+	if( getcharid(4) == .red)
+		++.bluepoints;
+	else if( getcharid(4) == .blue)
+		++.redpoints;
+	bg_updatescore strnpcinfo(4), .redpoints, .bluepoints;
+	announce getarg(0) +" team member has died!", bc_npc | bc_map | bc_blue;
+	sleep2 1250;
+	percentheal 100, 100;
+	specialeffect2 EF_ASSUMPTIO;
+	sc_start SC_ASSUMPTIO,70000,10;
+	repairall();
+	sleep2 500;
+	addtimer 60000, strnpcinfo(3) + "::On1min";
+	end;
+	
+On1min:
+	switch( rand(3) ) {
+		case 0:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 50 : 50, 70;	end;
+		case 1:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 50 : 57, 41;	end;
+		case 2:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 40 : 40, 59;	end;
+	}
+}
+
+prontera,150,180,4	script	Rune War Officer::rwr	734,{
+	.@name$ = strcharinfo(0);
+	.@start = getvariableofnpc(.start, "runewar#main");
+	.@rstart = getvariableofnpc(.rstart, "runewar#main");
+	.@clientcheck = 1; //Settings for Client Checking LOL
+	
+	if(.@start == 1) {
+		mes "Sorry, event is on-going.";
+		close;
+	}
+	if(.@rstart == 0) {
+		mes "Rune War Times:";
+		mes "OnClock 01:05";
+		mes "OnClock 06:05";
+		mes "OnClock 12:05";
+		mes "OnClock 19:05";
+		mes "OnClock 23:05";
+		mes "Or when a GM is hosting Rune War";
+		close;
+	}
+	query_sql("SELECT `last_unique_id` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@dualunique$);
+	query_sql "SELECT `client_count` FROM `dual_login` WHERE `unique_id` = '"+.@dualunique$+"'",.@client;
+	
+	mes "You have "+.@client+". character Registered.";
+	next;
+	if (.@client >= 1 && .@clientcheck >= 1) { //Dual Login Check
+		mes "No Dual character allowed.";
+		close;
+	}
+	mes "Do you want to join the queue?";
+	mes "Once you join dont leave the map.";
+	mes "Also you cannot register your dual character.";
+	next;
+	select "Okay";
+	mes "Checking....";
+	if (checkcart() >= 1){
+	if(cartcountitem(607) > 1) { //Cart Check
+		mes "Remove all berries on cart please.";
+		close;
+	}
+	}
+	next;
+	while ( .aid[.@i] != getcharid(3) && .@i < .size ) ++.@i;
+	if ( .@i < .size ) {
+		mes "You already join the queue.";
+		close;
+	}
+	select "Join";
+	mes "You have to stay to this map";
+	close2;
+//Dual Login Record
+	query_sql( "INSERT INTO `dual_login` SET `unique_id`='"+.@dualunique$+"',`name`='"+strcharinfo(0)+"',`client_count`='1' ON DUPLICATE KEY UPDATE `client_count`=`client_count`+1" );
+	
+	.aid[ .size++ ] = getcharid(3);
+	for ( .@i = 0; .@i < .size; ++.@i ) {
+		if ( !isloggedin( .aid[.@i] ) ) {
+			deletearray .aid[.@i], 1;
+			--.@i;
+			--.size;
+		}
+		else {
+			attachrid .aid[.@i];
+			if ( strcharinfo(3) != strnpcinfo(4) ) {
+				deletearray .aid[.@i], 1;
+				--.@i;
+				--.size;
+			}
+		}
+	}
+	detachrid;
+		announce .@name$ +" has  joined Rune War.", bc_npc | bc_all | bc_blue;
+	end;
+	
+OnStart:
+	copyarray getvariableofnpc( .aid_, "runewar#main" ), .aid, .size;
+	donpcevent "runewar#main::OnStart";
+	deletearray .aid;
+	.size = 0;
+	end;
+	
+OnTerminate:
+	deletearray .aid;
+	.size = 0;
+	end;
+}
+
+guild_vs4,88,51,4	script	Rune Warper::rwarp	734,{
+	mes "[Rune Warper]";
+	mes "Warping to battlefield!";
+	next;
+	switch(select("Yes:No")) {
+		case 1:
+				deltimer "runewar#main::On1min";
+				switch( rand(3) ) {
+					case 0:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 50 : 50, 70;	end;
+					case 1:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 50 : 57, 41;	end;
+					case 2:	warp strnpcinfo(4), ( getcharid(4) == .red ) ? 40 : 40, 59;	end;
+				}
+				close;
+		case 2:
+			mes "Aww, why?";
+			close;
+	}
+
+}
+
+guild_vs4,11,51,3	duplicate(rwarp)	Rune Warper#2	734
+
+guild_vs4	mapflag	battleground	2
+
+
+// Dummy shop to insert items into:
+-	shop	dyn_shop1	-1,501:50.
+
+guild_vs4,88,48,4	script	Supply Shop::lmtshop#1	123,{
+	mes "[This Shop has limited Items]";
+	mes "It has ^FF0000"+$@1rpotsleft+"^000000 Yggdrasil Berry left.";
+	mes "-----------------------------";
+	mes "Only Buy what you can carry.";
+	mes "-----------------------------";
+	mes "Sell Yggdrasil Berry to me to refill my stock LOL.";
+	next;
+	callshop "dyn_shop1",0;
+	npcshopattach "dyn_shop1";
+	end;
+
+OnSellItem:
+	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++) {
+		if (countitem(@sold_nameid[.@i]) < @sold_quantity[.@i] || @sold_quantity[.@i] <= 0) {
+			mes "omgh4x!";
+			close;
+		} else if (@sold_nameid[.@i] == 607){
+			delitem 607, @sold_quantity[.@i];
+			set $@1rpotsleft, $@1rpotsleft + @sold_quantity[.@i];
+			set Zeny, Zeny + @sold_quantity[.@i]*20;
+		} else {
+			mes "Sorry, I don't need your items.";
+			close;
+		}
+	}
+	deletearray @sold_quantity, getarraysize(@sold_quantity);
+	deletearray @sold_nameid, getarraysize(@sold_nameid);
+	mes "Deal completed.";
+	close;
+
+OnBuyItem:
+	for (.@i = 0; .@i < getarraysize(@bought_nameid); .@i++){
+		if (@bought_quantity[.@i] <= 0){
+			mes "omgh4x!";
+			close;
+		} else if (@bought_nameid[.@i] == 607){
+			if (@bought_quantity[.@i] > $@1rpotsleft){
+				if ($@1rpotsleft > 0){
+					@bought_quantity[.@i] = $@1rpotsleft;
+				} else {
+					mes "We are out of Yggdrasil Berry!";
+					close;
+				}
+			}
+			if (Zeny >= 250000*@bought_quantity[.@i]){
+				set Zeny, Zeny - 250000*@bought_quantity[.@i];
+				getitem 607, @bought_quantity[.@i];
+				$@1rpotsleft -= @bought_quantity[.@i];
+			} else {
+				mes "You have insufficient cash.";
+				close;
+			}
+		}
+	mapannounce strnpcinfo(4), strcharinfo(0)+ " has bought ["+@bought_quantity[.@i]+"] Yggdrasil Berry.", bc_blue;
+	}
+	deletearray @bought_quantity, getarraysize(@bought_quantity);
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	mes "Trade done.";
+	close;
+	
+OnReset:
+	$@1rpotsleft = 1000;
+	end;
+	
+OnInit:
+	npcshopitem "dyn_shop1", 607,250000;
+	$@1rpotsleft = 1000;
+	end;
+}
+
+guild_vs4,11,48,4	script	Supply Shop::lmtshop#2	123,{
+	mes "[This Shop has limited Items]";
+	mes "It has ^FF0000"+$@2rpotsleft+"^000000 Yggdrasil Berry left.";
+	mes "-----------------------------";
+	mes "Only Buy what you can carry.";
+	mes "-----------------------------";
+	mes "Sell Yggdrasil Berry to me to refill my stock LOL.";
+	next;
+	callshop "dyn_shop1",0;
+	npcshopattach "dyn_shop1";
+	end;
+
+OnSellItem:
+	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++) {
+		if (countitem(@sold_nameid[.@i]) < @sold_quantity[.@i] || @sold_quantity[.@i] <= 0) {
+			mes "omgh4x!";
+			close;
+		} else if (@sold_nameid[.@i] == 607){
+			delitem 607, @sold_quantity[.@i];
+			set $@2rpotsleft, $@2rpotsleft + @sold_quantity[.@i];
+			set Zeny, Zeny + @sold_quantity[.@i]*20;
+		} else {
+			mes "Sorry, I don't need your items.";
+			close;
+		}
+	}
+	deletearray @sold_quantity, getarraysize(@sold_quantity);
+	deletearray @sold_nameid, getarraysize(@sold_nameid);
+	mes "Deal completed.";
+	close;
+
+OnBuyItem:
+	for (.@i = 0; .@i < getarraysize(@bought_nameid); .@i++){
+		if (@bought_quantity[.@i] <= 0){
+			mes "omgh4x!";
+			close;
+		} else if (@bought_nameid[.@i] == 607){
+			if (@bought_quantity[.@i] > $@2rpotsleft){
+				if ($@2rpotsleft > 0){
+					@bought_quantity[.@i] = $@2rpotsleft;
+				} else {
+					mes "We are out of Yggdrasil Berry!";
+					close;
+				}
+			}
+			if (Zeny >= 250000*@bought_quantity[.@i]){
+				set Zeny, Zeny - 250000*@bought_quantity[.@i];
+				getitem 607, @bought_quantity[.@i];
+				$@2rpotsleft -= @bought_quantity[.@i];
+			} else {
+				mes "You have insufficient cash.";
+				close;
+			}
+		}
+	mapannounce strnpcinfo(4), strcharinfo(0)+ " has bought ["+@bought_quantity[.@i]+"] Yggdrasil Berry.", bc_blue;
+	}
+	deletearray @bought_quantity, getarraysize(@bought_quantity);
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	mes "Trade done.";
+	close;
+	
+OnReset:
+	$@2rpotsleft = 1000;
+	end;
+	
+OnInit:
+	npcshopitem "dyn_shop1", 607,250000;
+	$@2rpotsleft = 1000;
+	end;
+}

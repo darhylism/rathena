@@ -49,3 +49,5 @@ prontera,170,180,1	script	Stylist#custom_stylist	122,{
 		}
 	}
 }
+
+poring_w02,139,72,4	duplicate(Stylist#custom_stylist)	Stylist#poring	122

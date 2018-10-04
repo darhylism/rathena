@@ -1,0 +1,624 @@
+//===== rAthena Script =======================================
+//= Fishing Simulation Game (Timing Fishing + Sound Included)
+//===== By: ==================================================
+//= Yuchinin
+//===== Current Version: =====================================
+//= 1.2.2b
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Tired of boring odd base fishing game which just click and
+//= wait for the reward?
+//= Then maybe you will need this simulate fishing game
+//= Feature:
+//= Fishing success rate are greatly depend on click timing
+//= Easy setup and fully configurable
+//=====******** Note ********=================================
+//= This script need my release of:
+//= 1. Yuchinin Common Library	(common.txt)
+//= Better let it load first before adding my other script.
+//= 2. Fishing.grf
+//===== Additional Comments: =================================
+//= 1.0 Initial release.
+//= 1.1 Added fish rate setting on each spot .fish_list$ (Example: setarray .fish_list$,"Bass"; > "Bass|<rate>")
+//=     Added fish variation setting on $@fish_data$
+//=     Remove variation setting on each spot (.variation)
+//=     Added variation reduce setting on $@rod_data$
+//=     Added new fish mode [junkitem] and [getfish]
+//= 1.2 Change rod indicator setting from value to percent
+//=     Change Fishing_Sleep_Func to Fishing_End_Func
+//=     Remove local variable (.hide_rate, .delayfail, .delaysuccess, .line_break_rate)
+//=     Added a setting which can specified how much rate this fish will appear in each spot
+//=     Added a setting which can specified how much maximum this fish will appear in each spot
+//=     Added a setting which can specified how much delay this fish will get replenish in each spot
+//=     (Example: setarray .fish_list$,"Bass|<rate>"; > "Bass|<rate>|<maximum fish>|<delay in sec>")
+//= 1.2.1 Added an optional array to set junk_list on certain spot
+//= 1.2.2 Remove function (arrfind_fishdb , arrfind_fishdb)
+//=       Change function name (arrfind_fishdb > arrfind_db, arrget_fishdb > arrget_db)
+//=       Remove function name arrfind_db and arrget_fishdb and added it to common library
+//= 1.2.2a Add a hard fish example
+//= 1.2.2b Make it support recent change of emotion command
+//=        Removed requirement of monster controller
+//============================================================
+// [Additional Note] Never have same name on first data column !!!
+// [Incoming New Mode!!!] 
+
+-	script	Fishing_DB_Init	-1,{
+OnInit:
+$@Fishing_Debug = 0;
+//debugmes "Monster Controller: "+(is_function("aimode")?"Installed":"Not Found");
+setarray $@Indicator_prefix$,"       []       ","      [  ]      ","     [    ]     ","    [      ]    ","   [        ]   ";
+setarray $@rod_data$,	"25031|0|0",
+						"25032|25|75",
+						"25033|75|25";	// rod data "<rod id>|<indicator slow bonus>|<variation reduce>"
+						// $@rod_data$ value suggestion "<itemid>|<0~∞%>|<0~100%>"
+setarray $@bait_data$,	"501|500|20",
+						"502|600|15",
+						"503|750|15",
+						"504|500|20",
+						"505|400|25",
+						"506|500|60";		// bait data "<bait id>|<delay before run>|<timeout>"
+						// $@bait_data$ value suggestion "<itemid>|<500~1000>|<10~60>"
+setarray $@fish_data$,"Junk|500|0|junkitem|713:909:914:915",
+						"Fish|100|50|getfish|6049:6771:6774:6778:6779:6780:6096",
+						"Bass|100|70|getitem|501:502:503",
+						"Fish Monster|75|100|mob|1070:1073",
+						"Strouf|75|120|mob|1065",
+						"Marina|75|120|mob|1141",
+						"Mermaid|100|80|useskill|28:34|2184",
+						"Evil Mermaid|100|80|useskill|86:184|2184",
+						"MVP Monster|-50|300|mob|2202:2319",
+						"Frog|100|40|mob|2678:2679",
+						"Shark",
+						"Mackerel",
+						"Thief Fish|100|70|delitem|501:502:503",
+						"Hard Fish|100|70|getitem|6241";		// fish data "<fish name>|<fish speed>|<variation>|<mode>|<mode data>|<additional data>"
+						// $@fish_data$ value suggestion "<fish name>|<0~500>|<10~500>|<getitem/delitem/useskill/mob>|<itemid/mobid>|<use by mob mode only>"
+}
+
+function	script	Local_Fish_Val_Get	{
+	.@fishchk$ = getarg(0);
+	.@varname$ = getarg(1);
+	.@npc$ = strnpcinfo(3);
+	for(.@x=0;.@x<getarraysize(getVariable(".fish_list$"));.@x++){
+		if(getVariable(".fish_name$["+.@x+"]")==.@fishchk$){
+			return getVariable(.@varname$+"["+.@x+"]");
+		}
+	}
+	debugmes "Local_Fish_Val_Get return null";
+	return "null";
+}
+
+function	script	Local_Fish_Val_Set	{
+	.@fishchk$ = getarg(0);
+	.@varname$ = getarg(1);
+	.@npc$ = strnpcinfo(3);
+	for(.@x=0;.@x<getarraysize(getVariable(".fish_list$"));.@x++){
+		if(getVariable(".fish_name$["+.@x+"]")==.@fishchk$){
+			setVariable(.@varname$+"["+.@x+"]",getVariable(.@varname$+"["+.@x+"]")+getarg(2));
+			break;
+		}
+	}
+	return;
+}
+
+Function	script	Fishing_Main_Func	{
+	.@npc$ = strnpcinfo(3);
+	
+	if(getVariable(".status"+.@npc$) == 0){
+		.@delay = getarg(0,100);
+		.@variation = getarg(1,0);
+		.@hook_timeout = getarg(2,750);
+		.@bait_timeout = getarg(3,rand(10,20));
+	
+		setVariable(".status"+.@npc$,1);
+		setVariable(".sec"+.@npc$,rand(4,8));
+		soundeffectall "fish_reel03.wav",0;
+		sleep 2000;
+		if(getVariable(".status"+.@npc$)!=1){
+			end;
+		}
+		specialeffect 6;
+		soundeffectall "fish_start01.wav",0;
+		do{
+			// track item
+			if(getVariable(".charname"+.@npc$+"$") != ""){
+				if(attachrid(getcharid2(3,getVariable(".charname"+.@npc$+"$")))){
+					if(countitem(getVariable(".trackitem"+.@npc$))<1){
+						Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+						if($@Fishing_Debug) debugmes "OnRodGone";
+						donpcevent strnpcinfo(3)+"::OnRodGone";
+						end;
+					}
+					detachrid;
+				}else{
+					// character not found / offline
+					Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+					if($@Fishing_Debug) debugmes "OnCharacterGone";
+					donpcevent strnpcinfo(3)+"::OnCharacterGone";
+					end;
+				}
+			}
+			if(getVariable(".status"+.@npc$)!=1){
+				end;
+			}
+			emotion ET_THINK;
+			sleep 1500;
+			setVariable(".sec"+.@npc$,getVariable(".sec"+.@npc$)-1);
+			
+		}while(getVariable(".sec"+.@npc$)>0);
+		
+		if(getVariable(".status"+.@npc$)==0){
+			end;
+		}
+		
+		showscript "Something hooked on!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		emotion ET_SURPRISE;
+		soundeffectall "fish_act01.wav",0;
+		sleep .@hook_timeout;
+		
+		if(getVariable(".status"+.@npc$)==0){
+			end;
+		}
+		
+		if(getVariable(".status"+.@npc$)!=2){
+			Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+			if($@Fishing_Debug) debugmes "OnTimeOut";
+			donpcevent strnpcinfo(3)+"::OnTimeOut";
+			end;
+		}
+		
+		// speed
+		
+		if(.@delay <=0) .@delay = 1;
+		// prefix range
+		// timeout
+		setVariable(".timeout"+.@npc$,gettimetick(2)+.@bait_timeout);	// add 10 ~ 20 sec timeout
+		
+		setVariable(".index_start"+.@npc$,getarraysize($@Indicator_prefix$)-1);
+		setVariable(".index"+.@npc$,0);
+		
+		showscript "Pull when in range!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		do{
+			setVariable(".str"+.@npc$+"$",insertchar(getd("$@Indicator_prefix$["+getVariable(".index_start"+.@npc$)+"]"), "l", getVariable(".index"+.@npc$)));
+			delwaitingroom .@npc$;
+			waitingroom getVariable(".str"+.@npc$+"$"),0;
+			.@variationtick = .@delay+rand(-(.@variation),.@variation);
+			sleep (.@variationtick<1?1:.@variationtick);
+			// loop back from last action
+			if(getVariable(".index"+.@npc$) == 0){
+				setVariable(".mode"+.@npc$,1);
+				soundeffectall "fish_act01.wav",0;
+			}else if(getVariable(".index"+.@npc$) == getstrlen(getd("$@Indicator_prefix$["+getVariable(".index_start"+.@npc$)+"]"))){
+				setVariable(".mode"+.@npc$,0);
+				soundeffectall "fish_act01.wav",0;
+			}
+			
+			// statuc check (run only when status 2)
+			if(getVariable(".status"+.@npc$) == 2){
+				// track item
+				if(getVariable(".charname"+.@npc$+"$") != ""){
+					if(attachrid(getcharid2(3,getVariable(".charname"+.@npc$+"$")))){
+						if(countitem(getVariable(".trackitem"+.@npc$))<1){
+							Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+							if($@Fishing_Debug) debugmes "OnRodGone";
+							donpcevent strnpcinfo(3)+"::OnRodGone";
+							end;
+						}
+						detachrid;
+					}else{
+						// character not found / offline
+						Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+						if($@Fishing_Debug) debugmes "OnCharacterGone";
+						donpcevent strnpcinfo(3)+"::OnCharacterGone";
+						end;
+					}
+				}
+				
+				// timeout check
+				if(gettimetick(2)>getVariable(".timeout"+.@npc$)){
+					Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+					if($@Fishing_Debug) debugmes "OnTimeOut";
+					donpcevent strnpcinfo(3)+"::OnTimeOut";
+					break;
+				}
+				if(getVariable(".mode"+.@npc$)){
+					setVariable(".index"+.@npc$,getVariable(".index"+.@npc$)+1);
+				} 
+				else{
+					setVariable(".index"+.@npc$,getVariable(".index"+.@npc$)-1);
+				}
+			}else{
+				break;
+			}
+		}while(1==1);
+	}else{
+		if(getVariable(".status"+.@npc$) == 1){
+			if(getVariable(".sec"+.@npc$)==0){
+				setVariable(".status"+.@npc$,2);
+			}else{
+				Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+				if($@Fishing_Debug) debugmes "OnWrongTiming";
+				doevent strnpcinfo(3)+"::OnWrongTiming";
+			}
+		}else if(getVariable(".status"+.@npc$) == 2){
+			if(getVariable(".index"+.@npc$) >= (16/2)-getVariable(".index_start"+.@npc$) && getVariable(".index"+.@npc$) <= (16/2)+getVariable(".index_start"+.@npc$)){
+				if( getVariable(".index_start"+.@npc$) == 0 ){
+					setVariable(".status"+.@npc$,3);
+					if($@Fishing_Debug) debugmes "OnSuccess";
+					doevent strnpcinfo(3)+"::OnSuccess";
+				}else{
+					setVariable(".index_start"+.@npc$,getVariable(".index_start"+.@npc$)-1);
+					setVariable(".str"+.@npc$+"$",insertchar(getd("$@Indicator_prefix$["+getVariable(".index_start"+.@npc$)+"]"), "l", getVariable(".index"+.@npc$)));
+					delwaitingroom .@npc$;
+					waitingroom getVariable(".str"+.@npc$+"$"),0;
+					if($@Fishing_Debug) debugmes "OnHit";
+					doevent strnpcinfo(3)+"::OnHit";
+				}
+			}else{
+				// On wrong timing
+				if( getVariable(".index_start"+.@npc$) == getarraysize(getd("$@Indicator_prefix$"))-1 ){
+					Local_Fish_Val_Set(getVariable(".fish"+.@npc$+"$"),".fish_amt",1);
+					if($@Fishing_Debug) debugmes "OnFail";
+					doevent strnpcinfo(3)+"::OnFail";
+				}else{
+					setVariable(".index_start"+.@npc$,getVariable(".index_start"+.@npc$)+1);
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+function	script	Fish_Replenish	{
+	.@npc$ = strnpcinfo(3);
+	.@fish$ = getVariable(".fish"+.@npc$+"$");
+	for(.@x=0;.@x<getarraysize(getVariable(".fish_list$"));.@x++){
+		if(getVariable(".fish_amt["+.@x+"]") < getVariable(".fish_max["+.@x+"]")){
+			if(getVariable(".fish_timetick["+.@x+"]")==0){
+				setVariable(".fish_timetick["+.@x+"]",gettimetick(2));
+			}else if(gettimetick(2)>getVariable(".fish_timetick["+.@x+"]")){
+				.@t = gettimetick(2) - getVariable(".fish_timetick["+.@x+"]");
+				setVariable(".fish_timecount["+.@x+"]",getVariable(".fish_timecount["+.@x+"]")+.@t);
+				setVariable(".fish_timetick["+.@x+"]",gettimetick(2));
+				while(getVariable(".fish_timecount["+.@x+"]") >= getVariable(".fish_timedelay["+.@x+"]")){
+					if( getVariable(".fish_amt["+.@x+"]") >= getVariable(".fish_max["+.@x+"]") ){
+						setVariable(".fish_timetick["+.@x+"]",0);
+						setVariable(".fish_timecount["+.@x+"]",0);
+						break;
+					}
+					if($@Fishing_Debug) debugmes "Replenish 1 "+getVariable(".fish_name$["+.@x+"]");
+					setVariable(".fish_amt["+.@x+"]",getVariable(".fish_amt["+.@x+"]")+1);
+					setVariable(".fish_timecount["+.@x+"]",getVariable(".fish_timecount["+.@x+"]")-getVariable(".fish_timedelay["+.@x+"]"));
+				};
+			}
+		}
+	}
+	return;
+}
+
+function	script	Fishing_Item_Check_Func	{
+	.@arrvarname$ = getarg(0);
+	.@message$ = getarg(1);
+	.@isconsumed = getarg(2,0);
+	.@mstr$ = "Leave:";
+	for(.@x=0;.@x<getarraysize(getVariable(.@arrvarname$));.@x++){
+		.@temp$ = .@arrvarname$+"["+.@x+"]";
+		.@optional$ = "";
+		if(.@arrvarname$==".rod_list"){
+			.@index = arrfind_db("$@rod_data$",getVariable(.@temp$));
+			.@indicator_slow_bonus = atoi(arrget_db("$@rod_data$",.@index,1));
+			.@variation_reduce = atoi(arrget_db("$@rod_data$",.@index,2));
+			.@optional$ = " [-"+.@indicator_slow_bonus+"% Spd] [-"+.@variation_reduce+"% variation]";
+		}else if(.@arrvarname$==".bait_list"){
+			.@index = arrfind_db("$@bait_data$",getVariable(.@temp$));
+			.@milisec_before_run = atoi(arrget_db("$@bait_data$",.@index,1));
+			.@bait_lastfor_sec = atoi(arrget_db("$@bait_data$",.@index,2));
+			.@optional$ = " ["+.@milisec_before_run+" Milisec] ["+.@bait_lastfor_sec+" Sec]";
+		}
+		if(countitem(getVariable(.@temp$))>0) .@mstr$ = .@mstr$ + getitemname(getVariable(.@temp$))+(.@optional$!=""?.@optional$:"")+":";
+		else .@mstr$ = .@mstr$ + CStr(getitemname(getVariable(.@temp$)),"RED")+":";
+	}
+	if(.@message$ != "") mes .@message$;
+	.@s = select(.@mstr$);
+	if(.@s==1) return 0;
+	else{
+		if(countitem(getVariable(.@arrvarname$+"["+(.@s-2)+"]"))>0){
+			if(.@isconsumed) delitem getVariable(.@arrvarname$+"["+(.@s-2)+"]"),1;
+			return getVariable(.@arrvarname$+"["+(.@s-2)+"]");
+		}
+	}
+	return 0;
+}
+
+function	script	Fishing_SelectFish_Func	{
+	.@name$ = "";
+	if(getarraysize(getVariable(".fish_list$"))==1){
+		if(rand(1,10000) <= getVariable(".fish_rate[0]") && getVariable(".fish_amt[0]")>0) .@name$ = getVariable(".fish_name$[0]");
+	}else{
+		.@count = 0;
+		do{
+			.@index = rand(getarraysize(getVariable(".fish_rate")));
+			.@randomize = rand(1,10000);
+			.@rate = getVariable(".fish_rate["+.@index+"]");
+			.@amt = getVariable(".fish_amt["+.@index+"]");
+			.@timetick = getVariable(".fish_timetick["+.@index+"]");
+			.@timecount = getVariable(".fish_timecount["+.@index+"]");
+			.@delay = getVariable(".fish_timedelay["+.@index+"]");
+			if($@Fishing_Debug) dispbottom getVariable(".fish_name$["+.@index+"]")+" rate:"+.@rate+" .@randomize:"+.@randomize+" .@timetick:"+.@timetick+" .@timecount:"+.@timecount+" .@delay:"+.@delay;
+			if( .@randomize <= .@rate && .@amt > 0){
+				.@name$ = getVariable(".fish_name$["+.@index+"]");
+				break;
+			}
+			.@count++;
+		}while( getVariable(".fish"+.@npc$+"$")=="" && .@count < getarraysize(getVariable(".fish_list$")) );
+	}
+	if(.@name$ == "") .@name$ = "Junk";
+	setVariable(".fish"+strnpcinfo(3)+"$",.@name$);
+	if($@Fishing_Debug) dispbottom "Fishing_SelectFish_Func return "+.@name$;
+	// temporary deduct the selected fish first
+	if(.@name$ != "Junk") dispbottom ""+Local_Fish_Val_Get(.@name$,".fish_amt");
+	Local_Fish_Val_Set(.@name$,".fish_amt",-1);
+	if(.@name$ != "Junk") dispbottom ""+Local_Fish_Val_Get(.@name$,".fish_amt");
+	return .@name$;
+}
+
+function	script	Fishing_Start_Func	{
+	.@npc$ = strnpcinfo(3);
+	.@arrname1$ = getarg(0);
+	.@arrname2$ = getarg(1);
+	
+	if( getVariable(".status"+.@npc$) == 0 && @bindspot$ == "" ){
+		mes "[ "+CStr(strnpcinfo(0),"RED")+" ]";
+		.@rod = Fishing_Item_Check_Func(.@arrname1$,"Select a rod");
+		if(!.@rod || getVariable(".status"+.@npc$)!= 0){
+			mes "You don't have the selected item or someone is using this spot, please try again later.";
+			end;
+		}
+		mes "Selected "+Itemlink(.@rod);
+		.@bait = Fishing_Item_Check_Func(.@arrname2$,"Select a bait");
+		if(!.@bait || getVariable(".status"+.@npc$)!= 0){
+			mes "You don't have the selected item or someone is using this spot, please try again later.";
+			end;
+		}
+		mes "Selected "+Itemlink(.@bait);
+		.@charname$ = strcharinfo(0);
+		close2;
+		if(getVariable(".status"+.@npc$)!= 0) end;	// if running end it to prevent double thread
+		setVariable(".trackitem"+.@npc$,.@rod);
+		delitem .@bait,1;
+		setVariable(".charname"+.@npc$+"$",.@charname$);
+		@bindspot$ = .@npc$;
+		
+		Fish_Replenish();
+		// implement fish rate
+		Fishing_SelectFish_Func();
+		
+		.@fish_index = arrfind_db("$@fish_data$",getVariable(".fish"+.@npc$+"$"));
+		.@rod_index = arrfind_db("$@rod_data$",.@rod);
+		.@bait_index = arrfind_db("$@bait_data$",.@bait);
+		
+		showscript "Casting "+getitemname(.@rod)+" with "+getitemname(.@bait)+"...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		//specialeffect2 12,AREA,getVariable(".charname"+.@npc$+"$");
+		misceffect 60;
+		
+		.@rod_speed = atoi(arrget_db("$@rod_data$",.@rod_index,1));
+		.@rod_variation_reduce = atoi(arrget_db("$@rod_data$",.@rod_index,2));
+		.@fish_speed = atoi(arrget_db("$@fish_data$",.@fish_index,1));
+		.@fish_variation = atoi(arrget_db("$@fish_data$",.@fish_index,2));
+		.@fish_variation = .@fish_variation - (.@fish_variation*.@rod_variation_reduce/100);
+		if(.@fish_variation < 0) .@fish_variation = 0;
+		.@indicator_speed = .@fish_speed + (.@fish_speed*.@rod_speed/100);
+		.@timeout_before_run1 = atoi(arrget_db("$@bait_data$",.@bait_index,1));
+		.@timeout_before_run2 = atoi(arrget_db("$@bait_data$",.@bait_index,2));
+		
+		Fishing_Main_Func( .@indicator_speed , .@fish_variation, .@timeout_before_run1 , .@timeout_before_run2);
+	}else if( getVariable(".charname"+.@npc$+"$") == strcharinfo(0) ){
+		Fishing_Main_Func();
+	}
+	end;
+}
+
+function	script	Fishing_End_Func	{
+	//.@sleepduration = getarg(0);
+	.@npc$ = strnpcinfo(3);
+	delwaitingroom .@npc$;
+	.@name$ = getVariable(".charname"+.@npc$+"$");
+	.@aid = getcharid2(3,.@name$);
+	.@charid = getcharid2(0,.@name$);
+	if(isloggedin(.@aid,.@charid)){
+		setd "@bindspot$","",getcharid2(0,getVariable(".charname"+.@npc$+"$"));
+	}
+	setVariable(".fish"+.@npc$+"$","");
+	setVariable(".trackitem"+.@npc$,0);
+	setVariable(".status"+.@npc$,3);
+	setVariable(".charname"+.@npc$+"$","");
+	/*
+	if(rand(1,100)<=getVariable(".hide_rate")){
+		hideonnpc .@npc$;
+		sleep .@sleepduration;
+		hideoffnpc .@npc$;
+	}
+	*/
+	setVariable(".status"+.@npc$,0);
+	end;
+}
+
+function	script	Fish_Reward_Func	{
+	sleep2 1000;
+	if(!playerattached()) Fishing_End_Func();	// add check to counter unexpected player not attach (server reload/disconnect/logout)
+	showscript "It's a "+getVariable(".fish"+strnpcinfo(3)+"$")+"!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	sleep2 1000;
+	if(!playerattached()) Fishing_End_Func();	// add check to counter unexpected player not attach (server reload/disconnect/logout)
+	.@fish$ = getVariable(".fish"+strnpcinfo(3)+"$");
+	.@fish_index = arrfind_db("$@fish_data$",.@fish$);
+	.@mode$ = arrget_db("$@fish_data$",.@fish_index,3);
+	.@idlist$ = arrget_db("$@fish_data$",.@fish_index,4);
+	if(.@mode$=="getitem"){
+		emotion ET_SPARK,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "Something in it's mouth...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		explode(.@itemlist$,.@idlist$,":");
+		.@item = atoi(.@itemlist$[rand(getarraysize(.@itemlist$))]);
+		sleep 1000;
+		emotion ET_MONEY,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "It's "+callfunc("F_InsertArticle",getitemname(.@item))+"!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		getitem .@item,1,getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	}else if(.@mode$=="delitem"){
+		emotion ET_STARE,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "It try to steal something!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		explode(.@itemlist$,.@idlist$,":");
+		.@item = atoi(.@itemlist$[rand(getarraysize(.@itemlist$))]);
+		sleep 1000;
+		if(attachrid(getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$")))){
+			if(countitem(.@item)){
+				emotion ET_FRET,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+				showscript "It steal 1 of my "+getitemname(.@item)+"!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+				delitem .@item,1;
+			}else{
+				emotion ET_HNG,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+				showscript "But it fail~ Shoo~",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+			}
+			detachrid;
+		}
+	}else if(.@mode$=="useskill"){
+		.@mobid = atoi(arrget_db("$@fish_data$",.@fish_index,5));
+		setnpcdisplay(strnpcinfo(3), getmonsterinfo(.@mobid,MOB_NAME),.@mobid);
+		explode(.@skilllist$,.@idlist$,":");
+		.@skill = atoi(.@skilllist$[rand(getarraysize(.@skilllist$))]);
+		getmapxy(.@map$,.@x,.@y,UNITTYPE_PC);
+		//movenpc strnpcinfo(3),.@x,.@y;
+		npcskill .@skill,10,(getmonsterinfo(.@mobid,MOB_INT)>=199?199:getmonsterinfo(.@mobid,MOB_INT)),getmonsterinfo(.@mobid,MOB_LV);
+		sleep 1000;
+		emotion ET_HUM,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		//movenpc strnpcinfo(3),getVariable(".npcx"+strnpcinfo(3)),getVariable(".npcy"+strnpcinfo(3));
+		setnpcdisplay(strnpcinfo(3), getVariable(".npcname"+strnpcinfo(3)+"$"),723);
+	}else if(.@mode$=="mob"){
+		explode(.@moblist$,.@idlist$,":");
+		.@mob = atoi(.@moblist$[rand(getarraysize(.@moblist$))]);
+		showscript "It's seens angry...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		setnpcdisplay(strnpcinfo(3), getmonsterinfo(.@mob,MOB_NAME),.@mob);
+		getmapxy(.@map$,.@x,.@y,UNITTYPE_PC);
+		sleep 1000;
+		emotion ET_HUK,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		setnpcdisplay(strnpcinfo(3), getVariable(".npcname"+strnpcinfo(3)+"$"),723);
+		.@gid = monster(.@map$,.@x,.@y,"--ja--",.@mob,1,"",2);
+		/*if(is_function("aimode")){
+			aimode(.@gid,"aggro");
+		}*/
+	}else if(.@mode$=="junkitem"){
+		emotion ET_KEK,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "I wonder who throw this...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		explode(.@itemlist$,.@idlist$,":");
+		if(getarraysize(getVariable(".junk_list"))){
+			.@item = getVariable(".junk_list["+rand(getarraysize(getVariable(".junk_list")))+"]");
+		}else{
+			.@item = atoi(.@itemlist$[rand(getarraysize(.@itemlist$))]);
+		}
+		sleep 1000;
+		emotion ET_OHNO,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "It's "+callfunc("F_InsertArticle",getitemname(.@item))+"!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		getitem .@item,1,getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	}else if(.@mode$=="getfish"){
+		emotion ET_DELIGHT,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "Let check it clearly...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		explode(.@itemlist$,.@idlist$,":");
+		.@item = atoi(.@itemlist$[rand(getarraysize(.@itemlist$))]);
+		sleep 1000;
+		emotion ET_SEXY,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		showscript "It's "+callfunc("F_InsertArticle",getitemname(.@item))+"!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+		getitem .@item,1,getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	}
+	return;
+}
+
+function	script	EF_Bubble	{
+	while(1){
+		if(getnpctimer(0) || getVariable(".status"+strnpcinfo(3)) > 0){
+			sleep 5000;
+			continue;
+		}
+		specialeffect EF_BUBBLE;
+		specialeffect 199;
+		emotion ET_DELIGHT;
+		sleep rand(1,5)*1000;
+	}
+}
+
+function	script	Fish_Spot_Initialize	{
+	.@npc$ = strnpcinfo(3);
+	getmapxy(.@map$,.@mapx,.@mapy,UNITTYPE_NPC);
+	setVariable(".npcx"+.@npc$,.@mapx);
+	setVariable(".npcy"+.@npc$,.@mapy);
+	setVariable(".npcname"+.@npc$+"$",strnpcinfo(0));
+	
+	for(.@x=0;.@x<getarraysize(getVariable(".fish_list$"));.@x++){
+		deletearray .@T$,getarraysize(.@T$);
+		explode(.@T$,getVariable(".fish_list$["+.@x+"]"),"|");
+		setVariable(".fish_name$["+.@x+"]",.@T$[0]);
+		setVariable(".fish_rate["+.@x+"]",atoi(.@T$[1]));
+		setVariable(".fish_max["+.@x+"]",atoi(.@T$[2]));
+		setVariable(".fish_amt["+.@x+"]",atoi(.@T$[2]));
+		setVariable(".fish_timedelay["+.@x+"]",atoi(.@T$[3]));
+	}
+	return;
+}
+
+izlude,110,67,0	script	Test Spot::FISHTEST	723,{
+Fishing_Start_Func(".rod_list",".bait_list");
+end;
+
+OnSuccess:
+	emotion ET_BLABLA,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	showscript "I got it!",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 6;
+	soundeffectall "fish_reel03.wav",0;
+	
+	Fish_Reward_Func();
+	Fishing_End_Func();
+	
+OnHit:
+	emotion ET_PROFUSELY_SWEAT;
+	emotion ET_PROFUSELY_SWEAT,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 4;
+	soundeffectall "fish_reel02.wav",0;
+	//setVariable(".timeout"+strnpcinfo(3),getVariable(".timeout"+strnpcinfo(3))+1);	// add 1 more sec on each successful hook
+	end;
+	
+// Event without player attach =================================================================================
+OnCharacterGone:
+	Fishing_End_Func();
+
+OnWrongTiming:
+	emotion ET_SCRATCH,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	showscript "I shouldn't pull at this situation...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 5;
+	Fishing_End_Func();
+OnTimeOut:
+	emotion ET_SCRATCH,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	showscript "The bait is gone...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 5;
+	Fishing_End_Func();
+
+OnRodGone:
+	emotion ET_HUK,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	showscript "Where is my rod?",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 5;
+	Fishing_End_Func();
+
+OnFail:
+	soundeffectall "fish_reel01.wav",0;
+	emotion ET_SWEAT,getcharid(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	showscript "I lost it...",getcharid2(3,getVariable(".charname"+strnpcinfo(3)+"$"));
+	specialeffect 5;
+	Fishing_End_Func();
+
+OnInit:
+// =========================< Rod & Bait Effect >========================================================================
+setarray .rod_list,25031,25032,25033;			// rod allow to use		(Copy from $@rod_data$)
+setarray .bait_list,503,504,505,506;				// bait consume id		(Copy from $@bait_data$)
+setarray .fish_list$,"Mermaid|8000|5|180","Bass|10000|5|120","Hard Fish|2000|30|120";				// fish list in this npc (Copy from $@fish_data$) string as id
+//setarray .junk_list,501,502,503;
+// ======================================================================================================================
+Fish_Spot_Initialize();
+callfunc("EF_Bubble");
+}

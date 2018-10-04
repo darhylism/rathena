@@ -1,0 +1,68 @@
+//===== rAthena Script =======================================
+//= Sample Random Option Script
+//===== Description: =========================================
+//= Enchant a weapon with a random element option 
+//= to a weapon with no random option.
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Secretdataz]
+//============================================================
+
+mall01,95,106,7	script	Elemental Master	1_M_WIZARD,{
+	disable_items;
+	mes "[Elemental Master]";
+	mes "I could enchant your weapon with a random element.";
+	mes "For only ^0000FF 3x Proof of Donation^000000";
+	mes "Element Dispell no more! hehehez";
+	mes "Are you interested?";
+	next;
+	if(select("Yes, I'm interested in that.") == 1){
+		.@id = getequipid(EQI_HAND_R);
+		mes "[Elemental Master]";
+		if(.@id == -1) {
+			mes "You are not holding anything in your right hand.";
+			close;
+		}
+		if(!getequiprandomoption(EQI_HAND_R,0,ROA_ID)){
+			mes "Your weapon needs to be enchanted on ^6A01A1Sebas^000000 first.";
+			close;
+		}
+		mes "Do you want to enchant your " + getitemname(.@id) + " with a random element?";
+		next;
+		if(select("Yes, proceed.") == 1){
+			if (countitem(7179) < 3) goto PriceFail;
+			delitem 7179,3;
+			mes "[Elemental Master]";
+			mes "*mumble mumble*";
+			progressbar "#00FF00",2;	
+			set .@part,9;
+			set .@indx,1;
+			set .@val,0;
+			if (rand(1000) < 10) setarray .@i[0],183;
+			else if (rand(1000) < 50) setarray .@i[0],182,184;
+			else if (rand(1000) < 200) setarray .@i[0],175,176,177,178,179,180,181,182,184;
+			else setarray .@i[0],175,176,177,178,179,180;
+			set .@opt,.@i[rand(getarraysize(.@i))];
+			next;
+			setrandomoption(.@part,.@indx,.@opt,.@val,.@indx,getcharid(0));
+			mes "[Elemental Master]";
+			mes "Here's your weapon";
+			close;
+		}
+		close;
+	}
+	else{
+		close;
+	}
+	
+PriceFail:
+	mes "[Elemental Master]";
+	mes "What's this?";
+	mes "Are you kidding me?";
+	mes "Sorry but I don't work";
+	mes "for free!";
+	mes "You can come back if you";
+	mes "Have ^0000FF 3x Proof of Donation^000000 for";
+	mes "my service.";
+close;
+	
+}
