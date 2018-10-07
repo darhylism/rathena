@@ -11339,14 +11339,14 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 			clif_wis_end(fd, 3); // 3: everyone ignored by target
 		return;
 	}
-
+/*
 	// if player is autotrading
 	if (dstsd->state.autotrade == 1){
 		safesnprintf(output,sizeof(output),"%s is in autotrade mode and cannot receive whispered messages.", dstsd->status.name);
 		clif_wis_message(sd, wisp_server_name, output, strlen(output) + 1, 0);
 		return;
 	}
-
+*/
 	if (pc_get_group_level(sd) <= pc_get_group_level(dstsd)) {
 		// if player ignores the source character
 		ARR_FIND(0, MAX_IGNORE_LIST, i, dstsd->ignore[i].name[0] == '\0' || strcmp(dstsd->ignore[i].name, sd->status.name) == 0);
@@ -20593,7 +20593,7 @@ static int clif_parse(int fd)
 				//Disassociate character from the socket connection.
 				session[fd]->session_data = NULL;
 				sd->fd = 0;
-				ShowInfo("Character '" CL_WHITE "%s" CL_RESET "' logged off (using @autotrade).\n", sd->status.name);
+				ShowInfo("Character '" CL_WHITE "%s" CL_RESET "' logged off..\n", sd->status.name);
 			} else
 			if (sd->state.active) {
 				// Player logout display [Valaris]

@@ -5934,6 +5934,37 @@ ACMD_FUNC(changelook)
 }
 
 /*==========================================
+ * @afk by [darhylism]
+ * Turns on/off afk(autotrade without vend) for a specific player
+ *------------------------------------------*/
+ACMD_FUNC(afk) {
+	nullpo_retr(-1, sd);
+/*
+	if( !map[sd->bl.m].flag.town ) {
+		clif_displaymessage(fd, msg_txt(sd,1179)); // Autotrade is not allowed on this map.
+		return -1;
+	}
+
+	if( pc_isdead(sd) ) {
+		clif_displaymessage(fd, msg_txt(sd,1180)); // You cannot autotrade when dead.
+		return -1;
+	}
+*/
+	sd->state.autotrade = 1;
+	if( battle_config.at_timeout ) {
+		int timeout = atoi(message);
+		status_change_start(NULL,&sd->bl, SC_AUTOTRADE, 10000, 0, 0, 0, 0, ((timeout > 0) ? min(timeout,battle_config.at_timeout) : battle_config.at_timeout) * 60000, SCSTART_NONE);
+	}
+
+	channel_pcquit(sd,0xF); //leave all chan
+	clif_authfail_fd(sd->fd, 15);
+
+	chrif_save(sd, CSAVE_AUTOTRADE);
+
+	return 0;
+}
+
+/*==========================================
  * @autotrade by durf [Lupus] [Paradox924X]
  * Turns on/off Autotrade for a specific player
  *------------------------------------------*/
@@ -10350,6 +10381,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(get_allowed_gepard_version),
 		ACMD_DEF(set_allowed_gepard_grf_hash),
 		ACMD_DEF(get_allowed_gepard_grf_hash),
+		ACMD_DEF(afk),
 #include "../custom/atcommand_def.inc"
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(where),
