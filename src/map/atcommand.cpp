@@ -5934,6 +5934,37 @@ ACMD_FUNC(changelook)
 }
 
 /*==========================================
+ * @afk by [darhylism]
+ * Turns on/off afk(autotrade without vend) for a specific player
+ *------------------------------------------*/
+ACMD_FUNC(afk) {
+	nullpo_retr(-1, sd);
+/*
+	if( !map[sd->bl.m].flag.town ) {
+		clif_displaymessage(fd, msg_txt(sd,1179)); // Autotrade is not allowed on this map.
+		return -1;
+	}
+
+	if( pc_isdead(sd) ) {
+		clif_displaymessage(fd, msg_txt(sd,1180)); // You cannot autotrade when dead.
+		return -1;
+	}
+*/
+	sd->state.autotrade = 1;
+	if( battle_config.at_timeout ) {
+		int timeout = atoi(message);
+		status_change_start(NULL,&sd->bl, SC_AUTOTRADE, 10000, 0, 0, 0, 0, ((timeout > 0) ? min(timeout,battle_config.at_timeout) : battle_config.at_timeout) * 60000, SCSTART_NONE);
+	}
+
+	channel_pcquit(sd,0xF); //leave all chan
+	clif_authfail_fd(sd->fd, 15);
+
+	chrif_save(sd, CSAVE_AUTOTRADE);
+
+	return 0;
+}
+
+/*==========================================
  * @autotrade by durf [Lupus] [Paradox924X]
  * Turns on/off Autotrade for a specific player
  *------------------------------------------*/
@@ -9995,7 +10026,7 @@ ACMD_FUNC(limitedsale){
 	return 0;
 }
 
-#include "../custom/atcommand.inc"
+// (^~_~^) Gepard Shield Start
 
 ACMD_FUNC(gepard_block_nick)
 {
@@ -10006,14 +10037,14 @@ ACMD_FUNC(gepard_block_nick)
 	unsigned int violator_unique_id = 0;
 	char reason_str[GEPARD_REASON_LENGTH];
 	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char violator_name[NAME_LENGTH];
-	char duration_type;
+	char duration_type, violator_name[NAME_LENGTH];
 	const char* command_info = "Wrong input (usage: @gepard_block_nick <duration> <duration_type m/h/d> \"<char name>\" <reason>)";
+
 	nullpo_retr(-1, sd);
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
-	if (!message || !*message || sscanf(message, "%u %c \"%23[^\"]\" %99[^\n]", &duration, &duration_type, violator_name, reason_str) < 4)
+	if (!*message || sscanf(message, "%u %c \"%23[^\"]\" %99[^\n]", &duration, &duration_type, violator_name, reason_str) < 4)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10046,7 +10077,7 @@ ACMD_FUNC(gepard_block_nick)
 		return -1;
 	}
 
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server));
+	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
 
 	sprintf(atcmd_output, "Request: block by name - %s", violator_name);
 	clif_displaymessage(fd, atcmd_output);
@@ -10064,6 +10095,10 @@ ACMD_FUNC(gepard_block_nick)
 	return 0;
 }
 
+// (^~_~^) Gepard Shield End
+
+// (^~_~^) Gepard Shield Start
+
 ACMD_FUNC(gepard_block_account_id)
 {
 	struct map_session_data* violator_sd;
@@ -10072,15 +10107,14 @@ ACMD_FUNC(gepard_block_account_id)
 	unsigned int violator_account_id = 0;
 	unsigned int violator_unique_id = 0;
 	char reason_str[GEPARD_REASON_LENGTH];
-	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type;
+	char duration_type, unban_time_str[GEPARD_TIME_STR_LENGTH];
 	const char* command_info = "Wrong input (usage: @gepard_block_account_id <duration> <duration_type m/h/d> <account ID> <reason>)";
 
 	nullpo_retr(-1, sd);
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
-	if (!message || !*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_account_id, reason_str) < 4)
+	if (!*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_account_id, reason_str) < 4)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10113,7 +10147,7 @@ ACMD_FUNC(gepard_block_account_id)
 		return -1;
 	}
 
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server));
+	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
 
 	sprintf(atcmd_output, "Request: block by account ID: %u", violator_account_id);
 	clif_displaymessage(fd, atcmd_output);
@@ -10137,15 +10171,14 @@ ACMD_FUNC(gepard_block_unique_id)
 	unsigned int duration;
 	unsigned int violator_unique_id = 0;
 	char reason_str[GEPARD_REASON_LENGTH];
-	char unban_time_str[GEPARD_TIME_STR_LENGTH];
-	char duration_type;
+	char duration_type, unban_time_str[GEPARD_TIME_STR_LENGTH];
 	const char* command_info = "Wrong input (usage: @gepard_block_unique_id <duration> <duration_type m/h/d> <unique ID> <reason>)";
 
 	nullpo_retr(-1, sd);
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
-	if (!message || !*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_unique_id, reason_str) < 4)
+	if (!*message || sscanf(message, "%u %c %u %99[^\n]", &duration, &duration_type, &violator_unique_id, reason_str) < 4)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10178,7 +10211,7 @@ ACMD_FUNC(gepard_block_unique_id)
 		return -1;
 	}
 
-	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server));
+	strftime(unban_time_str, sizeof(unban_time_str), "%Y-%m-%d %H:%M:%S", localtime(&time_server)); 
 
 	sprintf(atcmd_output, "Request: block by unqiue ID: %u", violator_unique_id);
 	clif_displaymessage(fd, atcmd_output);
@@ -10195,7 +10228,7 @@ ACMD_FUNC(gepard_unblock_nick)
 
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message || sscanf(message, "\"%23[^\"]\"[^\n]", violator_name) < 1)
+	if (!*message || sscanf(message, "\"%23[^\"]\"[^\n]", violator_name) < 1)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10219,7 +10252,7 @@ ACMD_FUNC(gepard_unblock_account_id)
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
-	if (!message || !*message || sscanf(message, "%d", &violator_aid) < 1)
+	if (!*message || sscanf(message, "%d", &violator_aid) < 1)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10241,7 +10274,7 @@ ACMD_FUNC(gepard_unblock_unique_id)
 
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message || sscanf(message, "%u", &violator_unique_id) < 1)
+	if (!*message || sscanf(message, "%u", &violator_unique_id) < 1)
 	{
 		clif_displaymessage(fd, command_info);
 		return -1;
@@ -10256,75 +10289,9 @@ ACMD_FUNC(gepard_unblock_unique_id)
 	return 0;
 }
 
-ACMD_FUNC(set_allowed_gepard_version)
-{
-	FILE* fp;
-	unsigned int gepard_version;
+// (^~_~^) Gepard Shield End
 
-	nullpo_retr(-1, sd);
-
-	gepard_version = strtoul(message, NULL, 10);
-
-	if ((fp = fopen("conf/gepard_version.txt", "w+")) == NULL)
-	{
-		clif_displaymessage(fd, "Can not open conf/gepard_version.txt !");
-		return -1;
-	}
-
-	fprintf (fp, "%u", gepard_version);
-
-	fclose(fp);
-
-	min_allowed_gepard_version = gepard_version;
-
-	sprintf(atcmd_output, "Min allowed Gepard version was set to %u !", min_allowed_gepard_version);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
-
-ACMD_FUNC(get_allowed_gepard_version)
-{
-	sprintf(atcmd_output, "Min allowed version of Gepard Shield is %u", min_allowed_gepard_version);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
-
-ACMD_FUNC(set_allowed_gepard_grf_hash)
-{
-	FILE* fp;
-	unsigned int gepard_grf_hash;
-
-	nullpo_retr(-1, sd);
-
-	gepard_grf_hash = strtoul(message, NULL, 10);
-
-	if ((fp = fopen("conf/gepard_grf_hash.txt", "w+")) == NULL)
-	{
-		clif_displaymessage(fd, "Can not open conf/gepard_grf_hash.txt !");
-		return -1;
-	}
-
-	fprintf (fp, "%u", gepard_grf_hash);
-
-	fclose(fp);
-
-	allowed_gepard_grf_hash = gepard_grf_hash;
-
-	sprintf(atcmd_output, "Allowed Gepard GRF hash was set to %u !", allowed_gepard_grf_hash);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
-
-ACMD_FUNC(get_allowed_gepard_grf_hash)
-{
-	sprintf(atcmd_output, "Allowed Gepard GRF hash is %u", allowed_gepard_grf_hash);
-	clif_displaymessage(fd, atcmd_output);
-
-	return 0;
-}
+#include "../custom/atcommand.inc"
 
 /**
  * Fills the reference of available commands in atcommand DBMap
@@ -10340,16 +10307,19 @@ void atcommand_basecommands(void) {
 	 * TODO: List all commands that causing crash
 	 **/
 	AtCommandInfo atcommand_base[] = {
+
+// (^~_~^) Gepard Shield Start
+
 		ACMD_DEF(gepard_block_nick),
 		ACMD_DEF(gepard_block_account_id),
 		ACMD_DEF(gepard_block_unique_id),
 		ACMD_DEF(gepard_unblock_nick),
 		ACMD_DEF(gepard_unblock_account_id),
 		ACMD_DEF(gepard_unblock_unique_id),
-		ACMD_DEF(set_allowed_gepard_version),
-		ACMD_DEF(get_allowed_gepard_version),
-		ACMD_DEF(set_allowed_gepard_grf_hash),
-		ACMD_DEF(get_allowed_gepard_grf_hash),
+
+// (^~_~^) Gepard Shield End
+
+		ACMD_DEF(afk),
 #include "../custom/atcommand_def.inc"
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(where),

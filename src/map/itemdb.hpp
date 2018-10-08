@@ -792,6 +792,14 @@ struct s_roulette_db {
 };
 extern struct s_roulette_db rd;
 
+/**
+* Extended Vending system [Lilith]
+**/
+struct s_item_vend {
+	unsigned short itemid;
+};
+extern struct s_item_vend item_vend[MAX_INVENTORY];
+
 ///Main item data struct
 struct item_data
 {
@@ -963,4 +971,10 @@ void itemdb_reload(void);
 void do_final_itemdb(void);
 void do_init_itemdb(void);
 
-#endif /* ITEMDB_HPP */
+/**
+* Extended Vending system [Lilith]
+**/
+#define ITEMID_ZENY battle_config.item_zeny
+#define ITEMID_CASH battle_config.item_cash
+
+#endif /* _ITEMDB_HPP_ */

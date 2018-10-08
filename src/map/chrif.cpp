@@ -1786,6 +1786,8 @@ int chrif_parse(int fd) {
 
 	while ( RFIFOREST(fd) >= 2 ) {
 		int cmd = RFIFOW(fd,0);
+
+// (^~_~^) Gepard Shield Start
 		if (cmd == GEPARD_C2M_BLOCK_ACK)
 		{
 			if (chrif_gepard_ack_block(fd) == true)
@@ -1800,6 +1802,8 @@ int chrif_parse(int fd) {
 			else
 				return 0;
 		}
+// (^~_~^) Gepard Shield End
+
 		if (cmd < 0x2af8 || cmd >= 0x2af8 + ARRAYLENGTH(packet_len_table) || packet_len_table[cmd-0x2af8] == 0) {
 			int r = intif_parse(fd); // Passed on to the intif
 
@@ -2032,6 +2036,7 @@ void do_init_chrif(void) {
 	add_timer_interval(gettick() + 1000, send_usercount_tochar, 0, 0, UPDATE_INTERVAL);
 }
 
+// (^~_~^) Gepard Shield Start
 int chrif_gepard_req_block(unsigned int unique_id, const char* violator_name, unsigned int violator_aid, const char* initiator_name, unsigned int initiator_aid, const char* unban_time_str, const char* reason_str)
 {
 	unsigned int offset;
@@ -2102,7 +2107,7 @@ bool chrif_gepard_ack_block(int fd)
 	{
 		char message_info[300];
 		struct s_mapiterator* iter;
-
+	
 		safesnprintf(message_info, 300, "Unique ID has been banned!\r\rDate of unban:  %s\r\rUnique id: %u\r\rReason: %s", unban_time_str, unique_id, reason_str);
 
 		iter = mapit_getallusers();
@@ -2117,7 +2122,7 @@ bool chrif_gepard_ack_block(int fd)
 				session[sd->fd]->recv_crypt.pos_3 = rand() % 255;
 			}
 		}
-
+	
 		mapit_free(iter);
 	}
 
@@ -2182,3 +2187,5 @@ bool chrif_gepard_ack_unblock(int fd)
 
 	return true;
 }
+// (^~_~^) Gepard Shield End
+

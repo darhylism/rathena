@@ -18,79 +18,115 @@
 
 #define FIFOSIZE_SERVERLINK 256*1024
 
+// (^~_~^) Gepard Shield Start
+
+#define  LICENSE_ID  173457520
+#define  CODE_VERSION  2016122701
+
+#define  SESSION_CONST_1  0x93F4A53E
+#define  SESSION_CONST_2  0x44C716C5
+
+#define  ALGO_KEY_1  0xA9
+#define  ALGO_KEY_2  0x1F
+#define  ALGO_KEY_3  0x1C
+
+#define  DATA_HASH_CONST_1  0xD5F3F74F
+#define  DATA_HASH_CONST_2  0x46EAF3C6
+
+// (^~_~^) Gepard Shield End
+
+// (^~_~^) Gepard Shield Start
+
+extern long long start_tick;
 extern bool is_gepard_active;
-extern uint32 allowed_gepard_grf_hash;
-extern uint32 min_allowed_gepard_version;
+extern unsigned int min_allowed_license_version;
 
-#define MATRIX_SIZE (2048 + 1)
-#define KEY_SIZE (32 + 1)
+#define MATRIX_SIZE     2048
+#define KEY_SIZE        32
 
-#define GEPARD_ID	0x1051ED52
-#define UNIQUE_ID_XOR	0x24063457
-#define SRAND_CONST	0x67EA3335
-#define POS_1_START	0x65
-#define POS_2_START	0x38
-#define RAND_1_START	0xD5
-#define RAND_2_START	0xE3
+#define GEPARD_REASON_LENGTH 99
+#define GEPARD_TIME_STR_LENGTH 24
+#define GEPARD_RESULT_STR_LENGTH 100
 
-struct gepard_crypt_link
+struct gepard_crypt_unit
 {
-	unsigned char key[KEY_SIZE];
+	unsigned int flag;
 	unsigned char pos_1;
 	unsigned char pos_2;
 	unsigned char pos_3;
+	unsigned char key[256];
 };
 
 struct gepard_info_data
 {
-	bool is_init_ack_received;
-	uint32 unique_id;
-	uint32 sync_tick;
-	uint32 grf_hash_number;
-	uint32 gepard_shield_version;
+	
+	long long sync_tick;
+	unsigned int unique_id;
+	unsigned int license_version;
+	unsigned char mac_address[6];
+	unsigned int is_init_ack_received;
+	unsigned short cs_packet_request_move;
+	unsigned short cs_packet_action_request;
+	unsigned short cs_packet_use_skill_to_id;
+	unsigned short cs_packet_use_skill_to_ground;
 };
 
 enum gepard_server_types
 {
-	GEPARD_MAP      = 0xAAAA,
-	GEPARD_LOGIN    = 0xBBBB,
+	GEPARD_MAP      = 0xCCCC,
+	GEPARD_LOGIN    = 0xAAAA,
 };
 
 enum gepard_info_type
 {
+	GEPARD_INFO_MESSAGE,
+	GEPARD_INFO_MESSAGE_EXIT,
+	GEPARD_INFO_INVALID_INIT_ACK,
 	GEPARD_INFO_BANNED,
-	GEPARD_INFO_OLD_VERSION,
-	GEPARD_INFO_DUAL_LOGIN,
-	GEPARD_INFO_CORUPTED_UID,
-	GEPARD_INFO_WRONG_LICENSE_ID,
-	GEPARD_WRONG_GRF_HASH,
+	GEPARD_INFO_OLD_LICENSE_VERSION,
 };
 
 enum gepard_packets
 {
-	CS_LOGIN_PACKET        = 0x0064,
+	CS_LOAD_END_ACK        = 0x007D,
 	CS_WHISPER_TO          = 0x0096,
-	CS_WALK_TO_XY          = 0x0363,
-	CS_USE_SKILL_TO_ID     = 0x083c,
-	CS_USE_SKILL_TO_POS    = 0x0438,
 
-	CS_LOGIN_PACKET_1      = 0x0277,
-	CS_LOGIN_PACKET_2      = 0x02b0,
-	CS_LOGIN_PACKET_3      = 0x01dd,
-	CS_LOGIN_PACKET_4      = 0x01fa,
-	CS_LOGIN_PACKET_5      = 0x027c,
-	CS_LOGIN_PACKET_6      = 0x0825,
+	CS_LOGIN_PACKET_1      = 0x0064,
+	CS_LOGIN_PACKET_2      = 0x0277,
+	CS_LOGIN_PACKET_3      = 0x02b0,
+	CS_LOGIN_PACKET_4      = 0x01dd,
+	CS_LOGIN_PACKET_5      = 0x01fa,
+	CS_LOGIN_PACKET_6      = 0x027c,
+	CS_LOGIN_PACKET_7      = 0x0825,
 
-	SC_SET_UNIT_WALKING    = 0x09fd,
-	SC_SET_UNIT_IDLE       = 0x09ff,
+	SC_SET_UNIT_WALKING_1  = 0x07F7,
+	SC_SET_UNIT_WALKING_2  = 0x0856,
+	SC_SET_UNIT_WALKING_3  = 0x0914,
+	SC_SET_UNIT_WALKING_4  = 0x09DB,
+	SC_SET_UNIT_WALKING_5  = 0x09FD,
+
+	SC_SET_UNIT_IDLE_1     = 0x07F9,
+	SC_SET_UNIT_IDLE_2     = 0x0857,
+	SC_SET_UNIT_IDLE_3     = 0x0915,
+	SC_SET_UNIT_IDLE_4     = 0x09DD,
+	SC_SET_UNIT_IDLE_5     = 0x09FF,
+
+	SC_NOTIFY_TIME         = 0x007F,
+	SC_STATE_CHANGE        = 0x0229,
+
+	SC_MSG_STATE_CHANGE_1  = 0x0196,
+	SC_MSG_STATE_CHANGE_2  = 0x043F,
+	SC_MSG_STATE_CHANGE_3  = 0x0983,
+
 	SC_WHISPER_FROM        = 0x0097,
 	SC_WHISPER_SEND_ACK    = 0x0098,
 
-	CS_GEPARD_SYNC         = 0x2000,
-	CS_GEPARD_INIT_ACK     = 0x1002,
+	CS_GEPARD_SYNC         = 0x8285,
+	CS_GEPARD_INIT_ACK     = 0xC392,
 
-	SC_GEPARD_INIT         = 0xABCD,
+	SC_GEPARD_INIT         = 0x4753,
 	SC_GEPARD_INFO         = 0xBCDE,
+	SC_GEPARD_SETTINGS     = 0x5395,
 };
 
 enum gepard_internal_packets
@@ -101,15 +137,16 @@ enum gepard_internal_packets
 	GEPARD_C2M_UNBLOCK_ACK = 0x5003,
 };
 
-#define GEPARD_REASON_LENGTH 99
-#define GEPARD_TIME_STR_LENGTH 24
-#define GEPARD_RESULT_STR_LENGTH 100
-
-void gepard_config_read();
-void gepard_init(int fd, uint16 packet_id);
+void gepard_set_eof(int fd);
+long long gepard_get_tick(void);
+unsigned int gepard_get_unique_id(int fd);
+struct socket_data* gepard_get_socket_data(int fd);
+void gepard_init(struct socket_data* s, int fd, uint16 server_type);
 void gepard_send_info(int fd, unsigned short info_type, const char* message);
-bool gepard_process_packet(int fd, uint8* packet_data, uint32 packet_size, struct gepard_crypt_link* link);
-void gepard_enc_dec(uint8* in_data, uint8* out_data, unsigned int data_size, struct gepard_crypt_link* link);
+bool gepard_process_cs_packet(int fd, struct socket_data* s, size_t packet_size);
+void gepard_process_sc_packet(int fd, struct socket_data* s, size_t packet_size);
+
+// (^~_~^) Gepard Shield End
 
 // socket I/O macros
 #define RFIFOHEAD(fd)
@@ -188,12 +225,14 @@ struct socket_data
 	ParseFunc func_parse;
 
 	void* session_data; // stores application-specific data related to the session
-	// Gepard Shield
+
+// (^~_~^) Gepard Shield Start
 	struct gepard_info_data gepard_info;
-	struct gepard_crypt_link send_crypt;
-	struct gepard_crypt_link recv_crypt;
-	struct gepard_crypt_link sync_crypt;
-	// Gepard Shield
+	struct gepard_crypt_unit send_crypt;
+	struct gepard_crypt_unit recv_crypt;
+	struct gepard_crypt_unit sync_crypt;
+// (^~_~^) Gepard Shield End
+
 };
 
 
