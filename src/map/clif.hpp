@@ -1095,9 +1095,8 @@ void clif_attendence_response( struct map_session_data *sd, int32 data );
 
 void clif_weight_limit( struct map_session_data* sd );
 
-// Gepard Shield
-bool clif_gepard_process_packet(struct map_session_data* sd);
-// Gepard Shield
+/// Extended Vending [Lilith]
+int clif_vend(struct map_session_data *sd, int skill_lv);
 
 /// Extended Vending [Lilith]
 int clif_vend(struct map_session_data *sd, int skill_lv);

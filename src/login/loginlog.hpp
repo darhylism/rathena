@@ -23,7 +23,12 @@ unsigned long loginlog_failedattempts(uint32 ip, unsigned int minutes);
  * @param rcode:
  * @param message:
  */
-void login_log(int fd, uint32 ip, const char* username, int rcode, const char* message);
+
+// (^~_~^) Gepard Shield Start
+void login_gepard_log(int fd, uint32 ip, const char* username, int rcode, const char* message);
+// (^~_~^) Gepard Shield End
+
+void login_log(uint32 ip, const char* username, int rcode, const char* message);
 
 /**
  * Read configuration options.
