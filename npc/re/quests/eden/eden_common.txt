@@ -148,7 +148,9 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			getitem 13758,1; //field Manual Box 300%
 			getitem 2751,1; //academy badge
 			getitem 2888,1; //school bag
-			getitem 13959,1; //crunch toast 1 week rental
+			getitem 35005,1; //Dark Angel
+			getitem 35006,1; //Arch Angel
+			getitem 35011,1; //Arch Demon
 			}
 		}
 			else {

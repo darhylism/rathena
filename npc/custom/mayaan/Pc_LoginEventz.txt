@@ -3,7 +3,9 @@
 OnPCLoginEvent:
 sc_end SC_ENDURE;
 atcommand "@join #global";
-atcommand "@join #support";
-atcommand "@join #trade";
+if (STOREITEMZ < 1){
+atcommand "@storeall";
+set STOREITEMZ,1;
+}
 end;
 }
