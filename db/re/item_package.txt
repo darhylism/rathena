@@ -1881,11 +1881,11 @@ IG_Hallo_Scroll,12328,1350,1,1,0,0,0	// 1x Charm_Of_Happiness
 IG_Hallo_Scroll,12246,220,1,1,0,0,0	// 1x Magic_Card_Album
 IG_Hallo_Scroll,14375,330,1,1,0,0,0	// 1x Holy_Celestial_Axe_Box
 IG_Hallo_Scroll,13738,1350,1,1,0,0,0	// 1x Glass_Of_Illusion_Box5
-IG_Hallo_Scroll,13742,600,1,1,0,0,0	// 1x Shadow_Armor_S_Box30
+//IG_Hallo_Scroll,13742,600,1,1,0,0,0	// 1x Shadow_Armor_S_Box30
 IG_Hallo_Scroll,12278,1350,5,1,0,0,0	// 5x Alice_Scroll
-IG_Hallo_Scroll,6130,1350,1,1,0,0,0	// 1x Ticket_Loli_Ruri
-IG_Hallo_Scroll,4340,10,1,1,0,0,0	// 1x Teddy_Bear_Card
-IG_Hallo_Scroll,14243,1300,1,1,0,0,0	// 1x Hallow_Ring_Box
+//IG_Hallo_Scroll,6130,1350,1,1,0,0,0	// 1x Ticket_Loli_Ruri
+//IG_Hallo_Scroll,4340,10,1,1,0,0,0	// 1x Teddy_Bear_Card
+//IG_Hallo_Scroll,14243,1300,1,1,0,0,0	// 1x Hallow_Ring_Box
 IG_Hallo_Scroll,5121,140,1,1,0,0,0	// 1x Zherlthsh_Mask
 IG_Hallo_Scroll,12411,150,1,1,0,0,0	// 1x HE_Battle_Manual
 IG_Hallo_Scroll,14508,100,30,1,0,0,0	// 30x Zeny_Scroll

@@ -59,7 +59,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	mes "Hello. Can I help you?";
 	next;
 	while (1) {
-		switch (select("What is Eden group?:Join the Eden Group.:Register new mission.:Search for missions.:Cancel.")) {
+		switch (select("What is Eden group?:Join the Eden Group.:Claim Freebies.:Search for missions.:Cancel.")) {
 		case 1:
 			mes "[Lime Evenor]";
 			mes "Eden Group is a group that helps people who are suffering from distresses in Rune-Midgard.";
@@ -132,60 +132,29 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			}
 			break;
 		case 3:
+		if (callfunc("F_HasEdenGroupMark")) {
 			mes "[Lime Evenor]";
-			mes "Do you want to register some missions that you want us to do?";
+			mes "Do you want to claim your freebies in this character?.";
+			mes "Remember: YOU CAN ONLY CLAIM ^4d4dffONCE PER ACCOUNT!^000000.";
 			next;
-			if(select("Yes, I want to register.:No, I don't.") == 1) {
+			if(select("Yes, I want to claim.:No, I don't.") == 1) {
+				if (!checkweight(1304,3)) {
+				mes "freebies cannot be claimed due to the overfilled inventory.";
+				mes "Please try it again after organizing the items.";
+				close;
+			}
+			mes "[Lime Evenor]";
+			mes "Here you go!";
+			getitem 13758,1; //field Manual Box 300%
+			getitem 2751,1; //academy badge
+			getitem 2888,1; //school bag
+			getitem 13959,1; //crunch toast 1 week rental
+			}
+		}
+			else {
 				mes "[Lime Evenor]";
-				mes "Alrigh. Please write down your name on it.";
-				input .@input$;
-				next;
-				mes "[Lime Evenor]";
-				mes "^3131FF"+strcharinfo(0)+"^000000.. Is that your name?";
-				mes "Hmm, your handwriting is not clear. I can't read. it";
-				next;
-				mes "[Lime Evenor]";
-				mes "^3131FF"+strcharinfo(0)+"^000000, tell me what you want to register. for";
-				mes "Which map should we go to?";
-				input .@input$;
-				next;
-				mes "[Lime Evenor]";
-				mes "^3131FFMission Map: "+.@inputstr$+"^000000";
-				mes "hum, I will note that.";
-				next;
-				mes "[Lime Evenor]";
-				mes "Please let me know what kind of missions your are lookng for.";
-				mes "It should be briefly like 'Hunt 10 Porings.'";
-				input .@input$;
-				next;
-				mes "[Lime Evenor]";
-				mes "Are you done?";
-				mes "Let me check.";
-				next;
-				mes "[Lime Evenor]";
-				mes "Huh...........";
-				next;
-				mes "[Lime Evenor]";
-				mes "Hum.. huh??..................";
-				next;
-				emotion ET_THINK;
-				mes "[Lime Evenor]";
-				mes "I think you should complete one of our missions first before you take up a new mission.";
-				next;
-				emotion ET_HNG;
-				mes "[Lime Evenor]";
-				mes "^3131FFClient: Lime Evenor^000000";
-				mes "^3131FFMission: Practice your handwriting for one month.^000000";
-				mes "You've got really bad penmanship!";
-				next;
-				mes "[Lime Evenor]";
-				mes "^3131FFMission:"+.@input$+"^000000";
-				mes "Anyway, you are done registering for a new mission.";
-				next;
-				mes "[Lime Evenor]";
-				mes "Missions are fully booked. You have to wait for an spot to clear up.";
-				mes "Please kindly wait until your turn.";
-				next;
+				mes "You need to join Eden Group first if you want to claim.";
+				close;
 			}
 			break;
 		case 4:
@@ -213,7 +182,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	close;
 }
 
--	script	Eden Teleport Officer#0::eto	-1,{
+izlude,131,148,4	script	Eden Teleport Officer#0::eto	729,{
 	mes "[Eden Teleport Officer]";
 	mes "Those who are wandering around this strange world with aimless eyes listen up and come to me!";
 	mes "Eden group is here to help you and will show you the great future.";
@@ -223,12 +192,36 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	mes "You are eager to do something good but no one offers you work?";
 	mes "Would you like to be a problem solver?";
 	mes "Eden group is here to solve your problem.";
+if (isbegin_quest(7472) == 1) {
+	next;
+	mes "[Eden Teleport Officer]";
+	mes "It's a good sight to see new adventurers start their journey.";
+	mes "You must be tired. Need a drink?";
+	completequest 7472;
+	getexp 200,0;
+	getitem 531,1;// Apple_Juice
+	}
+if (isbegin_quest(7473) == 1) {
+	next;
+	mes "[Eden Teleport Officer]";
+	mes "It's a good sight to see new adventurers start their journey.";
+	mes "You must be tired. Need a drink?";
+	completequest 7473;
+	getexp 200,0;
+	getitem 531,1;// Apple_Juice
+	}
+	mes "[Eden Teleport Officer]";
+	mes "Lets go!";
 	next;
 	switch (select("Move to Eden Group.:Don't want to talk anymore.")) {
 	case 1:
 		mes "[Eden Teleport Officer]";
 		mes "Let's go to our secret base!";
 		set nak_warp,strnpcinfo(2);
+		if (!isbegin_quest(7474)) {
+			setquest 7474;
+			navigateto "moc_para01",27,31;
+		}
 		close2;
 		warp "moc_para01",31,14;
 		end;
@@ -237,6 +230,9 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 		mes "If you don't know what to do for your future, don't hesitate to tell me. Just drop by and talk to me! Ok?";
 		close;
 	}
+	
+OnInit:
+	questinfo 7474, QTYPE_QUEST, 1;
 }
 prontera,124,76,3	duplicate(eto)	Eden Teleport Officer#1	729
 moc_ruins,68,164,3	duplicate(eto)	Eden Teleport Officer#2	729
@@ -267,7 +263,7 @@ moscovia,209,197,5	duplicate(eto)	Eden Teleport Officer#26	729
 brasilis,191,224,3	duplicate(eto)	Eden Teleport Officer#27	729
 dewata,192,193,5	duplicate(eto)	Eden Teleport Officer#28	729
 morocc,161,97,5	duplicate(eto)	Eden Teleport Officer#29	729
-izlude,131,148,4	duplicate(eto)	Eden Teleport Officer#30	729
+//izlude,131,148,4	duplicate(eto)	Eden Teleport Officer#30	729
 izlude_a,131,148,4	duplicate(eto)	Eden Teleport Officer#30::eto_iz_a	729
 izlude_b,131,148,4	duplicate(eto)	Eden Teleport Officer#30::eto_iz_b	729
 izlude_c,131,148,4	duplicate(eto)	Eden Teleport Officer#30::eto_iz_c	729
@@ -275,6 +271,7 @@ izlude_d,131,148,4	duplicate(eto)	Eden Teleport Officer#30::eto_iz_d	729
 umbala,105,158,3	duplicate(eto)	Eden Teleport Officer#31	729
 malaya,238,206,6	duplicate(eto)	Eden Teleport Officer#32	729
 verus04,116,243,0	duplicate(eto)	Eden Teleport Officer#33	729
+lasagna,192,189,4	duplicate(eto)	Eden Teleport Officer#34	729
 
 moc_para01,30,10,0	script	#eden_out	45,1,1,{
 OnTouch:
@@ -312,6 +309,7 @@ OnTouch:
 		case 31: warp "umbala",94,154; end;
 		case 32: warp "malaya",234,199; end;
 		case 33: warp "verus04",115,243; end;
+		case 34: warp "lasagna",192,182; end;
 		default: warp "prontera",116,72; end;
 	}
 	end;

@@ -7653,6 +7653,13 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	if( (s_bl = battle_get_master(src)) == NULL )
 		s_bl = src;
 
+	if ( s_bl->type == BL_PC && t_bl->type == BL_MOB ) {
+		struct map_session_data *sd = BL_CAST( BL_PC, s_bl );
+		if ( ( ( (TBL_MOB*)target )->mob_id == 1288 && !strcmp( mapindex_id2name(sd->mapindex), "guild_vs1" ) ) &&
+			( sd->status.guild_id == mapreg_readreg( add_str("$koegid") ) || battle_getcurrentskill(src) > 0 ) )
+		return 0;
+	}
+	
 	if ( s_bl->type == BL_PC ) {
 		switch( t_bl->type ) {
 			case BL_MOB: // Source => PC, Target => MOB

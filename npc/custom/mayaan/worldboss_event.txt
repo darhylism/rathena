@@ -55,18 +55,18 @@ OnInit:
 	.treasure_chests = 10;      // Number of duplicate Treasure Chest NPC's (Important!)
 	
 	// Monsters default attributes
-	.MOB_MAXHP = 55000000;     // How much HP can monster have at maximum
+	.MOB_MAXHP = 81650000;     // How much HP can monster have at maximum
 	.MOB_HP = 40000000;          // How much HP monster has on spawn
 	.MOB_SPEED = 140;           // Speed
 	.MOB_CRIT = 200;            // Crit rate (1000/100%)
 	.MOB_HIT = 500;             // Hit rate
-	.MOB_ATKMIN = 16000;         // Base Attack Minimum
-	.MOB_ATKMAX = 25000;         // Base Attack Maximum
-	.MOB_MATKMIN = 16000;        // Magic Attack Minimum
-	.MOB_MATKMAX = 20000;        // Magic Attack Maximum
-	.MOB_DEF = 25;              // Defence
-	.MOB_MDEF = 1;             // Magic Defence
-	.MOB_FLEE = 160;            // Flee
+	.MOB_ATKMIN = 8200;         // Base Attack Minimum
+	.MOB_ATKMAX = 9200;         // Base Attack Maximum
+	.MOB_MATKMIN = 6200;        // Magic Attack Minimum
+	.MOB_MATKMAX = 8200;        // Magic Attack Maximum
+	.MOB_DEF = 300;              // Defence
+	.MOB_MDEF = 200;             // Magic Defence
+	.MOB_FLEE = 200;            // Flee
 	.MOB_PDODGE = 70;          // Perfect Dodge
 
 	// Event monster ID's

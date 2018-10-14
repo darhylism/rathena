@@ -381,7 +381,7 @@ void vending_purchasereq(struct map_session_data* sd, int aid, int uid, const ui
 			#endif
 			if (i == count-1) {
 				if (vsd->vend_loot == ITEMID_ZENY)
-					sprintf(message + strlen(message), "Total profit: %s x %d", "Zeny" ,(mailprofit -= mailprofit * (battle_config.vending_tax / 10000.)));
+					sprintf(message + strlen(message), "Total profit: %s x %d", "Zeny" ,(mailprofit -= mailprofit * (int)(battle_config.vending_tax / 10000.)));
 				else
 					sprintf(message + strlen(message), "Total profit: %s x %d",itemdb_jname(vsd->vend_loot) ,mailprofit); //No Tax for Items/Cash [Easycore]
 			}

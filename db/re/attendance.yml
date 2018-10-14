@@ -3,59 +3,60 @@ Header:
   Version: 1
   
 Attendance:
-  - Start: 20181000
-    End: 20181020
+  - Start: 20181014
+    End: 20181102
     Rewards:
       - Day: 1
-        ItemId: 607
+        ItemId: 12529
       - Day: 2
-        ItemId: 501
+        ItemId: 22669
       - Day: 3
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 4
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 5
-        ItemId: 501
+        ItemId: 7776
       - Day: 6
-        ItemId: 501
+        ItemId: 7776
       - Day: 7
-        ItemId: 501
+        ItemId: 22669
         Amount: 3
       - Day: 8
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 9
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 10
-        ItemId: 501
+        ItemId: 22669
+        Amount: 3
       - Day: 11
-        ItemId: 501
-        Amount: 2
+        ItemId: 22669
+        Amount: 3
       - Day: 12
-        ItemId: 501
+        ItemId: 22669
         Amount: 3
       - Day: 13
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 14
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 15
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 16
-        ItemId: 501
-        Amount: 5
+        ItemId: 22669
+        Amount: 3
       - Day: 17
-        ItemId: 501
-        Amount: 5
+        ItemId: 6233
       - Day: 18
-        ItemId: 501
-        Amount: 5
+        ItemId: 6229
       - Day: 19
-        ItemId: 607
+        ItemId: 16757
+        Amount: 5
       - Day: 20
-        ItemId: 7179
+        ItemId: 16757
+        Amount: 10

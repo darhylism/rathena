@@ -37,7 +37,9 @@ OnActive:
 
 
 new_1-1,66,112,1	script	Barricade#001	1905,{
-	message strcharinfo(0),"[Barricade]: Mayaan Server is Currently ongoing on an OVERHAUL TO RENEWAL. Barricade will open at Oct 13,2018";
+	message strcharinfo(0),"[Barricade]: Mayaan Server Barricade will open at Oct 13,2018";
+	mes "Visit our site <URL>mayaanserver.net<INFO>http://mayaanserver.net/community</INFO></URL>";
+	mes "for more info.";
 	end;
 
 	OnEnable:

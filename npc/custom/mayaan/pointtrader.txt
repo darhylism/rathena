@@ -3,7 +3,7 @@ prontera,136,170,4	script	Point Trader	719,{
     mes @name$;
     mes "What do you want to do?";
 	mes "~Zeny to Cashpoints.";
-	mes "~Silvervine fruit to Hunting Points.";
+	mes "~MVP Stone to Hunting Points.";
 	mes "~Mvp Point to Hunting Points.";
     next;
     switch(select("Information","Convert","Check my Points","Nothing")) {
@@ -11,12 +11,12 @@ prontera,136,170,4	script	Point Trader	719,{
             mes @name$;
 			mes "I can convert:";
             mes "~10m Zeny to 20 Cashpoints.";
-			mes "~1x Silvervine fruit to 10 Hunting Points.";
+			mes "~1x Mvp Stone to 10 Hunting Points.";
 			mes "~1x Mvp Point to 50 Hunting Points.";
             close;
 			
 		case 2:
-			switch(select("Zeny2Cash","Silvervine to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
+			switch(select("Zeny2Cash","MVP Stone to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
 				case 1:
 					mes @name$;
 					mes "How many Platinum Coins you want to convert";
@@ -34,13 +34,13 @@ prontera,136,170,4	script	Point Trader	719,{
 							close;
 				case 2:
 					mes @name$;
-					mes "How many Silvervine Fruit you want to convert";
+					mes "How many MVP Stone you want to convert";
 					mes "to Hunting Points?";
-					mes "1x Silvervine Fruit = 10 ^FF0000HuntingPts^000000.";
+					mes "1x MVP Stone = 10 ^FF0000HuntingPts^000000.";
 					input .@item_count;
 					  if( .@item_count == 0 ) close;
-							if (countitem(6417) < (.@item_count)) goto noTCG;
-							delitem 6417,(.@item_count);
+							if (countitem(35131) < (.@item_count)) goto noTCG;
+							delitem 35131,(.@item_count);
 							#HUNTINGPOINTS += (.@item_count*10);
 							next;
 					mes @name$;

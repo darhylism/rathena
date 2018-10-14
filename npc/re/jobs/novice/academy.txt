@@ -393,35 +393,13 @@ int_land04,58,69,5	duplicate(Sailor#intro_npc04)	Sailor#intro_npc04_04	4W_SAILOR
 // - Captain Carocc
 // -----------------------------------------------------------------------------
 izlude,198,213,3	script	Captain Carocc#iz	4_M_REINDEER,5,5,{
+OnTouch:
+	if (Class == Job_Novice && BaseLevel < 15 && !isbegin_quest(4269)){
+		emotion ET_SURPRISE;
+		
 	cutin "fly_trock.bmp", 2;
-	if (Class == Job_Novice && BaseLevel < 15) {
-		if (isbegin_quest(4269) == 2) {
-			if (isbegin_quest(7471) == 2 || isbegin_quest(7472) > 0) {
-				mes "[Carocc]";
-				mes "Oh, "+strcharinfo(0)+"!";
-				mes "Why are you here at the wharf?";
-				mes "I guess you are doing well at the academy.";
-				next;
-				mes "[Carocc]";
-				mes "I'm going to be docking and reparing the ship here for a while.";
-				mes "I will be taking the same route I tried before.";
-			} else {
-				mes "[Carocc]";
-				mes "Hmm? You must be a student of the Criatura Academy?";
-				mes "Were you on my ship?";
-				mes "Hmm I can't remember.";
-				next;
-				mes "[Carocc]";
-				mes "Well, anything is fine.";
-				mes "Shall I go easy on you since you said you were a student of the Academy?";
-				mes "I am still the captain of the ship, regardless.";
-			}
-			next;
-			mes "[Carocc]";
-			mes "I plan on taking off as soon as the repairs are complete.";
-			mes "The route will open with ^4d4dffPharos Lighthouse^000000 by then.";
-		} else {
-			if (isbegin_quest(7471) == 2) {
+	if (Class == Job_Novice && BaseLevel < 20)
+		{
 				if (!isbegin_quest(7472)) {
 					mes "[Carocc]";
 					mes "This is Izlude.";
@@ -437,179 +415,22 @@ izlude,198,213,3	script	Captain Carocc#iz	4_M_REINDEER,5,5,{
 					next;
 					mes "[Carocc]";
 					mes "Did you know this?";
-					mes "Izlude has a new Institute for budding adventurers like you!";
+					mes "Eden Group is a good place for adventurers like you!";
 					next;
-					select("You mean the Academy?");
+					select("Eden Group?");
 					mes "[Carocc]";
-					mes "Yes! It's called the ^4d4dffRoyal Criatura Academy^000000.";
+					mes "Yes! It's called the ^4d4dffEden Group^000000.";
 					mes "Founded by the Rune Midgard lineage to help out new adventurers.";
 					next;
 					mes "[Carocc]";
 					mes "A friend of mine works there, so I'll give you the introduction to him.";
 					mes "He could make a lot of things easier for you.";
 					next;
-					mes "[Carocc]";
-					mes "He usually talks to new adventurers near the entrance of the academy.";
-					mes "Go and meet him there.";
-					next;
-					if (!isbegin_quest(7473)) {
-						mes "[Carocc]";
-						mes "His name is ^4d4dffHun^000000";
-						mes "I will mark his spot on the map so go to see him.";
-						setquest 7472;
-						viewpoint 1,122,207,0,0x4d4dff;
-						next;
-						mes "!- Information -!";
-						mes "The ^4d4dffMini map can be seen on the right top of the screen.";
-						mes "You can zoom in with +, zoom out with -. The waypoint from the NPC will be marked on it. ^000000";
-						next;
-						cutin "tutorial02.bmp", 4;
-						mes "!- Information -!";
-						mes "Received a Quest from ^4d4dffCaptain Carocc.";
-						mes "The quest content can be checked from the quest window.";
-						next;
-						mes "!- Information -!";
-						mes "Quest window can be opened by pressing ^4d4dffAlt + u^000000 keys together.";
-						next;
-						cutin "", 255;
-						mes "[Carocc]";
-						mes "If you need more help with the map, press <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> here";
-						mes "Yes, the part that says 'Hun'.";
-						next;
-						mes "!- Information -!";
-						mes "^4d4dffThe icon during talk <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> means a link to navigation directions.";
-						cutin "navi01.bmp", 4;
-						next;
-						mes "!- Information -!";
-						mes "If you press info after selecting a task in the objectives^4d4dff,";
-						mes "an arrow pointing to the location of the objective will pop up along with the navigation help.";
-						cutin "navi02.bmp", 4;
-						next;
-						cutin "", 255;
-						mes "[Carocc]";
-						mes "Anyway, my friend will help you register with the academy";
-						mes "I hope it can help you for your future.";
-						close;
-					} else {
-						select("I know who you're talking about.");
-						mes "[Carocc]";
-						mes "Then there's no worry.";
-						mes "He'll introduce you to the academy.";
-						next;
-						mes "[Carocc]";
-						mes "OK. I will show you the direction. You try it again.";
-						mes "By the way, did I tell you his name? His name is ^4d4dffHun^000000";
-						viewpoint 1,122,207,1,0x4d4dff;
-						next;
-						mes "!- Information -!";
-						mes "^4d4dff Mini map can be seen on the right top of the screen.";
-						mes "You can zoom in with +, zoom out with -. The waypoint from the NPC will be marked on it. ^000000";
-						next;
-						mes "[Carocc]";
-						mes "If you need more help with the map, press <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> here";
-						mes "Yes, the part that says [Hun].";
-						next;
-						mes "!- Information -!";
-						mes "^4d4dff the icon during talk <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> means";
-						mes "a link to navigation directions.";
-						cutin "navi01.bmp", 4;
-						next;
-						mes "!- Information -!";
-						mes "If you press info after selecting a task in the objectives^4d4dff,";
-						mes "an arrow pointing to the location of the objective will pop up along with navigation help";
-						cutin "navi02.bmp", 4;
-						next;
-						cutin "", 255;
-						mes "[Carocc]";
-						mes "Anyway, my friend will help you register with the academy";
-						mes "I hope it will help you out in your journey";
-						close;
-					}
-				} else if (isbegin_quest(7472) == 1) {
-					mes "[Carocc]";
-					mes "If you want, you can step forward to the world right away.";
-					mes "However, I recommend you visit the Academy first.";
-					next;
-					mes "[Carocc]";
-					mes "The world is a lonely place to be alone.";
-					mes "The Academy has people you can make as lifetime companions.";
-					next;
-					mes "[Carocc]";
-					mes "My friend Hun will be around the academy entrance.";
-					mes "If you don't know the way I'll point it out to you again.";
-					viewpoint 1,122,207,0,0x4d4dff;
-					next;
-					mes "[Carocc]";
-					mes "If you need more help with the map, press <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> here";
-					mes "Yes, the part that says ''Hun''.";
-					next;
-					mes "!- Information -!";
-					mes "^4d4dff the icon during talk <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> means";
-					mes "a link to navigation directions.";
-					cutin "navi01.bmp", 4;
-					next;
-					mes "!- Information -!";
-					mes "If you press info after selecting a task in the objectives^4d4dff,";
-					mes "an arrow pointing to the location of the objective will pop up along with navigation help.";
-					cutin "navi02.bmp", 4;
-					next;
-					cutin "", 255;
-					mes "[Carocc]";
-					mes "Anyway, my friend will help you register with the academy.";
-					mes "I hope it will help you out in your journey.";
-					close;
-				} else {
-					mes "[Carocc]";
-					mes "Oh, " + strcharinfo(0) + "!";
-					mes "Still being dilligent?";
-					mes "I've been busy, also.";
-					mes "I was reparing the ship.";
-					next;
-					mes "[Carocc]";
-					mes "I'll be taking off as soon as the repairs are complete.";
-					mes "At that time, the sailing route to ^4d4dffPharos lighthouse ^000000will be opened.";
-					mes "Be excited for it.";
-				}
-			} else {
-				if (!isbegin_quest(7472)) {
-					mes "[Carocc]";
-					mes "Hello?";
-					mes "Is it your first time on Izlude?";
-					next;
-					switch(select("Hello?", "Let me get on the ship!", "I don't know what to do.")) {
-					case 1:
-						mes "[Carocc]";
-						mes "You look strong and able!";
-						mes "I like able people like you!";
-						mes "Always be healthy and strong as you are now.";
-						break;
-					case 2:
-						mes "[Carocc]";
-						mes "I usually travel to ^4d4dffPharos Lighthouse^000000.";
-						mes "But I'm resting up due to some problems.";
-						next;
-						mes "[Carocc]";
-						mes "If it's Alberta or Byalan Island, talk to the next sailor.";
-						break;
-					case 3:
-						mes "[Carocc]";
-						mes "Hmm? You said you didn't know what to do.";
-						mes "Since you're at Izlude, why don't you visit ^4d4dffCriatura Academy^000000?";
-						next;
-						mes "[Carocc]";
-						mes "Izlude has the Institute for budding adventurers like you";
-						mes "A friend of mine works there, so I'll give you the introduction to him.";
-						next;
-						mes "[Carocc]";
-						mes "He ususally talks to new adventurers near the entrance of an academy.";
-						mes "Go and meet him personally.";
-						next;
-						if (!isbegin_quest(7473)) {
 							mes "[Carocc]";
-							mes "His name is ^4d4dffHun^000000";
+							mes "His name is ^4d4dffEden Teleport Officer^000000";
 							mes "I will mark his location on the map so go to see him.";
 							setquest 7472;
-							viewpoint 1,122,207,0,0x4d4dff;
+							viewpoint 1,131,147,1,0x4d4dff;
 							next;
 							mes "!- Information -!";
 							mes "^4d4dff Mini map can be seen on the right top of the screen.";
@@ -623,11 +444,11 @@ izlude,198,213,3	script	Captain Carocc#iz	4_M_REINDEER,5,5,{
 							mes "Quest window can be opened by pressing the ^4d4dffAlt + u^000000 key.";
 							next;
 							mes "[Carocc]";
-							mes "If you need more help with the map, press <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> here";
-							mes "Yes, the part that says [Hun].";
+							mes "If you need more help with the map, press <NAVI>[Eden Teleport Officer]<INFO>izlude,130,146,0,000,0</INFO></NAVI> here";
+							mes "Yes, the part that says [Eden Teleport Officer].";
 							next;
 							mes "!- Information -!";
-							mes "^4d4dff the icon during talk <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> means";
+							mes "^4d4dff the icon during talk <NAVI>[Eden Teleport Officer]<INFO>izlude,130,146,0,000,0</INFO></NAVI> means";
 							mes "a link to navigation directions.";
 							cutin "navi01.bmp", 4;
 							next;
@@ -640,169 +461,54 @@ izlude,198,213,3	script	Captain Carocc#iz	4_M_REINDEER,5,5,{
 							mes "[Carocc]";
 							mes "Anyway, my friend will help you register with the academy";
 							mes "I hope it will help you out in your journey";
+							navigateto "izlude",130,146;
 							close;
-						} else {
-							select("I know who you're talking about.");
-							mes "[Carocc]";
-							mes "Then there's no worry.";
-							mes "He'll introduce you to the academy.";
-							next;
-							mes "[Carocc]";
-							mes "OK. I will show you the direction. You try it again.";
-							mes "By the way, did I tell you his name? His name is ^4d4dffHun^000000";
-							viewpoint 1,122,207,1,0x4d4dff;
-							next;
-							mes "!- Information -!";
-							mes "^4d4dff Mini map can be seen on the right top of the screen.";
-							mes "You can zoom in with +, zoom out with -. The waypoint from the NPC will be marked on it. ^000000";
-							next;
-							mes "[Carocc]";
-							mes "If you need more help with the map, press <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> here";
-							mes "Yes, the part that says [Hun].";
-							next;
-							mes "!- Information -!";
-							mes "^4d4dff the icon during talk <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> means";
-							mes "a link to navigation directions.";
-							cutin "navi01.bmp", 4;
-							next;
-							mes "!- Information -!";
-							mes "If you press info after selecting a task in the objectives^4d4dff,";
-							mes "an arrow pointing to the location of the objective will pop up along with navigation help";
-							cutin "navi02.bmp", 4;
-							next;
-							cutin "", 255;
-							mes "[Carocc]";
-							mes "Anyway, my friend will help you register with the academy";
-							mes "I hope it will help you out in your journey";
-							close;
-						}
-					}
 				} else if (isbegin_quest(7472) == 1) {
 					mes "[Carocc]";
-					mes "Ah, it's you.";
-					mes "This guy has also decided to register at Criatura Academy.";
-					mes "This might be a good destiny for you. Hope you and him can be good friends.";
-					next;
-					cutin "nov_lumin01.bmp", 0;
-					mes "[Lumin]";
-					mes ".........";
-					next;
-					cutin "", 255;
-					mes "[Carocc]";
 					mes "If you want, you can step forward to the world right away.";
-					mes "However, I recommend you visit the Academy first.";
+					mes "However, I recommend you visit the Eden Group first.";
 					next;
 					mes "[Carocc]";
 					mes "The world is a lonely place to be alone.";
-					mes "The Academy has people you could make into lifetime companions.";
+					mes "The Eden Group has people you can make as lifetime companions.";
 					next;
 					mes "[Carocc]";
-					mes "My friend <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI> will be around the academy entrance.";
 					mes "If you don't know the way I'll point it out to you again.";
-					viewpoint 1,122,207,1,0x4d4dff;
+					viewpoint 1,131,147,1,0x4d4dff;
+					navigateto "izlude",130,146;
 					next;
 					mes "[Carocc]";
-					mes "then, Good luck!";
-					close;
-				} else {
-					mes "[Carocc]";
-					mes "Oh, We meet again.";
-					mes "Do you by any chance need a ship?";
-					mes "I usually travel to the port in Paros.";
-					mes "If you need to go to Paros later, come see me.";
-				}
-			}
-		}
-	} else {
-		if (isbegin_quest(7471) == 2 || isbegin_quest(7472) > 0) {
-			mes "[Carocc]";
-			mes "It's been a while!";
-			mes "Looking at your expression, you must be doing well.";
-			next;
-			switch(select("Take me to Pharos Lighthouse", "To Alberta", "Talk")) {
-			case 1:
-				mes "[Carocc]";
-				mes "Do you want to go to Pharos Lighthouse on the southern coast of Morocc?";
-				mes "The fee is 2800 zeny. I have a crew that needs payment so this fee is non-negotiable.";
-				next;
-				if (select("To Pharos Lighthouse!", "Cancel") == 1) {
-					if (Zeny > 2799) {
-						mes "[Carocc]";
-						mes "Let us travel with the wing in our hair.";
-						Zeny -= 2800;
-						close2;
-						warp "cmd_fild07", 92, 129;
-						end;
-					} else {
-						mes "[Carocc]";
-						mes "Sorry but you are short of the boarding fee.";
-						mes "I need 2800z to operate.";
-					}
-				} else {
-					mes "[Carocc]";
-					mes "OK.";
-					mes "Do you know this, by the way?";
-					mes "^4d4dffThere's a Rogue hideout at Pharos Lighthouse^000000.";
-					mes "You already knew this?";
-				}
-				break;
-			case 2:
-				mes "[Carocc]";
-				mes "I thought you knew that I only go to Pharos?";
-				mes "Ask the sailor over there, he's the one that goes there frequently.";
-				next;
-				mes "[Carocc]";
-				mes "There are plenty of other ships that travel to Alberta and Byalan Islands.";
-				break;
-			case 3:
-				mes "[Carocc]";
-				mes "Hmm. I'm content with the well being of you and other adventurers who passed me by.";
-				next;
-				mes "[Carocc]";
-				mes "Lumin must be doing well too.";
-				mes "I wonder why you feel like my own child even though we've only met from the sea.";
-				break;
-			}
-		} else {
-			mes "[Carocc]";
-			mes "I am Carocc, the caption of this ship.";
-			mes "Do you need a ship?";
-			next;
-			if (select("Pharos Lighthouse - 2800z", "Don't need it.") == 1) {
-				if (Zeny > 2799) {
-					mes "[Carocc]";
-					mes "Let us travel with the wind in our hair.";
-					Zeny -= 2800;
-					close2;
+					mes "If you need more help with the map, press <NAVI>[Eden Teleport Officer]<INFO>izlude,130,146,0,000,0</INFO></NAVI> here";
+					mes "Yes, the part that says ''Eden Teleport Officer''.";
+					next;
+					mes "!- Information -!";
+					mes "^4d4dff the icon during talk <NAVI>[Eden Teleport Officer]<INFO>izlude,130,146,0,000,0</INFO></NAVI> means";
+					mes "a link to navigation directions.";
+					cutin "navi01.bmp", 4;
+					next;
+					mes "!- Information -!";
+					mes "If you press info after selecting a task in the objectives^4d4dff,";
+					mes "an arrow pointing to the location of the objective will pop up along with navigation help.";
+					cutin "navi02.bmp", 4;
+					next;
 					cutin "", 255;
-					warp "cmd_fild07", 92, 129;
-					end;
-				} else {
 					mes "[Carocc]";
-					mes "Sorry but you are short of the boarding fee.";
-					mes "I need 2800z to operate.";
+					mes "I hope it will help you out in your journey.";
+					close;
 				}
-			} else {
-				mes "[Carocc]";
-				mes "Then use it next time.";
 			}
-		}
-	}
 	close2;
 	cutin "", 255;
+	end;
+}
+	else
+		emotion ET_SMILE;
 	end;
 
 OnInit:
 	questinfo 7472, QTYPE_QUEST, 1, Job_Novice;
 	setquestinfo_level 7472,1,14;
-	setquestinfo_req 7472,7473,0;
-	end;
-
-OnTouch:
-	if (Class == Job_Novice && BaseLevel < 15 && !isbegin_quest(4269))
-		emotion ET_SURPRISE;
-	else
-		emotion ET_SMILE;
+	setquestinfo_req 7472,1,0;
 	end;
 }
 
@@ -811,6 +517,7 @@ izlude_b,198,213,3	duplicate(Captain Carocc#iz)	Captain Carocc#iz_b	4_M_REINDEER
 izlude_c,198,213,3	duplicate(Captain Carocc#iz)	Captain Carocc#iz_c	4_M_REINDEER,5,5
 izlude_d,198,213,3	duplicate(Captain Carocc#iz)	Captain Carocc#iz_d	4_M_REINDEER,5,5
 
+/*
 // - Criatura Academy Staff
 // - Teaches the player about the Inventory.
 // -----------------------------------------------------------------------------
@@ -1132,10 +839,13 @@ izlude_b,122,207,3	duplicate(Criatura Academy Staff#0)	Criatura Academy Staff#b	
 izlude_c,122,207,3	duplicate(Criatura Academy Staff#0)	Criatura Academy Staff#c	4_M_KHKYEL,3,3
 izlude_d,122,207,3	duplicate(Criatura Academy Staff#0)	Criatura Academy Staff#d	4_M_KHKYEL,3,3
 
+*/
+
+/*
 // - Information Staff
 // - Teaches the player about the Mini-Map through a quick quest.
 // -----------------------------------------------------------------------------
-izlude,120,207,4	script	Information Staff#0	8W_SOLDIER,{
+izlude,126,148,4	script	Information Staff#0	8W_SOLDIER,{
 	if (!checkweight(1304,3)) {
 		mes "Quest cannot be continued due to the invenory being full.";
 		mes "Please try it again after re-organizing your items.";
@@ -1646,11 +1356,13 @@ OnInit:
 	end;
 }
 
-izlude_a,120,207,4	duplicate(Information Staff#0)	Information Staff#a	8W_SOLDIER
-izlude_b,120,207,4	duplicate(Information Staff#0)	Information Staff#b	8W_SOLDIER
-izlude_c,120,207,4	duplicate(Information Staff#0)	Information Staff#c	8W_SOLDIER
-izlude_d,120,207,4	duplicate(Information Staff#0)	Information Staff#d	8W_SOLDIER
+izlude_a,126,148,4	duplicate(Information Staff#0)	Information Staff#a	8W_SOLDIER
+izlude_b,126,148,4	duplicate(Information Staff#0)	Information Staff#b	8W_SOLDIER
+izlude_c,126,148,4	duplicate(Information Staff#0)	Information Staff#c	8W_SOLDIER
+izlude_d,126,148,4	duplicate(Information Staff#0)	Information Staff#d	8W_SOLDIER
+*/
 
+/*
 // - Airship Sign
 // -----------------------------------------------------------------------------
 izlude,179,75,3	script	Airship#iz	4_BULLETIN_BOARD2,3,3,{
@@ -2076,6 +1788,8 @@ izlude_b,45,94,3	duplicate(Bulletin Board#iz)	Bulletin Board#iz_b	4_BULLETIN_BOA
 izlude_c,45,94,3	duplicate(Bulletin Board#iz)	Bulletin Board#iz_c	4_BULLETIN_BOARD2,3,3
 izlude_d,45,94,3	duplicate(Bulletin Board#iz)	Bulletin Board#iz_d	4_BULLETIN_BOARD2,3,3
 
+*/
+
 // - Therapist (Red Herb Quest + First Aid)
 // - Gives the player a basic quest and teaches them First Aid.
 // -----------------------------------------------------------------------------
@@ -2344,7 +2058,7 @@ izlude,140,249,7	script	Academy Student#0	4_M_NOV_RUMIN,{
 			mes "It happened right before my eyes.";
 			next;
 		} else {
-			if (isbegin_quest(7472) > 0 || isbegin_quest(7474) > 1) {
+			if (isbegin_quest(7472) > 0) {
 				mes "[Lumin]";
 				mes "Did you lose your memory?";
 				mes "If the captain hears about it, he'll cry.";
@@ -14237,26 +13951,21 @@ izlude_d,158,130,4	duplicate(Repair Man#iz)	Repair Man#iz_d	4_M_04
 // = Old Novice Training Grounds
 // = These NPCs will teleport any stuck player to the new starting area.
 // =============================================================================
-new_1-1,53,114,3	script	Training Instructor#1a	4_F_03,{
+new_1-1,146,112,3	script	Training Instructor#1a	4_F_03,{
 	mes "[Training Instructor]";
 	mes "The training grounds have been revised.";
 	mes "I will send you to Izlude.";
 	close2;
-	for (.@i = 7117; .@i < 7128; .@i++)
-		erasequest .@i;
-	if (strnpcinfo(4) == "new_1-1" || strnpcinfo(4) == "new_1-2" || strnpcinfo(4) == "new_1-3" || strnpcinfo(4) == "new_1-4") {
-		.@warp$ = "iz_int";
-	} else if (strnpcinfo(4) == "new_2-1" || strnpcinfo(4) == "new_2-2" || strnpcinfo(4) == "new_2-3" || strnpcinfo(4) == "new_2-4") {
-		.@warp$ = "iz_int01";
-	} else if (strnpcinfo(4) == "new_3-1" || strnpcinfo(4) == "new_3-2" || strnpcinfo(4) == "new_3-3" || strnpcinfo(4) == "new_3-4") {
-		.@warp$ = "iz_int02";
-	} else if (strnpcinfo(4) == "new_4-1" || strnpcinfo(4) == "new_4-2" || strnpcinfo(4) == "new_4-3" || strnpcinfo(4) == "new_4-4") {
-		.@warp$ = "iz_int03";
-	} else if (strnpcinfo(4) == "new_5-1" || strnpcinfo(4) == "new_5-2" || strnpcinfo(4) == "new_5-3" || strnpcinfo(4) == "new_5-4") {
-		.@warp$ = "iz_int04";
+	if (Class == Job_Novice) {
+		savepoint "iz_int",18,26,1,1;
+		warp "iz_int", 18, 26;
+	} else if (Class == JOB_SUMMONER) {
+		savepoint "lasa_fild01",48,297,1,1;
+		warp "lasa_fild01", 48, 297;
+	} else if (Class != Job_Novice && Class != JOB_SUMMONER) {
+		savepoint "prontera",156,191,1,1;
+		warp "prontera", 156, 191;
 	}
-	savepoint .@warp$,98,88,1,1;
-	warp .@warp$, 98, 88;
 	end;
 }
 

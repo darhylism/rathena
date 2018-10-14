@@ -369,6 +369,7 @@
 2875,475,100	// RO_Appreciation_Ring
 2885,507,100	// Mother_Heart
 2885,499,100	// Mother_Heart
+2888,411,100	// School_Bag
 2897,475,100	// 2011RWC_Necklace_J
 2915,467,100	// Ettlang_Keepsake
 2916,475,100	// Fairy_Wing
