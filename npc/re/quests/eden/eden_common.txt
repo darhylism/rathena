@@ -34,6 +34,11 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 		mes "- after you loose some weight. -";
 		close;
 	}
+	if (isbegin_quest(7474) == 1) {
+		completequest 7474;
+		getexp 200,0;
+		getitem 531,1;// Apple_Juice
+		}
 	if (countitem(6219) > 0) {
 		mes "[Lime Evenor]";
 		mes "Thanks to many adventurers visiting our Eden Group, we've recently prepared a new version of Eden Group Mark for our visitors.";
@@ -143,14 +148,30 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 				mes "Please try it again after organizing the items.";
 				close;
 			}
+			if ( #Rewardzz == 1 ) {
+		mes "[ ^FF0000Error^000000 ]";
+		mes "We apologize that you are not qualified any more to receive or get a special reward from us.";
+		close;
+	}
 			mes "[Lime Evenor]";
 			mes "Here you go!";
 			getitem 13758,1; //field Manual Box 300%
-			getitem 2751,1; //academy badge
-			getitem 2888,1; //school bag
-			getitem 35005,1; //Dark Angel
-			getitem 35006,1; //Arch Angel
-			getitem 35011,1; //Arch Demon
+			getitem 13533,10; //Light Yellow Potion Box
+			getitem 13810,10; //Light Blue Potion Box
+			getitem 12162,3; //Bowman Scroll
+			getitem 12182,3; //Spearman Scroll
+			getitem 12172,3; //Fencer Scroll
+			getitembound 16682,1,Bound_Account; //Halter Lead box 7d
+			getitembound 2751,1,Bound_Account; //academy badge
+			getitembound 2888,1,Bound_Account; //school bag
+			getitembound 35005,1,Bound_Account; //Dark Angel
+			getitembound 35006,1,Bound_Account; //Arch Angel
+			getitembound 35011,1,Bound_Account; //Arch Demon
+			getitembound 35014,1,Bound_Account; //Hood of Death
+			getitembound 35015,1,Bound_Account; //Face of Death
+			getitem 35132,1; //Level up reward box 150
+			getitem 35133,1; //Level up reward box 150
+			set #Rewardzz, 1;
 			}
 		}
 			else {

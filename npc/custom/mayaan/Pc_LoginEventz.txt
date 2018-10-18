@@ -2,7 +2,6 @@
  
 OnPCLoginEvent:
 sc_end SC_ENDURE;
-atcommand "@join #global";
 if (STOREITEMZ < 1){
 atcommand "@storeall";
 set STOREITEMZ,1;

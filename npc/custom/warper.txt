@@ -508,7 +508,7 @@ I20: Restrict("RE");
 // --------------------CUSTOMIZED------------------------------
 	Special:
 // --------------------------------------------------
-menu	"Poring Market",S1, "Mayaan Headquarters",S2, "Eden Group Headquarters",S3, "Askydun",S4, "Training Area",S5, "Vending Area",S6;
+menu	"Poring Market",S1, "Eden Headquarters",S2, "Mayaan Headquarters",S3, "Askydun",S4, "Training Area",S5, "Vending Area",S6;
 		
 S1: Go("poring_w02",99,75);
 S2:	Go("moc_para01",31,14);

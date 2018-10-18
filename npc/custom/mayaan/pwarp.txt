@@ -79,3 +79,6 @@ poring_w01	mapflag	nodrop
 poring_w01	mapflag	nochat
 poring_w01	mapflag	noicewall
 
+prontera	mapflag	autotrade
+izlude	mapflag	autotrade
+

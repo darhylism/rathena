@@ -57,5 +57,4 @@ ma_in01,49,99,3	script	Fallen Hero#main	651,{
 
 ma_in01,31,86,3	duplicate(Ripped Cabus#GymPass)	Ripped Cabus#GymPass2	899
 ma_in01,28,95,5	duplicate(Top Pvp Ladder#PVP)	Top Pvp Ladder#HQ	4_M_CHNGENERL
-ma_in01,44,104,5	duplicate(MayaanRO Item Redeemer)	MayaanRO Item Redeemer#HQ	987
-ma_in01,25,78,0	warp	HQ1-1	1,1,poring_w02,99,77
+ma_in01,44,104,5	duplicate(Mayaan Donor Redeemer)	Mayaan Donor Redeemer#HQ	987

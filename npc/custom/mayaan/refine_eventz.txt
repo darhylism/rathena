@@ -1,0 +1,57 @@
+poring_w02,104,120,4	script	Refine Event	4_M_NFDEADMAN2,{
+    set @name$,"^FF0000Trader^000000";
+    mes @name$;
+    mes "I will give you an item";
+	mes "you need to refine it to +15 or higher";
+	mes "and you will be rewarded!";
+	mes "Until November 2 Only!";
+    next;
+    switch(select("More Information","Give it, i will refine","Nothing")) {
+        case 1:
+            mes @name$;
+			mes "I will give you an armor";
+            mes "and you need to refine it to atleast +15";
+			mes "before the event ends.";
+			mes "100 Event Token Box, 30 Pcs HD Carnium ,30 Pcs HD Oridecon.";
+			next;
+			mes "also you can TRANSFER THE REFINE to your desired item after/before the event ends.";
+            close;
+		case 2:
+	if ( BaseLevel < 175 ) {
+		mes @name$;
+		mes "We're sorry you are not qualified yet on this event, please come back when you are base level is 'atleast' 175.";
+		close;
+	}
+	if ( HGIVENZ == 1 ) {
+		mes "We apologize that you are not qualified any more to receive or get a special reward from us.";
+		mes "use another character to be able to join the event.";
+		close;
+	}
+					mes @name$;
+					mes "HEHEHEZ";
+							if (countitem(35135) > (0)) goto pakerz;
+							getitem 35135,1;
+							next;
+					mes @name$;
+							mes "There you go! Goodluck!";
+							close;
+		default:
+			mes @name$;
+			mes "Bye.";
+                    close;
+			}
+			
+pakerz:
+    next;
+    mes @name$;
+    mes "I'm Sorry you still have the armor.";
+	mes "Only go back to me when it breaks.";
+    close;
+
+							
+OnInit:
+        waitingroom "REFINE EVENT!",0;  // WITH WAITING ROOM
+end;
+}
+
+

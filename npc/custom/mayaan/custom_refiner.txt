@@ -20,7 +20,7 @@
 //Modified secure table, fucking reversed. 
 //customized for mayaan server
 //============================================================
-poring_w02,101,127,4	script	Blacksmith Berlin	1_M_SMITH,{
+poring_w02,98,124,4	script	Blacksmith Berlin	1_M_SMITH,{
 	function ShowChanceInfo; function ShowSecureInfo;
 	function GetChanceBonus; function GetSecure;
 	function ConsumeSecure; function Refine;

@@ -1,7 +1,7 @@
 // -- A very simple script that made by (Radian)
 //optimized by dduwsmitt
 
-prontera,151,187,4	script	Pioneer	125,{
+izlude,127,162,4	script	GODIN	125,{
 
 	if ( .enable_event ) {
 /*
@@ -41,23 +41,23 @@ prontera,151,187,4	script	Pioneer	125,{
 	}
 		mes "[ ^0000FFCongratulation Note^000000 ]";
 		mes "We verified that you are qualified and will receive a reward from us.";
-				getitem 12214,5;
-				getitem 7621,10;
-				#CASHPOINTS += 500;
-				query_logsql("INSERT INTO `sader_variables_log` (`unique_id`,`ip`,`variable`,`index`,`value`, `account_id`, `char_id`, `char_name`) VALUES ('"+.@s_last_unique_id$+"', '"+getcharip()+"', '#Rewards_Check1', '0', '"+#Rewards_Check1+"', '"+getcharid(3)+"', '"+getcharid(0)+"', '"+strcharinfo(0)+"')");
+				getitem 35057,5;
+				#CASHPOINTS += 5000;
+				query_logsql("INSERT INTO `sader_variables_log` (`unique_id`,`ip`,`variable`,`index`,`value`, `account_id`, `char_id`, `char_name`) VALUES ('"+.@s_last_unique_id$+"', '"+getcharip()+"', '#Rewards_Check1', '0', '"+#Rewards_Check1+"', '"+gettimetick(2)+"', '"+getcharid(0)+"', '"+strcharinfo(0)+"')");
 				query_logsql("Update `sader_variables_log` SET `value` = '"+#Rewards_Check1+"' WHERE `unique_id`= '"+.@s_last_unique_id$+"' AND `variable` = '#Rewards_Check1'");
 					set #maxRewards, 1;
+					announce "user [" +strcharinfo(0) +"] have reached the maximum level and received his rewards!.",bc_all,0x00FF00,FW_NORMAL,25;
 		close;
 	}
 	OnInit:
 	// ------------------------------------------------------------ //
 
 	.enable_event = 1;		// Set 0 = Disable / 1 = Enable Default.
-	.max_base_level = 99;	// Set the maximum base level here.
-	.max_job_level = 50;	// Set the maximum job level here.
+	.max_base_level = 175;	// Set the maximum base level here.
+	.max_job_level = 60;	// Set the maximum job level here.
 	.aid_start = 0;	// Set the Account ID here where you want to start. [ set this to 0 = disable ]
 	.aid_end = 0;	// Set the ending Account ID here. [ set this to 0 = disable ]
-	waitingroom "Player Rewards!",0;		// Waiting Room.
+	waitingroom "Race to Max Level!",0;		// Waiting Room.
 	query_logsql("CREATE TABLE IF NOT EXISTS `sader_variables_log` (`unique_id` INT( 11 ) UNSIGNED NOT NULL DEFAULT  '0',`ip` VARCHAR(100) NOT NULL,`variable` VARCHAR(32) NOT NULL, `index` INT NOT NULL, `value` INT NOT NULL,`account_id` INT NOT NULL,`char_id` INT NOT NULL,`char_name` VARCHAR(30) NOT NULL) ENGINE=MyISAM");
 	// ------------------------------------------------------------- //
 	end;

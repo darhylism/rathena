@@ -38,7 +38,14 @@ prontera,157,193,4	script	Kafra Employee::kaf_center_pront	4_F_KAFRA8,{
 }
 
 //
-poring_w02,98,127,4	script	Repairman#poring_w02	4_M_04,{
+poring_w02,93,120,4	script	Repairman#poring_w02	4_M_04,{
 	callfunc "repairmain","Repairman";
 	end;
 }
+
+poring_w02,100,127,4	script	Vestri#poring_w02	826,{
+	callfunc "refinenew","Vestri",0;
+	end;
+}
+
+poring_w02,102,127,4	duplicate(Austri#ref)	Austri#poring_w02	826

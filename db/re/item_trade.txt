@@ -449,7 +449,6 @@
 5453,475,100	// Dragonhelm_Copper
 5460,499,100	// Adv_Dragon_Skull
 5461,499,100	// Adv_Whisper_Mask
-5462,507,100	// Spiked_Scarf
 5463,507,100	// Rainbow_Scarf
 5479,1,100	// Shaman's_Hair_Ornament
 5480,1,100	// Bizofnil_Wing_Deco
@@ -1524,10 +1523,6 @@
 //12872,475,100	//
 12873,475,100	// TE_Potion_Box
 12883,475,100	// Almighty
-12884,507,100	// Infinite_Concentration_Potion
-12885,507,100	// Infinite_Awakening_Potion
-12886,507,100	// Infinite_Berserk_Potion
-12887,507,100	// C_Wing_Of_Fly
 12888,507,100	// Siege_Kit_Box
 12900,475,100	// Battle_Manual_Box
 12901,475,100	// Insurance_Package
@@ -2211,7 +2206,7 @@
 14000,475,100	// Pill_Box500
 14001,475,100	// Basic_Siege_Supply_Box
 14002,475,100	// Adv_Siege_Supply_Box
-14003,475,100	// Elite_Siege_Supply_Box
+14003,384,100	// Elite_Siege_Supply_Box
 14004,475,100	// Poison_Bottle_10_Box
 14005,475,100	// Poison_Bottle_5_Box
 14006,475,100	// F_Drooping_W_Kitty_Box
@@ -2374,7 +2369,6 @@
 14163,475,100	// F_Luk_Dish_Box
 14164,475,100	// F_Vit_Dish_Box
 14165,475,100	// F_Kafra_Card_Box
-14166,475,100	// F_Giant_Fly_Wing_Box
 14167,475,100	// F_Neuralizer_Box
 14168,475,100	// F_Convex_Mirror_Box
 14169,475,100	// F_Blessing_10_Scroll_Box
@@ -2387,8 +2381,6 @@
 14176,475,100	// F_Enriched_Elunium_Box
 14177,475,100	// F_Enriched_Oridecon_Box
 14178,475,100	// F_Token_Of_Siegfried_Box
-14179,475,100	// F_Giant_Fly_Wing_Box50
-14180,475,100	// F_Giant_Fly_Wing_Box100
 14181,475,100	// F_Dex_Dish_Box30
 14182,475,100	// F_Dex_Dish_Box50
 14183,475,100	// F_Luk_Dish_Box30

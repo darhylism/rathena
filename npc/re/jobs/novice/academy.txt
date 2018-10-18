@@ -13957,9 +13957,11 @@ new_1-1,146,112,3	script	Training Instructor#1a	4_F_03,{
 	mes "I will send you to Izlude.";
 	close2;
 	if (Class == Job_Novice) {
+		announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
 		savepoint "iz_int",18,26,1,1;
 		warp "iz_int", 18, 26;
 	} else if (Class == JOB_SUMMONER) {
+		announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
 		savepoint "lasa_fild01",48,297,1,1;
 		warp "lasa_fild01", 48, 297;
 	} else if (Class != Job_Novice && Class != JOB_SUMMONER) {
