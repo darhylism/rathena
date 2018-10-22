@@ -1,0 +1,67 @@
+-	script	DoubleEXP	-1,{
+
+OnInit:
+	bindatcmd "grindfest", strnpcinfo(0)+"::OnCommand", 99,99;
+end;
+
+OnCommand:
+	if ( compare( .@atcmd_parameters$, "on" ) ) donpcevent "DoubleEXP::OnGrind";
+	else if ( compare( .@atcmd_parameters$, "off" ) ) donpcevent "DoubleEXP::OnGrond";
+	else {
+		dispbottom "type - '@grindfest on' to start the event";
+		dispbottom "type - '@grindfest off' to end the event";
+	}
+end;
+
+	
+OnGrind:
+	announce "Weekend Grindfest Begin!",bc_blue|bc_all;
+	sleep 1000;
+	announce "Exp and drop rates are multiplied to 1.5x!",bc_blue|bc_all;
+	set .br,getbattleflag("base_exp_rate")*15/10;
+	set .jr,getbattleflag("job_exp_rate")*15/10;
+   	setbattleflag("base_exp_rate",.br);
+	setbattleflag("job_exp_rate",.jr);
+	
+            // Drop Rate
+			set .drate1,getbattleflag("item_rate_common")*15/10;
+			set .drate2,getbattleflag("item_rate_common_boss")*15/10;
+			
+			set .drate3,getbattleflag("item_rate_heal")*15/10;
+			set .drate4,getbattleflag("item_rate_heal_boss")*15/10;
+			
+			set .drate5,getbattleflag("item_rate_use")*15/10;
+			set .drate6,getbattleflag("item_rate_use_boss")*15/10;
+			
+			set .drate7,getbattleflag("item_rate_equip")*15/10;
+			set .drate8,getbattleflag("item_rate_equip_boss")*15/10;
+			
+			set .drate9,getbattleflag("item_rate_card")*15/10;
+			set .drate10,getbattleflag("item_rate_card_boss")*15/10;
+			
+            setbattleflag("item_rate_common",.drate1);
+            setbattleflag("item_rate_common_boss",.drate2);
+                
+            setbattleflag("item_rate_heal",.drate3);
+            setbattleflag("item_rate_heal_boss",.drate4);
+	
+            setbattleflag("item_rate_use",.drate5);
+			setbattleflag("item_rate_use_boss",.drate6);
+	
+			setbattleflag("item_rate_equip",.drate7);
+			setbattleflag("item_rate_equip_boss",.drate8);
+	
+			setbattleflag("item_rate_card",.drate9);
+			setbattleflag("item_rate_card_boss",.drate10);
+	
+	atcommand "@reloadmobdb";
+end;
+
+OnGrond:
+	announce "Weekend Grindfest Begin! already finish!",bc_blue|bc_all;
+	sleep 1000;
+	announce "Exp and Drop are back to normal!",bc_blue|bc_all;
+	atcommand "@reloadbattleconf";
+	atcommand "@reloadmobdb";  
+end;
+}

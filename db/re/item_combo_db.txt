@@ -248,9 +248,9 @@
 2626:2711,{ bonus2 bSkillAtk,"AL_HEAL",50; bonus2 bSkillAtk,"PR_MAGNUS",30; bonus bSPrecovRate,9; }
 2626:2786,{ bonus2 bSkillAtk,"AL_HEAL",50; bonus2 bSkillAtk,"PR_MAGNUS",30; bonus bSPrecovRate,9; }
 2659:18937,{ bonus bInt,8; bonus bMaxSPrate,5;}
-2660:18937,{ bonus bInt,8; bonus bBaseAtk,20;}
-2661:18937,{ bonus bInt,8; bonus bFlee,15;}
-2662:18937,{ bonus bInt,8; bonus bHit,10;}
+2660:18937,{ bonus bStr,7; bonus bBaseAtk,20; }
+2661:18937,{ bonus bAgi,7; bonus bFlee,15; }
+2662:18937,{ bonus bDex,7; bonus bHit,10; }
 2677:28602,{ bonus2 bVariableCastrate,"PR_MAGNUS",-25; bonus bHealPower,10; bonus bAddItemHealRate,10; autobonus2 "{ bonus bIgnoreMDefRace,RC_All; }",getequiprefinerycnt(EQI_HAND_R)*20,2000,BF_SHORT|BF_NORMAL; /* Confirm: Success rate and duration */ }
 2678:2679,{ bonus4 bAutoSpell,"MO_EXTREMITYFIST",1,3,1; bonus3 bAutoSpell,"PR_LEXAETERNA",1,20; bonus3 bAutoSpell,"AS_SONICBLOW",5,50; bonus3 bAutoSpell,"MO_INVESTIGATE",5,20; bonus3 bAutoSpell,"ASC_METEORASSAULT",2,50; }
 //2679:2792,{ bonus4 bAutoSpell,"MO_EXTREMITYFIST",1,3,1; bonus3 bAutoSpell,"PR_LEXAETERNA",1,20; bonus3 bAutoSpell,"AS_SONICBLOW",5,50; bonus3 bAutoSpell,"MO_INVESTIGATE",5,20; bonus3 bAutoSpell,"ASC_METEORASSAULT",2,50; }
@@ -366,7 +366,7 @@
 4159:27082,{ autobonus "{ bonus bFlee,10; }",20,5000,BF_SHORT; }
 4163:5967,{ bonus bAspdRate,3; bonus bAspd,1; bonus2 bAddClass,Class_All,-5; if (getequiprefinerycnt(EQI_HAND_R) >= 10 && getiteminfo(getequipid(EQI_HAND_R),11) == 11) bonus bAspd,1; }
 4168:4169,{ bonus bMaxHPrate,20; bonus bMaxSPrate,20; bonus bVariableCastrate,-10; }
-4169:4488,{ if(getequiprefinerycnt(EQI_SHOES) >= 15) { bonus bMaxHPrate,15; bonus bMaxSPrate,15; } else { bonus bMaxHPrate,10; bonus bMaxSPrate,10; } }
+
 4169:4488,{ if(getequiprefinerycnt(EQI_SHOES) >= 15) { bonus bMaxHPrate,15; bonus bMaxSPrate,15; } else { bonus bMaxHPrate,10; bonus bMaxSPrate,10; } }
 4172:4210:4230:4257:4272,{ bonus bAgi,5; bonus bStr,5; bonus bAspdRate,5; bonus bSpeedRate,25; bonus bSPDrainValue,1; if(BaseClass==Job_Thief) bonus bNoGemStone; }
 4178:4199:4234:4252:4297,{ bonus bAgi,5; bonus bDex,3; bonus bLongAtkRate,20; bonus bPerfectHitAddRate,20; if(BaseClass==Job_Archer) { bonus2 bExpAddRace,RC_Brute,5; bonus2 bComaRace,RC_Brute,100; } }
@@ -553,9 +553,9 @@
 18823:28551,{ bonus2 bSkillDelay,"LG_OVERBRAND",-2000; bonus bLongAtkRate,getskilllv("LG_CANNONSPEAR") * 2; bonus bLongAtkRate,getskilllv("LG_OVERBRAND") * 2; bonus2 bSkillAtk,"LG_CANNONSPEAR",30; bonus2 bSkillAtk,"LG_OVERBRAND",20; }
 18867:1720,{ bonus bLongAtkRate,3+(getequiprefinerycnt(EQI_HAND_R) > 6 ? 5:0); }
 18937:28302,{ bonus bInt,8; bonus bMaxSPrate,5;}
-18937:28303,{ bonus bInt,8; bonus bBaseAtk,20;}
-18937:28304,{ bonus bInt,8; bonus bFlee,15;}
-18937:28305,{ bonus bInt,8; bonus bHit,10;}
+18937:28303,{ bonus bStr,7; bonus bBaseAtk,20; }
+18937:28304,{ bonus bAgi,7; bonus bFlee,15; }
+18937:28305,{ bonus bDex,7; bonus bHit,10; }
 18985:28321,{ bonus2 bSkillAtk,"HT_BLITZBEAT",100; }
 18985:28321:28322,{ bonus2 bSkillAtk,"HT_BLITZBEAT",200; }
 18985:28322,{ bonus2 bSkillAtk,"SN_FALCONASSAULT",50; }
