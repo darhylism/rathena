@@ -65,7 +65,7 @@ OnInit:
 // coin list + name + value
 setarray .coin_name$,"Mithril","Platinum";
 setarray .coin_id,674,677;
-setarray .value,1000000,10000000;
+setarray .value,100000,1000000;
 
 .coin_size = getarraysize( .coin_name$ );
 end;

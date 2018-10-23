@@ -103,7 +103,7 @@ L_Quest:
 	close;
 }
 
-moc_para01,32,30,6	script	Spike	4_F_CHILD,{
+moc_para01,33,36,6	script	Spike	4_F_CHILD,{
 	for( .@i = 11114; .@i < 11124; .@i++ ) {
 		.@j = checkquest(.@i,HUNTING);
 		if (.@j == 2) {

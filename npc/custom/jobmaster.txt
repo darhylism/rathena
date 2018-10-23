@@ -249,6 +249,14 @@ function	Job_Options	{
 
 // Displays the job menu
 function	Job_Menu	{
+	if (Class == Job_Star_Gladiator || Class == Job_Soul_Linker) {
+			// Special Level Requirement because Super Novice and
+			// Super Baby can both be selected in one of the first class
+			// changes. That's why the Level Requirement is after and not before
+			// the selection.
+			mes "No more jobs are available.";
+			close;
+	}
 	// getarg(0) is the .@job_opt array holding all available job changes.
 	function Confirm_Change;
 	while(true) {
@@ -257,7 +265,7 @@ function	Job_Menu	{
 			mes "No more jobs are available.";
 			close;
 		}
-
+	
 		.@selected = 0; // Just a single job class given, no select needed
 		if (.@opt_cnt > 1) {
 			// Multiple job classes given. Select one and save it to .@class
@@ -419,7 +427,7 @@ function	Get_Job_Equip	{
 			case Job_Super_Novice:
 				getitem 1208,1;	break;	//	Main Gauche [4]
 			case Job_Gunslinger:
-				getitem 13101,1; break;	//	Six Shooter [2]
+				getitem 13125,1; break;	//	Six Shooter [2]
 			case Job_Ninja:
 				getitem 13010,1; break;	//	Asura [2]
 			case Job_Star_Gladiator:

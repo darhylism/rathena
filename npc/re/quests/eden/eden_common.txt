@@ -169,6 +169,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			getitembound 35011,1,Bound_Account; //Arch Demon
 			getitembound 35014,1,Bound_Account; //Hood of Death
 			getitembound 35015,1,Bound_Account; //Face of Death
+			getitembound 35018,1,Bound_Account; //Heart Sunnies
 			getitem 35132,1; //Level up reward box 150
 			getitem 35133,1; //Level up reward box 150
 			set #Rewardzz, 1;
@@ -205,7 +206,7 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 	close;
 }
 
-izlude,131,148,4	script	Eden Teleport Officer#0::eto	729,{
+izlude,131,148,4	script	Eden Teleport Officer#30::eto	729,{
 	mes "[Eden Teleport Officer]";
 	mes "Those who are wandering around this strange world with aimless eyes listen up and come to me!";
 	mes "Eden group is here to help you and will show you the great future.";
@@ -295,11 +296,12 @@ umbala,105,158,3	duplicate(eto)	Eden Teleport Officer#31	729
 malaya,238,206,6	duplicate(eto)	Eden Teleport Officer#32	729
 verus04,116,243,0	duplicate(eto)	Eden Teleport Officer#33	729
 lasagna,192,189,4	duplicate(eto)	Eden Teleport Officer#34	729
+poring_w02,108,101,4	duplicate(eto)	Eden Teleport Officer#35	729
 
 moc_para01,30,10,0	script	#eden_out	45,1,1,{
 OnTouch:
 	switch (nak_warp) {
-		case 1: warp "prontera",116,72; end;
+		case 1: warp "prontera",156,191; end;
 		case 2: warp "moc_ruins",64,161; end;
 		case 3: warp "geffen",120,39; end;
 		case 4: warp "alberta",117,56; end;
@@ -333,7 +335,8 @@ OnTouch:
 		case 32: warp "malaya",234,199; end;
 		case 33: warp "verus04",115,243; end;
 		case 34: warp "lasagna",192,182; end;
-		default: warp "prontera",116,72; end;
+		case 35: warp "poring_w02",99,83; end;
+		default: warp "prontera",156,191; end;
 	}
 	end;
 }
@@ -456,4 +459,13 @@ moc_para01,20,35,5	script	Office Assistant Neede	814,{
 
 function	script	F_HasEdenGroupMark	{
 	return (countitem(6219) > 0 || countitem(22508) > 0);
+}
+
+// Eden kafra
+//============================================================
+moc_para01,32,30,4	script	Kafra Employee::kat_eden	114,{
+	cutin "kafra_04",2;
+	callfunc "F_Kafra",0,3,0,80,700;
+	savepoint "moc_para01",30,13,1,1;
+	callfunc "F_KafEnd",0,1,"on eden group!";
 }

@@ -75,6 +75,7 @@ poring_w02,112,78,5	script	Weekly Quest	857,{
 L_questmenu:
 	mes "[^FF7700Questboard^000000]";
 	mes "Select category:";
+	mes "Note: All Quest are repeatable and have 2 Hours Cooldown";
 	next;
 	
 	switch(select((.collection)?"Collection Quests":"",
@@ -270,12 +271,17 @@ OnInit:
 		
 		//Add Collection Quests here
 		//AddCollection("<Quest Name>",<Min Lvl>,<Max Lvl>,<Reward|Item ID>,<Reward|Item Amount>,<Zeny Reward>,<Base EXP>,<Job EXP>,<Item ID>,<Item Amount>,...);
-		AddCollection("Bring Me Am mut Card!",99,265,969,1,10000000,50000,50000,4245,100);
+		AddCollection("Bring Me Ring[1] | 10 Cash Coin",110,175,35137,10,1000000,12000000,500000,2621,1);
 		
 		
 		//Add Hunting Quests here
 		//AddHunting("<Quest Name>",<Min Lvl>,<Max Lvl>,<Reward|Item ID>,<Reward|Item Amount>,<Zeny Reward>,<Base EXP>,<Job EXP>,<Monster ID>,<Monster Amount>,...);
-		AddHunting("Kill Atroce",150,265,12210,1,1000000,50000,50000,1785,2);
+		AddHunting("Kill Savage | 4 Cash Coin",50,175,35137,4,1000000,7000000,200000,1166,70);
+		AddHunting("Kill Desert Wolf | 5 Cash Coin",99,175,35137,5,1000000,12000000,500000,1106,70);
+		AddHunting("Kill Drosera | 5 Cash Coin",99,175,35137,5,1000000,12000000,500000,1781,70);
+		AddHunting("Kill Minorous | 5 Cash Coin",99,175,35137,5,1000000,12000000,500000,1149,70);
+		AddHunting("Kill Gazeti | 5 Cash Coin",99,175,35137,5,1000000,12000000,500000,1778,70);
+		AddHunting("Kill Petite(MOB#1155) | 4 Cash Coin",50,175,35137,4,1000000,9000000,500000,1155,70);
 		end;
 		
 
@@ -323,3 +329,5 @@ function AddHunting {
 	return;
 }
 }
+
+moc_para01,20,20,4	duplicate(Weekly Quest)	Weekly Quest#edenz	857

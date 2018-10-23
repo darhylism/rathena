@@ -13954,7 +13954,7 @@ izlude_d,158,130,4	duplicate(Repair Man#iz)	Repair Man#iz_d	4_M_04
 new_1-1,146,112,3	script	Training Instructor#1a	4_F_03,{
 	mes "[Training Instructor]";
 	mes "The training grounds have been revised.";
-	mes "I will send you to Izlude.";
+	mes "I will send you to tutorial.";
 	close2;
 	if (Class == Job_Novice) {
 		announce "Let us welcome "+strcharinfo(0)+" to Mayaan Server!",bc_all,0x14C749;
