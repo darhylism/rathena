@@ -690,7 +690,7 @@ OnInit:
 
 -	shop	questingboard#shop	618,512:-1
 
-izlude,126,150,5	duplicate(pqb)	Player Questing Board#1	837
+izlude,129,153,5	duplicate(pqb)	Player Questing Board#1	837
 prontera,160,187,4	duplicate(pqb)	Player Questing Board#2	837
 poring_w02,109,78,4	duplicate(pqb)	Player Questing Board#3	837
 ma_in01,26,95,5	duplicate(pqb)	Player Questing Board#4	837

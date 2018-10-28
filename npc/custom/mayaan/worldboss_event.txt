@@ -55,19 +55,19 @@ OnInit:
 	.treasure_chests = 10;      // Number of duplicate Treasure Chest NPC's (Important!)
 	
 	// Monsters default attributes
-	.MOB_MAXHP = 81650000;     // How much HP can monster have at maximum
-	.MOB_HP = 40000000;          // How much HP monster has on spawn
-	.MOB_SPEED = 140;           // Speed
+	.MOB_MAXHP = 61650000;     // How much HP can monster have at maximum
+	.MOB_HP = 45000000;          // How much HP monster has on spawn
+	.MOB_SPEED = 145;           // Speed
 	.MOB_CRIT = 200;            // Crit rate (1000/100%)
-	.MOB_HIT = 500;             // Hit rate
-	.MOB_ATKMIN = 8200;         // Base Attack Minimum
-	.MOB_ATKMAX = 9200;         // Base Attack Maximum
-	.MOB_MATKMIN = 6200;        // Magic Attack Minimum
-	.MOB_MATKMAX = 8200;        // Magic Attack Maximum
+	.MOB_HIT = 400;             // Hit rate
+	.MOB_ATKMIN = 6000;         // Base Attack Minimum
+	.MOB_ATKMAX = 9000;         // Base Attack Maximum
+	.MOB_MATKMIN = 5000;        // Magic Attack Minimum
+	.MOB_MATKMAX = 8000;        // Magic Attack Maximum
 	.MOB_DEF = 300;              // Defence
 	.MOB_MDEF = 200;             // Magic Defence
 	.MOB_FLEE = 200;            // Flee
-	.MOB_PDODGE = 70;          // Perfect Dodge
+	.MOB_PDODGE = 60;          // Perfect Dodge
 
 	// Event monster ID's
 	setarray .event_mobs[0],
@@ -77,10 +77,10 @@ OnInit:
 		2202; // Kraken
 
 	// Event reward ID's (One random array is selected)
-	setarray .loots_0, 35091, 677, 35055, 35050, 35049, 16771;
-	setarray .loots_1, 677, 35078, 35055, 35050, 35049, 16771;
-	setarray .loots_2, 35091, 677, 35055, 35050, 35049, 16771;
-	setarray .loots_3, 677, 35078, 35055, 35050, 35049, 16771;
+	setarray .loots_0, 35091, 677, 35104, 35104, 35049, 16770;
+	setarray .loots_1, 677, 35078, 35104, 35104, 35049, 16770;
+	setarray .loots_2, 35091, 677, 35104, 35104, 35049, 16770;
+	setarray .loots_3, 677, 35078, 35104, 35104, 35049, 16770;
 
 	// Event reward ID's array size (Important!)
 	// If you add more loots_<Number> arrays. You must change this accordingly.
@@ -268,8 +268,8 @@ OnMonsterDeath:
 	getmapxy(.event_map$, .event_x, .event_y, UNITTYPE_PC);
 
 	// Announce
-	announce "[Word Boss] [" +strcharinfo(0) +"] has killed [" +getmonsterinfo(killedrid,0) +"] in map [" +strcharinfo(3) +"] and obtained 1x Warm Heart Scroll!",bc_blue|bc_all;
-	getitem 14363, 1;
+	announce "[Word Boss] [" +strcharinfo(0) +"] has killed [" +getmonsterinfo(killedrid,0) +"] in map [" +strcharinfo(3) +"] and obtained 100x Cash Voucher!",bc_blue|bc_all;
+	getitem 35137, 100;
 	sleep2 500;
 	announce "[Word Boss] All Players Nearby can get their rewards for participating on the spawned treasure chest!",bc_blue|bc_all;
 	
@@ -965,7 +965,7 @@ OnTimer60000:
 OnInit:
 	.npc_name$ = strnpcinfo(0);
 	.radius = 35; // Cell radius
-	.HPLevel = 1500000; // HP increase per player
+	.HPLevel = 500000; // HP increase per player
 	.MinHP = .HPLevel * 2; // Minimum HP when to stop decreasing HP
 	end;
 OnEnable:

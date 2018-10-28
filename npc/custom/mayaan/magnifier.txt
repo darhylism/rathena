@@ -33,7 +33,6 @@ poring_w02,67,121,6	script	Mr. Magnifier	4_M_OILMAN,{
 		else if ( Zeny >= 40 )  set Zeny, Zeny - 40;
 
 		else break;
-		delitem2 @inventorylist_id[.@i],1,0,0,0,0,0,0,0;
-		getitem @inventorylist_id[.@i],1;
+	identifyall;
 	}
 }

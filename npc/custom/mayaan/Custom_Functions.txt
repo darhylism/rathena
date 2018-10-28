@@ -1,5 +1,4 @@
 
-
 function	script	F_JulyGocha	{
 if (rand(955) < 2) setarray .@i[0],19140,18936;
 else if (rand(955) < 5) setarray .@i[0],5462,5560,18936;

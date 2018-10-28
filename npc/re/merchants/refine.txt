@@ -176,7 +176,7 @@ function	script	refinenew	{
 			mes "I am the best Armsmith.";
 			close;
 		} else {
-			if (rand(100) < 80) {
+			// if (rand(100) < 80) {
 				mes "["+ .@npc_name$ +"]";
 				mes "Clang! Clang! Clang! Clang!";
 				downrefitem .@part,3; // Failed refine attempts decrease the item's refine level by 3
@@ -188,19 +188,19 @@ function	script	refinenew	{
 				mes "["+ .@npc_name$ +"]";
 				mes "Oh my god!";
 				mes "The upgrade level has dropped...";
-			} else {
-				mes "["+ .@npc_name$ +"]";
-				mes "Clang! Clang! Clang!";
-				failedrefitem .@part;
-				next;
-				emotion (!rand(5))?ET_MONEY:ET_HUK;
-				mes "["+ .@npc_name$ +"]";
-				mes "Hmmm!";
-				next;
-				mes "["+ .@npc_name$ +"]";
-				mes "Oh my! I've failed to refine stuff...";
-				mes "I didn't mean it!";
-			}
+			// } else {
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Clang! Clang! Clang!";
+				// failedrefitem .@part;
+				// next;
+				// emotion (!rand(5))?ET_MONEY:ET_HUK;
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Hmmm!";
+				// next;
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Oh my! I've failed to refine stuff...";
+				// mes "I didn't mean it!";
+			// }
 			mes "I could have made a mistake even though I am the best Armsmith ever.";
 			mes "It just wasn't meant to be.";
 			next;
@@ -290,7 +290,7 @@ function	script	refinenew	{
 			.@refinecnt = .@refinecnt - 1;
 			next;
 		} else {
-			if (rand(100) < 80) {
+			// if (rand(100) < 80) {
 				mes "["+ .@npc_name$ +"]";
 				mes "Clang! Clang! Clang! Clang!";
 				downrefitem .@part,3; // Failed refine attempts decrease the item's refine level by 3
@@ -302,19 +302,19 @@ function	script	refinenew	{
 				mes "["+ .@npc_name$ +"]";
 				mes "Oh my god!";
 				mes "The upgrade level has dropped...";
-			} else {
-				mes "["+ .@npc_name$ +"]";
-				mes "Clang! Clang! Clang!";
-				failedrefitem .@part;
-				next;
-				emotion (!rand(5))?ET_MONEY:ET_HUK;
-				mes "["+ .@npc_name$ +"]";
-				mes "Hmmm!";
-				next;
-				mes "["+ .@npc_name$ +"]";
-				mes "Oh my! I've failed to refine stuff...";
-				mes "I didn't mean it!";
-			}
+			// } else {
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Clang! Clang! Clang!";
+				// failedrefitem .@part;
+				// next;
+				// emotion (!rand(5))?ET_MONEY:ET_HUK;
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Hmmm!";
+				// next;
+				// mes "["+ .@npc_name$ +"]";
+				// mes "Oh my! I've failed to refine stuff...";
+				// mes "I didn't mean it!";
+			// }
 			mes "I could have made a mistake even though I am the best Armsmith ever.";
 			mes "It just wasn't meant to be.";
 			next;

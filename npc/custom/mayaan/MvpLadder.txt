@@ -39,11 +39,11 @@ if ( getcharid(1) ) {
                     continue;
 					getitem 35131, 3, $@partymemberaid[.@i];
 					        }
-announce "[" +strcharinfo(0) +"] of the party ["+ getpartyname( getcharid(1) ) +"] has killed [" +getmonsterinfo(killedrid,0) +"] in map [" +strcharinfo(3) +"] and obtained 3x MVP Stone!",bc_blue|bc_all;
+announce "[" +strcharinfo(0) +"] of the party ["+ getpartyname( getcharid(1) ) +"] has killed [" +getmonsterinfo(killedrid,0) +"] and obtained 3x MVP Stone!",bc_blue|bc_all;
 } else {
 					#MVPPOINTS+=1;
 					getitem 35131, 5;
-announce "What a brave hero!, user [" +strcharinfo(0) +"] has killed [" +getmonsterinfo(killedrid,0) +"] in map [" +strcharinfo(3) +"] and obtained 5x MVP Stone!!",bc_blue|bc_all;
+announce "What a brave hero!, user [" +strcharinfo(0) +"] has killed [" +getmonsterinfo(killedrid,0) +"] and obtained 5x MVP Stone!!",bc_blue|bc_all;
 query_sql( "INSERT INTO `mvp_ranking` SET `char_id`='"+getcharid(0)+"',`name`='"+strcharinfo(0)+"',`mvp_count`='1' ON DUPLICATE KEY UPDATE `mvp_count`=`mvp_count`+1" );
 dispbottom "You Killed an MVP. Total is " +#MVPPOINTS+ " Mvp points.";
 	}

@@ -119,7 +119,7 @@ OnInit:
 	// Its possible for a level 1 novice to kill a level 99 player and he/she will still get in the ladder
 	// but a level 99 kill a level 1 player will get nothing
 	// 0 - off this system ( default is 55, pk setting )
-	set .lvltokill, 255;
+	set .lvltokill, 150;
 
 	// when a player kill another same player <this number> times in a row, the player is warp back to save point.
 	// and the player's streak, kills, and ownage count will deduct accordingly

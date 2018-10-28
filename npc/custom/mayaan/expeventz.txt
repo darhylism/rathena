@@ -15,7 +15,7 @@ end;
 
 	
 OnGrind:
-	announce "Weekend Grindfest Begin!",bc_blue|bc_all;
+	announce "Grindfest Begins!",bc_blue|bc_all;
 	sleep 1000;
 	announce "Exp and drop rates are multiplied to 1.5x!",bc_blue|bc_all;
 	set .br,getbattleflag("base_exp_rate")*15/10;
@@ -58,7 +58,7 @@ OnGrind:
 end;
 
 OnGrond:
-	announce "Weekend Grindfest Begin! already finish!",bc_blue|bc_all;
+	announce "Grindfest! finish!",bc_blue|bc_all;
 	sleep 1000;
 	announce "Exp and Drop are back to normal!",bc_blue|bc_all;
 	atcommand "@reloadbattleconf";
