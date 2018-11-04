@@ -8,3 +8,21 @@ set STOREITEMZ,1;
 }
 end;
 }
+
+
+-	script	VIP_STATUSs	-1,{
+OnPCLoginEvent:
+	if ( vip_status(1) ) {
+			set .@Timer, vip_status(2);
+			dispbottom "===================================================";
+			dispbottom "Account Status : VIP Account";
+			dispbottom "Account Status : Get buffs on healer npc";
+			dispbottom "Account Status : Bypass Gemstone Requirement activated";
+			dispbottom "Account Status : Storage Capacity Increased to 900";
+			dispbottom "Account Status : Exp & Job Increase by 50%";
+			dispbottom "Account Status : Drop Increase by 50%";
+			dispbottom "Time left : "+ callfunc("Time2Str",.@Timer);
+			dispbottom "===================================================";
+		end;
+	}
+}

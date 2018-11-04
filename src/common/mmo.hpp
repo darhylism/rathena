@@ -57,7 +57,7 @@
 #define DEFAULT_WALK_SPEED 150 ///Default walk speed
 #define MIN_WALK_SPEED 20 ///Min walk speed
 #define MAX_WALK_SPEED 1000 ///Max walk speed
-#define MAX_STORAGE 600 ///Max number of storage slots a player can have
+#define MAX_STORAGE 900 ///Max number of storage slots a player can have
 #define MAX_GUILD_STORAGE 600 ///Max number of storage slots a guild
 #define MAX_PARTY 12 ///Max party member
 #define MAX_GUILD 16+10*6	///Increased max guild members +6 per 1 extension levels [Lupus]
@@ -67,9 +67,9 @@
 #define MAX_GUILDSKILL	17 ///Max Guild skills
 #define MAX_GUILDLEVEL 50 ///Max Guild level
 #define MAX_GUARDIANS 8	///Local max per castle. If this value is increased, need to add more fields on MySQL `guild_castle` table [Skotlex]
-#define MAX_QUEST_OBJECTIVES 5 ///Max quest objectives for a quest
-#define MAX_QUEST_DROPS 5 ///Max quest drops for a quest
-#define MAX_PC_BONUS_SCRIPT 60 ///Max bonus script can be fetched from `bonus_script` table on player load [Cydh]
+#define MAX_QUEST_OBJECTIVES 3 ///Max quest objectives for a quest
+#define MAX_QUEST_DROPS 3 ///Max quest drops for a quest
+#define MAX_PC_BONUS_SCRIPT 50 ///Max bonus script can be fetched from `bonus_script` table on player load [Cydh]
 #define MAX_ITEM_RDM_OPT 5	 /// Max item random option [Napster]
 #define DB_NAME_LEN 256 //max len of dbs
 #define MAX_CLAN 500

@@ -26,7 +26,7 @@ OnUna:
 	sleep2 100;
 OnTwo:
 	set @b,@b+1;
-	viewpoint 1,@x,@y,1,0xFF0000;
+//	viewpoint 1,@x,@y,1,0xFF0000;
 		dispbottom "auto walking to x = "+@x+" y = "+@y;
 		unitwalk getcharid(3),@x,@y,strnpcinfo(3)+"::OnReach";
 		sleep2 2000;
@@ -100,7 +100,7 @@ OnUna:
 	sleep2 100;
 OnTwo:
 	set @d,@d+1;
-	viewpoint 1,@x,@y,1,0xFF0000;
+//	viewpoint 1,@x,@y,1,0xFF0000;
 		sc_start SC_ENDURE,-1,10;
 		sc_end SC_STOP;
 		percentheal 100,100;
@@ -121,5 +121,52 @@ OnThree:
 	sleep2 1000;
 	set @c,@c+1;
 	if(@c < 7) goto OnThree;
+	}
+}
+
+
+// Warlock lang talagav2
+//===================================
+function	script	F_botex4	{
+//atcommand "@afk";
+set .@i,0;
+while (@i < 60) {
+OnUna:
+	set @b,0;
+    dispbottom ""+@i+"";
+	@rid = getcharid(3);
+	getmapxy(.@m$,.@x,.@y,0);
+	sleep2 100;
+	@x1 = rand(-5,5);
+	@y1 = rand(-5,5);
+	@x = @x1+.@x;
+	@y = @y1+.@y;
+	sleep2 100;
+	if(!checkcell( .@m$,@x,@y,cell_chkpass )){
+		dispbottom "Coordinate not exists!";
+		goto OnUna;
+	} else if(checkcell( .@m$,@x,@y,cell_chkpass )){
+		dispbottom "Coordinate exists!";
+	}
+	sleep2 100;
+OnTwo:
+	set @b,@b+1;
+//	viewpoint 1,@x,@y,1,0xFF0000;
+		sc_start SC_ENDURE,-1,10;
+		dispbottom "auto walking to x = "+@x+" y = "+@y;
+		unitwalk getcharid(3),@x,@y,strnpcinfo(3)+"::OnReach";
+		sleep2 2000;
+		if(@b > 5) goto OnUna;
+		getmapxy(.@m$,.@x,.@y,0);
+		if(@x != .@x && @y != .@y) goto OnTwo;
+		sleep2 100;
+OnThree:
+	unitskilluseid @rid,"WL_JACKFROST",5,@rid,-4;
+	percentheal 100,100;
+	sc_start SC_ENDURE,-1,10;
+	sleep2 100;
+	dispbottom "JackJack";
+	sleep2 1500;
+	unitwarp @rid,"this",-1,-1;
 	}
 }

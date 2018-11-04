@@ -10,30 +10,29 @@ prontera,136,170,4	script	Point Trader	719,{
         case 1:
             mes @name$;
 			mes "I can convert:";
- //           mes "~1m Zeny to 20 Cashpoints.";
+            mes "~1m Zeny to 20 Cashpoints.";
 			mes "~1x Mvp Stone to 10 Hunting Points.";
 			mes "~1x Mvp Point to 50 Hunting Points.";
             close;
 			
 		case 2:
-		switch(select("MVP Stone to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
-			// switch(select("Zeny2Cash","MVP Stone to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
-				// case 1:
-					// mes @name$;
-					// mes "How many Platinum Coins you want to convert";
-					// mes "to CASHPOINTS?";
-					// mes "1,000,000(1M) Zeny = 20 ^FF0000CASHPOINTS^000000.";
-					// mes "But i only Accept Platinum Coins(1M).";
-					// input .@item_count;
-					  // if( .@item_count == 0 ) close;
-							// if (countitem(677) < (.@item_count)) goto noTCG;
-							// delitem 677,(.@item_count);
-							// #CASHPOINTS += (.@item_count*20);
-							// next;
-					// mes @name$;
-							// mes "There you go! You got a total of ^FF0000" + #CASHPOINTS + "^000000 Cashpoints. Hope to see you again!";
-							// close;
+			 switch(select("Zeny2Cash","MVP Stone to HuntingPts","Mvp Points to Huntingpts","Nothing")) {
 				case 1:
+					 mes @name$;
+					 mes "How many Platinum Coins you want to convert";
+					 mes "to CASHPOINTS?";
+					 mes "1,000,000(1M) Zeny = 20 ^FF0000CASHPOINTS^000000.";
+					 mes "But i only Accept Platinum Coins(1M).";
+					 input .@item_count;
+					   if( .@item_count == 0 ) close;
+							 if (countitem(677) < (.@item_count)) goto noTCG;
+							 delitem 677,(.@item_count);
+							 #CASHPOINTS += (.@item_count*20);
+							 next;
+					 mes @name$;
+							mes "There you go! You got a total of ^FF0000" + #CASHPOINTS + "^000000 Cashpoints. Hope to see you again!";
+							 close;
+				case 2:
 					mes @name$;
 					mes "How many MVP Stone you want to convert";
 					mes "to Hunting Points?";
@@ -47,7 +46,7 @@ prontera,136,170,4	script	Point Trader	719,{
 					mes @name$;
 							mes "There you go! You got a total of ^FF0000" + #HUNTINGPOINTS + "^000000 Hunting Points. Hope to see you again!";
 							close;
-				case 2:
+				case 3:
 					mes @name$;
 					mes "How many Mvp Point you want to convert";
 					mes "to Hunting Points?";
@@ -109,4 +108,4 @@ mall01,105,102,4	script	Hunting Pshop#prtz	97,{
 }
 
 poring_w02,101,78,4	duplicate(Hunting Pshop#prtz)	Hunting Pshop#1	97
--	pointshop	1shop#Pointz	-1,#HUNTINGPOINTS,35078:2000,14172:2000,35104:200,35091:500,35054:175,6224:45,6223:150,4399:5000,4357:5000,4359:5000,4361:5000,4363:5000,4365:5000,4367:5000,2554:5000
+-	pointshop	1shop#Pointz	-1,#HUNTINGPOINTS,16446:500,35078:2000,14172:2000,12853:200,35104:200,35091:500,6224:45,6223:150,4399:5000,4357:5000,4359:5000,4361:5000,4363:5000,4365:5000,4367:5000,2554:5000

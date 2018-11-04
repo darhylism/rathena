@@ -1212,20 +1212,20 @@ IG_BGum_Box_In_Mouth2,5597,0,1,0,0,120,1	// 1x Bubble_Gum_In_Mouth
 
 IG_BGum_Box_In_Mouth4,5597,0,1,0,0,240,1	// 1x Bubble_Gum_In_Mouth
 
-IG_Tw_October_Scroll,12188,191,10,1,0,0,1	// 10x Magical_Moon_Cake
-IG_Tw_October_Scroll,12328,150,10,1,0,0,1	// 10x Charm_Of_Happiness
-IG_Tw_October_Scroll,12710,130,10,1,0,0,1	// 10x Guyak_Pudding
-IG_Tw_October_Scroll,12907,106,1,1,0,0,1	// 1x Luk_Dish_Box
-IG_Tw_October_Scroll,12908,105,1,1,0,0,1	// 1x Vit_Dish_Box
-IG_Tw_October_Scroll,12903,104,1,1,0,0,1	// 1x Str_Dish_Box
-IG_Tw_October_Scroll,13858,103,1,1,0,0,1	// 1x Spark_Candy_Box10
-IG_Tw_October_Scroll,5117,50,1,1,0,0,1	// 1x Mistic_Rose
-IG_Tw_October_Scroll,2702,21,1,1,0,0,1	// 1x Bison_Horn
-IG_Tw_October_Scroll,5367,20,1,1,0,0,1	// 1x Hyegun_Hat
-IG_Tw_October_Scroll,5403,9,1,1,0,0,1	// 1x Fish_In_Mouth
-IG_Tw_October_Scroll,5401,8,1,1,0,0,1	// 1x Black_Glasses
-IG_Tw_October_Scroll,12246,2,1,1,0,0,1	// 1x Magic_Card_Album
-IG_Tw_October_Scroll,12259,1,1,1,0,0,1	// 1x Miracle_Medicine
+// IG_Tw_October_Scroll,12188,191,10,1,0,0,1	// 10x Magical_Moon_Cake
+// IG_Tw_October_Scroll,12328,150,10,1,0,0,1	// 10x Charm_Of_Happiness
+// IG_Tw_October_Scroll,12710,130,10,1,0,0,1	// 10x Guyak_Pudding
+// IG_Tw_October_Scroll,12907,106,1,1,0,0,1	// 1x Luk_Dish_Box
+// IG_Tw_October_Scroll,12908,105,1,1,0,0,1	// 1x Vit_Dish_Box
+// IG_Tw_October_Scroll,12903,104,1,1,0,0,1	// 1x Str_Dish_Box
+// IG_Tw_October_Scroll,13858,103,1,1,0,0,1	// 1x Spark_Candy_Box10
+// IG_Tw_October_Scroll,5117,50,1,1,0,0,1	// 1x Mistic_Rose
+// IG_Tw_October_Scroll,2702,21,1,1,0,0,1	// 1x Bison_Horn
+// IG_Tw_October_Scroll,5367,20,1,1,0,0,1	// 1x Hyegun_Hat
+// IG_Tw_October_Scroll,5403,9,1,1,0,0,1	// 1x Fish_In_Mouth
+// IG_Tw_October_Scroll,5401,8,1,1,0,0,1	// 1x Black_Glasses
+// IG_Tw_October_Scroll,12246,2,1,1,0,0,1	// 1x Magic_Card_Album
+// IG_Tw_October_Scroll,12259,1,1,1,0,0,1	// 1x Miracle_Medicine
 
 IG_My_Scroll1,12900,1450,1,1,0,0,1	// 1x Battle_Manual_Box
 IG_My_Scroll1,12904,1450,1,1,0,0,1	// 1x Agi_Dish_Box
@@ -2308,7 +2308,6 @@ IG_Wisdom_Scroll,4047,5,1,1,1,0,0	// 1x Ghostring_Card
 IG_Patron_Scroll,12904,1300,1,1,0,0,0	// 1x Agi_Dish_Box
 IG_Patron_Scroll,12907,1300,1,1,0,0,0	// 1x Luk_Dish_Box
 IG_Patron_Scroll,14232,1200,1,1,0,0,0	// 1x Yggdrasilberry_Box_
-IG_Patron_Scroll,6484,773,1,1,1,0,0	// 1x Enchant_Book
 IG_Patron_Scroll,12259,200,1,1,0,0,0	// 1x Miracle_Medicine
 IG_Patron_Scroll,12642,1150,1,1,0,0,0	// 1x Fruit_Of_Mastela_Box2
 IG_Patron_Scroll,12902,1100,1,1,0,0,0	// 1x Bubble_Gum_Box
@@ -2316,14 +2315,15 @@ IG_Patron_Scroll,13539,1060,1,1,0,0,0	// 1x Storm_10_Scroll_Box
 IG_Patron_Scroll,13990,500,1,1,0,0,0	// 1x Job_Manual50_Box
 IG_Patron_Scroll,12822,1110,1,1,0,0,0	// 1x Songpyun_Box50
 IG_Patron_Scroll,12246,200,1,1,0,0,0	// 1x Magic_Card_Album
-IG_Patron_Scroll,2168,30,1,1,1,0,0	// 1x Immuned_Shield
-IG_Patron_Scroll,4486,1,1,1,1,0,0	// 1x Sealed_Berz_Card
-IG_Patron_Scroll,4504,15,1,1,1,0,0	// 1x Sealed_Eddga_Card
+IG_Patron_Scroll,2168,50,1,1,1,0,0	// 1x Immuned_Shield
+IG_Patron_Scroll,4486,22,1,1,1,0,0	// 1x Sealed_Berz_Card
+IG_Patron_Scroll,4504,22,1,1,1,0,0	// 1x Sealed_Eddga_Card
 IG_Patron_Scroll,18600,20,1,1,1,0,0	// 1x Cat_Ear_Beret
-IG_Patron_Scroll,16543,5,1,1,1,0,0	// 1x Snowman_Hat_Box
-IG_Patron_Scroll,18670,30,1,1,1,0,0	// 1x Hankie_In_Mouth
-IG_Patron_Scroll,4132,1,1,1,1,0,0	// 1x Mistress_Card
-IG_Patron_Scroll,6232,5,1,1,1,0,0	// 1x Guarantee_Armor_9Up
+IG_Patron_Scroll,16543,22,1,1,1,0,0	// 1x Snowman_Hat_Box
+IG_Patron_Scroll,18670,50,1,1,1,0,0	// 1x Hankie_In_Mouth
+IG_Patron_Scroll,4132,22,1,1,1,0,0	// 1x Mistress_Card
+IG_Patron_Scroll,6228,11,1,1,1,0,0	// 1x Guarantee_Weapon_9Up
+IG_Patron_Scroll,6232,11,1,1,1,0,0	// 1x Guarantee_Armor_9Up
 
 IG_Heaven_Scroll,14232,1200,1,1,0,0,0	// 1x Yggdrasilberry_Box_
 IG_Heaven_Scroll,13710,280,1,1,0,0,0	// 1x Max_Weight_Up_Box
@@ -2505,29 +2505,29 @@ IG_Tw_Yellow_Scroll,18716,50,1,1,1,0,0	// 1x Strawberry_In_Mouth
 IG_Tw_Yellow_Scroll,18729,3,1,1,1,0,0	// 1x MVP_Basketball
 IG_Tw_Yellow_Scroll,18509,3,1,1,1,0,0	// 1x RWC2010_Indonesia
 
-IG_Scroll_Of_Death,4276,1,1,1,1,0,0	// 1x Lord_Of_Death_Card
-IG_Scroll_Of_Death,4540,5,1,1,1,0,0	// 1x SLD_Lord_Of_Death_Card
-IG_Scroll_Of_Death,4140,10,1,1,1,0,0	// 1x Knight_Of_Abyss_Card
-IG_Scroll_Of_Death,18574,15,1,1,1,0,0	// 1x Lord_of_Death
-IG_Scroll_Of_Death,6231,25,1,1,1,0,0	// 1x Guarantee_Weapon_6Up
-IG_Scroll_Of_Death,6235,25,1,1,1,0,0	// 1x Guarantee_Armor_6Up
-IG_Scroll_Of_Death,1417,50,1,1,1,0,0	// 1x Pole_Axe
-IG_Scroll_Of_Death,1230,74,1,1,1,0,0	// 1x House_Auger
-IG_Scroll_Of_Death,6456,100,1,1,1,0,0	// 1x Guarantee_Weapon_5Up
-IG_Scroll_Of_Death,6457,100,1,1,1,0,0	// 1x Guarantee_Armor_5Up
-IG_Scroll_Of_Death,1306,120,1,1,1,0,0	// 1x War_Axe
-IG_Scroll_Of_Death,2621,150,1,1,1,0,0	// 1x Ring_
-IG_Scroll_Of_Death,1529,150,1,1,1,0,0	// 1x Iron_Driver
-IG_Scroll_Of_Death,13710,325,1,1,0,0,0	// 1x Max_Weight_Up_Box
-IG_Scroll_Of_Death,13610,600,1,1,0,0,0	// 1x Enriched_Elunium_Box5
-IG_Scroll_Of_Death,13611,600,1,1,0,0,0	// 1x Enriched_Oridecon_Box5
-IG_Scroll_Of_Death,13741,1100,1,1,0,0,0	// 1x Shadow_Armor_S_Box10
-IG_Scroll_Of_Death,6024,1075,1,1,0,0,0	// 1x 17Carat_Dia
-IG_Scroll_Of_Death,13289,1100,5,1,0,0,0	// 5x Petti_Noodle_To_Throw
-IG_Scroll_Of_Death,12787,1100,5,1,0,0,0	// 5x Diabolic_Scroll
-IG_Scroll_Of_Death,12411,1100,4,1,0,0,0	// 4x HE_Battle_Manual
-IG_Scroll_Of_Death,12710,1075,10,1,0,0,0	// 10x Guyak_Pudding
-IG_Scroll_Of_Death,13600,1100,1,1,0,0,0	// 1x Siegfried_Box5
+// IG_Scroll_Of_Death,4276,1,1,1,1,0,0	// 1x Lord_Of_Death_Card
+// IG_Scroll_Of_Death,4540,5,1,1,1,0,0	// 1x SLD_Lord_Of_Death_Card
+// IG_Scroll_Of_Death,4140,10,1,1,1,0,0	// 1x Knight_Of_Abyss_Card
+// IG_Scroll_Of_Death,18574,15,1,1,1,0,0	// 1x Lord_of_Death
+// IG_Scroll_Of_Death,6231,25,1,1,1,0,0	// 1x Guarantee_Weapon_6Up
+// IG_Scroll_Of_Death,6235,25,1,1,1,0,0	// 1x Guarantee_Armor_6Up
+// IG_Scroll_Of_Death,1417,50,1,1,1,0,0	// 1x Pole_Axe
+// IG_Scroll_Of_Death,1230,74,1,1,1,0,0	// 1x House_Auger
+// IG_Scroll_Of_Death,6456,100,1,1,1,0,0	// 1x Guarantee_Weapon_5Up
+// IG_Scroll_Of_Death,6457,100,1,1,1,0,0	// 1x Guarantee_Armor_5Up
+// IG_Scroll_Of_Death,1306,120,1,1,1,0,0	// 1x War_Axe
+// IG_Scroll_Of_Death,2621,150,1,1,1,0,0	// 1x Ring_
+// IG_Scroll_Of_Death,1529,150,1,1,1,0,0	// 1x Iron_Driver
+// IG_Scroll_Of_Death,13710,325,1,1,0,0,0	// 1x Max_Weight_Up_Box
+// IG_Scroll_Of_Death,13610,600,1,1,0,0,0	// 1x Enriched_Elunium_Box5
+// IG_Scroll_Of_Death,13611,600,1,1,0,0,0	// 1x Enriched_Oridecon_Box5
+// IG_Scroll_Of_Death,13741,1100,1,1,0,0,0	// 1x Shadow_Armor_S_Box10
+// IG_Scroll_Of_Death,6024,1075,1,1,0,0,0	// 1x 17Carat_Dia
+// IG_Scroll_Of_Death,13289,1100,5,1,0,0,0	// 5x Petti_Noodle_To_Throw
+// IG_Scroll_Of_Death,12787,1100,5,1,0,0,0	// 5x Diabolic_Scroll
+// IG_Scroll_Of_Death,12411,1100,4,1,0,0,0	// 4x HE_Battle_Manual
+// IG_Scroll_Of_Death,12710,1075,10,1,0,0,0	// 10x Guyak_Pudding
+// IG_Scroll_Of_Death,13600,1100,1,1,0,0,0	// 1x Siegfried_Box5
 
 IG_Scroll_Of_Life,4302,1,1,1,1,0,0	// 1x Tao_Gunka_Card
 IG_Scroll_Of_Life,4493,5,1,1,1,0,0	// 1x Sealed_Tao_Card

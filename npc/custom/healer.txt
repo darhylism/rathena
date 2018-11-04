@@ -31,7 +31,7 @@
 	}
 	specialeffect2 EF_HEAL2;
 	percentheal 100,100;
-	if (.@Buffs && BaseLevel > 200) {
+	if (.@Buffs && vip_status(1)) {
 		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INCREASEAGI,300000,10;
 		specialeffect2 EF_BLESSING;
@@ -40,6 +40,24 @@
 		sc_start SC_SUFFRAGIUM,300000,10;
 		specialeffect2 EF_IMPOSITIO;
 		sc_start SC_IMPOSITIO,300000,10;
+	if (getstatus(SC_FOOD_STR_CASH)==0){
+		sc_start SC_STRFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_INT_CASH)==0){
+		sc_start SC_INTFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_DEX_CASH)==0){
+		sc_start SC_DEXFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_AGI_CASH)==0){
+		sc_start SC_AGIFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_VIT_CASH)==0){
+		sc_start SC_VITFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_LUK_CASH)==0){
+		sc_start SC_LUKFOOD,300000,10;
+		}
 	}
 	if (.@Delay)
 		@HD = gettimetick(2) + .@Delay;

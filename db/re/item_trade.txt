@@ -2181,7 +2181,7 @@
 13987,475,100	// Ori_Stone_5_Box
 13988,475,100	// Ori_Stone_50_Box
 13989,475,100	// Acidbomb_10_Box
-13990,475,100	// Job_Manual50_Box
+13990,457,100	// Job_Manual50_Box
 13991,475,100	// Tiger_Mask_Box
 13992,475,100	// Cat_Hat_Box
 13993,475,100	// Alice_Doll_Box
