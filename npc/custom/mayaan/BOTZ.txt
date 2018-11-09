@@ -8,7 +8,7 @@ set .@i,0;
 while (@i < 60) {
 OnUna:
 	set @b,0;
-    dispbottom ""+@i+"";
+//    dispbottom ""+@i+"";
 	@rid = getcharid(3);
 	getmapxy(.@m$,.@x,.@y,0);
 	sleep2 100;
@@ -18,16 +18,16 @@ OnUna:
 	@y = @y1+.@y;
 	sleep2 100;
 	if(!checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate not exists!";
+//		dispbottom "Coordinate not exists!";
 		goto OnUna;
 	} else if(checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate exists!";
+//		dispbottom "Coordinate exists!";
 	}
 	sleep2 100;
 OnTwo:
 	set @b,@b+1;
 //	viewpoint 1,@x,@y,1,0xFF0000;
-		dispbottom "auto walking to x = "+@x+" y = "+@y;
+//		dispbottom "auto walking to x = "+@x+" y = "+@y;
 		unitwalk getcharid(3),@x,@y,strnpcinfo(3)+"::OnReach";
 		sleep2 2000;
 		if(@b > 5) goto OnUna;
@@ -38,7 +38,7 @@ OnThree:
 	unitskilluseid @rid,"WL_JACKFROST",5,@rid,-4;
 	percentheal 100,100;
 	sleep2 100;
-	dispbottom "JackJack";
+//	dispbottom "JackJack";
 	}
 }
 
@@ -48,7 +48,7 @@ set .@i,0;
 while (@i < 60) {
 OnFIRST:
 	set @c,0;
-    dispbottom ""+@i+"";
+//    dispbottom ""+@i+"";
 	@rid = getcharid(3);
 	sleep2 10000;
 	monster "this",-1,-1,"--ja--",-1-MOBG_Branch_Of_Dead_Tree,3,"";
@@ -69,7 +69,7 @@ OnSecond:
 	sleep2 1000;
 	atcommand "@alive";
 	percentheal 100,100;
-	dispbottom "JackJack";
+//	dispbottom "JackJack";
 	}
 }
 
@@ -82,7 +82,7 @@ while (@i < 60) {
 OnUna:
 	set @d,0;
 	set @c,0;
-    dispbottom ""+@i+"";
+//   dispbottom ""+@i+"";
 	@rid = getcharid(3);
 	getmapxy(.@m$,.@x,.@y,0);
 	sleep2 100;
@@ -92,10 +92,10 @@ OnUna:
 	@y = @y1+.@y;
 	sleep2 100;
 	if(!checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate not exists!";
+//		dispbottom "Coordinate not exists!";
 		goto OnUna;
 	} else if(checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate exists!";
+//		dispbottom "Coordinate exists!";
 	}
 	sleep2 100;
 OnTwo:
@@ -104,7 +104,7 @@ OnTwo:
 		sc_start SC_ENDURE,-1,10;
 		sc_end SC_STOP;
 		percentheal 100,100;
-		dispbottom "auto walking to x = "+@x+" y = "+@y;
+//		dispbottom "auto walking to x = "+@x+" y = "+@y;
 		unitwalk getcharid(3),@x,@y,strnpcinfo(3)+"::OnReach";
 		sleep2 2000;
 		unitskilluseid @rid,"SR_SKYNETBLOW",5,@rid,0;
@@ -117,7 +117,7 @@ OnThree:
 	percentheal 100,100;
 	sleep2 5;
 	sc_start SC_ENDURE,-1,10;
-	dispbottom "Net";
+//	dispbottom "Net";
 	sleep2 1000;
 	set @c,@c+1;
 	if(@c < 7) goto OnThree;
@@ -133,7 +133,7 @@ set .@i,0;
 while (@i < 60) {
 OnUna:
 	set @b,0;
-    dispbottom ""+@i+"";
+//    dispbottom ""+@i+"";
 	@rid = getcharid(3);
 	getmapxy(.@m$,.@x,.@y,0);
 	sleep2 100;
@@ -143,17 +143,17 @@ OnUna:
 	@y = @y1+.@y;
 	sleep2 100;
 	if(!checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate not exists!";
+//		dispbottom "Coordinate not exists!";
 		goto OnUna;
 	} else if(checkcell( .@m$,@x,@y,cell_chkpass )){
-		dispbottom "Coordinate exists!";
+//		dispbottom "Coordinate exists!";
 	}
 	sleep2 100;
 OnTwo:
 	set @b,@b+1;
 //	viewpoint 1,@x,@y,1,0xFF0000;
 		sc_start SC_ENDURE,-1,10;
-		dispbottom "auto walking to x = "+@x+" y = "+@y;
+//		dispbottom "auto walking to x = "+@x+" y = "+@y;
 		unitwalk getcharid(3),@x,@y,strnpcinfo(3)+"::OnReach";
 		sleep2 2000;
 		if(@b > 5) goto OnUna;
@@ -165,7 +165,7 @@ OnThree:
 	percentheal 100,100;
 	sc_start SC_ENDURE,-1,10;
 	sleep2 100;
-	dispbottom "JackJack";
+//	dispbottom "JackJack";
 	sleep2 1500;
 	unitwarp @rid,"this",-1,-1;
 	}
