@@ -583,8 +583,8 @@ void chrif_on_ready(void) {
 	do_reconnect_storage();
 
 	//Re-save any guild castles that were modified in the disconnection time.
-	guild_castle_reconnect(-1, 0, 0);
-
+	guild_castle_reconnect(-1, CD_NONE, 0);
+	
 	// Charserver is ready for loading autotrader
 	if (!char_init_done)
 	{
@@ -692,7 +692,7 @@ void chrif_authok(int fd) {
 
 	//Check if both servers agree on the struct's size
 	if( RFIFOW(fd,2) - 25 != sizeof(struct mmo_charstatus) ) {
-		ShowError("chrif_authok: Data size mismatch! %d != %d\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
+		ShowError("chrif_authok: Data size mismatch! %d != %" PRIuPTR "\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
 		return;
 	}
 
@@ -2004,13 +2004,13 @@ void do_final_chrif(void) {
  *------------------------------------------*/
 void do_init_chrif(void) {
 	if(sizeof(struct mmo_charstatus) > 0xFFFF){
-		ShowError("mmo_charstatus size = %d is too big to be transmitted. (must be below 0xFFFF)\n",
+		ShowError("mmo_charstatus size = %" PRIuPTR " is too big to be transmitted. (must be below 0xFFFF)\n",
 			sizeof(struct mmo_charstatus));
 		exit(EXIT_FAILURE);
 	}
 
 	if (sizeof(struct s_storage) > 0xFFFF) {
-		ShowError("s_storage size = %d is too big to be transmitted. (must be below 0xFFFF)\n", sizeof(struct s_storage));
+		ShowError("s_storage size = %" PRIuPTR " is too big to be transmitted. (must be below 0xFFFF)\n", sizeof(struct s_storage));
 		exit(EXIT_FAILURE);
 	}
 
@@ -2107,7 +2107,7 @@ bool chrif_gepard_ack_block(int fd)
 	{
 		char message_info[300];
 		struct s_mapiterator* iter;
-	
+
 		safesnprintf(message_info, 300, "Unique ID has been banned!\r\rDate of unban:  %s\r\rUnique id: %u\r\rReason: %s", unban_time_str, unique_id, reason_str);
 
 		iter = mapit_getallusers();
@@ -2122,7 +2122,7 @@ bool chrif_gepard_ack_block(int fd)
 				session[sd->fd]->recv_crypt.pos_3 = rand() % 255;
 			}
 		}
-	
+
 		mapit_free(iter);
 	}
 
@@ -2188,4 +2188,3 @@ bool chrif_gepard_ack_unblock(int fd)
 	return true;
 }
 // (^~_~^) Gepard Shield End
-
