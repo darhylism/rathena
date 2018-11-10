@@ -102,11 +102,11 @@ OnReadyCheck:
 	{
 		if( .@Guillaume > 3 && .@Croix > 3 && !agitcheck() && !agitcheck2() && $@KvM_Flood < gettimetick(2) )
 		{
-			announce "Battleground -- Kreiger Von Midgard [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",0,0x696969;
+			announce "Battleground -- Kreiger Von Midgard [150-175] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",0,0x696969;
 			set $@KvM_Flood, gettimetick(2) + 15;
 		}
 		else
-			mapannounce "bat_room","Battleground -- Kreiger Von Midgard [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x696969;
+			mapannounce "bat_room","Battleground -- Kreiger Von Midgard [150-175] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x696969;
 		end;
 	}
 
@@ -117,7 +117,7 @@ OnReadyCheck:
 	end;
 
 OnStart:
-	announce "Battleground -- Kreiger Von Midgard [80-99] has started!",0,0x696969;
+	announce "Battleground -- Kreiger Von Midgard [150-175] has started!",0,0x696969;
 	enablenpc "TherapistKvM01a";
 	enablenpc "TherapistKvM01b";
 	disablenpc "VintenarKvM01a";

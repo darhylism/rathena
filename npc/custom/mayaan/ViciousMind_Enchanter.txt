@@ -34,7 +34,7 @@
 //===== Credits ==============================================
 //= NovaRo for their Information regarding the possible Options.
 //============================================================
-prontera,158,179,4	script	Vicious Mind Enchanter	101,{
+mall01,102,105,7	script	Vicious Mind Enchanter	4_M_TUFFOLD,{
 
 mes .n$;
 mes "Hello, "+strcharinfo(0)+"!";

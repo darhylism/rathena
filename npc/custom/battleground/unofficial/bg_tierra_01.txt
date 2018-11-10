@@ -57,7 +57,7 @@ OnReadyCheck:
 
 	if( .@Guillaume < 10 || .@Croix < 10 )
 	{
-		mapannounce "bat_room","Battleground -- Tierra Valley [80-99] G: " + .@Guillaume + "/10, C: " + .@Croix + "/10",1,0xFFA500;
+		mapannounce "bat_room","Battleground -- Tierra Valley [80-175] G: " + .@Guillaume + "/10, C: " + .@Croix + "/10",1,0xFFA500;
 		end;
 	}
 
@@ -86,7 +86,7 @@ OnReadyCheck:
 	donpcevent "#ctv1_respawn::OnBGStart";
 	donpcevent "#ntv1_respawn::OnBGStart";
 	// Warp Teams
-	announce "Battleground -- Tierra Valley [80-99] has started!",0,0xFFA500;
+	announce "Battleground -- Tierra Valley [80-175] has started!",0,0xFFA500;
 	bg_warp $@TierraBG1_id1,"bat_a01",353,344;
 	bg_warp $@TierraBG1_id2,"bat_a01",353,52;
 	// Final Messages

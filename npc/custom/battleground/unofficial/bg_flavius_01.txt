@@ -8,7 +8,7 @@
 bat_room,86,227,4	script	Registration::Fl1R_Guillaume	418,{
 	end;
 OnInit:
-	waitingroom "Battle Station 10 Players",10,"Flavius_BG1::OnGuillaumeJoin",1;
+	waitingroom "Battle Station 3 Players",3,"Flavius_BG1::OnGuillaumeJoin",1;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id1, waitingroom2bg("bat_b01",390,10,"Flavius_BG1::OnGuillaumeQuit","");
@@ -18,7 +18,7 @@ OnEnterBG:
 bat_room,85,204,0	script	Registration::Fl1R_Croix	414,{
 	end;
 OnInit:
-	waitingroom "Battle Station 10 Players",10,"Flavius_BG1::OnCroixJoin",1;
+	waitingroom "Battle Station 3 Players",3,"Flavius_BG1::OnCroixJoin",1;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",10,290,"Flavius_BG1::OnCroixQuit","");
@@ -55,9 +55,9 @@ OnReadyCheck:
 	set .@Guillaume, getwaitingroomstate(0,"Fl1R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"Fl1R_Croix");
 	
-	if( .@Guillaume < 10 || .@Croix < 10 )
+	if( .@Guillaume < 3 || .@Croix < 3 )
 	{
-		mapannounce "bat_room","Battleground -- Flavius [80-99] G: " + .@Guillaume + "/10, C: " + .@Croix + "/10",1,0x006400;
+		mapannounce "bat_room","Battleground -- Flavius [150-175] G: " + .@Guillaume + "/3, C: " + .@Croix + "/3",1,0x006400;
 		end;
 	}
 
@@ -79,7 +79,7 @@ OnReadyCheck:
 	// Build and Warp Teams
 	donpcevent "Fl1R_Guillaume::OnEnterBG";
 	donpcevent "Fl1R_Croix::OnEnterBG";
-	announce "Battleground -- Flavius [80-99] has started!",0,0x006400;
+	announce "Battleground -- Flavius [150-175] has started!",0,0x006400;
 	initnpctimer;
 	// Start Match!!
 
