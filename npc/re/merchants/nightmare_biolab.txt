@@ -195,16 +195,16 @@ lighthalzen,321,218,4	script	Ohno Tohiro#1	4_M_RASWORD,{
 	}
 }
 
-lighthalzen,320,204,3	script	A kid with black finger	4_F_04,{
+lighthalzen,320,204,3	script	Lunar	4_F_04,{
 	disable_items;
 	mes "[Lunar]";
 	mes "What are you looking for? Are you looking for the place where all the dead men roam?";
 	next;
 	mes "[Lunar]";
-	mes "I can take you there if you want. You will need ^0000cd20 Sentimental Fragment and 150K Zeny^000000.";
+	mes "I can take you there if you want. You will need ^0000cd150K Zeny^000000.";
 	next;
 	mes "[Lunar]";
-	mes "Or you can just see sentiment safely without the interruption of the dead. That will cost you ^0000cd30 Sentimental Fragment and 2M Zeny^000000.";
+	mes "Or you can just see sentiment safely without the interruption of the dead. That will cost you ^0000cd2M Zeny^000000.";
 	next;
 	mes "[Lunar]";
 	mes "Where do you want to go?";
@@ -214,7 +214,7 @@ lighthalzen,320,204,3	script	A kid with black finger	4_F_04,{
 		mes "[Lunar]";
 		mes "You have everything right?";
 		next;
-		if (countitem(22687) < 20 || Zeny < 150000) {
+		if (Zeny < 150000) {
 			mes "[Lunar]";
 			mes "Let me see.";
 			next;
@@ -242,7 +242,6 @@ lighthalzen,320,204,3	script	A kid with black finger	4_F_04,{
 		next;
 		mes "[Lunar]";
 		mes "Please be careful and use the machine if you need to!!";
-		delitem 22687,20;// Sentimental Fragment
 		Zeny = Zeny - 150000;
 		if (isbegin_quest(14683) > 0)
 			erasequest 14683;
@@ -254,7 +253,7 @@ lighthalzen,320,204,3	script	A kid with black finger	4_F_04,{
 		mes "[Lunar]";
 		mes "You've got all the items and money??";
 		next;
-		if (countitem(22687) < 30 || Zeny < 2000000) {
+		if (Zeny < 2000000) {
 			mes "[Lunar]";
 			mes "Let me see.";
 			next;
@@ -271,7 +270,6 @@ lighthalzen,320,204,3	script	A kid with black finger	4_F_04,{
 		mes "[Lunar]";
 		mes "^EE0000Well, I also have a warning. Your location can't be saved in there, so if you log off or get disconnected, you'll be moved to your save point.";
 		close2;
-		delitem 22687,30;
 		Zeny = Zeny - 2000000;
 		warp "lhz_d_n2",60,44;
 		end;
