@@ -3,16 +3,31 @@ mall01,100,135,4	script	Deviantz Quest	4_M_OPERATION,{
 	mes "I come from Evil Wonderland to aid you.";
 	mes "I can make you special itemz!.";
 	next;
-	switch(select("Make Fallen Angel Wing:Make Archangel Wing:Close")) {
+	switch(select("Fallen Angel Wing:Archangel Wing:Kirin Armor:Etran Shirt:Gyges Ring:Close")) {
 		case 1:
 			mes "[Deviantz]";
-			mes "^3355FFMerry Gachabox^000000 1 Pc.";
-			setarray .@Items[0],35050,7034,40,664,2,665,2,666,2,667,2,2236,1;
+			mes "^3355FFFallen Angel Wing^000000.";
+			setarray .@Items[0],2589,6393,100,6394,100,2255,5,2890,5,2891,5,2527,1,2515,1,6091,3,22516,300,6100,100;
 			break;
 		case 2:
 			mes "[Deviantz]";
-			mes "^3355FFMerry Gachabox^000000 1 Pc.";
-			setarray .@Items[0],35050,7034,40,664,2,665,2,666,2,667,2,2236,1;
+			mes "^3355FFArchangel Wing^000000.";
+			setarray .@Items[0],2573,6393,100,6394,100,2254,5,2890,5,2891,1,2527,1,2515,1,2513,1,7165,200;
+			break;
+		case 3:
+			mes "[Deviantz]";
+			mes "^3355FFKirin Armor^000000.";
+			setarray .@Items[0],15103,7510,10,6022,10,7562,10,7451,5,7450,5,15051,1,1631,1,15090,1,2001,1,13062,1,4054,1;
+			break;
+		case 4:
+			mes "[Deviantz]";
+			mes "^3355FFEtran Shirt^000000.";
+			setarray .@Items[0],20797,7443,100,2554,1,2509,5,2590,5,20718,5,2544,5,20721,5,4054,1,4174,1,4047,1,4241,1;
+			break;
+		case 5:
+			mes "[Deviantz]";
+			mes "^3355FFGyges Ring^000000.";
+			setarray .@Items[0],2985,7799,300,2898,10,969,10,2610,10;
 			break;
 		default:
 			close;
