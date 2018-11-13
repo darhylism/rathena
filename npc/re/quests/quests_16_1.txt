@@ -5239,15 +5239,18 @@ prt_cas_q,21,83,3	script	Friedrich S. Heine#ep16	4_EP16_STOLZ,{
 			end;
 		case 0:
 		case 1:
-			cutin "ep16_friedrich_stolz_heine",1;
-			mes "[Friedrich]";
-			mes "I have heard the story from my father.";
-			mes "I have received the approval for you to access the Past Memories of the Royal Family freely.";
-			next;
-			mes "[Friedrich]";
-			mes "Let's talk about the Past Memories of the Royal Family tomorrow";
-			mes "Since you must be tired going through all the trouble today.";
-			close3;
+			// cutin "ep16_friedrich_stolz_heine",1;
+			// mes "[Friedrich]";
+			// mes "I have heard the story from my father.";
+			// mes "I have received the approval for you to access the Past Memories of the Royal Family freely.";
+			// next;
+			// mes "[Friedrich]";
+			// mes "Let's talk about the Past Memories of the Royal Family tomorrow";
+			// mes "Since you must be tired going through all the trouble today.";
+			// close3;
+			erasequest 7706;// Nillem Is Not Almighty
+			banquet_main_quest = 26;
+			break;
 		case 2:
 			erasequest 7706;// Nillem Is Not Almighty
 			banquet_main_quest = 26;

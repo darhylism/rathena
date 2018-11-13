@@ -215,7 +215,7 @@ F6: Restrict("RE");
 F7: Restrict("RE");
 	setarray @c[2],97,314;
 	Disp("Eclage Field",1,1); Pick("ecl_fild");
-F8: Restrict("Pre-RE",2,10);
+F8:
 	setarray @c[2],142,225,182,141,187,228,185,173,216,173,195,148,272,220,173,214,207,174,196,200;
 	Disp("Einbroch Field",1,10); Pick("ein_fild");
 F9: Restrict("RE");
