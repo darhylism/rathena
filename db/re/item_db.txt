@@ -9490,7 +9490,7 @@
 17552,Garnet_Lucky_Scroll,Garnet Lucky Egg,18,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Garnet_Lucky_Scroll); },{},{}
 17567,Event_Almighty_Box__,Event Almighty Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 22902,1; bonus_script "{ bonus bAllStats,10; bonus bBaseAtk,30; bonus bMatk,30; }",1800; },{},{}
 17568,Event_Almighty_Box_100_,Event Almighty Box(100),18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 22902,11; bonus_script "{ bonus bAllStats,10; bonus bBaseAtk,30; bonus bMatk,30; }",1800; },{},{}
-17569,Dungeon_1_hour_Ticket_Box,Sky Fortress Ticket 1 Hour Box,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 14505,1; },{},{}
+17569,Dungeon_1_hour_Ticket_Box,Sky Fortress Ticket 1 Hour Box,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 14505,3600; },{},{}
 17572,Erzulie_Lucky_Scroll,Erzulie Lucky Egg,18,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Erzulie_Lucky_Scroll); },{},{}
 17584,Venus_Lucky_Scroll,Venus Lucky Egg,18,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Venus_Lucky_Scroll); },{},{}
 17588,Amora_Lucky_Scroll,Amora Lucky Egg,18,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Amora_Lucky_Scroll); },{},{}

@@ -20,7 +20,7 @@ OnPCLoginEvent:
 			dispbottom "Account Status : Bypass Gemstone Requirement activated";
 			dispbottom "Account Status : Storage Capacity Increased to 900";
 			dispbottom "Account Status : Exp & Job Increase by 50%";
-			dispbottom "Account Status : Drop Increase by 50%";
+			dispbottom "Account Status : Drop Increase by 25%";
 			dispbottom "Time left : "+ callfunc("Time2Str",.@Timer);
 			dispbottom "===================================================";
 		end;

@@ -3,7 +3,7 @@ mall01,100,135,4	script	Deviantz Quest	4_M_OPERATION,{
 	mes "I come from Evil Wonderland to aid you.";
 	mes "I can make you special itemz!.";
 	next;
-	switch(select("Fallen Angel Wing:Archangel Wing:Kirin Armor:Etran Shirt:Gyges Ring:VIP Card 7Days:Close")) {
+	switch(select("Fallen Angel Wing:Archangel Wing:Kirin Armor:Etran Shirt:Gyges Ring:VIP Card 7Days:Sky Fortress Ticket 1 Hour:Close")) {
 		case 1:
 			mes "[Deviantz]";
 			mes "^3355FFFallen Angel Wing^000000.";
@@ -32,7 +32,12 @@ mall01,100,135,4	script	Deviantz Quest	4_M_OPERATION,{
 		case 6:
 			mes "[Deviantz]";
 			mes "^3355FFVIP Card 7 Days^000000.";
-			setarray .@Items[0],2985,35137,700,7444,100,969,100,35123,150;
+			setarray .@Items[0],35157,35137,700,7444,30,969,100,35123,150;
+			break;
+		case 7:
+			mes "[Deviantz]";
+			mes "^3355FFSky Fortress 1 Hour Dungeon Ticket^000000.";
+			setarray .@Items[0],17569,35131,2000,35137,100;
 			break;
 		default:
 			close;
