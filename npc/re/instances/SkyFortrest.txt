@@ -760,7 +760,7 @@ OnMobDead:
 	case 2:
 		callsub S_Spawn;
 	case 3:
-		monster 'sthb_map$,56,79,"Sky Fortress Key Keeper",3478,1, instance_npcname("#sthd_event_4") + "::OnMobDead";	// AS_ZOMBIE_SLAUGHTER
+		monster 'sthb_map$,56,79,"Sky Fortress Key Keeper",3478,4, instance_npcname("#sthd_event_4") + "::OnMobDead";	// AS_ZOMBIE_SLAUGHTER
 		callsub S_Spawn;
 	case 4:
 		// enablenpc instance_npcname("#Stefan_Action1");
