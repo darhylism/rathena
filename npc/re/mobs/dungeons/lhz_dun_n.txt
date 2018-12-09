@@ -33,6 +33,7 @@ OnRegularDead:
 		if (getd( ".lhz_dun_n" + .@mob_id ) == 100) {
 			.@mini_boss = .@mob_id + 6 + (.@mob_id > 3213);	// mini boss version ID: regular ID +6 for non-transcendent, +7 for others
 			monster "lhz_dun_n",0,0,"--en--",.@mini_boss,1, "lhz_dun_n::OnMiniDead";
+			mapannounce "lhz_dun_n", "True Mob have spawned.", bc_map;	// message to announce mini boss
 		}
 	}
 	end;

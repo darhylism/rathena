@@ -37,7 +37,7 @@ mall01,100,135,4	script	Deviantz Quest	4_M_OPERATION,{
 		case 7:
 			mes "[Deviantz]";
 			mes "^3355FFSky Fortress 1 Hour Dungeon Ticket^000000.";
-			setarray .@Items[0],17569,35131,2000,35137,100;
+			setarray .@Items[0],17569,35131,300,35137,100;
 			break;
 		default:
 			close;

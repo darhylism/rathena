@@ -167,6 +167,18 @@ OnFawEnChant:
 
 	
 OnResetEnchant:
+	mes .npc$;
+	if( (getequipid(EQI_GARMENT)!=2589) ) {
+		mes "Please equip your",
+			"^000099Fallen Angel Wing^000000 if",
+			"you want to have it reset.";
+		if(!.autoequip) close;	
+		next;
+		if(select("Equip:Don't Equip")==2) close;
+		equip 2589;
+		mes .npc$;
+	}
+
 	mes .npc$,
 		"This will cost " + callfunc("F_InsertComma",.cost2) + "z.",
 		"Are you sure?";
@@ -180,9 +192,10 @@ OnResetEnchant:
 	Zeny -= .cost2;
 	mes "Your ^000099Fallen Angel Wing^000000's",
 		"enchantments have been reset.";
+	@card1 = getequipcardid(EQI_GARMENT,0);
 	.@refeq = getequiprefinerycnt(EQI_GARMENT);
 	delequip EQI_GARMENT;
-	getitem2 2589,1,1,.@refeq,0,0,0,0,0; 
+	getitem2 2589,1,1,.@refeq,0,@card1,0,0,0; 
 	equip 2589;
 	specialeffect2 261;
 	specialeffect2 119;
@@ -226,5 +239,5 @@ OnInit:
 	//Cost for Enchanting. It's free in iRO
 	//.cost=0;
 	//Cost to reset | Costs 1Mz in iRO
-	.cost2 = 1000000;
+	.cost2 = 5000000;
 }

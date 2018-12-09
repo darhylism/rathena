@@ -63,11 +63,11 @@
 		}
 		close;
 	}
-	if (!getequipisenableref(.@part)) {
-		mes "[Blacksmith Mighty Hammer]";
-		mes "This item can't be refined.";
-		close;
-	}
+	// if (!getequipisenableref(.@part)) {
+		// mes "[Blacksmith Mighty Hammer]";
+		// mes "This item can't be refined.";
+		// close;
+	// }
 	if (getequiprefinerycnt(.@part) < 7 || getequiprefinerycnt(.@part) > 9) {
 		mes "[Blacksmith Mighty Hammer]";
 		mes "I only handle items with refine levels from +7 to +9.";
@@ -201,11 +201,11 @@ poring_w02,96,127,4	duplicate(MightyHammer)	Mighty Hammer#poring_w02	826
 		}
 		close;
 	}
-	if (!getequipisenableref(.@part)) {
-		mes "[Basta]";
-		mes "Even I cannot refine this item. There's no way.";
-		close;
-	}
+	// if (!getequipisenableref(.@part)) {
+		// mes "[Basta]";
+		// mes "Even I cannot refine this item. There's no way.";
+		// close;
+	// }
 	if (getequiprefinerycnt(.@part) < 10) {
 		mes "[Basta]";
 		mes "Haven't I told you? I only refine equipments that are +10 and above.";
@@ -255,6 +255,7 @@ poring_w02,96,127,4	duplicate(MightyHammer)	Mighty Hammer#poring_w02	826
 		next;
 		mes "[Basta]";
 		mes "Compared to other blacksmiths, the risk is smaller.";
+		mes "Refining here will not downgrade your item lower than +10.";
 		mes "I've given all precautions. Do you want to try it?";
 		next;
 		if(select("Yes:No") == 2) {
@@ -293,22 +294,39 @@ poring_w02,96,127,4	duplicate(MightyHammer)	Mighty Hammer#poring_w02	826
 		mes "Great! Nicely done!!";
 		mes "I really am the best blacksmith in the whole wide world!";
 		close;
-	}
-	downrefitem .@part;
-	next;
-	emotion (!rand(5))?ET_MONEY:ET_HUK;
-	mes "[Basta]";
-	mes "Aaaaaaaaaaak!!!";
-	next;
-	mes "[Basta]";
-	mes "Damn it!";
-	mes "Refining failed and refine level has decreased!";
+	} else {
+			// if (rand(100) < 80) {
+			if (.@refinerycnt == 10 || rand(100) < 20 ){
+				mes "[Basta]";
+				mes "Clang! Clang! Clang! Clang!";
+				downrefitem .@part,0; // Failed refine attempts decrease the item's refine level by 0
+				next;
+				emotion (!rand(5))?ET_MONEY:ET_HUK;
+				mes "[Basta]";
+				mes "Ahhh!!!";
+				next;
+				mes "[Basta]";
+				mes "Oh my god!";
+				mes "The upgrade level has failed...";
+				mes "Luckily the refine stays the same...";
+			 } else {
+				downrefitem .@part;
+				next;
+				emotion (!rand(5))?ET_MONEY:ET_HUK;
+				mes "[Basta]";
+				mes "Aaaaaaaaaaak!!!";
+				next;
+				mes "[Basta]";
+				mes "Damn it!";
+				mes "Refining failed and refine level has decreased!";
+			 }
 	mes "Even the best blacksmith in the world doesn't guarantee 100% success!";
 	mes "Too bad.";
 	next;
 	mes "[Basta]";
 	mes "I'll do better next time! Don't worry!";
 	close;
+	}
 }
 prt_in,57,54,3	duplicate(Basta)	Basta#prt	826
 morocc_in,68,30,3	duplicate(Basta)	Basta#morocc	826

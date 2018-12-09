@@ -158,6 +158,13 @@ glast_01,212,273,4	script	Hugin's magic master#pa0829	1_F_01,{
 	case 22003:	// Temporal_VIT_Boots
 	case 22004:	// Temporal_DEX_Boots
 	case 22005:	// Temporal_LUK_Boots
+	
+	case 22006:	// Temporal_STR_Boots [1]
+	case 22007:	// Temporal_INT_Boots [1]
+	case 22008:	// Temporal_AGI_Boots [1]
+	case 22009:	// Temporal_VIT_Boots [1]
+	case 22010:	// Temporal_DEX_Boots [1]
+	case 22011:	// Temporal_LUK_Boots [1]
 
 	case 22107:	// Modified_STR_Boots
 	case 22108:	// Modified_INT_Boots
@@ -165,6 +172,13 @@ glast_01,212,273,4	script	Hugin's magic master#pa0829	1_F_01,{
 	case 22110:	// Modified_VIT_Boots
 	case 22111:	// Modified_DEX_Boots
 	case 22112:	// Modified_LUK_Boots
+	
+	case 22113:	// Modified_STR_Boots [1]
+	case 22114:	// Modified_INT_Boots [1]
+	case 22115:	// Modified_AGI_Boots [1]
+	case 22116:	// Modified_VIT_Boots [1]
+	case 22117:	// Modified_DEX_Boots [1]
+	case 22118:	// Modified_LUK_Boots [1]
 		.@equip_name$ = getequipname(EQI_SHOES);
 		setarray .@card[0],
 			getequipcardid(EQI_SHOES,0),

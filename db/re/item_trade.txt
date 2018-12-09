@@ -2948,8 +2948,6 @@
 16254,475,100	// Energizing_Potion_Box
 //16255,475,100	//
 //16256,1,100	//
-16258,475,100	// HD_Bradium_5_Box
-16259,475,100	// HD_Carnium_5_Box
 16262,475,100	// HD_Bradium_5_Box2
 16263,475,100	// HD_Carnium_5_Box2
 16264,475,100	// HD_Bradium_10_Box2

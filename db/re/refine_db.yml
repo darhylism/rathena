@@ -24,7 +24,7 @@ Armor:
   RandomBonusValue: 0
   Costs:
     - Type: REFINE_COST_NORMAL
-      Price: 2000
+      Price: 20000
       Material: 985
     - Type: REFINE_COST_OVER10
       Price: 100000
@@ -33,7 +33,7 @@ Armor:
       Price: 20000
       Material: 6241
     - Type: REFINE_COST_ENRICHED
-      Price: 2000
+      Price: 20000
       Material: 7619
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
