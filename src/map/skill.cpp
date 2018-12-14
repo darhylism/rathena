@@ -8127,7 +8127,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 						if (sd) clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 						break;
 					}
-				} else if (!dstsd || map_flag_vs(bl->m)) //HP damage only on pvp-maps when against players.
+				} // else if (!dstsd || map_flag_vs(bl->m)) //HP damage only on pvp-maps when against players.
 					hp = tstatus->max_hp/50; //Recover 2% HP [Skotlex]
 
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
