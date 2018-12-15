@@ -144,6 +144,8 @@ OnInit:
 
 */
 
+//Delay Variable - instance_delay_templedg
+
 moro_cav,43,73,3	script	Yggdrasil Lookalike::alatdgyl	HIDDEN_NPC,{
 OnStart:
 	set .@party_id, getcharid(1);
@@ -310,7 +312,7 @@ OnPCLogoutEvent:
 	end;
 
 OnInit:
-	setarray .base_level[0],160, 400;
+	setarray .base_level[0],160, 175;
 	setarray .map$[0],"1@eom";
 	set .map_size, getarraysize( .map$ );
 	set .min_party_member, 1;
@@ -319,66 +321,6 @@ OnInit:
 	set $tdg_timer_delay, 3600; //1 hour to clean the instance
 	set .instance_name$, "Temple of the Demon God";
 	end;
-}
-
-function	script	IGF_SquadPrize	{
-// This is based on kRo and are only the Essences unlike iRo,
-// where you also gain other items from it.
-
-// Mini-Config:
-// Since I don't know how it is really handled, but based on my tests I mostly got tier 2-3 essences
-// So I decided to put harder chances to recieve them!
-// 1: Use harder chances
-// 0: No harder chances
-set .@t_chance,1;
-if(.@t_chance) {
-	set .@t,rand(1,100);
-	if(.@t < 75) // 75% to get Tier 1
-		setarray .@item[0],4908, // Darklord Essence Force1
-						   4911, // Darklord Essence Intelligence1
-						   4914, // Darklord Essence Speed1
-						   4917, // Darklord Essence Vitality1
-						   4920, // Darklord Essence Concentration1
-						   4923; // Darklord Essence Luk1
-						   
-	else if(.@t >= 75 && .@t < 95) // 20% to get Tier 2		   
-		setarray .@item[0],4909, // Darklord Essence Force2
-						   4912, // Darklord Essence Intelligence2
-						   4915, // Darklord Essence Speed2
-						   4918, // Darklord Essence Vitality2
-						   4921, // Darklord Essence Concentration2
-						   4924; // Darklord Essence Luk2
-						   
-	else if(.@t >= 95) // 5% to get Tier 3
-		setarray .@item[0],4910, // Darklord Essence Force3
-						   4913, // Darklord Essence Intelligence3
-						   4916, // Darklord Essence Speed3
-						   4919, // Darklord Essence Vitality3
-						   4922, // Darklord Essence Concentration3
-						   4925; // Darklord Essence Luk3
-
-} else if(!.@t_chance)
-		setarray .@item[0],4908, // Darklord Essence Force1
-						   4909, // Darklord Essence Force2
-						   4910, // Darklord Essence Force3
-						   4911, // Darklord Essence Intelligence1
-						   4912, // Darklord Essence Intelligence2
-						   4913, // Darklord Essence Intelligence3
-						   4914, // Darklord Essence Speed1
-						   4915, // Darklord Essence Speed2
-						   4916, // Darklord Essence Speed3
-						   4917, // Darklord Essence Vitality1
-						   4918, // Darklord Essence Vitality2
-						   4919, // Darklord Essence Vitality3
-						   4920, // Darklord Essence Concentration1
-						   4921, // Darklord Essence Concentration2
-						   4922, // Darklord Essence Concentration3
-						   4923, // Darklord Essence Luk1
-						   4924, // Darklord Essence Luk2
-						   4925; // Darklord Essence Luk3
-
-getitem .@item[rand(getarraysize(.@item))],1;
-return;
 }
 
 1@eom,101,107,4	script	temple_demon_god	HIDDEN_WARP_NPC,2,2,{
@@ -427,10 +369,10 @@ function	summon_normal	{
 	switch( 'instance_tdg_level ){
 		case 1:
 			//ahat and shnaim
-			setarray .@monster,3041,3039;
-			setarray .@amount,1,1;
+			setarray .@monster,3041,3039,3040;
+			setarray .@amount,1,1,1;
 			setarray .@coordinate,89,13,111,49;
-			setarray .@label$, "OnAhatDied","OnShnaimDied";
+			setarray .@label$, "OnAhatDied","OnShnaimDied","OnExtradied";
 			break;
 		case 2:
 			//dolomedes
@@ -573,6 +515,9 @@ OnShnaimDied:
 	}
 	end;
 
+OnExtradied:
+end;
+	
 OnNormalDied:
 	set .@map$, strnpcinfo(4);
 	set .@npc_name$, instance_npcname( strnpcinfo(0) );
