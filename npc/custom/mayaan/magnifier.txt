@@ -36,3 +36,5 @@ poring_w02,67,121,6	script	Mr. Magnifier	4_M_OILMAN,{
 	identifyall;
 	}
 }
+
+moc_para01,22,19,4	duplicate(Mr. Magnifier)	Mr. Magnifier#Eden	4_M_OILMAN

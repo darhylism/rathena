@@ -9,16 +9,16 @@ poring_w02,82,101,4	script	Coupon Exchanger	4_F_NACORURI,{
         case 1:
             mes @name$;
             mes "I can convert your Coupon/s into usable items and vice versa.";
-            mes "1 Coupon = 100 Yggdrasil Berry";
+            mes "1 Coupon = 10 Yggdrasil Berry";
             close;
 
         case 2:
             switch(select("Berry to Coupon","Coupon to Berry")) {
 
                 case 1:
-                    if(countitem(607) < 100) goto noBerry;
+                    if(countitem(607) < 10) goto noBerry;
                     if (checkweight(35056,1) == 0 ) goto overWeight;
-                    delitem 607,100;
+                    delitem 607,10;
                     mes @name$;
                     mes "There you go. Hope to see you again!";
                     getitem 35056,1;
@@ -26,11 +26,11 @@ poring_w02,82,101,4	script	Coupon Exchanger	4_F_NACORURI,{
 
                 case 2:
                     if(countitem(35056) < 1) goto noCoupon;
-                    if (checkweight(607,100) == 0 ) goto overWeight;
+                    if (checkweight(607,10) == 0 ) goto overWeight;
                     delitem 35056,1;
                     mes @name$;
                     mes "There you go. Hope to see you again!";
-                    getitem 607,100;
+                    getitem 607,10;
                     close;
 			}
 		default:

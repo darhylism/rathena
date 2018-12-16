@@ -34,11 +34,6 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 		mes "- after you loose some weight. -";
 		close;
 	}
-	if (isbegin_quest(7474) == 1) {
-		completequest 7474;
-		getexp 200,0;
-		getitem 531,1;// Apple_Juice
-		}
 	if (countitem(6219) > 0) {
 		mes "[Lime Evenor]";
 		mes "Thanks to many adventurers visiting our Eden Group, we've recently prepared a new version of Eden Group Mark for our visitors.";
@@ -137,7 +132,6 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			}
 			break;
 		case 3:
-		if (callfunc("F_HasEdenGroupMark")) {
 			mes "[Lime Evenor]";
 			mes "Do you want to claim your freebies in this character?.";
 			mes "Remember: YOU CAN ONLY CLAIM ^4d4dffONCE PER ACCOUNT!^000000.";
@@ -174,7 +168,6 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 			getitem 35133,1; //Level up reward box 150
 			set #Rewardzz, 1;
 			}
-		}
 			else {
 				mes "[Lime Evenor]";
 				mes "You need to join Eden Group first if you want to claim.";
@@ -216,24 +209,7 @@ izlude,131,148,4	script	Eden Teleport Officer#30::eto	729,{
 	mes "You are eager to do something good but no one offers you work?";
 	mes "Would you like to be a problem solver?";
 	mes "Eden group is here to solve your problem.";
-if (isbegin_quest(7472) == 1) {
 	next;
-	mes "[Eden Teleport Officer]";
-	mes "It's a good sight to see new adventurers start their journey.";
-	mes "You must be tired. Need a drink?";
-	completequest 7472;
-	getexp 200,0;
-	getitem 531,1;// Apple_Juice
-	}
-if (isbegin_quest(7473) == 1) {
-	next;
-	mes "[Eden Teleport Officer]";
-	mes "It's a good sight to see new adventurers start their journey.";
-	mes "You must be tired. Need a drink?";
-	completequest 7473;
-	getexp 200,0;
-	getitem 531,1;// Apple_Juice
-	}
 	mes "[Eden Teleport Officer]";
 	mes "Lets go!";
 	next;
@@ -241,12 +217,6 @@ if (isbegin_quest(7473) == 1) {
 	case 1:
 		mes "[Eden Teleport Officer]";
 		mes "Let's go to our secret base!";
-		set nak_warp,strnpcinfo(2);
-		if (!isbegin_quest(7474)) {
-			setquest 7474;
-			navigateto "moc_para01",27,31;
-		}
-		close2;
 		warp "moc_para01",31,14;
 		end;
 	case 2:
@@ -254,9 +224,6 @@ if (isbegin_quest(7473) == 1) {
 		mes "If you don't know what to do for your future, don't hesitate to tell me. Just drop by and talk to me! Ok?";
 		close;
 	}
-	
-OnInit:
-	questinfo 7474, QTYPE_QUEST, 1;
 }
 prontera,124,76,3	duplicate(eto)	Eden Teleport Officer#1	729
 moc_ruins,68,164,3	duplicate(eto)	Eden Teleport Officer#2	729
@@ -336,7 +303,7 @@ OnTouch:
 		case 33: warp "verus04",115,243; end;
 		case 34: warp "lasagna",192,182; end;
 		case 35: warp "poring_w02",99,83; end;
-		default: warp "prontera",156,191; end;
+		default: warp "poring_w02",99,83; end;
 	}
 	end;
 }

@@ -30,14 +30,14 @@ Askydun,84,109,5	script	Kalbolaryo	4_M_MINISTER,{
 
 
 W_01:
-menu 
+menu
 	"Just Heal me",W_Heal,
 	"Full Chemical Protection",W_fcp,
 	"Nothing",W_cancel;
 
 W_Heal:
 	percentheal 100,100;
-	if (BaseLevel > 264) {
+	if (vip_status(1)) {
 		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INCREASEAGI,300000,10;
 		specialeffect2 EF_BLESSING;
@@ -46,6 +46,24 @@ W_Heal:
 		sc_start SC_SUFFRAGIUM,300000,10;
 		specialeffect2 EF_IMPOSITIO;
 		sc_start SC_IMPOSITIO,300000,10;
+	if (getstatus(SC_FOOD_STR_CASH)==0){
+		sc_start SC_STRFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_INT_CASH)==0){
+		sc_start SC_INTFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_DEX_CASH)==0){
+		sc_start SC_DEXFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_AGI_CASH)==0){
+		sc_start SC_AGIFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_VIT_CASH)==0){
+		sc_start SC_VITFOOD,300000,10;
+		}
+	if (getstatus(SC_FOOD_LUK_CASH)==0){
+		sc_start SC_LUKFOOD,300000,10;
+		}
 	}
 	close;
 

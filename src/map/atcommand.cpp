@@ -10033,6 +10033,51 @@ ACMD_FUNC(limitedsale){
 	return 0;
 }
 
+/**=========================================
+ * Check values of resistance to elements
+ * [ Keitenai ]
+ *-----------------------------------------*/
+ACMD_FUNC(resist) {
+	char output[CHAT_SIZE_MAX];
+	int i;
+	struct {
+		const char* format;
+		int value;
+	} output_table[] = {
+		{ "   [ %d ] Neutral resist", 0 },
+		{ "   [ %d ] Water resist", 0 },
+		{ "   [ %d ] Earth resist", 0 },
+		{ "   [ %d ] Fire resist", 0 },
+		{ "   [ %d ] Wind resist", 0 },
+		{ "   [ %d ] Poison resist", 0 },
+		{ "   [ %d ] Holy resist", 0 },
+		{ "   [ %d ] Dark resist", 0 },
+		{ "   [ %d ] Ghost resist", 0 },
+		{ "   [ %d ] Undead resist", 0 },
+		{ "   [ %d ] Resist to all", 0 },
+		{ NULL, 0 }
+	};
+	memset(output, '\0', sizeof(output));
+	clif_displaymessage(sd->fd, "========= Resistance Values =========");
+	output_table[0].value = (sd->subele[Ele_Neutral] + sd->subele_script[Ele_Neutral]);
+	output_table[1].value = (sd->subele[Ele_Water] + sd->subele_script[Ele_Water]);
+	output_table[2].value = (sd->subele[Ele_Earth] + sd->subele_script[Ele_Earth]);
+	output_table[3].value = (sd->subele[Ele_Fire] + sd->subele_script[Ele_Fire]);
+	output_table[4].value = (sd->subele[Ele_Wind] + sd->subele_script[Ele_Wind]);
+	output_table[5].value = (sd->subele[Ele_Poison] + sd->subele_script[Ele_Poison]);
+	output_table[6].value = (sd->subele[Ele_Holy] + sd->subele_script[Ele_Holy]);
+	output_table[7].value = (sd->subele[Ele_Dark] + sd->subele_script[Ele_Dark]);
+	output_table[8].value = (sd->subele[Ele_Ghost] + sd->subele_script[Ele_Ghost]);
+	output_table[9].value = (sd->subele[Ele_Undead] + sd->subele_script[Ele_Undead]);
+	output_table[10].value = (sd->subele[Ele_All] + sd->subele_script[Ele_All]);
+
+	for (i = 0; output_table[i].format != NULL; i++) {
+		sprintf(output, output_table[i].format, output_table[i].value);
+		clif_displaymessage(fd, output);
+	}
+	return 0;
+}
+
 // (^~_~^) Gepard Shield Start
 
 ACMD_FUNC(gepard_block_nick)
@@ -10326,6 +10371,7 @@ void atcommand_basecommands(void) {
 
 // (^~_~^) Gepard Shield End
 
+		ACMD_DEF(resist),
 		ACMD_DEF(afk),
 #include "../custom/atcommand_def.inc"
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),

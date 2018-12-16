@@ -11,6 +11,8 @@ end;
 
 prontera,151,187,4	duplicate(Mall NPC)	Mall NPC#PRONT	951
 moc_para01,37,18,4	duplicate(Mall NPC)	Mall NPC#edenz	951
+aldebaran,143,124,4	duplicate(Mall NPC)	Mall NPC#Alde	951
+izlude,121,144,4	duplicate(Mall NPC)	Mall NPC#Izludez	951
 
 //The Exit to Prontera
 mall01,95,92,4	script	EXIT	738,{

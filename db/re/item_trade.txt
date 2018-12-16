@@ -1902,7 +1902,6 @@
 13715,475,100	// Med_Life_Potion_Box30
 13716,475,100	// Med_Life_Potion_Box50
 13717,475,100	// Abrasive_Box5
-13718,475,100	// Abrasive_Box10
 13719,475,100	// Regeneration_Box5
 13720,475,100	// Regeneration_Box10
 13721,475,100	// Dun_Tele_Scroll_Box10
