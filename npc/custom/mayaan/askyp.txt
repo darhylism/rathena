@@ -17,6 +17,10 @@ Askydun,96,108,5	script	Kafra Employee::kaf_Askydun	4_F_KAFRA6,{
 	callfunc "F_KafEnd",0,1,"in Askydun!";
 }
 
+Askydun,80,109,4	script	Repairman#Asky	4_M_04,{
+	callfunc "repairmain","Repairman";
+	end;
+}
 
 Askydun,84,109,5	script	Kalbolaryo	4_M_MINISTER,{
 	

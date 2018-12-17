@@ -426,7 +426,8 @@ OnInit:
 moro_vol,108,88,5	script	Commander Hibba Agip#14301	4_M_REDSWORD,{
 	cutin "ep13_captin_edq.bmp",2;
 	mes "[Hibba Agip]";
-	if (ep14_3_mors01 == 0 || BaseLevel < 160) {
+//	if (ep14_3_mors01 == 0 || BaseLevel < 160) {
+	if (BaseLevel < 160) {
 		mes "This place is bizarre beyond comprehension.";
 		mes "Morocc is here somewhere.";
 		next;

@@ -197,6 +197,9 @@ moc_para01,27,35,5	script	Secretary Lime Evenor	4_F_EDEN_OFFICER,{
 		}
 	}
 	close;
+OnInit:
+        waitingroom "Freebies",0;  // WITH WAITING ROOM
+end;
 }
 
 izlude,131,148,4	script	Eden Teleport Officer#30::eto	729,{

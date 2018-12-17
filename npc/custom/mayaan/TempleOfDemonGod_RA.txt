@@ -317,8 +317,8 @@ OnInit:
 	set .map_size, getarraysize( .map$ );
 	set .min_party_member, 1;
 	set .instance_zeny, 0;
-	set .instance_delay, 7200;
-	set $tdg_timer_delay, 3600; //1 hour to clean the instance
+	set .instance_delay, 82800;
+	set $tdg_timer_delay, 3900; //1 hour to clean the instance
 	set .instance_name$, "Temple of the Demon God";
 	end;
 }
@@ -990,11 +990,11 @@ OnInit:
 	mes "You did a great job today.";
 	cutin "", 255;
 	next;
-	setquest 7597;// Fall of the False God
 	getpartymember getcharid(1),2;
 	for( set .@i, 0; .@i < $@partymembercount; set .@i, .@i+1 )
 		if( attachrid( $@partymemberaid[.@i] ) && TDG_INSTANCE_ID > 0){
 			set TDG_INSTANCE_ID, -1;
+			setquest 7597;// Fall of the False God
 		}
 	instance_destroy instance_id();
 	close;

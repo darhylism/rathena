@@ -10059,17 +10059,17 @@ ACMD_FUNC(resist) {
 	};
 	memset(output, '\0', sizeof(output));
 	clif_displaymessage(sd->fd, "========= Resistance Values =========");
-	output_table[0].value = (sd->subele[Ele_Neutral] + sd->subele_script[Ele_Neutral]);
-	output_table[1].value = (sd->subele[Ele_Water] + sd->subele_script[Ele_Water]);
-	output_table[2].value = (sd->subele[Ele_Earth] + sd->subele_script[Ele_Earth]);
-	output_table[3].value = (sd->subele[Ele_Fire] + sd->subele_script[Ele_Fire]);
-	output_table[4].value = (sd->subele[Ele_Wind] + sd->subele_script[Ele_Wind]);
-	output_table[5].value = (sd->subele[Ele_Poison] + sd->subele_script[Ele_Poison]);
-	output_table[6].value = (sd->subele[Ele_Holy] + sd->subele_script[Ele_Holy]);
-	output_table[7].value = (sd->subele[Ele_Dark] + sd->subele_script[Ele_Dark]);
-	output_table[8].value = (sd->subele[Ele_Ghost] + sd->subele_script[Ele_Ghost]);
-	output_table[9].value = (sd->subele[Ele_Undead] + sd->subele_script[Ele_Undead]);
-	output_table[10].value = (sd->subele[Ele_All] + sd->subele_script[Ele_All]);
+	output_table[0].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL]);
+	output_table[1].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER]);
+	output_table[2].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH]);
+	output_table[3].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE]);
+	output_table[4].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND]);
+	output_table[5].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON]);
+	output_table[6].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY]);
+	output_table[7].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK]);
+	output_table[8].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
+	output_table[9].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
+	output_table[10].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
 
 	for (i = 0; output_table[i].format != NULL; i++) {
 		sprintf(output, output_table[i].format, output_table[i].value);
