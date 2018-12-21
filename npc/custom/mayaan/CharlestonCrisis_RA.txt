@@ -1131,11 +1131,11 @@ OnTimer33000:
 }
 
 1@mcd,132,129,4	script	Charleston#ERp	4_F_CHARLESTON01,{
-	if (countitem(6213) > 3) {
+	if (countitem(6213) > 1) {
 		mes "[Charleston]";
 		mes "Well, we already have enough explosives to blow up the entrance.";
 		npctalk "Well, we already have enough explosives to blow up the entrance.";
-		delitem 6213,4; //Explosive Powder
+		delitem 6213,1; //Explosive Powder
 		next;
 		mes "[Charleston]";
 		mes "Get away!";
