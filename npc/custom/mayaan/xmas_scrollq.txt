@@ -1,0 +1,54 @@
+moc_para01,36,30,4	script	Antonio Nutsack Quest	2988,{
+	mes "[Antonio's Nutsack Quest]"; 
+	mes "Ho,ho,ho!";
+	mes "Merry .......";
+	mes "Ah, you want my ^61B031My Nutsack ^000000Quest!";
+	next;
+	mes "Remember i can make you random quantity from 8 to 11 per quest.";
+	menu "Requirements",L_Bl, "Make Item",-,"Cancel",L_Cancel;
+
+	mes "[Antonio's Nutsack Quest]";
+	mes "Good good, let me just check"; 
+	next;
+	if(countitem(2236)<1 || countitem(677)<10 || countitem(35137)<10) goto L_NoMake; 
+	delitem 2236,1;
+	delitem 677,10;
+	delitem 35137,10;
+	mes "[Antonio's Nutsack Quest]";
+	mes "Give me a second.....";
+	next;
+	getitem 22532,rand(8,10);
+	mes "[Antonio's Nutsack Quest]";
+	mes "Ok done!";
+	close;
+
+L_NoMake:
+	mes "[Antonio's Nutsack Quest]";
+	mes "You don't have the requirements.";
+	mes "Please come back another time...";
+	close;
+
+L_Bl: 
+	mes "[Antonio's Nutsack Quest]";
+	mes "Ok all you have to do is collect:"; 
+	mes "^362ED61 Santa Hat^000000";
+	mes "^362ED610 Platinum Coin^000000";
+	mes "and ^362ED610 Cash Voucher^000000";
+	next;
+	menu "Accept",-, "Leave",L_Leave;
+	mes "[Antonio's Nutsack Quest]";
+	mes "When you are done, bring the items to me.  Ok good luck finding those items.";
+	close;
+
+L_Leave:
+	mes "[Antonio's Nutsack Quest]";
+	mes "Maybe another time?";
+	close;
+
+L_Cancel:
+	mes "[Antonio's Nutsack Quest]";
+	mes "Aw, what a shame";
+	mes "Giving up already?";
+	mes "Oh well this is until Jan. 10 Only!.";
+	close;
+}

@@ -4664,14 +4664,14 @@ IG_Special_Christmas_Box,5255,5,1,1,0,0,0	// 1x Triple_Poring_Hat
 IG_Special_Christmas_Box,2554,5,1,1,0,0,0	// 1x Piece_Of_Angent_Skin
 
 // Santa_Gift
-IG_Santa_Gift,518,1500,10,1,0,0,0	// 10x Honey
-IG_Santa_Gift,510,1500,10,1,0,0,0	// 10x Blue_Herb
-IG_Santa_Gift,504,1000,10,1,0,0,0	// 10x White_Potion
-IG_Santa_Gift,505,1000,10,1,0,0,0	// 10x Blue_Potion
-IG_Santa_Gift,656,1000,10,1,0,0,0	// 10x Awakening_Potion
-IG_Santa_Gift,12084,1000,1,1,0,0,0	// 1x Vit_Dish09
-IG_Santa_Gift,607,1000,5,1,0,0,0	// 5x Yggdrasilberry
-IG_Santa_Gift,14586,500,5,1,0,0,0	// 5x Spark_Candy
-IG_Santa_Gift,12350,500,5,1,0,0,0	// 5x Angeling_Potion
-IG_Santa_Gift,12710,500,5,1,0,0,0	// 5x Guyak_Pudding
-IG_Santa_Gift,12259,500,2,1,0,0,0	// 2x Miracle_Medicine
+// IG_Santa_Gift,518,1500,10,1,0,0,0	// 10x Honey
+// IG_Santa_Gift,510,1500,10,1,0,0,0	// 10x Blue_Herb
+// IG_Santa_Gift,504,1000,10,1,0,0,0	// 10x White_Potion
+// IG_Santa_Gift,505,1000,10,1,0,0,0	// 10x Blue_Potion
+// IG_Santa_Gift,656,1000,10,1,0,0,0	// 10x Awakening_Potion
+// IG_Santa_Gift,12084,1000,1,1,0,0,0	// 1x Vit_Dish09
+// IG_Santa_Gift,607,1000,5,1,0,0,0	// 5x Yggdrasilberry
+// IG_Santa_Gift,14586,500,5,1,0,0,0	// 5x Spark_Candy
+// IG_Santa_Gift,12350,500,5,1,0,0,0	// 5x Angeling_Potion
+// IG_Santa_Gift,12710,500,5,1,0,0,0	// 5x Guyak_Pudding
+// IG_Santa_Gift,12259,500,2,1,0,0,0	// 2x Miracle_Medicine

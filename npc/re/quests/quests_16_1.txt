@@ -10,8 +10,10 @@
 function	script	F_Mysterious_box	{
 	.@r = rand(1,1000);
 	if (.@r < 122) getitem 6919,8;
-	else if (.@r < 321) getitem 6919,16;
-	else if (.@r < 356) getitem 6919,55;
+//	else if (.@r < 321) getitem 6919,16;
+//	else if (.@r < 356) getitem 6919,55;
+	else if (.@r < 321) getitem 6919,2;
+	else if (.@r < 356) getitem 6919,3;
 	else if (.@r < 402) getitem 6936,3;
 	else if (.@r < 453) getitem 6937,3;
 	else if (.@r < 513) getitem 6938,3;

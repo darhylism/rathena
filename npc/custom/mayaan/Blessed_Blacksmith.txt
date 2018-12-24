@@ -1,0 +1,151 @@
+//==made by deviantzz
+-	script	::DivineBlacksmith1	-1,{
+	disable_items;
+	mes "[Divine Blacksmith Han Li]";
+	mes "In this highly competitive society, we must be different in order to survive!";
+	mes "I only refine equipment at the +9 ~ 15 levels.";
+	next;
+	mes "[Divine Blacksmith Han Li]";
+	mes "I will need ^ff9999Blacksmith Blessing^000000.";
+	mes "Failed refines ^FF0000will not break or reduce the refine level^000000.";
+	next;
+	mes "[Divine Blacksmith Han Li]";
+	mes "How about it? Do you want to refine?";
+	next;
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+	for(set .@i,1; .@i<=10; set .@i,.@i+1)
+		set .@menu$, .@menu$ + ( getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) +"-[Unequipped]" ) +":";
+	set .@part, .@indices[ select(.@menu$) ];
+	if (!getequipisequiped(.@part)) {
+		mes "[Divine Blacksmith Han Li]";
+		switch(.@part) {
+		case 1:
+			mes "I'm a blacksmith, not a hairstylist.";
+			break;
+		case 2:
+			mes "With my hammer, I will make you a star of the sky.";
+			break;
+		case 3:
+		case 4:
+			mes "Making artificial hands is not my specialty.";
+			break;
+		case 5:
+			mes "Bring out the item so I can refine it!";
+			break;
+		case 6:
+			mes "Where is this weird smell coming from?";
+			break;
+		case 7:
+		case 8:
+			mes "Where is the accessory?";
+			break;
+		case 9:
+			mes "What do you want me to refine?";
+			break;
+		case 10:
+			mes "Huh? What do you want me to do?";
+			break;
+		}
+		close;
+	}
+	.@equip_id = getequipid(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+
+	if (.@equip_refine < 9 || .@equip_refine > 15) {
+		mes "[Divine Blacksmith Han Li]";
+		mes "This equipment has refined to "+.@equip_refine+". I only handle items with refine levels from +9 to +15!";
+		close;
+	}
+	set .@refine_lv, getequipweaponlv(.@part);
+	switch(.@refine_lv) {
+	default:
+	case 9:
+		set .@price,100000;
+		set .@matquan,4;
+		break;
+	case 10:
+		set .@price,100000;
+		set .@matquan,7;
+		break;
+	case 11:
+		set .@price,100000;
+		set .@matquan,11;
+		break;
+	case 12:
+		set .@price,125000;
+		set .@matquan,14;
+		break;
+	case 13:
+		set .@price,150000;
+		set .@matquan,17;
+		break;
+	case 14:
+		set .@price,150000;
+		set .@matquan,25;
+		break;
+	}
+	set .@ore$,"^ff9999Blacksmith Blessing^000000";
+	mes "[Divine Blacksmith Han Li]";
+	mes "This item has been refined to "+.@equip_refine+". To refine it, I need "+.@ore$+" and a "+callfunc("F_InsertComma",.@price)+" zeny refining fee.";
+	mes "Do you want to proceed?";
+	next;
+	if(select("Yes:No") == 2) {
+		mes "[Divine Blacksmith Han Li]";
+		mes "I am busy, don't joke with me!";
+		close;
+	}
+	if (getequippercentrefinery(.@part) < 100) {
+		mes "[Divine Blacksmith Han Li]";
+		mes "This item has been refined many times. Although it will not disappear upon failure, the "+.@ore$+" will disappear!";
+		next;
+		mes "[Divine Blacksmith Han Li]";
+		mes "Of course, the refining fee will not be returned! Do you want to continue?";
+		next;
+		if(select("Yes:No") == 2) {
+			mes "[Divine Blacksmith Han Li]";
+			mes "Good. I'd be sad if it failed, too.";
+			close;
+		}
+	}
+	if (countitem(6635) == 0 || Zeny < .@price) {
+		mes "[Divine Blacksmith Han Li]";
+		mes "Materials insufficient.";
+		mes "To refine this item, I need "+.@matquan+" "+.@ore$+" and a "+callfunc("F_InsertComma",.@price)+" zeny refining fee.";
+		close;
+	}
+	delitem 6635,.@matquan;
+	set Zeny, Zeny-.@price;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	mes "[Divine Blacksmith Han Li]";
+	mes "Tac! Tac! Tac!";
+	if (getequippercentrefinery(.@part, true) > rand(100)) {
+		specialeffect EF_BLESSING;
+		successrefitem .@part;
+		next;
+		mes "[Divine Blacksmith Han Li]";
+		mes "Hahahahahaha!!!";
+		next;
+		mes "[Divine Blacksmith Han Li]";
+		mes "Refine was a huge success~ Hahaha!";
+		close;
+	}
+	specialeffect EF_CURSEATTACK;
+	specialeffect2 EF_SUI_EXPLOSION;
+	next;
+	emotion (!rand(5))?ET_ANGER:ET_HUK;
+	mes "[Divine Blacksmith Han Li]";
+	mes "Oh my goodness!!!!";
+	next;
+	mes "[Divine Blacksmith Han Li]";
+	mes "Oh! Although it was blessed by "+.@ore$+" to retain the equipment...";
+	next;
+	mes "[Divine Blacksmith Han Li]";
+	mes "My mood is worse when I fail!!";
+	close;
+}
+poring_w02,93,124,3	duplicate(DivineBlacksmith1)	Divine Blacksmith#powring	826
