@@ -1134,7 +1134,7 @@
 12032	//Box_Of_Storm
 12033	//Box_Of_Sunlight
 12034	//Painting_Box
-12040	//Stone_Of_Intelligence_
+12040  // Stone_Of_Intelligence_
 12041	//Str_Dish01
 12042	//Str_Dish02
 12043	//Str_Dish03

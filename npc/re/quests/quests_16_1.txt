@@ -8610,6 +8610,14 @@ prt_cas_q,80,80,4	script	Butler for the Richards	1_M_LIBRARYMASTER,{
 		if (checkquest(.@quest_list[.@i],HUNTING) == 2) {
 			// todo src side
 			mes "This quest isn't enabled for now.";
+			//fix for now
+			if (isbegin_quest(5403) == 1)
+				completequest 5403;// The Royal Richard
+			erasequest .@quest_list[.@i];
+			setquest 5414;// [Stand by]Warrior Discipline
+			getexp 500000,550000;
+			getitem 6919,4;// Honor Token
+			//temporary fix
 			close;
 
 			if (isbegin_quest(5403) == 1)
