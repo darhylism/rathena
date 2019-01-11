@@ -583,7 +583,7 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 		}
 		mes "[Wandering Mind]";
 	
-		.@requirement = 10;	// 10 Cursed Fragments by default
+		.@requirement = 25;	// 25 Cursed Fragments by default
 		setarray .@card[0], getequipcardid(EQI_HEAD_TOP,0), getequipcardid(EQI_HEAD_TOP,1), getequipcardid(EQI_HEAD_TOP,2), getequipcardid(EQI_HEAD_TOP,3);
 		.@refine = getequiprefinerycnt(EQI_HEAD_TOP);
 	
@@ -613,9 +613,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29101:	// Steel1Lv
 			case 29111:	// Mercy1Lv
 				mes "Kr... he... he... You are... lucky... I wish... you all the success!... Only then... will you come and visit me... with more grudges... I suppose...";
-				.@requirement = 20;
+				.@requirement = 140;
 				.@enchant_level = 1;
-				.@enchant_rate = 80;
+				.@enchant_rate = 25;
 				break;
 			case 29062:	// Ambition2Lv
 			case 29072:	// Tab2Lv
@@ -624,9 +624,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29102:	// Steel2Lv
 			case 29112:	// Mercy2Lv
 				mes "3rd... level... reinforcement?... If you succeed... you will... gain... much stronger powers... but if you fail... you'll lose the powers... that you've gathered... so far...";
-				.@requirement = 40;
+				.@requirement = 280;
 				.@enchant_level = 2;
-				.@enchant_rate = 70;
+				.@enchant_rate = 25;
 				break;
 			case 29063:	// Ambition3Lv
 			case 29073:	// Tab3Lv
@@ -635,9 +635,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29103:	// Steel3Lv
 			case 29113:	// Mercy3Lv
 				mes "4th... level... reinforcement?... If you succeed... you will... gain... much stronger powers... but if you fail... you'll lose the powers... that you've gathered... so far...";
-				.@requirement = 50;
+				.@requirement = 350;
 				.@enchant_level = 3;
-				.@enchant_rate = 50;
+				.@enchant_rate = 25;
 				break;
 			case 29064:	// Ambition4Lv
 			case 29074:	// Tab4Lv
@@ -646,9 +646,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29104:	// Steel4Lv
 			case 29114:	// Mercy4Lv
 				mes "5th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 70;
+				.@requirement = 490;
 				.@enchant_level = 4;
-				.@enchant_rate = 20;
+				.@enchant_rate = 25;
 				break;
 			case 29065:	// Ambition5Lv
 			case 29075:	// Tab5Lv
@@ -657,7 +657,7 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29105:	// Steel5Lv
 			case 29115:	// Mercy5Lv
 				mes "6th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 100;
+				.@requirement = 700;
 				.@enchant_level = 5;
 				.@enchant_rate = 20;	// unknown rates
 				break;
@@ -669,9 +669,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29116:	// Mercy6Lv
 				// custom text
 				mes "7th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 150;
+				.@requirement = 1050;
 				.@enchant_level = 6;
-				.@enchant_rate = 20;	// unknown rates
+				.@enchant_rate = 15;	// unknown rates
 				break;
 			case 29067:	// Ambition7Lv
 			case 29077:	// Tab7Lv
@@ -681,9 +681,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29117:	// Mercy7Lv
 				// custom text
 				mes "8th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 250;
+				.@requirement = 1750;
 				.@enchant_level = 7;
-				.@enchant_rate = 20;	// unknown rates
+				.@enchant_rate = 10;	// unknown rates
 				break;
 			case 29068:	// Ambition8Lv
 			case 29078:	// Tab8Lv
@@ -693,9 +693,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29118:	// Mercy8Lv
 				// custom text
 				mes "9th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 500;
+				.@requirement = 3500;
 				.@enchant_level = 8;
-				.@enchant_rate = 20;	// unknown rates
+				.@enchant_rate = 5;	// unknown rates
 				break;
 			case 29069:	// Ambition9Lv
 			case 29079:	// Tab9Lv
@@ -705,9 +705,9 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 			case 29119:	// Mercy9Lv
 				// custom text
 				mes "10th... level... reinforcement?... Are you... ready... to control... such huge... powers?... but if you fail... the result will be... worth... seeing...";
-				.@requirement = 1000;
+				.@requirement = 7000;
 				.@enchant_level = 9;
-				.@enchant_rate = 20;	// unknown rates
+				.@enchant_rate = 3;	// unknown rates
 				break;
 			case 29070:	// Ambition10Lv
 			case 29080:	// Tab10Lv
@@ -767,30 +767,42 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 				4700,	// Strength1
 				4701,	// Strength2
 				4702,	// Strength3
+				4702,	// Strength3
+				4702,	// Strength3
 				4703,	// Strength4
 				4704,	// Strength5
 				4710,	// Inteligence1
 				4711,	// Inteligence2
+				4712,	// Inteligence3
+				4712,	// Inteligence3
 				4712,	// Inteligence3
 				4713,	// Inteligence4
 				4714,	// Inteligence5
 				4720,	// Dexterity1
 				4721,	// Dexterity2
 				4722,	// Dexterity3
+				4722,	// Dexterity3
+				4722,	// Dexterity3
 				4723,	// Dexterity4
 				4724,	// Dexterity5
 				4730,	// Agility1
 				4731,	// Agility2
+				4732,	// Agility3
+				4732,	// Agility3
 				4732,	// Agility3
 				4733,	// Agility4
 				4734,	// Agility5
 				4740,	// Vitality1
 				4741,	// Vitality2
 				4742,	// Vitality3
+				4742,	// Vitality3
+				4742,	// Vitality3
 				4743,	// Vitality4
 				4744,	// Vitality5
 				4750,	// Luck1
 				4751,	// Luck2
+				4752,	// Luck3
+				4752,	// Luck3
 				4752,	// Luck3
 				4753,	// Luck4
 				4754;	// Luck5
@@ -949,12 +961,11 @@ lhz_dun_n,134,265,2	script	Wandering Mind#JCv2	4_CENERE,{
 		next;
 		mes "[Wandering Mind]";
 		mes "Kkk... Of course... in order to obtain... great power... you may need... a countless amount of... grudge's... power...";
-		mes "^FF0000*Enchantment is proceeded in the order of 4, 3, 2 slots. You need 10 Cursed Fragments when you enchant each slot for the first time.*^000000";
+		mes "^FF0000*Enchantment is proceeded in the order of 4, 3, 2 slots. You need 25 Cursed Fragments when you enchant each slot for the first time.*^000000";
 		next;
 		mes "[Wandering Mind]";
 		mes "If you have... the opportunity... you might be... able to upgrade... the enchantment level... ";
-		mes "^FF0000*When reinforcing the enchant level, 50, 70, 100, 150, 250, 500, 1000 Cursed Fragments are consumed, depending on the enchant level";
-		mes "increase after 20 Cursed Fragments in the 2nd step, and 40 Cursed Fragments in the 3rd step.*^000000";
+		mes "^FF0000*When reinforcing the enchant level Cursed Fragments are consumed, depending on the enchant level";
 		close;
 	}
 }

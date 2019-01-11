@@ -52,7 +52,7 @@
 	.@equip_refine = getequiprefinerycnt(.@part);
 	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
 
-	if (.@equip_refine < 9 || .@equip_refine > 15) {
+	if (.@equip_refine < 9 || .@equip_refine > 14) {
 		mes "[Divine Blacksmith Han Li]";
 		mes "This equipment has refined to "+.@equip_refine+". I only handle items with refine levels from +9 to +15!";
 		close;
@@ -83,6 +83,10 @@
 	case 14:
 		set .@price,150000;
 		set .@matquan,25;
+		break;
+	case 15:
+		set .@price,150000;
+		set .@matquan,75;
 		break;
 	}
 	set .@ore$,"^ff9999Blacksmith Blessing^000000";
