@@ -418,7 +418,7 @@ int map_delblock(struct block_list* bl)
  * @param tick : when this was scheduled
  * @return 0:success, 1:fail
  */
-int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
+int map_moveblock(struct block_list *bl, int x1, int y1, t_tick tick)
 {
 	int x0 = bl->x, y0 = bl->y;
 	struct status_change *sc = NULL;
@@ -743,6 +743,11 @@ int map_foreachinareaV(int(*func)(struct block_list*, va_list), int16 m, int16 x
 		SWAP(y0, y1);
 
 	struct map_data *mapdata = map_getmapdata(m);
+
+	// Required for delayed monster removal in instances
+	if( mapdata == nullptr || mapdata->block == nullptr ){
+		return 0;
+	}
 
 	x0 = i16max(x0, 0);
 	y0 = i16max(y0, 0);
