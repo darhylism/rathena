@@ -10061,6 +10061,10 @@ ACMD_FUNC(camerainfo){
 
 	clif_camerainfo( sd, false, range, rotation, latitude );
 
+	return 0;
+}
+
+
 /**=========================================
  * Check values of resistance to elements
  * [ Keitenai ]
