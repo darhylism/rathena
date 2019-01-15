@@ -947,7 +947,7 @@
 1596,Earth_Pedigree_Book,Earth Pedigree Book,5,10,,400,90:130,,,2,0x050100,63,2,2,,27,1,15,{ .@r = getrefine(); bonus2 bSkillAtk,"WZ_HEAVENDRIVE",5+.@r; bonus2 bSkillAtk,"WZ_EARTHSPIKE",5+.@r; bonus bUnbreakableWeapon; },{},{}
 1597,Half_BF_Book2,Half BF Book2,5,20,,0,90:125,,1,0,0x00410100,63,2,2,3,80,1,15,{ bonus bStr,2; bonus bInt,1; bonus2 bAddRace,RC_DemiHuman,35; bonus2 bAddRace,RC_Player,35; bonus2 bIgnoreMdefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreMdefRaceRate,RC_Player,10; bonus bUnbreakableWeapon; },{},{}
 // GM Weapon
-1599,Angra_Manyu,Angra Manyu,5,1,,10,10000:10000,,2,0,0xFFFFFFFF,63,2,2,1,1,1,8,{ bonus bAllStats,50; bonus bBaseAtk,3300; bonus bMatkRate,200; bonus2 bHPDrainRate,1000,100; bonus2 bSPDrainRate,1000,20; bonus bHealPower,200; bonus2 bAddClass,Class_All,100; skill "WZ_STORMGUST",10; Skill "WZ_METEOR",10; Skill "WZ_VERMILION",10; skill "GM_SANDMAN",1; bonus bVariableCastrate,-100; bonus bFixedCastrate,-100; },{},{}
+1599,Angra_Manyu,Angra Manyu,5,1,,10,10000:10000,,2,0,0xFFFFFFFF,63,2,2,1,1,1,8,{ bonus bAllStats,50; bonus bBaseAtk,500; bonus bMatkRate,200; bonus2 bHPDrainRate,1000,100; bonus2 bSPDrainRate,1000,20; bonus bHealPower,200; bonus2 bAddClass,Class_All,100; skill "WZ_STORMGUST",10; Skill "WZ_METEOR",10; Skill "WZ_VERMILION",10; skill "GM_SANDMAN",1; bonus bVariableCastrate,-100; bonus bFixedCastrate,-100; },{},{}
 //===================================================================
 // 1-Handed Staffs
 //===================================================================

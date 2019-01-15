@@ -3675,7 +3675,6 @@
 20089,467,100	// C_Dragon_Cintamani_Hat4
 20110,467,100	// C_Coiledup_Snake
 //20111,467,100	//
-20135,507,100	// C_12_Anniversary_Crown_Of_Saint
 20136,507,100	// C_12_Anniversary_Elf_Ears
 20139,467,100	// C_Horse_Hairpin
 20140,467,100	// C_Horse_Hairpin
