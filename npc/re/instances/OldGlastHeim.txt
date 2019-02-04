@@ -1125,7 +1125,7 @@ OnStart:
 	end;
 
 OnMyMobDead:
-	if (rand(5) == 0) {// can re-spawn
+	if (rand(50) == 0) {// can re-spawn
 		mapannounce 'map_name$[1], "Evil Forces are appearing in this area.", bc_map,0xFFFF44,FW_NORMAL,15;
 		killmonster 'map_name$[1], instance_npcname("#ghmemorialmob05") + "::OnBossDead";
 
