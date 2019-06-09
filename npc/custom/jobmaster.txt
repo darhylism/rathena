@@ -15,7 +15,7 @@
 //= 1.9 Migrate/Integrate to Global Functions Platinum Skills. [mazvi]
 //============================================================
 
-prontera,153,193,6	script	Job Master	123,{
+prontera,153,193,6	script	Job Master	4_F_KHELLY,{
 function Get_Job_Equip;
 // Checks if the Player has the required level.
 // closes if not, returns if yes
@@ -475,3 +475,5 @@ OnInit:
 	end;
 }
 
+//duplicate
+hugel,83,150,4	duplicate(Job Master)	Job Master#hugel	4_F_KHELLY

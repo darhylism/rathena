@@ -43,7 +43,7 @@ OnInit:
 
 	set .CastleWarp,0;		// 1: Always enable all castle warps. | 0: Warp only to active castles.
 	set .AutoKick,1;		// Automatically kick players from inactive castles during WOE? (1:yes / 0:no)
-	set .NoOwner,0; 		// Automatically kick players from unconquered castles outside of WOE? (1:yes / 0:no)
+	set .NoOwner,1; 		// Automatically kick players from unconquered castles outside of WOE? (1:yes / 0:no)
 	set .ExitWarp,0;		// Warp all players from castles when WOE ends? (1:yes / 0:no)
 	set .GMAccess,99;		// GM level required to access Session Manager.
 
@@ -64,7 +64,7 @@ OnInit:
 // -----------------------------------------------------------
 
 	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
-	set .Options, 1|8;
+	set .Options, 0;
 
 	// Rewards per castle.
 	// -- when given directly: <itemID>,<amount>{,<itemID>,<amount>,...}
@@ -448,3 +448,5 @@ while(1) {
 		close;
 	} }
 }
+
+hugel,92,154,4	duplicate(WOE Information)	WOE Information#Hugel	835
