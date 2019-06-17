@@ -450,3 +450,4 @@ while(1) {
 }
 
 hugel,92,154,4	duplicate(WOE Information)	WOE Information#Hugel	835
+Askydun,98,108,4	duplicate(WOE Information)	WOE Information#Askydun	835

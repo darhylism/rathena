@@ -9,7 +9,7 @@
 #include "../config/core.hpp"
 
 #include "map.hpp" //ELE_MAX
-
+#include "mapreg.hpp" //KOE
 //fwd declaration
 struct map_session_data;
 struct mob_data;

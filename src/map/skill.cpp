@@ -4932,7 +4932,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			}
 			if (skill_id == MO_EXTREMITYFIST) {
 				mbl = src; // For MO_EXTREMITYFIST
-				i = 3; // Move 3 cells (From caster)
+				i = 2; // Move 2 cells (From caster)
 			}
 			if (dir > 0 && dir < 4)
 				x = -i;
@@ -4948,8 +4948,9 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				y = 0;
 			// Ashura Strike still has slide effect in GVG
 			if ((mbl == src || (!map_flag_gvg2(src->m) && !map_getmapflag(src->m, MF_BATTLEGROUND))) &&
-				unit_movepos(src, mbl->x + x, mbl->y + y, 1, 1)) {
-				clif_blown(src);
+				//unit_movepos(src, mbl->x + x, mbl->y + y, 1, 1)) {
+				unit_walktoxy(src, mbl->x + x, mbl->y + y, 2))	{
+				//clif_blown(src);
 				clif_spiritball(src);
 			}
 		}

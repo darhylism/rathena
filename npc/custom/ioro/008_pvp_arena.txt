@@ -1,0 +1,59 @@
+//PVP ROOM
+
+
+poring_w02,108,87,4	script	PVP	1007,{
+		if (getmapusers("guild_vs3") > 99) callsub S_full;
+		callsub S_payment;
+		warp "guild_vs3",0,0;
+announce strcharinfo(0)+" entered PVP Room!! "+$@lista$,0;
+		
+		end;
+S_full:
+	mes " ";
+	mes "I'm sorry, this arena is full.  Please try again later...";
+	close;
+S_payment:
+	if (Zeny < (50*BaseLevel + 800)) {
+		mes "You don't have enough zeny.";
+		mes "It costs "+(50*BaseLevel + 800)+" zeny for you to enter.";
+		close;
+	}
+	set Zeny, Zeny - (50*BaseLevel + 800);
+	return;
+ 
+OnInit:
+	   waitingroom "PvP Warper",0;
+    end;
+}
+
+
+moscovia,226,198,4	duplicate(PVP)	PVP#1	1007
+alberta,23,243,3	duplicate(PVP)	PVP#3	1007 // Kliwa
+aldebaran,136,121,1	duplicate(PVP)	PVP#4	1007 // Kliwa
+amatsu,102,152,3	duplicate(PVP)	PVP#5	1007 // Kliwa
+ayothaya,205,169,2	duplicate(PVP)	PVP#6	1007 // Kliwa
+comodo,195,156,4	duplicate(PVP)	PVP#7	1007 // Kliwa
+einbech,198,83,4	duplicate(PVP)	PVP#8	1007 // Taas Kaliwa
+einbroch,55,202,5	duplicate(PVP)	PVP#9	1007 // Taas Kaliwa
+geffen,125,71,4	duplicate(PVP)	PVP#10	1007
+gonryun,165,121,4	duplicate(PVP)	PVP#11	1007
+hugel,87,149,5	duplicate(PVP)	PVP#12	1007
+izlude,124,150,4	duplicate(PVP)	PVP#13	1007
+lighthalzen,166,101,4	duplicate(PVP)	PVP#14	1007
+louyang,214,120,5	duplicate(PVP)	PVP#15	1007
+xmas,154,136,4	duplicate(PVP)	PVP#16	1007
+morocc,161,97,4	duplicate(PVP)	PVP#17	1007
+payon,184,104,4	duplicate(PVP)	PVP#18	1007
+rachel,123,145,4	duplicate(PVP)	PVP#19 	1007
+veins,219,127,4	duplicate(PVP)	PVP#20	1007
+yuno,163,170,4	duplicate(PVP)	PVP#21	1007
+umbala,106,159,3	duplicate(PVP)	PVP#22	1007
+prontera,163,177,4	duplicate(PVP)	PVP#23	1007
+Askydun,100,109,4	duplicate(PVP)	PVP#24	1007
+splendide,198,153,4	duplicate(PVP)	PVP#25	1007
+mora,58,132,4	duplicate(PVP)	PVP#26	1007
+ 
+// Mapflags
+guild_vs3	mapflag	pvp
+guild_vs3	mapflag	pvp_noparty
+guild_vs3	mapflag	pvp_noguild
