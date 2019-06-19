@@ -3126,7 +3126,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 				wd->damage = battle_calc_base_damage(src, sstatus, &sstatus->rhw, sc, tstatus->size, 0); //Monsters have no weight and use ATK instead
 			}
 
-			i = sstatus->str/10;
+			i = sstatus->str/5;
 			i*=i;
 			ATK_ADD(wd->damage, wd->damage2, i); //Add str bonus.
 			switch (tstatus->size) { //Size-fix. Is this modified by weapon perfection?
@@ -3504,7 +3504,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			}
 		case KN_BOWLINGBASH:
 		case MS_BOWLINGBASH:
-			skillratio += 40 * skill_lv;
+			skillratio += 25 + 40 * skill_lv;
 			break;
 		case AS_GRIMTOOTH:
 			skillratio += 20 * skill_lv;

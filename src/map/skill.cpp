@@ -2641,8 +2641,7 @@ bool skill_strip_equip(struct block_list *src, struct block_list *target, uint16
 			break;
 		}
 		case GS_DISARM:
-			rate = sstatus->dex / (4 * (7 - skill_lv)) + sstatus->luk / (4 * (6 - skill_lv));
-			rate = rate + status_get_lv(src) - (tstatus->agi * rate / 100) - tstatus->luk - status_get_lv(target);
+			rate = 50 * (skill_lv + 1) + 2 * (sstatus->dex - tstatus->dex);
 			break;
 		case WL_EARTHSTRAIN: {
 			int job_lv = 0;
@@ -8013,12 +8012,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			struct map_data *mapdata = &map[src->m];
 
 			//Fails on noteleport maps, except for GvG and BG maps [Skotlex]
-			if( mapdata->flag[MF_NOTELEPORT] &&
-				!(mapdata->flag[MF_BATTLEGROUND] || mapdata_flag_gvg2(mapdata) )
-			) {
-				clif_skill_nodamage(src, bl, TK_HIGHJUMP, skill_lv, 1);
-				break;
-			} else if(dir%2) {
+			// if( mapdata->flag[MF_NOTELEPORT] &&
+				// !(mapdata->flag[MF_BATTLEGROUND] || mapdata_flag_gvg2(mapdata) )
+			// ) {
+				// clif_skill_nodamage(src, bl, TK_HIGHJUMP, skill_lv, 1);
+				// break;
+			// } else if(dir%2) {
+			if(dir%2) {
 				//Diagonal
 				x = src->x + dirx[dir]*(skill_lv*4)/3;
 				y = src->y + diry[dir]*(skill_lv*4)/3;
