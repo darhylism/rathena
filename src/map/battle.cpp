@@ -6889,7 +6889,15 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 		return 0; // White Imprison does not reflect any damage
 
 	if (flag & BF_SHORT) {//Bounces back part of the damage.
-		if ( (skill_get_inf2(skill_id)&INF2_TRAP || !status_reflect) && sd && sd->bonus.short_weapon_damage_return ) {
+		if (!status_reflect && skill_id == WS_CARTTERMINATION && !status_bl_has_mode(src, MD_STATUS_IMMUNE)) //Ignoring all reflecting (psyz)
+        {
+			rdamage = 0;
+			return 0;
+		} else if (!status_reflect && skill_id == GS_DESPERADO && !status_bl_has_mode(src, MD_STATUS_IMMUNE)) //Ignoring all reflecting (psyz)
+        {
+			rdamage = 0;
+			return 0;
+		} else if ( (skill_get_inf2(skill_id)&INF2_TRAP || !status_reflect) && sd && sd->bonus.short_weapon_damage_return ) {
 			rdamage += damage * sd->bonus.short_weapon_damage_return / 100;
 			rdamage = i64max(rdamage,1);
 		} else if( status_reflect && sc && sc->count ) {

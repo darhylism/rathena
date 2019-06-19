@@ -4,12 +4,13 @@ poring_w02,82,101,4	script	Coupon Exchanger	4_F_PINKWOMAN,{
     mes @name$;
     mes "What do you want to do?";
     next;
-    switch(select("Information","Convert berry","Nothing")) {
+    switch(select("Information","Convert Berry","Convert Poison Bottle","Nothing")) {
 
         case 1:
             mes @name$;
             mes "I can convert your Coupon/s into usable items and vice versa.";
             mes "1 Coupon = 400 Yggdrasil Berry";
+			  mes "1 Coupon = 100 Poison Bottle";
             close;
 
         case 2:
@@ -33,6 +34,27 @@ poring_w02,82,101,4	script	Coupon Exchanger	4_F_PINKWOMAN,{
                     getitem 607,400;
                     close;
 			}
+		case 3:
+            switch(select("Poison Bottle to Coupon","Coupon to Poison Bottle")) {
+
+                case 1:
+                    if(countitem(678) < 100) goto noBerry;
+                    if (checkweight(35043,1) == 0 ) goto overWeight;
+                    delitem 678,100;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 35043,1;
+                    close;
+
+                case 2:
+                    if(countitem(35043) < 1) goto noCoupon;
+                    if (checkweight(678,100) == 0 ) goto overWeight;
+                    delitem 35043,1;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 678,100;
+                    close;
+		}
 		default:
 			close;
             }
@@ -60,7 +82,7 @@ end;
 
 brasilis,192,213,4	duplicate(Coupon Exchanger)	Coupon Exchanger#bras	4_F_PINKWOMAN
 prontera,164,170,4	duplicate(Coupon Exchanger)	Coupon Exchanger#prontera	4_F_PINKWOMAN
-Askydun,96,111,4	duplicate(Coupon Exchanger)	Coupon Exchanger#Askydun	4_F_PINKWOMAN
+Askydun,82,109,4	duplicate(Coupon Exchanger)	Coupon Exchanger#Askydun	4_F_PINKWOMAN
 splendide,188,143,4	duplicate(Coupon Exchanger)	Coupon Exchanger#splendide	4_F_PINKWOMAN
 morocc,148,102,4	duplicate(Coupon Exchanger)	Coupon Exchanger#morocc	4_F_PINKWOMAN
 geffen,120,56,4	duplicate(Coupon Exchanger)	Coupon Exchanger#geffen	4_F_PINKWOMAN

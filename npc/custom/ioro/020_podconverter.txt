@@ -1,0 +1,60 @@
+hugel,70,145,5	script	POD Converter	83,{
+.@name$ ="[^FF0000POD Converter^000000]";
+
+mes .@name$;
+mes "Hello, 100 cashpoints is equal to 1 POD.";
+mes "What would you like to do?";
+next;
+
+switch( select("Cash Points to Proof of Donation","Proof of Donation to Cash Cash Points") ) {
+	case 1:
+		mes .@name$;
+		mes "How many POD(s) do you want?";
+		input .@num;
+		next;
+
+		if( .@num <= 0 || #CASHPOINTS < .@num * 100 ) {
+			mes .@name$;
+			mes "Sorry, you don't have enough cashpoints!";
+			close;
+		}
+		mes .@name$;
+		mes "This will cost ^FF0000" +(.@num * 100)+ " cashpoints^000000.";
+		next;
+
+		if( select("Proceed:Nevermind") -1 ) {
+			mes .@name$;
+			mes "Goodbye!";
+			close;
+		}
+		set #CASHPOINTS, #CASHPOINTS - .@num * 100;
+		dispbottom "Lost: " +(.@num * 100)+ " cashpoints. Total: " +#CASHPOINTS+" cashpoints.";
+		getitem 7179, .@num;
+		break;
+
+	case 2:
+		mes .@name$;
+		mes "How many POD(s) will you give?";
+		input .@num;
+		next;
+
+		if( .@num <= 0 || countitem(7179) < .@num ) {
+			mes .@name$;
+			mes "Sorry, you don't have enough POD!";
+			close;
+		}
+		mes .@name$;
+		mes "I can give you ^FF0000" +(.@num * 100)+ " cashpoints^000000 for this.";
+		next;
+
+		if( select("Proceed:Nevermind") -1 ) {
+			mes .@name$;
+			mes "Goodbye!";
+			close;
+		}
+		set #CASHPOINTS, #CASHPOINTS + .@num * 100;
+		dispbottom "Gained: " +(.@num * 100)+ " cashpoints. Total: " +#CASHPOINTS+" cashpoints.";
+		delitem 35115,.@num;
+}
+close;
+}
