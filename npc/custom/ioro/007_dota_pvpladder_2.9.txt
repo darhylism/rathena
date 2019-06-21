@@ -149,7 +149,7 @@ OnInit:
 //	script start.
 OnPCKillEvent:
 	if ( getgmlevel() >= .gmnokill ) end;
-	getmapxy .@map$, .@x, .@y, 0;
+	getmapxy .@map$, .@x, .@y, BL_PC;
 	if ( .maptrigger$ != "all" ) {
 		for ( set .@i, 0; .@i < .maptriggersize; set .@i, .@i +1 ) {
 			if ( .@map$ == .maptrigger$[.@i] ) break;
@@ -242,9 +242,6 @@ OnPCKillEvent:
 	}
 	set @PlayersKilledStreak, @PlayersKilledStreak +1 ;
 	set @dota_sql_kills, @dota_sql_kills +1 ;
-//pvp points
-	#PVPPOINTS++;
-	dispbottom "You Killed a Player. Total is " +#PVPPOINTS+ " Pvp points.";
 	
 	if ( @PlayersKilledStreak > @dota_sql_streaks ) {
 		set @dota_sql_streaks, @PlayersKilledStreak;
@@ -367,7 +364,7 @@ OnPCLoginEvent:
 OnPCLoadMapEvent:
 	if ( @dota_sql_kills == 0 && @dota_sql_deaths == 0 ) {
 		if ( .maptrigger$ != "all" ) {
-			getmapxy .@map$, .@x, .@y, 0;
+			getmapxy .@map$, .@x, .@y, BL_PC;
 			for ( set .@i, 0; .@i < .maptriggersize; set .@i, .@i +1 ) {
 				if ( .@map$ == .maptrigger$[.@i] ) break;
 			}

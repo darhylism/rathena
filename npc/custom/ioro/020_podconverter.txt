@@ -54,7 +54,8 @@ switch( select("Cash Points to Proof of Donation","Proof of Donation to Cash Cas
 		}
 		set #CASHPOINTS, #CASHPOINTS + .@num * 100;
 		dispbottom "Gained: " +(.@num * 100)+ " cashpoints. Total: " +#CASHPOINTS+" cashpoints.";
-		delitem 35115,.@num;
+		delitem 7179,.@num;
+		break;
 }
 close;
 }

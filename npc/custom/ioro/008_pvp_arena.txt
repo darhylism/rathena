@@ -3,7 +3,6 @@
 
 poring_w02,108,87,4	script	PVP	1007,{
 		if (getmapusers("guild_vs3") > 99) callsub S_full;
-		callsub S_payment;
 		warp "guild_vs3",0,0;
 announce strcharinfo(0)+" entered PVP Room!! "+$@lista$,0;
 		
@@ -12,14 +11,6 @@ S_full:
 	mes " ";
 	mes "I'm sorry, this arena is full.  Please try again later...";
 	close;
-S_payment:
-	if (Zeny < (50*BaseLevel + 800)) {
-		mes "You don't have enough zeny.";
-		mes "It costs "+(50*BaseLevel + 800)+" zeny for you to enter.";
-		close;
-	}
-	set Zeny, Zeny - (50*BaseLevel + 800);
-	return;
  
 OnInit:
 	   waitingroom "PvP Warper",0;
