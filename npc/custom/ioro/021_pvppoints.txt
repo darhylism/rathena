@@ -1,4 +1,4 @@
-- script PVPPOINTS -1,{
+-	script	PVPPOINTS	-1,{
 OnPCKillEvent:
 getmapxy.@map$,.@x,.@y,BL_PC;
 if(getcharid(3)==killedrid) end;
@@ -8,5 +8,6 @@ set .@player1, getcharid(3);
 
 attachrid(.@player1);
 #PVPPOINTS++;
-dispbottom "You Gained 1 PvP Points from "+rid2name(killedrid);
+dispbottom "[PvP Points]: You Gained 1 PvP Point from killing "+rid2name(killedrid);
+end;
 }
