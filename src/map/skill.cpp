@@ -4949,7 +4949,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			if ((mbl == src || (!map_flag_gvg2(src->m) && !map_getmapflag(src->m, MF_BATTLEGROUND))) &&
 				//unit_movepos(src, mbl->x + x, mbl->y + y, 1, 1)) {
 				unit_walktoxy(src, mbl->x + x, mbl->y + y, 2))	{
-				//clif_blown(src);
+				clif_blown(src);
 				clif_spiritball(src);
 			}
 		}
@@ -6596,7 +6596,22 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case ITEM_ENCHANTARMS:
-		clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_get_ele(skill_id, skill_lv), skill_get_time(skill_id, skill_lv)));
+		// clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_get_ele(skill_id, skill_lv), skill_get_time(skill_id, skill_lv)));
+		// break;
+		switch(skill_get_ele(skill_id,skill_lv)) {
+			case ELE_EARTH : type = SC_EARTHWEAPON;  break;
+			case ELE_WIND  : type = SC_WINDWEAPON;   break;
+			case ELE_WATER : type = SC_WATERWEAPON;  break;
+			case ELE_FIRE  : type = SC_FIREWEAPON;   break;
+			case ELE_GHOST : type = SC_GHOSTWEAPON;  break;
+			case ELE_DARK  : type = SC_SHADOWWEAPON; break;
+			case ELE_HOLY  : type = SC_ASPERSIO;     break;
+		}
+		clif_skill_nodamage(src,bl,skill_id,skill_lv,
+			sc_start(src,bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv)));
+
+		sc_start(src,bl,SC_SEVENWIND,100,skill_lv,skill_get_time(skill_id,skill_lv));
+
 		break;
 
 	case TK_SEVENWIND:
@@ -7293,6 +7308,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		clif_skill_nodamage(src,bl,skill_id,skill_lv,i);
 		break;
 	case TF_HIDING:
+	if (tsce)
+		{
+			clif_skill_nodamage(src,bl,skill_id,-1,status_change_end(bl, type, INVALID_TIMER)); //Hide skill-scream animation.
+			map_freeblock_unlock();
+			return 0;
+		}
+		sc_start(src,src,SC_HIDING,100,skill_lv,skill_get_time(skill_id,skill_lv));
+		break;
 	case ST_CHASEWALK:
 	case KO_YAMIKUMO:
 		if (tsce)
@@ -11981,7 +12004,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 		break;
 	case NJ_SHADOWJUMP:
 		if( map_getcell(src->m,x,y,CELL_CHKREACH) && skill_check_unit_movepos(5, src, x, y, 1, 0) ) //You don't move on GVG grounds.
-			clif_blown(src);
+		clif_blown(src);
 		status_change_end(src, SC_HIDING, INVALID_TIMER);
 		break;
 	case AM_SPHEREMINE:

@@ -3605,7 +3605,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			skillratio += 75 * skill_lv;
 			break;
 		case MO_EXTREMITYFIST:
-			skillratio += 100 * (7 + sstatus->sp / 10);
+			skillratio += 20 * (7 + sstatus->sp / 10);
 			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
 			break;
 		case MO_TRIPLEATTACK:
@@ -6898,7 +6898,7 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 			rdamage = 0;
 			return 0;
 		} else if ( (skill_get_inf2(skill_id)&INF2_TRAP || !status_reflect) && sd && sd->bonus.short_weapon_damage_return ) {
-			rdamage += damage * sd->bonus.short_weapon_damage_return / 100;
+			rdamage += damage * sd->bonus.short_weapon_damage_return / 125;
 			rdamage = i64max(rdamage,1);
 		} else if( status_reflect && sc && sc->count ) {
 			if( sc->data[SC_REFLECTSHIELD] ) {
