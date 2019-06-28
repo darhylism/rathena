@@ -4949,7 +4949,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			if ((mbl == src || (!map_flag_gvg2(src->m) && !map_getmapflag(src->m, MF_BATTLEGROUND))) &&
 				//unit_movepos(src, mbl->x + x, mbl->y + y, 1, 1)) {
 				unit_walktoxy(src, mbl->x + x, mbl->y + y, 2))	{
-				clif_blown(src);
+				//clif_blown(src);
 				clif_spiritball(src);
 			}
 		}
