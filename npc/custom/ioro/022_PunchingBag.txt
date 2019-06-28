@@ -1,17 +1,4 @@
-//===== rAthena Script =============================================
-//= Punching Bag NPC
-//===== By: ========================================================
-//= Secretdataz
-//===== Current Version: ===========================================
-//= 0.2
-//===== Changelog: =================================================
-//= 0.1 Initial commit
-//= 0.2 Add MD_KNOCKBACK_IMMUNE
-//===== Compatible With: ===========================================
-//= rAthena Project
-//===== Additional Comments: =======================================
-//= When duplicating this NPC. Only use NUMBER after the # [secret]
-//==================================================================
+
 hugel,92,139,0	script	PunchingBag#0	844,{
 	end;
 	

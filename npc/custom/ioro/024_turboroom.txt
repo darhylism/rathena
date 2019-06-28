@@ -1,0 +1,55 @@
+//===== turbo track =======================================
+//= Market Place
+//===== By: ==================================================
+//= dduwsmit
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Dewarpion: =========================================
+
+
+//== Kafra ================================================
+prontera,157,197,4	script	Kafra Employee::kaf_center_pront	4_F_KAFRA8,{
+	cutin "kafra_08",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "Welcome to the";
+	mes "Kafra Corporation~";
+	mes "The Kafra Services are";
+	mes "always here to support";
+	mes "you. So how can I be";
+	mes "of service today?";
+	callfunc "F_Kafra",5,0,0,40,800;
+	savepoint "prontera",155,193;
+	callfunc "F_KafEnd",0,1,"in Prontera!";
+}
+
+//== Kafra ================================================
+turbo_room,100,122,4	script	Kafra Employee::kaf_turbo	4_F_KAFRA6,{
+	cutin "kafra_06",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "Welcome to the";
+	mes "Kafra Corporation~";
+	mes "The Kafra Services are";
+	mes "always here to support";
+	mes "you. So how can I be";
+	mes "of service today?";
+	callfunc "F_Kafra",5,0,0,40,800;
+	savepoint "turbo_room",99,115;
+	callfunc "F_KafEnd",0,1,"in Turbo Market!";
+}
+
+
+
+//Market Place settings
+turbo_room	mapflag	town
+turbo_room	mapflag	restricted	7
+turbo_room	mapflag	noteleport
+turbo_room	mapflag	nomemo
+turbo_room	mapflag	nobranch
+turbo_room	mapflag	autotrade
+turbo_room	mapflag	nodrop
+turbo_room	mapflag	noicewall
+

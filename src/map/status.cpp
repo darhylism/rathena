@@ -8113,8 +8113,8 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 #endif
 			break;
 		case SC_STUN:
-			sc_def = status->vit*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
+			sc_def = status->vit*2;
+			sc_def2 = status->luk*2;
 			tick_def2 = status->luk*10;
 			break;
 		case SC_SILENCE:
@@ -8142,8 +8142,8 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 			sc_def = status->int_*100;
 			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
 #else
-			sc_def = status->agi*100;
-			sc_def2 = (status->int_ + status->luk) * 5 + status_get_lv(bl)*10 - status_get_lv(src)*10;
+			sc_def = status->agi*1;
+			sc_def2 = (status->int_ + status->luk) * 1;
 #endif
 			tick_def2 = status->luk*10;
 			break;
@@ -8153,18 +8153,18 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 			tick_def = 0; // No duration reduction
 			break;
 		case SC_FREEZE:
-			sc_def = status->mdef*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
+			sc_def = status->mdef*1;
+			sc_def2 = status->luk*20;
 			tick_def2 = status_src->luk*-10; // Caster can increase final duration with luk
 			break;
 		case SC_CURSE:
 			// Special property: immunity when luk is zero
 			if (status->luk == 0)
 				return 0;
-			sc_def = status->luk*100;
-			sc_def2 = status->luk*10 - status_get_lv(src)*10; // Curse only has a level penalty and no resistance
-			tick_def = status->vit*100;
-			tick_def2 = status->luk*10;
+			sc_def = status->luk*1;
+			sc_def2 = status->luk*1 - status_get_lv(src)*1; // Curse only has a level penalty and no resistance
+			tick_def = status->vit*1;
+			tick_def2 = status->luk*1;
 			break;
 		case SC_BLIND:
 			sc_def = (status->vit + status->int_)*50;

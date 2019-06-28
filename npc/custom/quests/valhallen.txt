@@ -44,7 +44,7 @@ prontera,147,171,5	script	Lenneth	811,{
 		case 4:
 			mes "[Lenneth]";
 			mes "The ^3355FFGleipnir^000000 is a light yet strong rope required to make ^3355FFMegingjard^000000";
-			setarray .@Items[0],7058,7080,4,7081,5,7082,4,7084,3,7085,3,35041,1;
+			setarray .@Items[0],7058,7080,4,7081,5,7082,4,7084,3,7085,3;
 			break;
 		case 5:
 			mes "[Lenneth]";

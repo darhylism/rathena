@@ -1,0 +1,122 @@
+// -----------------------------//
+// ------- Last Man Standing --------//
+// -------- By : Butch ---------//
+// A simple Last Man Standing script //
+// -----------------------------//
+
+evt_swar_t,48,51,6	script	LMS Master	999,{
+if(getmapusers("evt_swar_t") != 1) 
+	{
+		mes "[^FF0000LMS Master^000000]";
+		mes "Current players - ^FF0000"+ getmapusers("evt_swar_t") +"^000000.";
+		close;
+	}
+	else if(getmapusers("evt_swar_t") == 1)
+	{
+		
+		dispbottom "You are a winner of [Event] Last Man Standing. Congratz!";
+		donpcevent "Last Man Standing::OnStopEvent";
+		announce "Last Man Standing winner : "+ strcharinfo(0) +"", bc_all, "0xFFCE00";
+		#PVPPOINTS += 10;
+		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
+		getitem 35048,10;
+		warp "Save",0,0;
+		end;
+	}
+}
+
+// ------ LMS Warper -------//
+		
+hugel,112,152,6	script	Last Man Standing	999,{
+
+	if (.start != 1) {
+	mes "[^FF0000Agent Mil^000000]";
+	mes "Last Man Standing is not available at the moment";
+	mes "LMS TIMES:";
+	mes "Starts everdays @10:30AM";
+	close;
+	}
+		mes "[^FF0000Agent Mil^000000]";
+		mes "What do you want?";
+		switch(select("Last Man Standing")) {
+			case 1:
+				if( getcharid(1) ) { mes "Please leave your party."; close; }
+					else switch(rand(3)) {
+						case 0: .@x = 18; .@y = 50; break;
+						case 1: .@x = 50; .@y = 77; break;
+						case 2: .@x = 81; .@y = 49; break;
+						case 3: .@x = 49; .@y = 22; break; 
+					}
+					warp "evt_swar_t", .@x,.@y;
+				break;				
+		}
+	close;
+	
+OnStartEvent:	
+OnClock1030:
+	.start = 1;
+	disablenpc "LMS Master";
+	pvpoff "evt_swar_t";
+	announce "Last Man Standing will start in 5 minutes. Go to hugel if you want to join!", bc_all, "0x00b89d";
+	sleep 120000;
+	announce "Last Man Standing will start in 3 minutes. Go to hugel if you want to join!", bc_all, "0x00b89d";
+	sleep 120000;
+	announce "Last Man Standing will start in 1 minute. Go to hugel if you want to join!", bc_all, "0x00b89d";
+	sleep 60000;
+	announce "Last Man Standing has started!", bc_all, "0x00b89d";
+	.start = 2;
+	enablenpc "LMS Master";
+	sleep 2000;
+	if ( !getmapusers("evt_swar_t") ) goto OnStopEvent;
+	mapannounce "evt_swar_t", "LMS starts in 5", bc_map;
+	sleep 1000;
+	mapannounce "evt_swar_t", "LMS starts in 4", bc_map;
+	sleep 1000;
+	mapannounce "evt_swar_t", "LMS starts in 3", bc_map;
+	sleep 1000;
+	mapannounce "evt_swar_t", "LMS starts in 2", bc_map;
+	sleep 1000;
+	mapannounce "evt_swar_t", "LMS starts in 1", bc_map;
+	sleep 1000;
+	mapannounce "evt_swar_t", "GO! Kill all!", bc_map;
+	pvpon "evt_swar_t";
+	removemapflag "evt_swar_t", mf_noskill;
+	end;
+	
+OnStopEvent:
+	.start = 0;
+	disablenpc "LMS Master";
+	pvpoff "evt_swar_t";
+	setmapflag "evt_swar_t", mf_noskill;
+	end;
+		
+OnInit:
+	waitingroom "[Last Man Standing]",0;
+	end;
+}
+
+//----- Die = warp out -----
+-	script	Killa_warp	-1,{
+
+OnPCDieEvent:
+	getmapxy(.@map$,.@x,.@y,0);
+	if(.@map$=="evt_swar_t")
+	{
+		set #kill_point, 0;
+		announce ""+strcharinfo(0)+" died, and out of LMS!.",bc_all;
+		warp "Save",0,0;
+		end;
+	}
+	}
+
+evt_swar_t	mapflag	partylock
+evt_swar_t	mapflag	guildlock
+evt_swar_t	mapflag	notrade
+evt_swar_t	mapflag	nodrop
+evt_swar_t	mapflag	nosave
+evt_swar_t	mapflag	nowarp
+evt_swar_t	mapflag	nowarpto
+evt_swar_t	mapflag	noteleport
+//evt_swar_t	mapflag	pvp
+evt_swar_t	mapflag	pvp_noparty
+evt_swar_t	mapflag	pvp_noguild

@@ -88,4 +88,4 @@ function	int__	{
 
 
 //duplicate
-//poring_w01,95,82,4	duplicate(Coin Master)	Coin Master#poring_w01	4_M_KHKIEL
+turbo_room,92,118,4	duplicate(Coin Master)	Coin Master#turbo	4_M_KHKIEL

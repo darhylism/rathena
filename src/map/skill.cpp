@@ -4506,9 +4506,10 @@ static int skill_tarotcard(struct block_list* src, struct block_list *target, ui
 		sc_start(src, target, SC_INCMATKRATE, 100, -50, skill_get_time2(skill_id, skill_lv));
 		break;
 	}
-	case 3: // THE HIGH PRIESTESS - all buffs removed
+	case 3: // THE HIGH PRIESTESS - all buffs removed | except chem protect by dduwsmit
 	{
-		status_change_clear_buffs(target, SCCB_BUFFS | SCCB_CHEM_PROTECT);
+	//	status_change_clear_buffs(target, SCCB_BUFFS | SCCB_CHEM_PROTECT);
+		status_change_clear_buffs(target, SCCB_BUFFS);
 		break;
 	}
 	case 4: // THE CHARIOT - 1000 damage, random armor destroyed

@@ -9,11 +9,6 @@
 //===== Description: =========================================================
 //= PVP ladder store in SQL table
 //= plus anti-sit-killer feature
-//===== Topic ================================================================
-//= http://www.eathena.ws/board/index.php?showtopic=177918
-//===== Additional Comments: =================================================
-//= still don't have modify value option, will be done ... in next year ...
-//============================================================================
 /*
 create table pvpladder (
 	char_id int(11) not null default '0' primary key,
@@ -381,7 +376,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-prontera,166,188,5	script	Top Pvp Ladder#PVP	4_M_CHNGENERL,{
+prontera,164,168,4	script	Top Pvp Ladder#PVP	4_M_CHNGENERL,{
 	set .@npcname$, strnpcinfo(0);
 	while (1) {
 		mes "["+ .@npcname$ +"]";

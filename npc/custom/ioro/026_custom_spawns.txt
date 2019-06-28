@@ -1,0 +1,29 @@
+in_sphinx4,0,0	monster	Anubis	1098,30
+in_sphinx5,0,0	monster	Anubis	1098,30
+
+prt_maze03,100,100,80,80	monster	Baphomet Jr.	1101,70,0,0,0
+prt_maze03,0,0,0,0	monster	Baphomet Jr.	1101,70,0,0,0
+prt_maze03,0,0,0,0	monster	Baphomet Jr.	1101,70,0,0,0
+
+
+c_tower3,0,0	monster	Alarm	1193,80
+c_tower4,108,198,100,10	monster	Alarm	1193,15
+c_tower4,108,178,100,10	monster	Alarm	1193,15
+c_tower4,108,158,100,10	monster	Alarm	1193,15
+c_tower4,108,138,100,10	monster	Alarm	1193,15
+c_tower4,108,118,100,10	monster	Alarm	1193,15
+
+//Farm Field
+pay_fild10,0,0,0,0	monster	Dokebi	1110,50,0,0,0
+//pay_fild10,0,0,0,0	monster	Dokebi	1110,350,0,0,0
+
+//pay_fild10,0,0,0,0	monster	Am Mut	1301,200,0,0,0
+
+abyss_03,0,0	monster	Mimic	1191,10,0,0,0
+abyss_03,0,0	monster	Ancient Mimic	1699,10,0,0,0
+abyss_03,0,0	monster	Acidus	1713,30,0,0,0
+abyss_03,0,0	monster	Acidus	1716,30,0,0,0
+abyss_03,0,0	monster	Ferus	1714,30,0,0,0
+abyss_03,0,0	monster	Ferus	1717,30,0,0,0
+
+abyss_03,97,103	boss_monster	Treasure Box	1902,1,43200,43200,0

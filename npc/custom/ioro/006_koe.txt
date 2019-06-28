@@ -92,8 +92,7 @@ guild_vs1,49,56,5	script	Exit#KoE	1_M_BARD,{
 	close2;
 	warp "Save",0,0;
 	if ( getcharid(2) == $koegid )
-		#PVPPOINTS += 50;
-		dispbottom "You now have " +#PVPPOINTS+ " PvP points.";
+	getitem 35048,10;
 	end;
 }
 

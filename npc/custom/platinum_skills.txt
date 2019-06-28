@@ -32,3 +32,5 @@ prontera,128,200,6	script	Platinum Skill NPC	94,{
 	mes "There you go!";
 	close;
 }
+
+hugel,74,125,4	duplicate(Platinum Skill NPC)	Platinum Skill NPC#hugel	94

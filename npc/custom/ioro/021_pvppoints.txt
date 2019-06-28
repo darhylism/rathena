@@ -2,7 +2,7 @@
 OnPCKillEvent:
 getmapxy.@map$,.@x,.@y,BL_PC;
 if(getcharid(3)==killedrid) end;
-if(.@map$ != "guild_vs3") end;
+if(.@map$ != "guild_vs3" | .@map$ != "guild_vs2" | .@map$ != "guild_vs5" | .@map$ != "evt_swar_b" | .@map$ != "evt_swar_r" | .@map$ != "evt_swar_s") end;
 
 set .@player1, getcharid(3);
 
