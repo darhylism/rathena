@@ -1,0 +1,48 @@
+prontera,147,167,4	script	Cash Point Redeemer	987,{
+
+
+//Function Prototypes
+function getPoints;//This will return the points of the player stored in the database
+function updatePoints;//This will updates the points of the player stored in the database
+
+
+	mes "[Donation Rewards Redeemer]";
+	mes "I come from Valhalla to aid you.";
+	mes "What do you want to do?.";
+	next;
+	switch(select("Redeem Cash Points:Cancel")) {
+		case 1:
+			set .@pointz,getPoints(getcharid(3));
+			mes "This will convert CP Credit pt(s) to NPC Cash pt(s)";	
+			mes "You currently have "+.@pointz+" CP Credit pt(s).";
+			switch(select("Redeem:Close")) {
+			case 1:
+				next;
+				updatePoints(getcharid(3),.@pointz);
+				mes "You converted "+.@pointz+" CP Credit pt(s).";
+				mes "Congrats! you now have "+#CASHPOINTS+" NPC Cash pt(s).";
+				mes "You can now buy on the CASH SHOP.";
+			default:
+				close;
+			}
+		default:
+			close;
+	}
+end;
+//Functions Bodies
+	function updatePoints {
+		set .@account_id,getarg(0);
+		set .@usedPointz,getarg(1);
+		#CASHPOINTS += .@usedPointz;
+		query_sql("UPDATE `cp_credits` SET balance=(balance-"+.@usedPointz+") WHERE account_id='"+.@account_id+"'");
+		return;
+	}
+
+	function getPoints {
+		set .@account_id,getarg(0);
+		query_sql("SELECT `balance` FROM `cp_credits` WHERE account_id="+.@account_id+" LIMIT 1",.@pointz);
+		if(getarraysize(.@pointz)==0)
+			return 0;		
+		return .@pointz[0];
+	}
+}

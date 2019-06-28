@@ -86,6 +86,9 @@ function	script	Protector	{
 		end;
 	}
 }
+
+hugel,100,170,4	duplicate(MVP Warper)	MVP Warper#hugel	768
+
 pvp_n_1-2,100,100,4	script	MVP-Protector#01	727,{ callfunc "Protector","pvp_n_2-2"; }
 pvp_n_2-2,100,100,4	script	MVP-Protector#02	727,{ callfunc "Protector","pvp_n_3-2"; }
 pvp_n_3-2,100,100,4	script	MVP-Protector#03	727,{ callfunc "Protector","pvp_n_4-2"; }

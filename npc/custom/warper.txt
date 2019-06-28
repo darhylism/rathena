@@ -538,10 +538,10 @@ OnInit:
 alb2trea,57,70,6	duplicate(Warper)	Warper#tre	811
 alberta,28,240,4	duplicate(Warper)	Warper#alb	811
 aldebaran,145,118,4	duplicate(Warper)	Warper#alde	811
-amatsu,203,87,4	duplicate(Warper)	Warper#ama	811
+amatsu,101,152,4	duplicate(Warper)	Warper#ama	811
 ayothaya,209,169,6	duplicate(Warper)	Warper#ayo	811
 comodo,194,158,4	duplicate(Warper)	Warper#com	811
-einbech,59,38,6	duplicate(Warper)	Warper#einbe	811
+einbech,172,133,6	duplicate(Warper)	Warper#einbe	811
 einbroch,69,202,4	duplicate(Warper)	Warper#einbr	811
 gef_fild10,71,339,4	duplicate(Warper)	Warper#orc	811
 geffen,124,72,4	duplicate(Warper)	Warper#gef	811
@@ -549,8 +549,8 @@ glast_01,372,308,4	duplicate(Warper)	Warper#glh	811
 gonryun,162,122,4	duplicate(Warper)	Warper#gon	811
 hugel,101,151,4	duplicate(Warper)	Warper#hug	811
 izlu2dun,110,92,4	duplicate(Warper)	Warper#izd	811
-izlude,134,150,4	duplicate(Warper)	Warper#izl	811	//Pre-RE: (132,120)
-jawaii,253,138,4	duplicate(Warper)	Warper#jaw	811
+izlude,125,120,4	duplicate(Warper)	Warper#izl	811	//Pre-RE: (132,120)
+jawaii,222,164,4	duplicate(Warper)	Warper#jaw	811
 lighthalzen,162,102,4	duplicate(Warper)	Warper#lhz	811
 louyang,208,103,6	duplicate(Warper)	Warper#lou	811
 manuk,274,146,6	duplicate(Warper)	Warper#man	811

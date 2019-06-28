@@ -84,7 +84,7 @@ brasilis,192,213,4	duplicate(Coupon Exchanger)	Coupon Exchanger#bras	4_F_PINKWOM
 prontera,164,170,4	duplicate(Coupon Exchanger)	Coupon Exchanger#prontera	4_F_PINKWOMAN
 Askydun,82,109,4	duplicate(Coupon Exchanger)	Coupon Exchanger#Askydun	4_F_PINKWOMAN
 splendide,188,143,4	duplicate(Coupon Exchanger)	Coupon Exchanger#splendide	4_F_PINKWOMAN
-morocc,148,102,4	duplicate(Coupon Exchanger)	Coupon Exchanger#morocc	4_F_PINKWOMAN
+morocc,149,84,4	duplicate(Coupon Exchanger)	Coupon Exchanger#morocc	4_F_PINKWOMAN
 geffen,120,56,4	duplicate(Coupon Exchanger)	Coupon Exchanger#geffen	4_F_PINKWOMAN
 izlude,133,122,4	duplicate(Coupon Exchanger)	Coupon Exchanger#izlude	4_F_PINKWOMAN
 aldebaran,144,128,4	duplicate(Coupon Exchanger)	Coupon Exchanger#aldebaran	4_F_PINKWOMAN

@@ -50,13 +50,13 @@ aldebaran,135,118,6	duplicate(Healer)	Healer#alde	4_DOG01
 amatsu,200,79,4	duplicate(Healer)	Healer#ama	4_DOG01
 ayothaya,207,169,6	duplicate(Healer)	Healer#ayo	4_DOG01
 comodo,184,158,6	duplicate(Healer)	Healer#com	4_DOG01
-einbech,57,36,6	duplicate(Healer)	Healer#einbe	4_DOG01
+einbech,183,125,6	duplicate(Healer)	Healer#einbe	4_DOG01
 einbroch,57,202,6	duplicate(Healer)	Healer#einbr	4_DOG01
 geffen,115,72,6	duplicate(Healer)	Healer#gef	4_DOG01
 gonryun,156,122,6	duplicate(Healer)	Healer#gon	4_DOG01
 hugel,89,150,6	duplicate(Healer)	Healer#hug	4_DOG01
-izlude,121,150,6	duplicate(Healer)	Healer#izl	4_DOG01	//Pre-RE: (125,118)
-jawaii,250,139,4	duplicate(Healer)	Healer#jaw	4_DOG01
+izlude,126,116,6	duplicate(Healer)	Healer#izl	4_DOG01	//Pre-RE: (125,118)
+jawaii,212,165,4	duplicate(Healer)	Healer#jaw	4_DOG01
 lighthalzen,152,100,6	duplicate(Healer)	Healer#lhz	4_DOG01
 louyang,226,103,4	duplicate(Healer)	Healer#lou	4_DOG01
 manuk,272,144,6	duplicate(Healer)	Healer#man	4_DOG01

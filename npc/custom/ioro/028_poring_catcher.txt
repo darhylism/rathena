@@ -15,7 +15,7 @@ set $gmcontrol,60;
 end;
 //---------------END OF SETUP-------------------
 
-OnClock0000:
+OnClock2359:
 donpcevent "Announcer2::OnGMStart";
 end;
 

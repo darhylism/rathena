@@ -150,28 +150,29 @@ end;
 moscovia,226,198,4	duplicate(PvP Arena)	PvP Arena#1	1007
 alberta,23,243,3	duplicate(PvP Arena)	PvP Arena#3	1007 // Kliwa
 aldebaran,136,121,1	duplicate(PvP Arena)	PvP Arena#4	1007 // Kliwa
-amatsu,102,152,3	duplicate(PvP Arena)	PvP Arena#5	1007 // Kliwa
+amatsu,123,151,3	duplicate(PvP Arena)	PvP Arena#5	1007 // Kliwa
 ayothaya,205,169,2	duplicate(PvP Arena)	PvP Arena#6	1007 // Kliwa
 comodo,195,156,4	duplicate(PvP Arena)	PvP Arena#7	1007 // Kliwa
-einbech,198,83,4	duplicate(PvP Arena)	PvP Arena#8	1007 // Taas Kaliwa
+einbech,167,124,4	duplicate(PvP Arena)	PvP Arena#8	1007 // Taas Kaliwa
 einbroch,55,202,5	duplicate(PvP Arena)	PvP Arena#9	1007 // Taas Kaliwa
 geffen,125,71,4	duplicate(PvP Arena)	PvP Arena#10	1007
 gonryun,165,121,4	duplicate(PvP Arena)	PvP Arena#11	1007
 hugel,87,149,5	duplicate(PvP Arena)	PvP Arena#12	1007
 izlude,124,150,4	duplicate(PvP Arena)	PvP Arena#13	1007
 lighthalzen,166,101,4	duplicate(PvP Arena)	PvP Arena#14	1007
-louyang,214,120,5	duplicate(PvP Arena)	PvP Arena#15	1007
+louyang,226,107,5	duplicate(PvP Arena)	PvP Arena#15	1007
 xmas,154,136,4	duplicate(PvP Arena)	PvP Arena#16	1007
 morocc,161,97,4	duplicate(PvP Arena)	PvP Arena#17	1007
 payon,184,104,4	duplicate(PvP Arena)	PvP Arena#18	1007
 rachel,123,145,4	duplicate(PvP Arena)	PvP Arena#19 	1007
 veins,219,127,4	duplicate(PvP Arena)	PvP Arena#20	1007
-yuno,163,170,4	duplicate(PvP Arena)	PvP Arena#21	1007
+yuno,152,44,4	duplicate(PvP Arena)	PvP Arena#21	1007
 umbala,106,159,3	duplicate(PvP Arena)	PvP Arena#22	1007
 prontera,163,177,4	duplicate(PvP Arena)	PvP Arena#23	1007
 Askydun,100,109,4	duplicate(PvP Arena)	PvP Arena#24	1007
 splendide,198,153,4	duplicate(PvP Arena)	PvP Arena#25	1007
 mora,58,132,4	duplicate(PvP Arena)	PvP Arena#26	1007
+jawaii,231,158,4	duplicate(PvP Arena)	PvP Arena#27	1007
  
 //=========== Mapflag ===============
 guild_vs3	mapflag	nowarp

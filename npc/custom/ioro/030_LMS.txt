@@ -99,7 +99,7 @@ OnInit:
 -	script	Killa_warp	-1,{
 
 OnPCDieEvent:
-	getmapxy(.@map$,.@x,.@y,0);
+	getmapxy(.@map$,.@x,.@y,BL_PC);
 	if(.@map$=="evt_swar_t")
 	{
 		set #kill_point, 0;
