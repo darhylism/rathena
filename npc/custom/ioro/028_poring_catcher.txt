@@ -147,11 +147,11 @@ prontera,155,158,0	warp	PoringCatcher	2,2,poring_w01,105,128
 
 OnEnable:
 mapannounce "poring_w01","Poring Manager: The Poring Catcher Event will start shortly",0;
-sleep2 10000;
+sleep 10000;
 mapannounce "poring_w01","Poring Manager: I will be summoning 100 porings with different names kill the real poring",0;
-sleep2 10000;
+sleep 10000;
 mapannounce "poring_w01","Poring Manager: What are we waiting for?..Let's Catch some Porings!!...",0;
-sleep2 10000;
+sleep 10000;
 goto L_Start;
 end;
 L_Start:
@@ -159,15 +159,15 @@ L_Start:
 	if(getmapusers("poring_w01") >= 1) {
 
 	mapannounce "poring_w01","Poring Manager: Get ready at the count of 5 we will start!....",0;
-	sleep2 6000;
+	sleep 6000;
 	mapannounce "poring_w01","Poring Manager: 5",0;
-	sleep2 5000;
+	sleep 5000;
 	mapannounce "poring_w01","Poring Manager: 4",0;
-	sleep2 4000;
+	sleep 4000;
 	mapannounce "poring_w01","Poring Manager: 3",0;
-	sleep2 3000;
+	sleep 3000;
 	mapannounce "poring_w01","Poring Manager: 2",0;
-	sleep2 2000;
+	sleep 2000;
 	mapannounce "poring_w01","Poring Manager: 1",0;
 	donpcevent "Poringsummoner::OnSummon";
 	end;

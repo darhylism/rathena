@@ -26,4 +26,4 @@ abyss_03,0,0	monster	Acidus	1716,30,0,0,0
 abyss_03,0,0	monster	Ferus	1714,30,0,0,0
 abyss_03,0,0	monster	Ferus	1717,30,0,0,0
 
-abyss_03,97,103	boss_monster	Treasure Box	1902,1,43200,43200,0
+abyss_03,97,103	boss_monster	Treasure Box	1902,1,43200000,43200000,0

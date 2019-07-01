@@ -12,128 +12,38 @@
 prontera,163,177,8	script	PvP Arena	1007,{
  
 	mes "[ ^0055FFPvP Warper^000000 ]";
-	mes "Which Arena Do You Want To Go To?";
+	mes "Are you sure you want to go?";
 	next;
-	switch(select("^0055FFPVP Normal Arena^000000 ^FF0000["+getmapusers("guild_vs3")+"/100]^000000:^0055FFParty Vs Party Arena^000000 ^FF0000["+getmapusers("guild_vs5")+"/12]^000000:^0055FFGuild Vs Guild Arena^000000 ^FF0000["+getmapusers("guild_vs2")+"/24]^000000:^0055FFPVP No Pots Arena^000000 ^FF0000["+getmapusers("evt_swar_b")+"/100]^000000:^0055FFPVP Non Donator Arena^000000 ^FF0000["+getmapusers("evt_swar_r")+"/100]^000000:^0055FFPVP Baby Arena^000000 ^FF0000["+getmapusers("evt_swar_s")+"/100]^000000")) {
+	switch(select("^0055FFPVP Normal Arena^000000 ^FF0000["+getmapusers("guild_vs3")+"/100]^000000:Cancel")) {
 	case 1:	// PVP Normal
 		if (getmapusers("guild_vs3") > 99) callsub S_full;
 		warp "guild_vs3",0,0;
 		announce ""+ strcharinfo(0) +" Has Entered The [Pvp Normal Arena]",bc_all; //announce and end
 		end;
 		
-	case 2:	// Party Vs Party
-		mes "[ ^0055FFPvP Warper^000000 ]";
-		if (getmapusers("guild_vs5") > 12) callsub S_full;
-		getpartymember getcharid(1),0;
-		if ( $@partymembercount < 2 ){
-		mes "Sorry You Need A atleast 2 Party Member Make Sure Your Party Member Is Online.";
-		close;
-		}
-		warp "guild_vs5",0,0;
-		announce ""+ strcharinfo(0) +" Has Entered The [Party Vs Party Arena]",bc_all; //announce and end
-		end;
- 
-	case 3:	// Guild Vs Guild
-		mes "[ ^0055FFPvP Warper^000000 ]";
-		if (getmapusers("guild_vs2") > 24) callsub S_full;
-		getguildmember getcharid(2),0;
-		if ( $@guildmembercount < 6 ){
-		mes "Sorry You Need Atleast 6 Guild Members Online.";
-		close;
-		}
-		switch( rand(1,4) ){
-        case 1:	warp "guild_vs2", 49, 7; announce "[ "+strcharinfo(0)+" ] Has Joined In Guild Vs Guild, Representing [ "+ strcharinfo(2) +" ] Guild.",bc_all; end;
-        case 2:	warp "guild_vs2", 7, 49; announce "[ "+strcharinfo(0)+" ] Has Joined In Guild Vs Guild, Representing [ "+ strcharinfo(2) +" ] Guild.",bc_all; end;
-        case 3:	warp "guild_vs2", 49, 92; announce "[ "+strcharinfo(0)+" ] Has Joined In Guild Vs Guild, Representing [ "+ strcharinfo(2) +" ] Guild.",bc_all; end;
-        case 4:	warp "guild_vs2", 92, 49; announce "[ "+strcharinfo(0)+" ] Has Joined In Guild Vs Guild, Representing [ "+ strcharinfo(2) +" ] Guild.",bc_all; end;
-		end;
-	}
- 
-	case 4:	// PVP NoPotion
-		if (getmapusers("evt_swar_b") > 99) callsub S_full;
-		for( set .@i,0; .@i<getarraysize(.NoPotion_ids); set .@i,.@i+1 ) {
-			if (countitem(.NoPotion_ids[.@i]) || cartcountitem(.NoPotion_ids[.@i])) {
-				mes "You Can Not Bring Usable Potion's In This Pvp.";
-				close;
-			}
-		}
-		warp "evt_swar_b",0,0;
-		announce ""+ strcharinfo(0) +" Has Entered The [Pvp No Pots Arena]",bc_all; //announce and end
-		end;
- 
-	case 5: // Non Donator PVP
-		mes "[ ^0055FFPvP Warper^000000 ]";
-		if (getmapusers("evt_swar_r") > 99) callsub S_full;
-		for( set .@i,0; .@i<getarraysize(.NoDonator_ids); set .@i,.@i+1 ) {
-			if (countitem(.NoDonator_ids[.@i]) || cartcountitem(.NoDonator_ids[.@i])) {
-				mes "You Can Not Bring God Items In This PvP.";
-				close;
-			}
-		}		
-		warp "evt_swar_r",0,0;
-		announce ""+ strcharinfo(0) +" Has Entered The [Pvp Non Donator Arena]",bc_all; //announce and end
-		end;
-		
-	Case 6: // Baby PvP Room
-		mes "[ ^0055FFPvP Warper^000000 ]";
-		if (getmapusers("evt_swar_s") > 99) callsub S_full;
-		if (class < 4023 || class > 4045) goto L_NotBaby;
-				warp "evt_swar_s",0,0;
-				announce ""+ strcharinfo(0) +" Has Entered The [Pvp Room Baby Arena]",bc_all; //announce and end
-				end;
-L_NotBaby:
-		mes "Only Baby Can Enter This Room";
+	case 2:
+		mes "Scared!";
 		close;	
- 
+
 	}
  
 S_full:
 	mes " ";
-	mes "I'm Sorry, This Arena Is Full.  Please Try Again Later...";
+	mes "I'm Sorry, The Arena Is Full.  Please Try Again Later...";
 	close;
 		
 OnInit:
-	// Items Not Allowed In PVP No Pots
-	setarray .NoPotion_ids[0],607,608;
- 
-	// Items Not Allowed In Non Donator Pvp
-	setarray .NoDonator_ids[0],2410,1530,2630,2629,2541;
-	
 	OnTimer5000:
 	delwaitingroom;
-	switch(rand(1,6)) {
+	switch(rand(1,2)) {
 Case 1:
-	waitingroom getmapusers("guild_vs3")+" Player"+( getmapusers("guild_vs3") > 1 ? "s":"") +" Are In The PvP Normal", 0;
+	waitingroom getmapusers("guild_vs3")+" Player"+( getmapusers("guild_vs3") > 1 ? "s":"") +" In PvP Normal", 0;
 	emotion ET_GO;
 	goto Timer;
 	end;
 	break;
 Case 2:
-	waitingroom getmapusers("guild_vs5")+" Player"+( getmapusers("guild_vs5") > 1 ? "s":"") +" Are In The Party Vs Party", 0;
-	emotion ET_GO;
-	goto Timer;
-	end;
-	break;
-Case 3:
-	waitingroom getmapusers("guild_vs2")+" Player"+( getmapusers("guild_vs2") > 1 ? "s":"") +" Are In The Guild Vs Guild", 0;	
-	emotion ET_GO;
-	goto Timer;
-	end;
-	break;
-Case 4:
-	waitingroom getmapusers("evt_swar_b")+" Player"+( getmapusers("evt_swar_b") > 1 ? "s":"") +" Are In The PvP No Pots", 0;
-	emotion ET_GO;
-	goto Timer;
-	end;
-	break;
-Case 5:	
-	waitingroom getmapusers("evt_swar_r")+" Player"+( getmapusers("evt_swar_r") > 1 ? "s":"") +" Are In The PvP Non-Donator", 0;	
-	emotion ET_GO;
-	goto Timer;
-	end;
-	break;
-Case 6:
-	waitingroom getmapusers("evt_swar_s")+" Player"+( getmapusers("evt_swar_s") > 1 ? "s":"") +" Are In The PvP Baby", 0;	
+	waitingroom getmapusers("guild_vs5")+" Player"+( getmapusers("guild_vs5") > 1 ? "s":"") +" In PvP Normal", 0;
 	emotion ET_GO;
 	goto Timer;
 	end;
@@ -183,62 +93,6 @@ guild_vs3	mapflag	noreturn
 guild_vs3	mapflag	nomemo
 guild_vs3	mapflag	nobranch
 guild_vs3	mapflag	notrade
-guild_vs3	mapflag	noicewall
 guild_vs3	mapflag	pvp_noparty
 guild_vs3	mapflag	pvp_noguild
 guild_vs3	mapflag	nopenalty
-
-guild_vs2	mapflag	nowarp
-guild_vs2	mapflag	nowarpto
-guild_vs2	mapflag	nobranch
-guild_vs2	mapflag	nomemo
-guild_vs2	mapflag	nopenalty
-guild_vs2	mapflag	noreturn
-guild_vs2	mapflag	nosave	SavePoint
-guild_vs2	mapflag	noteleport
-guild_vs2	mapflag	notrade
-guild_vs2	mapflag	guildlock
-
-guild_vs5	mapflag	nowarp
-guild_vs5	mapflag	nowarpto
-guild_vs5	mapflag	nobranch
-guild_vs5	mapflag	nomemo
-guild_vs5	mapflag	nopenalty
-guild_vs5	mapflag	noreturn
-guild_vs5	mapflag	nosave	SavePoint
-guild_vs5	mapflag	noteleport
-guild_vs5	mapflag	notrade
-guild_vs5	mapflag	partylock
-
-evt_swar_b	mapflag	nowarp
-evt_swar_b	mapflag	nowarpto
-evt_swar_b	mapflag	nobranch
-evt_swar_b	mapflag	nomemo
-evt_swar_b	mapflag	nopenalty
-evt_swar_b	mapflag	noreturn
-evt_swar_b	mapflag	nosave	SavePoint
-evt_swar_b	mapflag	noteleport
-evt_swar_b	mapflag	notrade
-evt_swar_b	mapflag	nodrop
-
-evt_swar_r	mapflag	nowarp
-evt_swar_r	mapflag	nowarpto
-evt_swar_r	mapflag	nobranch
-evt_swar_r	mapflag	nomemo
-evt_swar_r	mapflag	nopenalty
-evt_swar_r	mapflag	noreturn
-evt_swar_r	mapflag	nosave	SavePoint
-evt_swar_r	mapflag	noteleport
-evt_swar_r	mapflag	notrade
-evt_swar_r	mapflag	nodrop
-
-evt_swar_s	mapflag	nowarp
-evt_swar_s	mapflag	nowarpto
-evt_swar_s	mapflag	nobranch
-evt_swar_s	mapflag	nomemo
-evt_swar_s	mapflag	nopenalty
-evt_swar_s	mapflag	noreturn
-evt_swar_s	mapflag	nosave	SavePoint
-evt_swar_s	mapflag	noteleport
-evt_swar_s	mapflag	notrade
-evt_swar_s	mapflag	nodrop

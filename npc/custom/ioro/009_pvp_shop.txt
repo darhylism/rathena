@@ -3,7 +3,7 @@ prontera,132,217,5	script	Pvp Shop#1	4_F_VALKYRIE2,{
 	mes "I come from Valhalla to aid you.";
 	mes "What do you want to buy?.";
 	next;
-	switch(select("General PvP Shop:Siege Set:Close")) {
+	switch(select("General PvP Shop:Close")) {
 		case 1:
 			close2;
 			callshop "1pshop#pvpshopz", 1;
