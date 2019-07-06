@@ -41,7 +41,7 @@ W_1:
 	delitem 1048,100;
 	delitem 1049,50;
 	delitem 7047,50;
-	getitem 35031,1;
+	getitem 35032,1;
 	close;
  
 //________not enough or not the correct items________
