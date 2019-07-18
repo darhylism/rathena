@@ -1450,7 +1450,7 @@
 1579,475,100	// Book of the Dead
 1644,475,100	// Staff of Piercing
 1645,475,100	// Lich's Bone Wand
-1749,499,100	// Tourist Bow
+//1749,499,100	// Tourist Bow
 1928,507,100	// Spirited Guitar
 2003,475,100	// Staff of Destruction
 2398,475,100	// Sniping Suit

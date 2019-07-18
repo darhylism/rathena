@@ -4,13 +4,11 @@
 -	script	Fact Announcer	-1,{
 	end;
 	OnMinute01:
-	OnMinute31:
-	switch(rand(1,5)) {
-	case 1: announce "Ownage prohibits the use of any 3rd party scripts, programs or anything that will give unfair advantage over other players.",bc_all,0xFFFF00; end;
-	case 2: announce "Gaming keyboard/mice macros are still considered 3rd party scripts/macros.",bc_all,0xFFFF00; end;
-	case 3: announce "Use @commands to check available commands on your account",bc_all,0xFFFF00; end;
-	case 4: announce "Please Report Any Bugs You Find",bc_all,0xFFFF00; end;
-	case 5: announce "Failure to follow the rules and regulations will result in punishments correlating to the gravity of the rules that have or may have been broken.",bc_all,0xFFFF00; end;
-	}
+announce "Ownage prohibits the use of any 3rd party scripts, programs or anything that will give unfair advantage over other players.",bc_all,0xFFFF00;
+sleep 5000;
+announce "Gaming keyboard/mice macros are still considered 3rd party scripts/macros.",bc_all,0xFFFF00;
+sleep 5000;
+announce "Failure to follow the rules and regulations will result in punishments correlating to the gravity of the rules that have or may have been broken.",bc_all,0xFFFF00;
+sleep 5000;
 	end;
 }
