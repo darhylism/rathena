@@ -3283,9 +3283,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 			// Clearing...
 			if (sd->bonus_script.head)
 				pc_bonus_script_clear(sd, BSF_REM_ALL);
-
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
 			break;
 		}
 		case BL_PET: {
@@ -3307,9 +3304,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 			if( sd )
 				sd->pd = NULL;
 			pd->master = NULL;
-
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
 			break;
 		}
 		case BL_MOB: {
@@ -3365,9 +3359,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				md->base_status = NULL;
 			}
 
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
-
 			if( mob_is_clone(md->mob_id) )
 				mob_clone_delete(md);
 
@@ -3394,9 +3385,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 			if( sd )
 				sd->hd = NULL;
 			hd->master = NULL;
-
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
 			break;
 		}
 		case BL_MER: {
@@ -3417,9 +3405,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 
 			mercenary_contract_stop(md);
 			md->master = NULL;
-
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
 			break;
 		}
 		case BL_ELEM: {
@@ -3440,13 +3425,12 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 
 			elemental_summon_stop(ed);
 			ed->master = NULL;
-
-			skill_clear_unitgroup(bl);
-			status_change_clear(bl,1);
 			break;
 		}
 	}
 
+	skill_clear_unitgroup(bl);
+	status_change_clear(bl,1);
 	map_deliddb(bl);
 
 	if( bl->type != BL_PC ) // Players are handled by map_quit
