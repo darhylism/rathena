@@ -3635,7 +3635,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		case LK_JOINTBEAT:
 			skillratio += -100 + 10 * skill_lv - 50;
-			if (wd->miscflag & BREAK_NECK || (tsc && tsc->data[status_skill2sc(skill_id)]->val2 & BREAK_NECK)) // The 2x damage is only for the BREAK_NECK ailment.
+			if (wd->miscflag & BREAK_NECK || (tsc && tsc->data[SC_JOINTBEAT] && tsc->data[SC_JOINTBEAT]->val2 & BREAK_NECK)) // The 2x damage is only for the BREAK_NECK ailment.
 				skillratio <<= 1;
 			break;
 #ifdef RENEWAL
@@ -8091,7 +8091,6 @@ static const struct _battle_data {
 	{ "pet_attack_support",                 &battle_config.pet_attack_support,              0,      0,      1,              },
 	{ "pet_damage_support",                 &battle_config.pet_damage_support,              0,      0,      1,              },
 	{ "pet_support_min_friendly",           &battle_config.pet_support_min_friendly,        900,    0,      950,            },
-	{ "pet_equip_min_friendly",             &battle_config.pet_equip_min_friendly,          900,    0,      950,            },
 	{ "pet_support_rate",                   &battle_config.pet_support_rate,                100,    0,      INT_MAX,        },
 	{ "pet_attack_exp_to_master",           &battle_config.pet_attack_exp_to_master,        0,      0,      1,              },
 	{ "pet_attack_exp_rate",                &battle_config.pet_attack_exp_rate,             100,    0,      INT_MAX,        },
