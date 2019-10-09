@@ -187,7 +187,14 @@ uint64 AchievementDatabase::parseBodyNode(const YAML::Node &node){
 			condition = "achievement_condition( " + condition + " );";
 		}
 
+		if( achievement->condition ){
+			aFree( achievement->condition );
+			achievement->condition = nullptr;
+		}
+
 		achievement->condition = parse_script( condition.c_str(), this->getCurrentFile().c_str(), node["Condition"].Mark().line + 1, SCRIPT_IGNORE_EXTERNAL_BRACKETS );
+	}else{
+		achievement->condition = nullptr;
 	}
 
 	if( this->nodeExists( node, "Map" ) ){
@@ -270,7 +277,14 @@ uint64 AchievementDatabase::parseBodyNode(const YAML::Node &node){
 				return 0;
 			}
 
+			if( achievement->rewards.script ){
+				aFree( achievement->rewards.script );
+				achievement->rewards.script = nullptr;
+			}
+
 			achievement->rewards.script = parse_script( script.c_str(), this->getCurrentFile().c_str(), achievement_id, SCRIPT_IGNORE_EXTERNAL_BRACKETS );
+		}else{
+			achievement->rewards.script = nullptr;
 		}
 
 		// TODO: not camel case
@@ -729,7 +743,7 @@ int *achievement_level(struct map_session_data *sd, bool flag)
 	return info;
 }
 
-static bool achievement_check_condition( struct script_code* condition, struct map_session_data* sd, const std::array<int, MAX_ACHIEVEMENT_OBJECTIVES> count ){
+bool achievement_check_condition( struct script_code* condition, struct map_session_data* sd ){
 	// Save the old script the player was attached to
 	struct script_state* previous_st = sd->st;
 
@@ -820,7 +834,7 @@ static bool achievement_update_objectives(struct map_session_data *sd, std::shar
 			if (!ad->condition)
 				return false;
 
-			if (!achievement_check_condition(ad->condition, sd, current_count)) // Parameters weren't met
+			if (!achievement_check_condition(ad->condition, sd)) // Parameters weren't met
 				return false;
 
 			changed = true;
@@ -841,7 +855,7 @@ static bool achievement_update_objectives(struct map_session_data *sd, std::shar
 					current_count[it.first] += update_count[it.first];
 			}
 
-			if (!achievement_check_condition(ad->condition, sd, current_count)) // Parameters weren't met
+			if (!achievement_check_condition(ad->condition, sd)) // Parameters weren't met
 				return false;
 
 			changed = true;
@@ -877,9 +891,28 @@ static bool achievement_update_objectives(struct map_session_data *sd, std::shar
 			break;
 	}
 
-	if (isNew) {
-		if (!(entry = achievement_add(sd, ad->achievement_id)))
-			return false; // Failed to add achievement
+	if( isNew ){
+		// Always add the achievement if it was completed
+		bool hasCounter = complete;
+
+		// If it was not completed
+		if( !hasCounter ){
+			// Check if it has a counter
+			for( int counter : current_count ){
+				if( counter != 0 ){
+					hasCounter = true;
+					break;
+				}
+			}
+		}
+
+		if( hasCounter ){
+			if( !( entry = achievement_add( sd, ad->achievement_id ) ) ){
+				return false; // Failed to add achievement
+			}
+		}else{
+			changed = false;
+		}
 	}
 
 	if (changed) {
