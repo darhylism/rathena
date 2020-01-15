@@ -513,11 +513,11 @@ void initChangeTables(void)
 #ifdef RENEWAL
 	set_sc( GS_MAGICALBULLET	, SC_MAGICALBULLET	, EFST_GS_MAGICAL_BULLET	, SCB_NONE );
 #endif
-	set_sc( GS_GATLINGFEVER		, SC_GATLINGFEVER	, EFST_GS_GATLINGFEVER,
+	set_sc( GS_GATLINGFEVER		, SC_GATLINGFEVER	, EFST_GS_GATLINGFEVER, SCB_FLEE|SCB_SPEED|SCB_ASPD
 #ifndef RENEWAL
-		SCB_BATK|SCB_FLEE|SCB_SPEED|SCB_ASPD );
+		|SCB_BATK );
 #else
-		SCB_FLEE|SCB_SPEED|SCB_ASPD );
+		 );
 #endif
 	add_sc( NJ_TATAMIGAESHI		, SC_TATAMIGAESHI	);
 	set_sc( NJ_SUITON		, SC_SUITON		, EFST_BLANK		, SCB_AGI|SCB_SPEED );
@@ -10249,9 +10249,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		// gs_something1 [Vicious]
 		case SC_GATLINGFEVER:
 			val2 = 20*val1; // Aspd increase
-#ifndef RENEWAL
 			val3 = 20+10*val1; // Atk increase
-#endif
 			val4 = 5*val1; // Flee decrease
 			break;
 
@@ -14309,7 +14307,7 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 	if (sd) {
 		if (sd->hp_loss.value || sd->sp_loss.value)
 			pc_bleeding(sd, natural_heal_diff_tick);
-		if (sd->hp_regen.value || sd->sp_regen.value)
+		if (sd->hp_regen.value || sd->sp_regen.value || sd->percent_hp_regen.value || sd->percent_sp_regen.value)
 			pc_regen(sd, natural_heal_diff_tick);
 	}
 
@@ -14555,7 +14553,7 @@ void status_change_clear_onChangeMap(struct block_list *bl, struct status_change
  */
 static bool status_readdb_status_disabled(char **str, int columns, int current)
 {
-	int type = SC_NONE;
+	int64 type = SC_NONE;
 
 	if (ISDIGIT(str[0][0]))
 		type = atoi(str[0]);
@@ -14613,6 +14611,7 @@ static bool status_yaml_readdb_refine_sub(const YAML::Node &node, int refine_inf
 	const YAML::Node &costs = node["Costs"];
 
 	for (const auto costit : costs) {
+		int64 idx_tmp = 0;
 		const YAML::Node &type = costit;
 		int idx = 0, price;
 		unsigned short material;
@@ -14626,8 +14625,10 @@ static bool status_yaml_readdb_refine_sub(const YAML::Node &node, int refine_inf
 		std::string refine_cost_const = type["Type"].as<std::string>();
 		if (ISDIGIT(refine_cost_const[0]))
 			idx = atoi(refine_cost_const.c_str());
-		else
-			script_get_constant(refine_cost_const.c_str(), &idx);
+		else {
+			script_get_constant(refine_cost_const.c_str(), &idx_tmp);
+			idx = static_cast<int>(idx_tmp);
+		}
 		price = type["Price"].as<int>();
 		material = type["Material"].as<uint16>();
 

@@ -46,12 +46,6 @@ using namespace rathena;
 
 #define IDLE_SKILL_INTERVAL 10	//Active idle skills should be triggered every 1 second (1000/MIN_MOBTHINKTIME)
 
-// Probability for mobs far from players from doing their IDLE skill. (rate of 1000 minute)
-// in Aegis, this is 100% for mobs that have been activated by players and none otherwise.
-#define MOB_LAZYSKILLPERC(md) (mob_is_spotted(md)?1000:0)
-// Move probability for mobs away from players (rate of 1000 minute)
-// in Aegis, this is 100% for mobs that have been activated by players and none otherwise.
-#define MOB_LAZYMOVEPERC(md) (mob_is_spotted(md)?1000:0)
 const t_tick MOB_MAX_DELAY = 24 * 3600 * 1000;
 #define MAX_MINCHASE 30	//Max minimum chase value to use for mobs.
 #define RUDE_ATTACKED_COUNT 1	//After how many rude-attacks should the skill be used?
@@ -2052,14 +2046,23 @@ static int mob_ai_sub_lazy(struct mob_data *md, va_list args)
 
 	if( DIFF_TICK(md->next_walktime,tick) < 0 && status_has_mode(&md->status,MD_CANMOVE) && unit_can_move(&md->bl) )
 	{
-		if( rnd()%1000 < MOB_LAZYMOVEPERC(md) )
+		// Move probability for mobs away from players
+		// In Aegis, this is 100% for mobs that have been activated by players and none otherwise.
+		if( mob_is_spotted(md) &&
+			((!status_has_mode(&md->status,MD_STATUS_IMMUNE) && rnd()%100 < battle_config.mob_nopc_move_rate) ||
+			(status_has_mode(&md->status,MD_STATUS_IMMUNE) && rnd()%100 < battle_config.boss_nopc_move_rate)))
 			mob_randomwalk(md, tick);
 	}
 	else if( md->ud.walktimer == INVALID_TIMER )
 	{
 		//Because it is not unset when the mob finishes walking.
 		md->state.skillstate = MSS_IDLE;
-		if( rnd()%1000 < MOB_LAZYSKILLPERC(md) ) //Chance to do a mob's idle skill.
+
+		// Probability for mobs far from players from doing their IDLE skill.
+		// In Aegis, this is 100% for mobs that have been activated by players and none otherwise.
+		if( mob_is_spotted(md) &&
+			((!status_has_mode(&md->status,MD_STATUS_IMMUNE) && rnd()%100 < battle_config.mob_nopc_idleskill_rate) ||
+			(status_has_mode(&md->status,MD_STATUS_IMMUNE) && rnd()%100 < battle_config.boss_nopc_idleskill_rate)))
 			mobskill_use(md, tick, -1);
 	}
 
@@ -4363,14 +4366,12 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 	if (!this->asString(node, "Mob", mob_name))
 		return 0;
 
-	uint32 mob_id = mobdb_searchname(mob_name.c_str());
+	struct mob_db *mob = mobdb_search_aegisname(mob_name.c_str());
 
-	if (mob_id == 0) {
+	if (mob == nullptr) {
 		this->invalidWarning(node["Mob"], "Unknown mob %s.\n", mob_name.c_str());
 		return 0;
 	}
-
-	struct mob_db *mob = mob_db(mob_id);
 
 	if (this->nodeExists(node, "Sprite")) {
 		std::string sprite;
@@ -4378,7 +4379,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 		if (!this->asString(node, "Sprite", sprite))
 			return 0;
 
-		int constant;
+		int64 constant;
 
 		if (script_get_constant(sprite.c_str(), &constant)) {
 			if (npcdb_checkid(constant) == 0 && pcdb_checkid(constant) == 0) {
@@ -4386,15 +4387,17 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 				return 0;
 			}
 		} else {
-			constant = mobdb_searchname(sprite.c_str());
+			struct mob_db *sprite_mob = mobdb_search_aegisname(sprite.c_str());
 
-			if (constant == 0) {
+			if (sprite_mob == nullptr) {
 				this->invalidWarning(node["Sprite"], "Unknown mob sprite constant %s.\n", sprite.c_str());
 				return 0;
 			}
+
+			constant = sprite_mob->vd.class_;
 		}
 
-		mob->vd.class_ = constant;
+		mob->vd.class_ = (unsigned short)constant;
 	} else {
 		this->invalidWarning(node["Sprite"], "Sprite is missing.\n");
 		return 0;
@@ -4413,7 +4416,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 
 		std::string sex_constant = "SEX_" + sex;
 
-		int constant;
+		int64 constant;
 
 		if (!script_get_constant(sex_constant.c_str(), &constant)) {
 			this->invalidWarning(node["Sex"], "Unknown sex constant %s.\n", sex.c_str());
@@ -4425,7 +4428,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 			return 0;
 		}
 
-		mob->vd.sex = constant;
+		mob->vd.sex = (char)constant;
 	}
 
 	if (this->nodeExists(node, "HairStyle")) {
@@ -4617,7 +4620,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 		for (const auto &optionNode : node["Options"]) {
 			std::string option = optionNode.first.as<std::string>();
 			std::string option_constant = "OPTION_" + option;
-			int constant;
+			int64 constant;
 
 			if (!script_get_constant(option_constant.c_str(), &constant)) {
 				this->invalidWarning(optionNode, "Unknown option constant %s, skipping.\n", option.c_str());
@@ -4662,9 +4665,14 @@ static bool mob_readdb_group(char* str[], int columns, int current){
 
 	if (ISDIGIT(str[0][0]) && ISDIGIT(str[0][1]))
 		group = atoi(str[0]);
-	else if (!script_get_constant(str[0], &group)) {
-		ShowError("mob_readdb_group: Invalid random monster group '%s'\n", str[0]);
-		return false;
+	else {
+		int64 group_tmp;
+
+		if (!script_get_constant(str[0], &group_tmp)) {
+			ShowError("mob_readdb_group: Invalid random monster group '%s'\n", str[0]);
+			return false;
+		}
+		group = static_cast<int>(group_tmp);
 	}
 
 	mob_id = atoi(str[1]);
@@ -5074,7 +5082,8 @@ static int mob_read_sqlskilldb(void)
  *------------------------------------------*/
 static bool mob_readdb_race2(char* fields[], int columns, int current)
 {
-	int race, i;
+	int64 race;
+	int i;
 
 	if( ISDIGIT(fields[0][0]) )
 		race = atoi(fields[0]);
@@ -5084,7 +5093,7 @@ static bool mob_readdb_race2(char* fields[], int columns, int current)
 	}
 
 	if (!CHK_RACE2(race)) {
-		ShowWarning("mob_readdb_race2: Unknown race2 %d.\n", race);
+		ShowWarning("mob_readdb_race2: Unknown race2 %lld.\n", race);
 		return false;
 	}
 
@@ -5093,7 +5102,7 @@ static bool mob_readdb_race2(char* fields[], int columns, int current)
 		struct mob_db* db = mob_db(mob_id);
 
 		if (db == NULL) {
-			ShowWarning("mob_readdb_race2: Unknown mob id %d for race2 %d.\n", mob_id, race);
+			ShowWarning("mob_readdb_race2: Unknown mob id %d for race2 %lld.\n", mob_id, race);
 			continue;
 		}
 		db->race2 = (enum e_race2)race;
@@ -5202,11 +5211,14 @@ static bool mob_readdb_drop(char* str[], int columns, int current) {
 		drop[i].randomopt_group = 0;
 
 		if (columns > 3) {
+			int64 randomopt_group_tmp = -1;
 			int randomopt_group = -1;
-			if (!script_get_constant(trim(str[3]), &randomopt_group)) {
+
+			if (!script_get_constant(trim(str[3]), &randomopt_group_tmp)) {
 				ShowError("mob_readdb_drop: Invalid 'randopt_groupid' '%s' for monster '%hu'.\n", str[3], mobid);
 				return false;
 			}
+			randomopt_group = static_cast<int>(randomopt_group_tmp);
 			if (randomopt_group == RDMOPTG_None)
 				return true;
 			if (!itemdb_randomopt_group_exists(randomopt_group)) {
